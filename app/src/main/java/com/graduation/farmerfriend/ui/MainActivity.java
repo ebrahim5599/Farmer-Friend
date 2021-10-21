@@ -45,5 +45,6 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavigationUI.setupActionBarWithNavController(this, navCo, appBarConfiguration);
 
+        // Hi .
     }
 }
