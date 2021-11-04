@@ -17,34 +17,44 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/news_pic"
-            android:layout_width="128dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_baseline_cloud_black_24"
-            android:scaleType="fitXY"/>
-
-        <TextView
-            android:id="@+id/txt_news_title"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="the government in Egypt allow farmers to plant cotton"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/news_pic"
+                android:layout_width="0dp"
+                android:layout_height="128dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_cloud_black_24"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/txt_news_title"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingEnd="4dp"
+                android:layout_gravity="center"
+                android:text="the government in Egypt allow farmers to plant cotton"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/txt_news_sub_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="the minister of agriculture allow farmers to plant cotton"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
         <TextView
             android:id="@+id/txt_news_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="end"
             android:text="1"
             android:textColor="@color/black"
