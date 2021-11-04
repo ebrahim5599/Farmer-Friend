@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_control" />
     <fragment
         android:id="@+id/ECommerceFragment"
-        android:name="com.graduation.farmerfriend.e_commerce.ECommerceFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.ECommerceFragment"
         android:label="fragment_e_commerce"
         tools:layout="@layout/fragment_e_commerce" />
     <fragment
