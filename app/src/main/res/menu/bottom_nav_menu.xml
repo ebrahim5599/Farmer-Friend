@@ -9,8 +9,8 @@
         android:title="Control"
         android:icon="@drawable/ic_control_24"/>
 
-    <item android:id="@+id/placeholder"
-        android:title="" />
+<!--    <item android:id="@+id/placeholder"-->
+<!--        android:title="" />-->
 
 <!--    <item-->
 <!--        android:id="@+id/menu_store"-->

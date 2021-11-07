@@ -12,7 +12,7 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="48dp"
+        android:paddingBottom="64dp"
         app:defaultNavHost="true"
         app:navGraph="@navigation/my_nav" />
 
@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:fabCradleMargin="10dp"
+        android:padding="4dp"
         app:fabCradleRoundedCornerRadius="20dp"
         app:fabCradleVerticalOffset="5dp">
 
