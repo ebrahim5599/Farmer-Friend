@@ -1,5 +1,6 @@
 package com.graduation.farmerfriend.e_commerce.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,12 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.e_commerce.Categorie;
 import com.graduation.farmerfriend.e_commerce.Data;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleCategoriesAdapter;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
+import com.graduation.farmerfriend.e_commerce.ui.product_activity.ProductActivity;
 
 
 public class ECommerceFragment extends Fragment {
@@ -34,6 +37,14 @@ public class ECommerceFragment extends Fragment {
         recycler_fertilizers = view.findViewById(R.id.recycleview_fertilizers);
         recycler_tools = view.findViewById(R.id.recycleview_tools);
         recycler_machines = view.findViewById(R.id.recycleview_machines);
+
+        TextView frag_seeds = view.findViewById(R.id.seeds_view);
+        frag_seeds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), ProductActivity.class));
+            }
+        });
 
         cart.setOnClickListener(new View.OnClickListener() {
             @Override

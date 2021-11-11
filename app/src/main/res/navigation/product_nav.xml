@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/seedProductsFragment">
+    <fragment
+        android:id="@+id/seedProductsFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.SeedProductsFragment"
+        android:label="fragment_seed_products"
+        tools:layout="@layout/fragment_seed_products" />
+    <fragment
+        android:id="@+id/fertilizerProductsFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.FertilizerProductsFragment"
+        android:label="fragment_fertilizer_products"
+        tools:layout="@layout/fragment_fertilizer_products" />
+    <fragment
+        android:id="@+id/toolProductsFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.ToolProductsFragment"
+        android:label="fragment_tool_products"
+        tools:layout="@layout/fragment_tool_products" />
+</navigation>
