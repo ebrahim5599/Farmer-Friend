@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,12 +13,12 @@ import com.graduation.farmerfriend.R;
 
 public class ViewRecycleCategoriesAdapter extends RecyclerView.Adapter<ViewRecycleCategoriesAdapter.ViewHolder> {
 
-    Categorie[] categorie ;
+    Category[] category;
     Context context ;
 
-    public ViewRecycleCategoriesAdapter(Context con, Categorie[] categorie){
+    public ViewRecycleCategoriesAdapter(Context con, Category[] category){
         this.context = con ;
-        this.categorie = categorie ;
+        this.category = category;
 
     }
 
@@ -33,21 +32,21 @@ public class ViewRecycleCategoriesAdapter extends RecyclerView.Adapter<ViewRecyc
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.text_categorie.setText(categorie[position].getCategorie());
+        holder.text_category.setText(category[position].getCategory());
 
     }
 
     @Override
     public int getItemCount() {
-        return categorie.length;
+        return category.length;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView text_categorie ;
+        TextView text_category;
 
     public ViewHolder(View itemView) {
 
         super(itemView);
-        text_categorie = itemView.findViewById(R.id.categorie);
+        text_category = itemView.findViewById(R.id.category);
     }}
 }

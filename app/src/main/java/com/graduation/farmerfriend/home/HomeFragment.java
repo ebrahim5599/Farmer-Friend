@@ -36,11 +36,10 @@ public class HomeFragment extends Fragment {
         viewModel.getForecastModelLiveData().observe(getViewLifecycleOwner(), new Observer<ForecastModel>() {
             @Override
             public void onChanged(ForecastModel forecastModel) {
-                fragmentHomeBinding.textViewDegree.setText(String.valueOf((int)forecastModel.dailyForecasts.get(0).temperature.minimum.value));
+                fragmentHomeBinding.textViewDegree.setText(String.valueOf((int)forecastModel.dailyForecasts.get(0).temperature.maximum.value));
                 if (forecastModel.dailyForecasts.get(0).night != null) {
                     String imageUrl = "https://www.accuweather.com/images/weathericons/1.svg"
                             +forecastModel.dailyForecasts.get(0).night.icon+".svg";
-                    seturl(imageUrl);
                 }
                 fragmentHomeBinding.textView2.setText(String.valueOf(forecastModel.dailyForecasts.get(0).night.iconPhrase));
 
@@ -56,8 +55,8 @@ public class HomeFragment extends Fragment {
 //                fragmentHomeBinding.textViewDegree.setText(String.valueOf(forecastRepo.getForecastModel().dailyForecasts.get(0).temperature.maximum.value));
             }
         });
-        if(forecastModel0 != null)
-        fragmentHomeBinding.textViewDegree.setText(String.valueOf((int) forecastModel0.dailyForecasts.get(0).temperature.maximum.value));
+//        if(forecastModel0 != null)
+//        fragmentHomeBinding.textViewDegree.setText(String.valueOf((int) forecastModel0.dailyForecasts.get(0).temperature.maximum.value));
         EcommerceAdapter ecommerceAdapter = new EcommerceAdapter();
         fragmentHomeBinding.recyclerViewEcommerce.setAdapter(ecommerceAdapter);
         NewsAdapter newsAdapter = new NewsAdapter();
@@ -65,7 +64,5 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    private void seturl(String imageUrl) {
-        Picasso.get().load(imageUrl).into(fragmentHomeBinding.imageView);
-    }
+
 }

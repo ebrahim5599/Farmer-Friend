@@ -25,6 +25,7 @@ import com.graduation.farmerfriend.home.HomeFragment;
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
                 .findFragmentById(R.id.fragmentContainerView);
         NavController navCo = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(bottomNavigationView, navCo);
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.homeFragment, R.id.controlFragment, R.id.ECommerceFragment, R.id.moreFragment)
-//                .build();
-//        NavigationUI.setupActionBarWithNavController(this, navCo, appBarConfiguration);
 
     }
 }
