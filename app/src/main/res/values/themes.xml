@@ -3,7 +3,7 @@
     <style name="Theme.FarmerFriend" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimaryVariant">#3A8C07</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -11,25 +11,24 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-<!--        <item name="windowActionBar">false</item>-->
-<!--        <item name="windowNoTitle">true</item>-->
+        <!--        <item name="windowActionBar">false</item>-->
+        <!--        <item name="windowNoTitle">true</item>-->
 
         <!-- Customize your theme here. -->
     </style>
 
-<!--    <style name="AppTheme.NoActionBar">-->
-<!--        <item name="windowActionBar">false</item>-->
-<!--        <item name="windowNoTitle">true</item>-->
-<!--    </style>-->
+    <style name="Theme.FarmerFriend.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
-<!--    <style name="CustomCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">-->
-<!--        <item name="cornerFamily">rounded</item>-->
-<!--        <item name="cornerSizeTopRight">0dp</item>-->
-<!--        <item name="cornerSizeTopLeft">0dp</item>-->
-<!--        <item name="cornerSizeBottomRight">16dp</item>-->
-<!--        <item name="cornerSizeBottomLeft">16dp</item>-->
-<!--        <item name="cardBackgroundColor">#299A0B</item>-->
-<!--    </style>-->
+    <style name="Theme.FarmerFriend.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.FarmerFriend.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
+    <!--    <style name="AppTheme.NoActionBar">-->
+    <!--        <item name="windowActionBar">false</item>-->
+    <!--        <item name="windowNoTitle">true</item>-->
+    <!--    </style>-->
 </resources>
