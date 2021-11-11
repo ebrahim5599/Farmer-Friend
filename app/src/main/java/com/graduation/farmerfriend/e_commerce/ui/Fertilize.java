@@ -14,7 +14,7 @@ import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.e_commerce.Data;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
 
-public class fertilize extends Fragment {
+public class Fertilize extends Fragment {
     RecyclerView recyclerView ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

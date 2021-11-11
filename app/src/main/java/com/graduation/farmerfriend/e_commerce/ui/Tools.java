@@ -14,7 +14,7 @@ import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.e_commerce.Data;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
 
-public class tools extends Fragment {
+public class Tools extends Fragment {
 
     RecyclerView recyclerView ;
 

@@ -2,7 +2,7 @@ package com.graduation.farmerfriend.e_commerce;
 
 import android.content.Context;
 import com.graduation.farmerfriend.R ;
-import com.graduation.farmerfriend.e_commerce.ui.item_description;
+import com.graduation.farmerfriend.e_commerce.ui.Item_description;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +39,7 @@ public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycle
             public void onClick(View view) {
 
                 AppCompatActivity activity = (AppCompatActivity)view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,new item_description()).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,new Item_description()).addToBackStack(null).commit();
             }
     });
     }

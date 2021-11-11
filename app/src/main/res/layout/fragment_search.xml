@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".e_commerce.ui.Search">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                style="@style/BottomCornerCardView"
+                android:layout_width="410dp"
+                android:layout_height="137dp"
+                android:backgroundTint="#3A8C07"
+                app:cardElevation="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="152dp"
+                    android:layout_height="84dp"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/allerta"
+                    android:text="@string/app_name"
+                    android:textColor="#FFFCFC"
+                    android:textSize="34sp" />
+
+                <EditText
+                    android:id="@+id/search"
+                    android:layout_width="221dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/shape"
+                    android:backgroundTint="#FBF8F8"
+                    android:drawableStart="@drawable/ic_baseline_search_24"
+                    android:hint="@string/search"
+                    android:textColorHint="#0C0C0C" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/results"
+                android:textColor="#0B0A0A"
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_search"
+                android:layout_width="400dp"
+                android:layout_height="605dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.454"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>

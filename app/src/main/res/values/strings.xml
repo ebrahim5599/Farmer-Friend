@@ -10,4 +10,7 @@
     <string name="add">Add to Cart</string>
     <string name="myproducts">My Products</string>
     <string name="buy">Buy</string>
+    <string name="item_name">Corn Seeds</string>
+    <string name="description">Description</string>
+    <string name="results">Results</string>
 </resources>
