@@ -48,7 +48,7 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.Cart
                 holder.textViewNumberOfItems.setText(String.valueOf(numOfItems + 1));
             }
         });
-        holder.imageViewItem.setImageBitmap(BitmapHandling.decodeSampledBitmapFromResource(context.getResources(), R.drawable.corn, 250, 100));
+        holder.imageViewItem.setImageBitmap(BitmapHandling.decodeSampledBitmapFromResource(context.getResources(), R.drawable.corn00, 250, 100));
 //        holder.imageViewItem.setImageBitmap(BitmapHandling.getRoundedCornerBitmap(BitmapHandling.decodeSampledBitmapFromResource(context.getResources(), R.drawable.corn, 250, 100), 16));
     }
 

@@ -16,7 +16,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/corn"
+        app:srcCompat="@drawable/corn00"
         app:shapeAppearanceOverlay="@style/roundedImage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
