@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".e_commerce.ui.fertilize">
+    tools:context=".e_commerce.ui.Fertilize">
 
     <TextView
         android:id="@+id/freg_fertilizer"

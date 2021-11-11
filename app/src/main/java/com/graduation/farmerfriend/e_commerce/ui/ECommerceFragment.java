@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.e_commerce.Categorie;
@@ -24,6 +26,8 @@ public class ECommerceFragment extends Fragment {
     RecyclerView recycler_seeds,recycler_tools ,recycler_machines ,recycler_fertilizers , recycler_categorie ;
     ImageView cart ;
 
+    TextView editText ;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_e_commerce, container, false);
@@ -34,6 +38,15 @@ public class ECommerceFragment extends Fragment {
         recycler_fertilizers = view.findViewById(R.id.recycleview_fertilizers);
         recycler_tools = view.findViewById(R.id.recycleview_tools);
         recycler_machines = view.findViewById(R.id.recycleview_machines);
+        editText = view.findViewById(R.id.search);
+
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentContainerView,new Search()).addToBackStack(null).commit();
+            }
+        });
 
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
