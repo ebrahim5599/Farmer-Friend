@@ -35,6 +35,7 @@ public class ViewRecycleSearchAdapter extends RecyclerView.Adapter<ViewRecycleSe
         holder.text_name.setText(search[position].getName());
         holder.text_price.setText(search[position].getPrice());
         holder.image.setImageResource(search[position].getImage());
+        holder.text_description.setText(search[position].getDescription());
     }
 
     @Override
@@ -46,6 +47,7 @@ public class ViewRecycleSearchAdapter extends RecyclerView.Adapter<ViewRecycleSe
         TextView text_name ;
         TextView text_price;
         ImageView image;
+        TextView text_description ;
 
         public ViewHolder(View itemView) {
 
@@ -53,5 +55,6 @@ public class ViewRecycleSearchAdapter extends RecyclerView.Adapter<ViewRecycleSe
             text_name = itemView.findViewById(R.id.search_name);
             text_price = itemView.findViewById(R.id.search_price);
             image = itemView.findViewById(R.id.search_image);
+            text_description = itemView.findViewById(R.id.search_description);
         }}
 }
