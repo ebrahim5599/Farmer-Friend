@@ -14,16 +14,17 @@ import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.e_commerce.Data;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
 
-public class machines extends Fragment {
+
+public class Seeds extends Fragment {
 
     RecyclerView recyclerView ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_machines, container, false);
+        View view =inflater.inflate(R.layout.fragment_seeds, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycle_machines);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycle_seeds);
 
-        Data[] data = {
+        Data [] data = {
                 new Data(R.drawable.image1,"jdbvhdv","100$","0%"),
                 new Data(R.drawable.image2,"jdbvhdv","100$","0%"),
                 new Data(R.drawable.image3,"jdbvhdv","100$","0%"),
@@ -32,7 +33,6 @@ public class machines extends Fragment {
                 new Data(R.drawable.image6,"jdbvhdv","100$","0%"),
                 new Data(R.drawable.image7,"jdbvhdv","100$","0%"),
                 new Data(R.drawable.image8,"jdbvhdv","100$","0%")
-
         };
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -40,7 +40,6 @@ public class machines extends Fragment {
         ViewRecycleProductsAdapter recycleViewAdapter = new ViewRecycleProductsAdapter(getContext(),data);
         recyclerView.setAdapter(recycleViewAdapter);
 
-        return view ;
-
+        return view;
     }
 }
