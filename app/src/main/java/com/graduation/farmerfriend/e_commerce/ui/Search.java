@@ -26,10 +26,10 @@ public class Search extends Fragment {
         recyclerView = view.findViewById(R.id.recycle_search);
 
         Search_Item [] search ={
-                new Search_Item(R.drawable.corn,"Corn","100$"),
-                new Search_Item(R.drawable.corn,"Corn","100$"),
-                new Search_Item(R.drawable.corn,"Corn","100$"),
-                new Search_Item(R.drawable.corn,"Corn","100$")
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating")
         };
 
 
