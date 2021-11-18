@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +23,7 @@ import com.graduation.farmerfriend.e_commerce.ViewRecycleCategoriesAdapter;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
 import com.graduation.farmerfriend.e_commerce.ui.cart.CartActivity;
 import com.graduation.farmerfriend.e_commerce.ui.deals.DealsActivity;
+import com.graduation.farmerfriend.e_commerce.ui.wishlist.WishlistActivity;
 
 
 public class ECommerceFragment extends Fragment {
@@ -49,6 +51,8 @@ public class ECommerceFragment extends Fragment {
             public void onClick(View view) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentContainerView,new Search()).addToBackStack(null).commit();
+//                Intent intent = new Intent(getContext(),SearchActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -56,6 +60,13 @@ public class ECommerceFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), DealsActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.fertilizersView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), WishlistActivity.class);
                 startActivity(intent);
             }
         });

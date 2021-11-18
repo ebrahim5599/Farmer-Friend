@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FarmerFriend"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".e_commerce.ui.wishlist.WishlistActivity"
+            android:exported="true" />
+        <activity
             android:name=".e_commerce.ui.cart.CartActivity"
             android:exported="true" />
         <activity

@@ -27,7 +27,4 @@ public class Item_description extends Fragment {
         return view ;
     }
 
-
-
-
 }

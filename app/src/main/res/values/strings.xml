@@ -13,7 +13,6 @@
     <string name="Cart">Cart</string>
     <string name="total">"Total   = "</string>
     <string name="delete">Delete</string>
-    <string name="wishlist">Wishlist</string>
     <string name="title_activity_deals">dealsActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -27,5 +26,9 @@
     <string name="item_name">Corn Seeds</string>
     <string name="description">Description</string>
     <string name="results">Results</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="hot_deals">Hot deals</string>
+    <string name="best_sellers">Best Sellers</string>
 
 </resources>
