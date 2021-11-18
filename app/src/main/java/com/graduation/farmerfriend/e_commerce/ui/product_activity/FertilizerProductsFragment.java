@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class FertilizerProductsFragment extends Fragment {
         ProductItemAdapter adapter = new ProductItemAdapter();
         fertilizers_recycler.setAdapter(adapter);
         fertilizers_recycler.setLayoutManager(new GridLayoutManager(requireContext(),3));
+        Log.i("Fragment","fertilizers fragment oncreateview");
 
         return view;
     }
