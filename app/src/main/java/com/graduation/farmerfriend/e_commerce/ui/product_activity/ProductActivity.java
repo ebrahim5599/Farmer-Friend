@@ -1,22 +1,16 @@
 package com.graduation.farmerfriend.e_commerce.ui.product_activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.graduation.farmerfriend.R;
 
@@ -34,15 +28,39 @@ public class ProductActivity extends AppCompatActivity {
         TextView farmer_friend = findViewById(R.id.textView_farmer_friend);
         farmer_friend.setText("Farmer\nFriend");
 
+        Intent intent = getIntent();
+        if (intent.getStringExtra("FRAGMENT_NO").equals("2")) {
+            if (fertilizerProductsFragment == null) {
+                fertilizerProductsFragment = new FertilizerProductsFragment();
+                Log.i("onCreate()","FertilizersFragment created");
+            }
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentContainerView3, fertilizerProductsFragment);
+            fragmentTransaction.commit();
+
+        } else if (intent.getStringExtra("FRAGMENT_NO").equals("3")) {
+            if (toolProductsFragment == null) {
+                toolProductsFragment = new ToolProductsFragment();
+                Log.i("onCreate()","ToolsFragment created");
+            }
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentContainerView3, toolProductsFragment);
+            fragmentTransaction.commit();
+        }
+
         LinearLayout seeds_linear = findViewById(R.id.seeds_linear);
         seeds_linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Seeds Fragment", Toast.LENGTH_SHORT).show();
-                seedProductsFragment = new SeedProductsFragment();
+                if (seedProductsFragment == null) {
+                    seedProductsFragment = new SeedProductsFragment();
+                    Log.i("onCreate()","SeedsFragment created");
+                }
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView2, seedProductsFragment);
+                fragmentTransaction.replace(R.id.fragmentContainerView3, seedProductsFragment);
                 fragmentTransaction.commit();
 
             }
@@ -53,11 +71,13 @@ public class ProductActivity extends AppCompatActivity {
         fertilizers_linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Fertilizers Fragment", Toast.LENGTH_SHORT).show();
-                fertilizerProductsFragment = new FertilizerProductsFragment();
+                if (fertilizerProductsFragment == null) {
+                    fertilizerProductsFragment = new FertilizerProductsFragment();
+                    Log.i("onCreate()","FertilizersFragment created");
+                }
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView2, fertilizerProductsFragment);
+                fragmentTransaction.replace(R.id.fragmentContainerView3, fertilizerProductsFragment);
                 fragmentTransaction.commit();
             }
         });
@@ -67,36 +87,15 @@ public class ProductActivity extends AppCompatActivity {
         tools_linear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Tools Fragment", Toast.LENGTH_SHORT).show();
-                toolProductsFragment = new ToolProductsFragment();
+                if (toolProductsFragment == null) {
+                    toolProductsFragment = new ToolProductsFragment();
+                    Log.i("onCreate()","ToolsFragment created");
+                }
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView2, toolProductsFragment);
+                fragmentTransaction.replace(R.id.fragmentContainerView3, toolProductsFragment);
                 fragmentTransaction.commit();
             }
         });
-
-//        // Instantiate a ViewPager2 and a PagerAdapter.
-//        ViewPager2 viewPager = findViewById(R.id.fragment_viewPager);
-//        ProductFragmentAdapter productAdapter = new ProductFragmentAdapter(this);
-//        viewPager.setAdapter(productAdapter);
     }
-
-//    private class ProductFragmentAdapter extends FragmentStateAdapter {
-//
-//        public ProductFragmentAdapter(@NonNull FragmentActivity fragmentActivity) {
-//            super(fragmentActivity);
-//        }
-//
-//        @NonNull
-//        @Override
-//        public Fragment createFragment(int position) {
-//            return new ProductsFragment();
-//        }
-//
-//        @Override
-//        public int getItemCount() {
-//            return 3;
-//        }
-//    }
 }
