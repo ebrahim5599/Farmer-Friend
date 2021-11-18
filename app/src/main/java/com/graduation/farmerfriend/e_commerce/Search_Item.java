@@ -5,10 +5,12 @@ public class Search_Item {
     private int Image ;
     private String Name;
     private String price ;
+    private String Description;
 
-    public Search_Item(int image, String name, String price) {
+    public Search_Item(int image, String name, String price,String description) {
         Image = image;
         Name = name;
+        Description = description ;
         this.price = price;
     }
 
@@ -34,5 +36,13 @@ public class Search_Item {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
     }
 }
