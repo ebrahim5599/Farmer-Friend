@@ -17,7 +17,11 @@
             android:exported="true" />
         <activity
             android:name=".e_commerce.ui.product_activity.ProductActivity"
+
+        <activity
+            android:name=".e_commerce.ui.wishlist.WishlistActivity"
             android:exported="true" />
+
         <activity
             android:name=".e_commerce.ui.cart.CartActivity"
             android:exported="true" />

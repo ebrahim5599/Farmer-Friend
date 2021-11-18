@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 
 import com.graduation.farmerfriend.databinding.FragmentBestSelersBinding;
 
-
-public class BestSellers extends Fragment {
+public class BestSellerFragment extends Fragment {
     FragmentBestSelersBinding fragmentBestSelersBinding;
 
 
