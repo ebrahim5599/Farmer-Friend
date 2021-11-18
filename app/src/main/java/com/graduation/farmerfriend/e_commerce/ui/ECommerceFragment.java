@@ -43,7 +43,6 @@ public class ECommerceFragment extends Fragment {
         recycler_fertilizers = view.findViewById(R.id.recycleview_fertilizers);
         recycler_tools = view.findViewById(R.id.recycleview_tools);
 
-        recycler_machines = view.findViewById(R.id.recycleview_machines);
         editText = view.findViewById(R.id.search_searchview_item);
 
         editText = view.findViewById(R.id.search);

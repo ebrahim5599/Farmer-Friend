@@ -25,7 +25,7 @@
 
 
     <TextView
-        android:id="@+id/button_delete"
+        android:id="@+id/wishlist_button_add_to_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_delete_cart_shape"
@@ -36,11 +36,11 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:drawableStartCompat="@drawable/ic_baseline_shopping_cart_24"
-        app:layout_constraintBottom_toBottomOf="@+id/button_wishlist"
+        app:layout_constraintBottom_toBottomOf="@+id/wishlist_button_wishlist"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout3" />
 
     <TextView
-        android:id="@+id/button_wishlist"
+        android:id="@+id/wishlist_button_wishlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -54,10 +54,10 @@
         android:textSize="18sp"
         app:drawableStartCompat="@drawable/ic_baseline_heart_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_delete" />
+        app:layout_constraintEnd_toStartOf="@+id/wishlist_button_add_to_cart" />
 
     <TextView
-        android:id="@+id/wishlist_textViewItemName"
+        android:id="@+id/wish_list_Textview_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -79,8 +79,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/wishlist_textViewItemName"
-        app:layout_constraintTop_toBottomOf="@+id/wishlist_textViewItemName"
+        app:layout_constraintStart_toStartOf="@+id/wish_list_Textview_Name"
+        app:layout_constraintTop_toBottomOf="@+id/wish_list_Textview_Name"
         app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
@@ -97,7 +97,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView_total_price"
+            android:id="@+id/wish_list_Textview_Price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -108,7 +108,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView_price_total_currency"
+            android:id="@+id/wish_list_textView_price_total_currency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
