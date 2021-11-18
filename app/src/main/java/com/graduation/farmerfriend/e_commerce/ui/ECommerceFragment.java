@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,7 +43,7 @@ public class ECommerceFragment extends Fragment {
         recycler_fertilizers = view.findViewById(R.id.recycleview_fertilizers);
         recycler_tools = view.findViewById(R.id.recycleview_tools);
         recycler_machines = view.findViewById(R.id.recycleview_machines);
-        editText = view.findViewById(R.id.search);
+        editText = view.findViewById(R.id.search_searchview_item);
 
         editText.setOnClickListener(new View.OnClickListener() {
             @Override

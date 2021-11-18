@@ -29,7 +29,7 @@
             android:elevation="20dp">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/search_image"
+                android:id="@+id/itemsearch_imageview_item"
                 android:layout_width="105dp"
                 android:layout_height="139dp"
                 android:layout_marginStart="16dp"
@@ -40,31 +40,31 @@
                 app:shapeAppearanceOverlay="@style/roundedimage" />
 
             <TextView
-                android:id="@+id/search_name"
+                android:id="@+id/itemsearch_textview_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:textColor="#121111"
                 android:textSize="24sp"
-                app:layout_constraintStart_toEndOf="@+id/search_image"
+                app:layout_constraintStart_toEndOf="@+id/itemsearch_imageview_item"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/search_price"
+                android:id="@+id/itemsearch_textview_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#2A6306"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/search_name"
+                app:layout_constraintBottom_toBottomOf="@+id/itemsearch_textview_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.614"
-                app:layout_constraintStart_toEndOf="@+id/search_name"
-                app:layout_constraintTop_toTopOf="@+id/search_name"
+                app:layout_constraintStart_toEndOf="@+id/itemsearch_textview_name"
+                app:layout_constraintTop_toTopOf="@+id/itemsearch_textview_name"
                 app:layout_constraintVertical_bias="0.0" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/search_fav"
+                android:id="@+id/itemsearch_imageview_wishlist"
                 android:layout_width="44dp"
                 android:layout_height="41dp"
                 android:layout_marginStart="92dp"
@@ -72,12 +72,12 @@
                 android:background="#E8E6E6"
                 android:elevation="5dp"
                 android:src="@drawable/ic_baseline_favorite_border_24"
-                app:layout_constraintStart_toEndOf="@+id/search_name"
+                app:layout_constraintStart_toEndOf="@+id/itemsearch_textview_name"
                 app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/favimage" />
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/search_cart"
+                android:id="@+id/itemsearch_imageview_cart"
                 android:layout_width="44dp"
                 android:layout_height="41dp"
                 android:layout_marginStart="12dp"
@@ -85,25 +85,25 @@
                 android:background="#E8E6E6"
                 android:elevation="5dp"
                 android:src="@drawable/ic_baseline_shopping_cart_24"
-                app:layout_constraintBottom_toBottomOf="@+id/search_fav"
+                app:layout_constraintBottom_toBottomOf="@+id/itemsearch_imageview_wishlist"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/search_fav"
-                app:layout_constraintTop_toTopOf="@+id/search_fav"
+                app:layout_constraintStart_toEndOf="@+id/itemsearch_imageview_wishlist"
+                app:layout_constraintTop_toTopOf="@+id/itemsearch_imageview_wishlist"
                 app:layout_constraintVertical_bias="0.0"
                 app:shapeAppearanceOverlay="@style/favimage" />
 
             <TextView
-                android:id="@+id/search_description"
+                android:id="@+id/itemsearch_textview_description"
                 android:layout_width="105dp"
                 android:layout_height="54dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/search_fav"
+                app:layout_constraintEnd_toStartOf="@+id/itemsearch_imageview_wishlist"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/search_name"
-                app:layout_constraintTop_toBottomOf="@+id/search_name" />
+                app:layout_constraintStart_toStartOf="@+id/itemsearch_textview_name"
+                app:layout_constraintTop_toBottomOf="@+id/itemsearch_textview_name" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

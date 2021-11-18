@@ -14,7 +14,7 @@
 
 
         <TextView
-            android:id="@+id/search"
+            android:id="@+id/search_searchview_item"
             android:layout_width="280dp"
             android:layout_height="48dp"
             android:layout_marginStart="15dp"

@@ -13,10 +13,11 @@
         android:theme="@style/Theme.FarmerFriend"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".e_commerce.ui.User_Data"
+            android:exported="true" />
+        <activity
             android:name=".e_commerce.ui.product_activity.ProductActivity"
             android:exported="true" />
-        android:theme="@style/Theme.FarmerFriend"
-        android:usesCleartextTraffic="true">
         <activity
             android:name=".e_commerce.ui.cart.CartActivity"
             android:exported="true" />
