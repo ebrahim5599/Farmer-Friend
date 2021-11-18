@@ -2,7 +2,11 @@ package com.graduation.farmerfriend.e_commerce.ui.deals;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
+
 import android.util.Log;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -20,9 +24,17 @@ public class DealsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityDealsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        HotDealsFragment f = new HotDealsFragment();
+        if (savedInstanceState == null) {
+            FragmentManager fragmentMng = getSupportFragmentManager();
+            FragmentTransaction trn = fragmentMng.beginTransaction();
+            trn.add(R.id.fragmentContainerView2, f);
+            trn.commit();
+        }
 
         Intent n = getIntent();
         if (n.getStringExtra("BEST_SELLER").equals("true")) {

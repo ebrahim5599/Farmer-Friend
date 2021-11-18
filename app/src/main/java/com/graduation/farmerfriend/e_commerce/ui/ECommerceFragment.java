@@ -21,7 +21,11 @@ import com.graduation.farmerfriend.e_commerce.Data;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
 import com.graduation.farmerfriend.e_commerce.ui.cart.CartActivity;
 import com.graduation.farmerfriend.e_commerce.ui.deals.DealsActivity;
+
+import com.graduation.farmerfriend.e_commerce.ui.wishlist.WishlistActivity;
+
 import com.graduation.farmerfriend.e_commerce.ui.product_activity.ProductActivity;
+
 
 
 public class ECommerceFragment extends Fragment {
@@ -47,6 +51,8 @@ public class ECommerceFragment extends Fragment {
             public void onClick(View view) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentContainerView,new Search()).addToBackStack(null).commit();
+//                Intent intent = new Intent(getContext(),SearchActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -73,6 +79,13 @@ public class ECommerceFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ProductActivity.class);
                 intent.putExtra("FRAGMENT_NO","3");
+                startActivity(intent);
+            }
+        });
+        binding.fertilizersView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), WishlistActivity.class);
                 startActivity(intent);
             }
         });
