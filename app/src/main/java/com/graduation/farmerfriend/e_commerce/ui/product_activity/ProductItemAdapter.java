@@ -26,7 +26,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
 
     @Override
     public int getItemCount() {
-        return 15;
+        return 25;
     }
 
     public class ProductItemViewHolder  extends RecyclerView.ViewHolder{

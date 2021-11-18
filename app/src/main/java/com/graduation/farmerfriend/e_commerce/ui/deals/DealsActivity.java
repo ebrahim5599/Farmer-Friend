@@ -28,33 +28,25 @@ public class DealsActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        HotDealsFragment f = new HotDealsFragment();
-        if (savedInstanceState == null) {
-            FragmentManager fragmentMng = getSupportFragmentManager();
-            FragmentTransaction trn = fragmentMng.beginTransaction();
-            trn.add(R.id.fragmentContainerView2, f);
-            trn.commit();
-        }
+
 
         Intent n = getIntent();
         if (n.getStringExtra("BEST_SELLER").equals("true")) {
-            if (bestSellersFragment == null) {
+            if (savedInstanceState == null) {
                 bestSellersFragment = new BestSellerFragment();
-                Log.i("onCreate()", "bestSellerFragmentCreated");
+                FragmentManager fragmentMng = getSupportFragmentManager();
+                FragmentTransaction trn = fragmentMng.beginTransaction();
+                trn.replace(R.id.fragmentContainerView2, bestSellersFragment);
+                trn.commit();
             }
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.fragmentContainerView2, bestSellersFragment);
-            transaction.commit();
         } else {
-            if (hotDealsFragment == null) {
+            if (savedInstanceState == null) {
                 hotDealsFragment = new HotDealsFragment();
-                Log.i("onCreate()", "hotDealsFragmentCreated");
+                FragmentManager fragmentMng = getSupportFragmentManager();
+                FragmentTransaction trn = fragmentMng.beginTransaction();
+                trn.replace(R.id.fragmentContainerView2, hotDealsFragment);
+                trn.commit();
             }
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.fragmentContainerView2, hotDealsFragment);
-            transaction.commit();
         }
     }
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ public class SeedProductsFragment extends Fragment {
         ProductItemAdapter adapter = new ProductItemAdapter();
         seeds_recycler.setAdapter(adapter);
         seeds_recycler.setLayoutManager(new GridLayoutManager(requireContext(),3));
+        Log.i("Fragment","seeds fragment oncreateview");
 
         return view;
     }

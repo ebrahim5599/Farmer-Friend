@@ -82,7 +82,7 @@ public class ECommerceFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        binding.fertilizersView.setOnClickListener(new View.OnClickListener() {
+        binding.wishList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), WishlistActivity.class);
