@@ -4,28 +4,45 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable-v24/ic_camera_24.xml" value="0.24351851851851852" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable-v24/relative_layout_background2.xml" value="0.2703125" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable-v24/relative_layout_background3.xml" value="0.2703125" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable-v24/shape_without_borders.xml" value="0.2703125" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/add_button_background.xml" value="0.26615384615384613" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/add_shape.xml" value="0.2703125" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/border_shape.xml" value="0.2703125" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/button_delete_cart_shape.xml" value="0.2703125" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/cart_icon.xml" value="0.26615384615384613" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/edittext_background.xml" value="0.26615384615384613" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/grey_round_shape.xml" value="0.2703125" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/heart_icon.xml" value="0.26615384615384613" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.2703125" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/relative_layout_background.xml" value="0.26615384615384613" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/search_icon.xml" value="0.26615384615384613" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/search_shape.xml" value="0.2703125" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/shape.xml" value="0.2703125" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/tab_item_background.xml" value="0.26615384615384613" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/drawable/textview_background.xml" value="0.26615384615384613" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/font/font.xml" value="0.28" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/activity_cart.xml" value="0.2210144927536232" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/activity_deals.xml" value="0.13020833333333334" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/activity_product.xml" value="0.264" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/activity_store.xml" value="0.1793478260869565" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/content_deals.xml" value="0.2210144927536232" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/e_commerce_container.xml" value="0.2105978260869565" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_best_selers.xml" value="0.20516304347826086" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_control.xml" value="0.12760416666666666" />
-        <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_e_commerce.xml" value="0.1793478260869565" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_e_commerce.xml" value="0.264" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_fertilizer_products.xml" value="0.23505434782608695" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_hot_deals.xml" value="0.20516304347826086" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_item_description.xml" value="0.23505434782608695" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_more.xml" value="0.12760416666666666" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_products.xml" value="0.23505434782608695" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_seed_products.xml" value="0.23505434782608695" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_seeds.xml" value="0.23505434782608695" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_tool_products.xml" value="0.2" />
+        <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/item_container.xml" value="0.2105978260869565" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/news_container.xml" value="0.23052536231884058" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/product_container.xml" value="0.536" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/viewrecycleviewcategories.xml" value="0.23052536231884058" />
