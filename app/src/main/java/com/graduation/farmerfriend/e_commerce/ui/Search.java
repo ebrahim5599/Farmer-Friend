@@ -11,19 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.databinding.FragmentSearchBinding;
 import com.graduation.farmerfriend.e_commerce.Search_Item;
-import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleSearchAdapter;
 
 public class Search extends Fragment {
+
+    FragmentSearchBinding binding;
 
     RecyclerView recyclerView ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
-
-        recyclerView = view.findViewById(R.id.recycle_search);
+        binding = FragmentSearchBinding.inflate(inflater, container, false);
 
         Search_Item [] search ={
                 new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
@@ -34,9 +34,9 @@ public class Search extends Fragment {
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
+        binding.searchRecycleviewSearchItem.setLayoutManager(linearLayoutManager);
         ViewRecycleSearchAdapter recycleViewAdapter = new ViewRecycleSearchAdapter(getContext(),search);
-        recyclerView.setAdapter(recycleViewAdapter);
-        return view ;
+        binding.searchRecycleviewSearchItem.setAdapter(recycleViewAdapter);
+        return binding.getRoot() ;
     }
 }

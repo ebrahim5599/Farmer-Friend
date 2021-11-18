@@ -42,8 +42,13 @@ public class ECommerceFragment extends Fragment {
         recycler_seeds = view.findViewById(R.id.recycleview_seeds);
         recycler_fertilizers = view.findViewById(R.id.recycleview_fertilizers);
         recycler_tools = view.findViewById(R.id.recycleview_tools);
+
+        recycler_machines = view.findViewById(R.id.recycleview_machines);
+        editText = view.findViewById(R.id.search_searchview_item);
+
         editText = view.findViewById(R.id.search);
         farmer_friend = view.findViewById(R.id.textView_farmer_friend);
+
 
         farmer_friend.setText("Farmer\nFriend");
         editText.setOnClickListener(new View.OnClickListener() {

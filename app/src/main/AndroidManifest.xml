@@ -13,12 +13,13 @@
         android:theme="@style/Theme.FarmerFriend"
         android:usesCleartextTraffic="true">
         <activity
-
-            android:name=".e_commerce.ui.wishlist.WishlistActivity"
+            android:name=".e_commerce.ui.User_Data"
             android:exported="true" />
-
         <activity
             android:name=".e_commerce.ui.product_activity.ProductActivity"
+
+        <activity
+            android:name=".e_commerce.ui.wishlist.WishlistActivity"
             android:exported="true" />
 
         <activity

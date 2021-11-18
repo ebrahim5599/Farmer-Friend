@@ -1,6 +1,7 @@
 package com.graduation.farmerfriend.e_commerce;
 
 import android.content.Context;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.databinding.FragmentSearchBinding;
+import com.graduation.farmerfriend.databinding.ItemSearchBinding;
 
 public class ViewRecycleSearchAdapter extends RecyclerView.Adapter<ViewRecycleSearchAdapter.ViewHolder>{
 
@@ -25,17 +28,17 @@ public class ViewRecycleSearchAdapter extends RecyclerView.Adapter<ViewRecycleSe
     @NonNull
     @Override
     public ViewRecycleSearchAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_search, parent, false);
-        return new ViewHolder(view);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        ItemSearchBinding binding = ItemSearchBinding.inflate(layoutInflater, parent, false);
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
-        holder.text_name.setText(search[position].getName());
-        holder.text_price.setText(search[position].getPrice());
-        holder.image.setImageResource(search[position].getImage());
-        holder.text_description.setText(search[position].getDescription());
+        holder.binding.itemsearchTextviewName.setText(search[position].getName());
+        holder.binding.itemsearchTextviewPrice.setText(search[position].getPrice());
+        holder.binding.itemsearchImageviewItem.setImageResource(search[position].getImage());
+        holder.binding.itemsearchTextviewDescription.setText(search[position].getDescription());
     }
 
     @Override
@@ -44,17 +47,12 @@ public class ViewRecycleSearchAdapter extends RecyclerView.Adapter<ViewRecycleSe
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView text_name ;
-        TextView text_price;
-        ImageView image;
-        TextView text_description ;
 
-        public ViewHolder(View itemView) {
+        ItemSearchBinding binding;
 
-            super(itemView);
-            text_name = itemView.findViewById(R.id.search_name);
-            text_price = itemView.findViewById(R.id.search_price);
-            image = itemView.findViewById(R.id.search_image);
-            text_description = itemView.findViewById(R.id.search_description);
-        }}
+        public ViewHolder(ItemSearchBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+    }
 }

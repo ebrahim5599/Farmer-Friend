@@ -26,9 +26,30 @@
     <string name="item_name">Corn Seeds</string>
     <string name="description">Description</string>
     <string name="results">Results</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="governorate">Governorate</string>
+    <string name="neighborhood">Neighborhood</string>
+    <string name="region">Region</string>
+    <string name="street">Street</string>
+    <string name="enter_the_street">Enter Your Street</string>
+    <string name="Property_number_and_apartment_number">Property Number And Apartment Number</string>
+    <string name="Block">Block 0 and Apartment 0</string>
+    <string name="special_marque">Special Marque</string>
+    <string name="mosque_school">Mosque / School</string>
+    <string name="Address_type">Address Type</string>
+    <string name="location">Add Your Location</string>
+    <string name="save">Save</string>
+
+    <string-array name="gov_array">
+        <item>Sharqia</item>
+        <item>cairo</item>
+    </string-array>
+
     <string name="title_activity_search">SearchActivity</string>
     <string name="wishlist">Wishlist</string>
     <string name="hot_deals">Hot deals</string>
     <string name="best_sellers">Best Sellers</string>
+
 
 </resources>
