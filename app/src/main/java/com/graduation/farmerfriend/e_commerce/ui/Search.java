@@ -19,7 +19,6 @@ public class Search extends Fragment {
 
     FragmentSearchBinding binding;
 
-    RecyclerView recyclerView ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

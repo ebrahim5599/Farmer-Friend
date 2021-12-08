@@ -12,22 +12,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.databinding.FragmentFertilizerProductsBinding;
 
 public class FertilizerProductsFragment extends Fragment {
 
+    FragmentFertilizerProductsBinding binding ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fertilizer_products, container, false);
 
-        RecyclerView fertilizers_recycler = view.findViewById(R.id.fertilizer_recycler_view);
+        binding = FragmentFertilizerProductsBinding.inflate(inflater, container, false);
 
         ProductItemAdapter adapter = new ProductItemAdapter();
-        fertilizers_recycler.setAdapter(adapter);
-        fertilizers_recycler.setLayoutManager(new GridLayoutManager(requireContext(),3));
+        binding.fragmentFertilizerProductsRecyclerView.setAdapter(adapter);
+        binding.fragmentFertilizerProductsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(),3));
         Log.i("Fragment","fertilizers fragment oncreateview");
 
-        return view;
+        return binding.getRoot();
     }
 }
