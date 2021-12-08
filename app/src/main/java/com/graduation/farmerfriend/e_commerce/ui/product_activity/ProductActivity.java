@@ -6,16 +6,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.e_commerce.ui.deals.BestSellerFragment;
+import com.graduation.farmerfriend.databinding.ActivityProductBinding;
 
 public class ProductActivity extends AppCompatActivity {
+
+    ActivityProductBinding binding ;
 
     FertilizerProductsFragment fertilizerProductsFragment;
     SeedProductsFragment seedProductsFragment;
@@ -25,10 +26,12 @@ public class ProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
 
-        TextView farmer_friend = findViewById(R.id.textView_farmer_friend);
-        farmer_friend.setText("Farmer\nFriend");
+        binding = ActivityProductBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        binding.activityProductTextViewFarmerFriend.setText("Farmer\nFriend");
 
         Intent intent = getIntent();
         chooseFragment = intent.getStringExtra("FRAGMENT_NO");
@@ -40,7 +43,7 @@ public class ProductActivity extends AppCompatActivity {
             if (savedInstanceState == null) {
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView3, fertilizerProductsFragment);
+                fragmentTransaction.replace(R.id.activity_product_fragment, fertilizerProductsFragment);
                 fragmentTransaction.commit();
             }
 
@@ -52,13 +55,13 @@ public class ProductActivity extends AppCompatActivity {
             if (savedInstanceState == null) {
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView3, toolProductsFragment);
+                fragmentTransaction.replace(R.id.activity_product_fragment, toolProductsFragment);
                 fragmentTransaction.commit();
             }
         }
 
-        LinearLayout seeds_linear = findViewById(R.id.seeds_linear);
-        seeds_linear.setOnClickListener(new View.OnClickListener() {
+
+        binding.activityProductsSeedsLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (seedProductsFragment == null) {
@@ -67,15 +70,14 @@ public class ProductActivity extends AppCompatActivity {
                 }
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView3, seedProductsFragment);
+                fragmentTransaction.replace(R.id.activity_product_fragment, seedProductsFragment);
                 fragmentTransaction.commit();
 
             }
         });
 
 
-        LinearLayout fertilizers_linear = findViewById(R.id.fertilizers_linear);
-        fertilizers_linear.setOnClickListener(new View.OnClickListener() {
+        binding.activityProductsFertilizersLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (fertilizerProductsFragment == null) {
@@ -84,25 +86,30 @@ public class ProductActivity extends AppCompatActivity {
                 }
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView3, fertilizerProductsFragment);
+                fragmentTransaction.replace(R.id.activity_product_fragment, fertilizerProductsFragment);
                 fragmentTransaction.commit();
             }
         });
 
 
-        LinearLayout tools_linear = findViewById(R.id.tools_linear);
-        tools_linear.setOnClickListener(new View.OnClickListener() {
+        binding.activityProductsToolsLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (toolProductsFragment == null) {
                     toolProductsFragment = new ToolProductsFragment();
-                    Log.i("onCreate()", "ToolsFragment created");
+//                    Log.i("onCreate()", "ToolsFragment created");
                 }
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView3, toolProductsFragment);
+                fragmentTransaction.replace(R.id.activity_product_fragment, toolProductsFragment);
                 fragmentTransaction.commit();
             }
         });
+
+
+
     }
+
+
+
 }

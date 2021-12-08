@@ -11,21 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.databinding.FragmentToolProductsBinding;
 
 public class ToolProductsFragment extends Fragment {
 
+    FragmentToolProductsBinding binding ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tool_products, container, false);
 
-        RecyclerView tools_recycler = view.findViewById(R.id.tools_recycler_view);
+        binding = FragmentToolProductsBinding.inflate(inflater, container, false);
 
         ProductItemAdapter adapter = new ProductItemAdapter();
-        tools_recycler.setAdapter(adapter);
-        tools_recycler.setLayoutManager(new GridLayoutManager(requireContext(),3));
+        binding.fragmentToolProductsRecyclerView.setAdapter(adapter);
+        binding.fragmentToolProductsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(),3));
 
-        return view;
+        return binding.getRoot();
     }
 }

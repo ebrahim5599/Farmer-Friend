@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentECommerceBinding;
@@ -30,27 +28,15 @@ import com.graduation.farmerfriend.e_commerce.ui.product_activity.ProductActivit
 
 public class ECommerceFragment extends Fragment {
     FragmentECommerceBinding binding;
-    RecyclerView recycler_seeds,recycler_tools ,recycler_fertilizers;
-    TextView editText, cart, farmer_friend;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentECommerceBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
 
-        cart = view.findViewById(R.id.shopping_car);
-        recycler_seeds = view.findViewById(R.id.recycleview_seeds);
-        recycler_fertilizers = view.findViewById(R.id.recycleview_fertilizers);
-        recycler_tools = view.findViewById(R.id.recycleview_tools);
 
-        editText = view.findViewById(R.id.search_searchview_item);
-
-        editText = view.findViewById(R.id.search);
-        farmer_friend = view.findViewById(R.id.textView_farmer_friend);
-
-
-        farmer_friend.setText("Farmer\nFriend");
-        editText.setOnClickListener(new View.OnClickListener() {
+        binding.fragmentECommerceTextViewFarmerFriend.setText("Farmer\nFriend");
+        binding.fragmentECommerceEditTextSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -60,7 +46,7 @@ public class ECommerceFragment extends Fragment {
             }
         });
 
-        binding.seedsView.setOnClickListener(new View.OnClickListener() {
+        binding.fragmentECommerceSeedsView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ProductActivity.class);
@@ -69,7 +55,7 @@ public class ECommerceFragment extends Fragment {
             }
         });
 
-        binding.fertilizersView.setOnClickListener(new View.OnClickListener() {
+        binding.fragmentECommerceFertilizersView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ProductActivity.class);
@@ -78,7 +64,7 @@ public class ECommerceFragment extends Fragment {
             }
         });
 
-        binding.toolsView.setOnClickListener(new View.OnClickListener() {
+        binding.fragmentECommerceToolsView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ProductActivity.class);
@@ -86,7 +72,7 @@ public class ECommerceFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        binding.wishList.setOnClickListener(new View.OnClickListener() {
+        binding.fragmentECommerceTextViewWishList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), WishlistActivity.class);
@@ -95,7 +81,7 @@ public class ECommerceFragment extends Fragment {
         });
 
 
-        cart.setOnClickListener(new View.OnClickListener() {
+        binding.fragmentECommerceTextViewCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), CartActivity.class);
@@ -103,7 +89,7 @@ public class ECommerceFragment extends Fragment {
             }
         });
 
-        binding.bestSellerViewAll.setOnClickListener(new View.OnClickListener() {
+        binding.fragmentECommerceTextviewBestSellerViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(getContext(), "Best Seller", Toast.LENGTH_SHORT).show();
@@ -113,7 +99,7 @@ public class ECommerceFragment extends Fragment {
             }
         });
 
-        binding.hotDealsViewAll.setOnClickListener(new View.OnClickListener() {
+        binding.fragmentECommerceTextviewHotDealsViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(getContext(), "Hot deals", Toast.LENGTH_SHORT).show();
@@ -123,7 +109,7 @@ public class ECommerceFragment extends Fragment {
             }
         });
 
-        binding.seedsViewAll.setOnClickListener(new View.OnClickListener() {
+        binding.fragmentECommerceTextviewSeedsViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ProductActivity.class);
@@ -132,7 +118,7 @@ public class ECommerceFragment extends Fragment {
             }
         });
 
-        binding.fertilizersViewAll.setOnClickListener(new View.OnClickListener() {
+        binding.fragmentECommerceTextviewFertilizersViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ProductActivity.class);
@@ -140,7 +126,7 @@ public class ECommerceFragment extends Fragment {
                 startActivity(intent);            }
         });
 
-        binding.toolsViewAll.setOnClickListener(new View.OnClickListener() {
+        binding.fragmentECommerceTextviewToolsViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ProductActivity.class);
@@ -159,9 +145,9 @@ public class ECommerceFragment extends Fragment {
                 new Data(R.drawable.image8,"fyuegif","100$","50%")
         };
 
-        binding.recycleViewBestSeller.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
+        binding.fragmentECommerceRecycleViewBestSeller.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
         ViewRecycleProductsAdapter recycleViewAdapterBest = new ViewRecycleProductsAdapter(getContext(), data_best_seller);
-        binding.recycleViewBestSeller.setAdapter(recycleViewAdapterBest);
+        binding.fragmentECommerceRecycleViewBestSeller.setAdapter(recycleViewAdapterBest);
 
         Data[] data_hot_deals = {
                 new Data(R.drawable.image1, "rice", "50$", "no"),
@@ -174,9 +160,9 @@ public class ECommerceFragment extends Fragment {
                 new Data(R.drawable.image8,"fyuegif","100$","50%")
         };
 
-        binding.recycleViewHotDeals.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
+        binding.fragmentECommerceRecycleViewHotDeals.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
         ViewRecycleProductsAdapter recycleViewAdapterHot = new ViewRecycleProductsAdapter(getContext(), data_hot_deals);
-        binding.recycleViewHotDeals.setAdapter(recycleViewAdapterHot);
+        binding.fragmentECommerceRecycleViewHotDeals.setAdapter(recycleViewAdapterHot);
 
         Data[] data_seeds = {
             new Data(R.drawable.image1, "rice", "50$", "no"),
@@ -189,9 +175,9 @@ public class ECommerceFragment extends Fragment {
                 new Data(R.drawable.image8,"fyuegif","100$","50%")
         };
 
-        recycler_seeds.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
+        binding.fragmentECommerceRecycleviewSeeds.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
         ViewRecycleProductsAdapter recycleViewAdapters = new ViewRecycleProductsAdapter(getContext(), data_seeds);
-        recycler_seeds.setAdapter(recycleViewAdapters);
+        binding.fragmentECommerceRecycleviewSeeds.setAdapter(recycleViewAdapters);
 
         Data[] data_fertilize = {
                 new Data(R.drawable.image1, "rice", "50$", "no"),
@@ -204,9 +190,9 @@ public class ECommerceFragment extends Fragment {
                 new Data(R.drawable.image8,"fyuegif","100$","50%")
         };
 
-        recycler_fertilizers.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
+        binding.fragmentECommerceRecycleviewFertilizers.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
         ViewRecycleProductsAdapter recycleViewAdapterf = new ViewRecycleProductsAdapter(getContext(),data_fertilize);
-        recycler_fertilizers.setAdapter(recycleViewAdapterf);
+        binding.fragmentECommerceRecycleviewFertilizers.setAdapter(recycleViewAdapterf);
 
         Data[] data_tools = {
                 new Data(R.drawable.image1, "rice", "50$", "no"),
@@ -219,9 +205,9 @@ public class ECommerceFragment extends Fragment {
                 new Data(R.drawable.image8,"fyuegif","100$","50%")
         };
 
-        recycler_tools.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
+        binding.fragmentECommerceRecycleviewTools.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
         ViewRecycleProductsAdapter recycleViewAdaptert = new ViewRecycleProductsAdapter(getContext(),data_tools);
-        recycler_tools.setAdapter(recycleViewAdaptert);
+        binding.fragmentECommerceRecycleviewTools.setAdapter(recycleViewAdaptert);
 
         return view;
     }
