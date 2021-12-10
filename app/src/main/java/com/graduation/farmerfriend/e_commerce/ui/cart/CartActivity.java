@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.ActivityCartBinding;
 import com.graduation.farmerfriend.e_commerce.ui.User_Data;
 

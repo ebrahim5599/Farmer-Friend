@@ -15,7 +15,7 @@ import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ForecastRepo {
-    private static final String BOOK_SEARCH_SERVICE_BASE_URL = "http://dataservice.accuweather.com/";
+    private static final String WEATHER_SERVICE_BASE_URL = "http://dataservice.accuweather.com/";
 
     private ForecastInterface forecastInterface;
     private MutableLiveData<ForecastModel> forecastModelLiveDataLiveData;
@@ -30,7 +30,7 @@ public class ForecastRepo {
 //        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         forecastInterface = new retrofit2.Retrofit.Builder()
-                .baseUrl(BOOK_SEARCH_SERVICE_BASE_URL)
+                .baseUrl(WEATHER_SERVICE_BASE_URL)
 //                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
@@ -44,7 +44,7 @@ public class ForecastRepo {
                     public void onResponse(Call<ForecastModel> call, Response<ForecastModel> response) {
                         forecastModelLiveDataLiveData.postValue(response.body());
                         forecastModel = response.body();
-                        Toast.makeText(context, String.valueOf(response.body().dailyForecasts.get(0).night.iconPhrase), Toast.LENGTH_LONG).show();
+//                        Toast.makeText(context, String.valueOf(response.body().dailyForecasts.get(0).night.iconPhrase), Toast.LENGTH_LONG).show();
                     }
 
                     @Override

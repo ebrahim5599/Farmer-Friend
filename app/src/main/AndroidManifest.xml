@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.graduation.farmerfriend">
+    package="com.graduation.farmerfriend" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,18 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FarmerFriend"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".e_commerce.ui.ItemDescriptionActivity"
+            android:exported="true" />
         <activity
             android:name=".e_commerce.ui.User_Data"
             android:exported="true" />
         <activity
             android:name=".e_commerce.ui.product_activity.ProductActivity"
             android:exported="true" />
-
         <activity
             android:name=".e_commerce.ui.wishlist.WishlistActivity"
             android:exported="true" />
-
         <activity
             android:name=".e_commerce.ui.cart.CartActivity"
             android:exported="true" />
@@ -36,7 +37,7 @@
             android:exported="true" />
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

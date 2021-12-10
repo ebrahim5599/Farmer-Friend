@@ -1,77 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".e_commerce.ui.Search">
 
-
-    <ScrollView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/fragment_search_appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="84dp"
+        android:background="@drawable/relative_layout_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:background="@drawable/relative_layout_background">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/search_cardview"
-                style="@style/BottomCornerCardView"
-                android:layout_width="410dp"
-                android:layout_height="137dp"
-                android:backgroundTint="#3A8C07"
-                app:cardElevation="10dp"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/fragment_search_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_scrollFlags="enterAlways|scroll|snap|exitUntilCollapsed" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/search_textview_app_name"
-                    android:layout_width="152dp"
-                    android:layout_height="84dp"
-                    android:layout_marginStart="5dp"
-                    android:fontFamily="@font/allerta"
+                    android:id="@+id/fragment_search_textview_app_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="@font/kitten_swash"
                     android:text="@string/app_name"
                     android:textColor="#FFFCFC"
-                    android:textSize="34sp" />
+                    android:textSize="20sp" />
 
                 <EditText
-                    android:id="@+id/search_searchview_item"
-                    android:layout_width="221dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="150dp"
-                    android:layout_marginTop="30dp"
+                    android:id="@+id/fragment_search_searchview_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/shape"
                     android:backgroundTint="#FBF8F8"
                     android:drawableStart="@drawable/ic_baseline_search_24"
                     android:hint="@string/search"
                     android:textColorHint="#0C0C0C" />
-            </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_search_appbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/search_textview_results"
+                android:id="@+id/fragment_search_textview_results"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:text="@string/results"
                 android:textColor="#0B0A0A"
                 android:textSize="34sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_cardview" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/search_recycleview_search_item"
-                android:layout_width="400dp"
-                android:layout_height="605dp"
+                android:id="@+id/fragment_search_recycleview_search_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search_textview_results" />
+                app:layout_constraintTop_toBottomOf="@+id/fragment_search_textview_results" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
