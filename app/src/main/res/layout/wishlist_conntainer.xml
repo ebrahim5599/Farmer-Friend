@@ -52,20 +52,22 @@
         android:stateListAnimator="@null"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:drawableStartCompat="@drawable/ic_baseline_heart_24"
+        app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/wishlist_button_add_to_cart" />
 
     <TextView
         android:id="@+id/wish_list_Textview_Name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
         android:text="@string/seeds"
         android:textColor="@color/greyCartItemName"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
         app:layout_constraintStart_toEndOf="@+id/wishlist_imageViewItem"
         app:layout_constraintTop_toTopOf="parent" />
 

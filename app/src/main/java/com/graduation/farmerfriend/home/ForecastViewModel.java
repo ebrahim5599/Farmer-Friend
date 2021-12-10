@@ -14,7 +14,6 @@ public class ForecastViewModel extends ViewModel {
 
     public void init(Context context) {
         forecastRepo = new ForecastRepo(context);
-
     }
 
     public void setForecastData() {

@@ -35,8 +35,7 @@
                 android:id="@+id/activity_deals_textView_farmer_friend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="5dp"
+                android:layout_marginStart="130dp"
                 android:fontFamily="@font/kitten_swash"
                 android:gravity="center"
                 android:text="@string/app_name"
@@ -49,65 +48,54 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.487" />
 
-            <TextView
+            <EditText
                 android:id="@+id/activity_deals_editText_search"
-                android:layout_width="175dp"
+                android:layout_width="300dp"
                 android:layout_height="45dp"
-                android:layout_centerVertical="false"
-                android:layout_marginStart="5dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/edittext_background"
-                android:gravity="center_vertical"
-                android:text="Search"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:drawableLeft="@drawable/search_icon"
+                android:hint="Search"
                 app:layout_constraintEnd_toStartOf="@+id/activity_deals_textView_wish_list"
                 app:layout_constraintHorizontal_bias="0.954"
-                app:layout_constraintStart_toEndOf="@+id/activity_deals_textView_farmer_friend"
-                app:layout_constraintTop_toTopOf="parent"
-                app:drawableLeftCompat="@drawable/search_icon" />
+                app:layout_constraintStart_toEndOf="@id/activity_deals_textView_farmer_friend"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/activity_deals_textView_wish_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="8dp"
-                android:padding="6dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/textview_background"
-                android:clickable="true"
-                android:elevation="1dp"
-                android:focusable="true"
-                android:stateListAnimator="@null"
-                android:textColor="@color/black"
-                android:textSize="18sp"
+                android:gravity="center"
+                android:padding="8dp"
                 app:drawableStartCompat="@drawable/ic_baseline_heart_24"
-                app:layout_constraintBottom_toBottomOf="@+id/activity_deals_textView_cart"
                 app:layout_constraintEnd_toStartOf="@+id/activity_deals_textView_cart"
-                app:layout_constraintHorizontal_bias="0.512"
                 app:layout_constraintStart_toEndOf="@id/activity_deals_editText_search"
-                app:layout_constraintTop_toTopOf="@+id/activity_deals_textView_cart" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/activity_deals_textView_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="20dp"
-                android:padding="6dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="130dp"
                 android:background="@drawable/textview_background"
-                android:clickable="true"
-                android:elevation="1dp"
-                android:focusable="true"
-                android:stateListAnimator="@null"
-                android:textColor="@color/black"
-                android:textSize="18sp"
+                android:gravity="center"
+                android:padding="8dp"
                 app:drawableStartCompat="@drawable/ic_baseline_shopping_cart_24"
-                app:layout_constraintBottom_toBottomOf="@+id/activity_deals_editText_search"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/activity_deals_textView_wish_list"
-                app:layout_constraintTop_toTopOf="@+id/activity_deals_editText_search" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.fragment.app.FragmentContainerView
@@ -117,7 +105,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_deals_appbar" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_deals_appbar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

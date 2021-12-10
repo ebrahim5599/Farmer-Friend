@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".e_commerce.ui.wishlist.WishlistActivity">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,12 +32,12 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/cart_recycler_view"
+                android:id="@+id/wishlist_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

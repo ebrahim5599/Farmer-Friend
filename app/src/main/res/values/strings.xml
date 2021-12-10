@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Farmer Friend</string>
+    <string name="app_name">Farmer\nFriend</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Search....</string>
@@ -50,6 +50,7 @@
     <string name="wishlist">Wishlist</string>
     <string name="hot_deals">Hot deals</string>
     <string name="best_sellers">Best Sellers</string>
+    <string name="city">City</string>
 
 
 </resources>

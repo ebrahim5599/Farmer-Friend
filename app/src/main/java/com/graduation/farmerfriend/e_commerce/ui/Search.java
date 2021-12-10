@@ -28,14 +28,25 @@ public class Search extends Fragment {
                 new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
                 new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
                 new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
+                new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
                 new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating")
         };
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        binding.searchRecycleviewSearchItem.setLayoutManager(linearLayoutManager);
+        binding.fragmentSearchRecycleviewSearchItem.setLayoutManager(linearLayoutManager);
         ViewRecycleSearchAdapter recycleViewAdapter = new ViewRecycleSearchAdapter(getContext(),search);
-        binding.searchRecycleviewSearchItem.setAdapter(recycleViewAdapter);
+        binding.fragmentSearchRecycleviewSearchItem.setAdapter(recycleViewAdapter);
         return binding.getRoot() ;
     }
 }
