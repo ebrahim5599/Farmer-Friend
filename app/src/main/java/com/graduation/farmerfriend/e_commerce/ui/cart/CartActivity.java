@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.ActivityCartBinding;
 import com.graduation.farmerfriend.e_commerce.ui.User_Data;
 
@@ -34,7 +33,7 @@ public class CartActivity extends AppCompatActivity {
         binding.cartButtonCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CartActivity.this, User_Data.class);
+                Intent intent = new Intent(CartActivity.this, UserDataActivity.class);
                 startActivity(intent);
             }
         });

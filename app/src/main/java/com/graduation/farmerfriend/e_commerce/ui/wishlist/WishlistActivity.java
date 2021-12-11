@@ -14,8 +14,8 @@ public class WishlistActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         WishlistAdapter wishlistAdapter = new WishlistAdapter();
 
-        binding.cartRecyclerView.setAdapter(wishlistAdapter);
-        binding.cartRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.wishlistRecyclerView.setAdapter(wishlistAdapter);
+        binding.wishlistRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }

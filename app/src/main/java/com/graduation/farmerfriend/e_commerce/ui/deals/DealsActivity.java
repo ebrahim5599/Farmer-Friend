@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 
 
-import android.util.Log;
-
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -36,7 +33,7 @@ public class DealsActivity extends AppCompatActivity {
                 bestSellersFragment = new BestSellerFragment();
                 FragmentManager fragmentMng = getSupportFragmentManager();
                 FragmentTransaction trn = fragmentMng.beginTransaction();
-                trn.replace(R.id.fragmentContainerView2, bestSellersFragment);
+                trn.replace(R.id.activity_deals_fragmentContainer, bestSellersFragment);
                 trn.commit();
             }
         } else {
@@ -44,7 +41,7 @@ public class DealsActivity extends AppCompatActivity {
                 hotDealsFragment = new HotDealsFragment();
                 FragmentManager fragmentMng = getSupportFragmentManager();
                 FragmentTransaction trn = fragmentMng.beginTransaction();
-                trn.replace(R.id.fragmentContainerView2, hotDealsFragment);
+                trn.replace(R.id.activity_deals_fragmentContainer, hotDealsFragment);
                 trn.commit();
             }
         }

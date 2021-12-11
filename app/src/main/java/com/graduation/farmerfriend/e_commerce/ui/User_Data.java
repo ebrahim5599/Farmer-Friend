@@ -6,18 +6,19 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
 import com.graduation.farmerfriend.databinding.ActivityCartBinding;
+import com.graduation.farmerfriend.databinding.ActivityUserData10Binding;
 import com.graduation.farmerfriend.databinding.ActivityUserDataBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class User_Data extends AppCompatActivity {
-    ActivityUserDataBinding binding;
+    ActivityUserData10Binding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityUserDataBinding.inflate(getLayoutInflater());
+        binding = ActivityUserData10Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         List<String> gov = new ArrayList<String>();

@@ -37,8 +37,10 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setBackground(null);
 
         // Navigation between fragments.
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+        NavHostFragment navHostFragment = (NavHostFragment)
+                getSupportFragmentManager()
                 .findFragmentById(R.id.fragmentContainerView);
+        assert navHostFragment != null;
         NavController navCo = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(bottomNavigationView, navCo);
 
