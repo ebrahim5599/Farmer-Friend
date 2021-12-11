@@ -33,7 +33,7 @@ public class CartActivity extends AppCompatActivity {
         binding.cartButtonCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CartActivity.this, User_Data.class);
+                Intent intent = new Intent(CartActivity.this, UserDataActivity.class);
                 startActivity(intent);
             }
         });
