@@ -1,156 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".e_commerce.ui.deals.DealsActivity">
 
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/item_description_cardView"
-        android:layout_width="0dp"
-        android:layout_height="170dp"
-        android:backgroundTint="#3A8C07"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay">
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/item_description_imageview_product"
-        android:layout_width="300dp"
-        android:layout_height="230dp"
-        android:layout_marginTop="24dp"
-        android:elevation="2dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/corn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/roundedImage" />
-
-    <LinearLayout
-        android:id="@+id/item_description_linearlayout_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@+id/item_description_textview_name"
-        app:layout_constraintTop_toBottomOf="@+id/item_description_textview_name">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="64dp">
 
 
-        <TextView
-            android:id="@+id/item_description_Textview_Price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="4dp"
-            android:text="1000"
-            android:textColor="@color/greenCartText"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/item_description_textView_price_currency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="2dp"
-            android:text="EGP"
-            android:textColor="@color/greenCartText"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/item_description_imageview_wishlist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/button_delete_cart_shape"
-        android:clickable="true"
-        android:elevation="1dp"
-        android:focusable="true"
-        android:stateListAnimator="@null"
-        android:textColor="@color/black"
-        app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24"
-        app:layout_constraintBottom_toTopOf="@+id/item_description_linearlayout_price"
-        app:layout_constraintEnd_toStartOf="@+id/item_description_imageview_share"
-        app:layout_constraintTop_toTopOf="@+id/item_description_textview_name" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/item_description_cardView"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:backgroundTint="#3A8C07"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay">
 
-    <TextView
-        android:id="@+id/item_description_imageview_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/button_delete_cart_shape"
-        android:clickable="true"
-        android:elevation="1dp"
-        android:focusable="true"
-        android:stateListAnimator="@null"
-        app:drawableStartCompat="@drawable/ic_baseline_share_24"
-        app:layout_constraintBottom_toBottomOf="@+id/item_description_imageview_wishlist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/item_description_imageview_wishlist" />
+            </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:id="@+id/item_description_textview_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/item_name"
-        android:textColor="#070707"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_description_imageview_product" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/item_description_imageview_product"
+                android:layout_width="300dp"
+                android:layout_height="230dp"
+                android:layout_marginTop="24dp"
+                android:elevation="2dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/corn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/roundedImage" />
 
-    <TextView
-        android:id="@+id/item_description_textview_title_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            <LinearLayout
+                android:id="@+id/item_description_linearlayout_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
 
-        android:layout_marginTop="32dp"
-        android:text="@string/description"
-        android:textColor="#090909"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/item_description_textview_name"
-        app:layout_constraintTop_toBottomOf="@+id/item_description_linearlayout_price" />
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/item_description_textview_name"
+                app:layout_constraintTop_toBottomOf="@+id/item_description_textview_name">
 
-    <TextView
-        android:id="@+id/item_description_textview_description"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textColor="#090909"
-        app:layout_constraintStart_toStartOf="@+id/item_description_textview_title_description"
-        app:layout_constraintTop_toBottomOf="@+id/item_description_textview_title_description" />
+
+                <TextView
+                    android:id="@+id/item_description_Textview_Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="4dp"
+                    android:text="1000"
+                    android:textColor="@color/greenCartText"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/item_description_textView_price_currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="2dp"
+                    android:text="EGP"
+                    android:textColor="@color/greenCartText"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/item_description_imageview_wishlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/button_delete_cart_shape"
+                android:clickable="true"
+                android:elevation="1dp"
+                android:focusable="true"
+                android:stateListAnimator="@null"
+                android:textColor="@color/black"
+                app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24"
+                app:layout_constraintBottom_toTopOf="@+id/item_description_linearlayout_price"
+                app:layout_constraintEnd_toStartOf="@+id/item_description_imageview_share"
+                app:layout_constraintTop_toTopOf="@+id/item_description_textview_name" />
+
+            <TextView
+                android:id="@+id/item_description_imageview_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/button_delete_cart_shape"
+                android:clickable="true"
+                android:elevation="1dp"
+                android:focusable="true"
+                android:stateListAnimator="@null"
+                app:drawableStartCompat="@drawable/ic_baseline_share_24"
+                app:layout_constraintBottom_toBottomOf="@+id/item_description_imageview_wishlist"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/item_description_imageview_wishlist" />
+
+            <TextView
+                android:id="@+id/item_description_textview_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/item_name"
+                android:textColor="#070707"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_description_imageview_product" />
+
+            <TextView
+                android:id="@+id/item_description_textview_title_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="32dp"
+                android:text="@string/description"
+                android:textColor="#090909"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/item_description_textview_name"
+                app:layout_constraintTop_toBottomOf="@+id/item_description_linearlayout_price" />
+
+            <TextView
+                android:id="@+id/item_description_textview_description"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:textColor="#090909"
+                app:layout_constraintStart_toStartOf="@+id/item_description_textview_title_description"
+                app:layout_constraintTop_toBottomOf="@+id/item_description_textview_title_description" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/item_description_button_add_to_cart"
         android:layout_width="250dp"
         android:layout_height="60dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="32dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="4dp"
         android:backgroundTint="#3A8C07"
         android:gravity="center"
         android:text="@string/add"
         app:cornerRadius="15dp"
-
-        app:icon="@drawable/ic_baseline_shopping_cart_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_description_textview_description"
-        app:layout_constraintVertical_bias="1.0" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:icon="@drawable/ic_baseline_shopping_cart_24" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -17,6 +17,6 @@ public class ItemDescriptionActivity extends AppCompatActivity {
 
         binding.itemDescriptionTextviewDescription.setText("corn is a heat_loving with varieties for eating fresh or drying to make popcorn" +
                 "or maize. Botantically, sweet corn is actually an impressively tall grass , and the kernels are " +
-                "mature seeds. Plant sweet corn in blocks to achieve even pollination.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+                "mature seeds. Plant sweet corn in blocks to achieve even pollination.");
     }
 }
