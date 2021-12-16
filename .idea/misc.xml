@@ -11,6 +11,23 @@
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/layout/fragment_more.xml" value="0.12760416666666666" />
         <entry key="..\:/11 Farmer Friend/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
+
+        <entry key="..\:/Farmer-Friend/app/src/main/res/drawable-land/fragment_more.xml" value="0.1" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/drawable-v24/shape_without_borders.xml" value="0.17407407407407408" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/drawable/cart_icon.xml" value="0.17407407407407408" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/drawable/more_cardview.xml" value="0.17407407407407408" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/drawable/more_image_background.xml" value="0.17407407407407408" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/drawable/setting_background.xml" value="0.17407407407407408" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/drawable/shape.xml" value="0.18796296296296297" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/drawable/tab_item_background.xml" value="0.17407407407407408" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/drawable/textview_background.xml" value="0.17407407407407408" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/drawable/user_data_shape.xml" value="0.17407407407407408" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/layout-land/fragment_more.xml" value="0.1" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/layout/activity_product.xml" value="0.10182370820668693" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/layout/activity_wishlist.xml" value="0.11911231884057971" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_best_selers.xml" value="0.11911231884057971" />
+
         <entry key="..\:/Farmer-Friend/app/src/main/res/drawable-v24/relative_layout_background2.xml" value="0.17037037037037037" />
         <entry key="..\:/Farmer-Friend/app/src/main/res/drawable-v24/relative_layout_background3.xml" value="0.17037037037037037" />
         <entry key="..\:/Farmer-Friend/app/src/main/res/drawable/relative_layout_background.xml" value="0.17037037037037037" />
@@ -28,16 +45,24 @@
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/activity_user_data.xml" value="0.209375" />
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/e_commerce_container.xml" value="0.10182370820668693" />
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_best_selers.xml" value="0.10182370820668693" />
+
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_cart.xml" value="0.1953125" />
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_e_commerce.xml" value="0.25" />
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_fertilize.xml" value="0.209375" />
+
+        <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_hot_deals.xml" value="0.16530797101449277" />
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_fertilizer_products.xml" value="0.1" />
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_hot_deals.xml" value="0.10182370820668693" />
+
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_item_description.xml" value="0.22" />
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_machines.xml" value="0.10182370820668693" />
-        <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_more.xml" value="0.10182370820668693" />
+        <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_more.xml" value="0.18" />
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_search.xml" value="0.22" />
+
+        <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_seed_products.xml" value="0.11911231884057971" />
+
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_seed_products.xml" value="0.10182370820668693" />
+
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_seeds.xml" value="0.209375" />
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_tool_products.xml" value="0.22" />
         <entry key="..\:/Farmer-Friend/app/src/main/res/layout/fragment_tools.xml" value="0.15" />

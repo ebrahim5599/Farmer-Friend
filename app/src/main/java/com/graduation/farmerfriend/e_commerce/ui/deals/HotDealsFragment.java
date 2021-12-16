@@ -26,8 +26,8 @@ public class HotDealsFragment extends Fragment {
         fragmentHotDealsBinding = FragmentHotDealsBinding.inflate(inflater,container,false);
         View view = fragmentHotDealsBinding.getRoot();
         HotDealsAdapter adapter = new HotDealsAdapter();
-        fragmentHotDealsBinding.hotDealsRecyclerView.setAdapter(adapter);
-        fragmentHotDealsBinding.hotDealsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(),3));
+        fragmentHotDealsBinding.fragmentHotDealsRecyclerView.setAdapter(adapter);
+        fragmentHotDealsBinding.fragmentHotDealsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(),3));
 
         return view;
 
