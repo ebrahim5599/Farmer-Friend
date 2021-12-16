@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.graduation.farmerfriend.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_ECommerceFragment"
+            app:destination="@id/ECommerceFragment" />
+    </fragment>
     <fragment
         android:id="@+id/controlFragment"
         android:name="com.graduation.farmerfriend.control.ControlFragment"
