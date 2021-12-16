@@ -1,13 +1,12 @@
 package com.graduation.farmerfriend.repos;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.graduation.farmerfriend.apis.ForecastInterface;
-import com.graduation.farmerfriend.models.ForecastModel;
+import com.graduation.farmerfriend.models.Root;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,11 +14,11 @@ import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ForecastRepo {
-    private static final String WEATHER_SERVICE_BASE_URL = "http://dataservice.accuweather.com/";
+    private static final String WEATHER_SERVICE_BASE_URL = " http://api.weatherapi.com";
 
     private ForecastInterface forecastInterface;
-    private MutableLiveData<ForecastModel> forecastModelLiveDataLiveData;
-    ForecastModel forecastModel;
+    private MutableLiveData<Root> forecastModelLiveDataLiveData;
+    Root forecastModel;
     Context context;
 
     public ForecastRepo(Context context) {
@@ -38,27 +37,24 @@ public class ForecastRepo {
     }
 
     public void setForecastData() {
-        forecastInterface.getDailyForecast("2mCOTVxtXQjYJ7EjC8bsJIB7V9tm4WaB", "ar-eg", true)
-                .enqueue(new Callback<ForecastModel>() {
-                    @Override
-                    public void onResponse(Call<ForecastModel> call, Response<ForecastModel> response) {
-                        forecastModelLiveDataLiveData.postValue(response.body());
-                        forecastModel = response.body();
-//                        Toast.makeText(context, String.valueOf(response.body().dailyForecasts.get(0).night.iconPhrase), Toast.LENGTH_LONG).show();
-                    }
+        forecastInterface.getCurrentForecast("ac1763cd50fd42cd9fe131850210912","zaqaziq","en",3).enqueue(new Callback<Root>() {
+            @Override
+            public void onResponse(Call<Root> call, Response<Root> response) {
+                forecastModelLiveDataLiveData.postValue(response.body());
+            }
 
-                    @Override
-                    public void onFailure(Call<ForecastModel> call, Throwable t) {
-//                        forecastModelLiveDataLiveData.postValue(null);
-                    }
-                });
+            @Override
+            public void onFailure(Call<Root> call, Throwable t) {
+
+            }
+        });
     }
 
-    public LiveData<ForecastModel> getForecastModelLiveDataLiveData() {
+    public LiveData<Root> getForecastModelLiveDataLiveData() {
         return forecastModelLiveDataLiveData;
     }
 
-    public ForecastModel getForecastModel() {
+    public Root getForecastModel() {
         return forecastModel;
     }
 

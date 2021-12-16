@@ -27,7 +27,7 @@ public class EcommerceAdapter extends RecyclerView.Adapter<EcommerceAdapter.Ecom
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 100;
     }
 
     class EcommerceViewHolder extends RecyclerView.ViewHolder {
@@ -37,9 +37,9 @@ public class EcommerceAdapter extends RecyclerView.Adapter<EcommerceAdapter.Ecom
 
         public EcommerceViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.imageView);
-            textViewName = itemView.findViewById(R.id.txt_item_name);
-            textViewPrice = itemView.findViewById(R.id.txt_item_price);
+            imageView = itemView.findViewById(R.id.product_image);
+            textViewName = itemView.findViewById(R.id.product_name);
+            textViewPrice = itemView.findViewById(R.id.product_price);
 
         }
 

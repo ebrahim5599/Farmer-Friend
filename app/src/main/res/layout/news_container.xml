@@ -1,64 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="16dp"
+    android:background="@drawable/home_news_and_ecommerce_container_shape"
     android:orientation="vertical">
 
-<androidx.cardview.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="18dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="8dp">
 
-    <LinearLayout
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/news_pic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="vertical">
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img"
+        app:shapeAppearanceOverlay="@style/newsRoundedImage"/>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
-
-            <ImageView
-                android:id="@+id/news_pic"
-                android:layout_width="0dp"
-                android:layout_height="128dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_baseline_cloud_black_24"
-                android:scaleType="fitXY"/>
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txt_news_title"
-                android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingStart="12dp"
+                android:paddingEnd="4dp"
+                android:layout_marginTop="8dp"
+                android:textAllCaps="true"
+                android:text="10 benefits of mint"
+                android:textColor="@color/greenCartText"
+                android:textStyle="bold"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/txt_news_sub_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="12dp"
                 android:paddingEnd="4dp"
-                android:layout_gravity="center"
-                android:text="the government in Egypt allow farmers to plant cotton"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
-        </LinearLayout>
+                android:text="the minister of agriculture allow farmers to plant cotton"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/txt_news_sub_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="the minister of agriculture allow farmers to plant cotton"
-            android:textSize="16sp" />
-        <TextView
-            android:id="@+id/txt_news_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="1"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/txt_news_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="8dp"
+                android:textSize="16sp" />
+        </LinearLayout>
 </LinearLayout>
