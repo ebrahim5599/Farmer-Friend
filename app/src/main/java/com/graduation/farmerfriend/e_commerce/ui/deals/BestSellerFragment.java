@@ -23,8 +23,8 @@ public class BestSellerFragment extends Fragment {
         fragmentBestSelersBinding = FragmentBestSelersBinding.inflate(inflater,container,false);
         View view = fragmentBestSelersBinding.getRoot();
         BestSellerAdapter adapter = new BestSellerAdapter();
-        fragmentBestSelersBinding.bestSellersRecyclerView.setAdapter(adapter);
-        fragmentBestSelersBinding.bestSellersRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(),3));
+        fragmentBestSelersBinding.fragmentBestSellersRecyclerView.setAdapter(adapter);
+        fragmentBestSelersBinding.fragmentBestSellersRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(),3));
 
         Log.i("Fragment","Best sellers oncreateView");
         return view;

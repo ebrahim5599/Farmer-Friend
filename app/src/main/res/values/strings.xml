@@ -52,6 +52,12 @@
     <string name="best_sellers">Best Sellers</string>
     <string name="city">City</string>
     <string name="result">Result</string>
+    <string name="community">Community</string>
+    <string name="store">Store</string>
+    <string name="help">Help</string>
+    <string name="setting">Setting</string>
+    <string name="about_us">About Us</string>
+    <string name="log_out">Log Out</string>
 
 
 </resources>

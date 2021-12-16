@@ -47,7 +47,7 @@
                     android:fontFamily="sans-serif-medium"
                     android:text="Fatma Hassan"
                     android:textColor="#101010"
-                    android:textSize="24sp"
+                    android:textSize="34sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.502"
                     app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +55,7 @@
 
                 <TextView
                     android:id="@+id/fragment_more_textview_community"
-                    android:layout_width="335dp"
+                    android:layout_width="635dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp"
                     android:background="@drawable/fragment_more_item_background"
@@ -74,7 +74,7 @@
 
                 <TextView
                     android:id="@+id/fragment_more_textview_store"
-                    android:layout_width="335dp"
+                    android:layout_width="635dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/fragment_more_item_background"
@@ -92,7 +92,7 @@
 
                 <TextView
                     android:id="@+id/fragment_more_textview_help"
-                    android:layout_width="335dp"
+                    android:layout_width="635dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/fragment_more_item_background"
@@ -110,7 +110,7 @@
 
                 <TextView
                     android:id="@+id/fragment_more_textview_setting"
-                    android:layout_width="335dp"
+                    android:layout_width="635dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/fragment_more_item_background"
@@ -128,7 +128,7 @@
 
                 <TextView
                     android:id="@+id/fragment_more_textview_about"
-                    android:layout_width="335dp"
+                    android:layout_width="635dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/fragment_more_item_background"
@@ -146,10 +146,9 @@
 
                 <TextView
                     android:id="@+id/fragment_more_textview_logout"
-                    android:layout_width="335dp"
+                    android:layout_width="635dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:layout_marginBottom="20dp"
                     android:background="@drawable/fragment_more_item_background"
                     android:drawableStart="@drawable/ic_baseline_login_24"
                     android:drawablePadding="10dp"
@@ -159,13 +158,13 @@
                     android:text="@string/log_out"
                     android:textColor="#0E0E0E"
                     android:textSize="24sp"
+                    android:layout_marginBottom="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.508"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_about"
-                    app:layout_constraintVertical_bias="0.037" />
-
+                    app:layout_constraintVertical_bias="0.037"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </FrameLayout>
 
