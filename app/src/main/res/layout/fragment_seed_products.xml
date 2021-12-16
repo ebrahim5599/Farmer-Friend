@@ -12,11 +12,12 @@
         android:id="@+id/fragment_seeds_products_textview_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/hacen_saudi_arabia"
         android:text="Seeds"
         android:textColor="@color/black"
         android:textSize="24sp"
-        android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="@+id/fragment_seeds_products_recycler_view"
         app:layout_constraintTop_toTopOf="parent" />
 
