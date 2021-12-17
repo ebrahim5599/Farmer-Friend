@@ -65,6 +65,9 @@
     <string name="setting">Setting</string>
     <string name="about_us">About Us</string>
     <string name="log_out">Log Out</string>
+    <string name="title_activity_iot">IOT_Activity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 
 
 </resources>
