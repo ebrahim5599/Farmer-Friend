@@ -13,6 +13,10 @@
         android:theme="@style/Theme.FarmerFriend"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".IOT.IOT_Activity"
+            android:exported="true"
+            android:label="@string/title_activity_iot" />
+        <activity
             android:name=".e_commerce.ui.cart.UserDataActivity"
             android:exported="true" />
         <activity

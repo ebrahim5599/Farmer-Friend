@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
                 fragmentHomeBinding.textViewLocation.setText(forecastModel.location.name + ", " + forecastModel.location.country);
                 fragmentHomeBinding.textViewConditionText.setText(forecastModel.current.condition.text);
                 fragmentHomeBinding.textViewHumidity.setText(String.format("%d %%", forecastModel.current.humidity));
-                fragmentHomeBinding.textViewWind.setText(String.format("%s km/h", String.valueOf(forecastModel.current.wind_kph)));
+                fragmentHomeBinding.textViewWind.setText(String.format("%s km/h", String.valueOf(Math.round(forecastModel.current.wind_kph))));
             }
         });
         EcommerceAdapter ecommerceAdapter = new EcommerceAdapter();
@@ -64,7 +64,6 @@ public class HomeFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_ECommerceFragment);
             }
         });
-        Toast.makeText(requireContext(), "on create", Toast.LENGTH_SHORT).show();
         TipsAdapter tipsAdapter = new TipsAdapter();
         fragmentHomeBinding.homeRecyclerViewTips.setAdapter(tipsAdapter);
         return view;
