@@ -22,7 +22,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.FarmerFriend.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.FarmerFriend.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="background" >
+            @drawable/relative_layout_background
+        </item>
+    </style>
 
     <style name="Theme.FarmerFriend.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
