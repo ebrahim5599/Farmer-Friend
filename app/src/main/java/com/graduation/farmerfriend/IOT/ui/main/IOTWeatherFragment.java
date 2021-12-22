@@ -1,9 +1,11 @@
 package com.graduation.farmerfriend.IOT.ui.main;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -47,17 +49,37 @@ public class IOTWeatherFragment extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-
         binding = FragmentIotWeatherBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.sectionLabel;
-        IOTWeatherViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        ProgressBar progressBar = binding.fragmentWeatherProgressBar;
+        TextView textViewTemp = binding.fragmentIotWeatherTextViewTemp;
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            int i = 0;
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void run() {
+                // set the limitations for the numeric
+                // text under the progress bar
+                if (i <= 100) {
+                    textViewTemp.setText("" + i);
+                    progressBar.setProgress((int) Math.ceil(i*.77));
+                    i++;
+                    handler.postDelayed(this, 200);
+                } else {
+                    handler.removeCallbacks(this);
+                }
             }
-        });
+        }, 200);
+
+//        final TextView textView = binding.sectionLabel;
+//        IOTWeatherViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+////            @Override
+////            public void onChanged(@Nullable String s) {
+////                textView.setText(s);
+////            }
+//        });
         return root;
     }
 

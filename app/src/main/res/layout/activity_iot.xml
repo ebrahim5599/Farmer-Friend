@@ -9,25 +9,79 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.FarmerFriend.AppBarOverlay">
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        >
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/relative_layout_background">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/kitten_swash"
+                android:gravity="center"
+                android:minHeight="?actionBarSize"
+                android:padding="@dimen/appbar_padding"
+                android:text="@string/app_name"
+                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/humidity" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <Spinner
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:entries="@array/area_num"
+            android:background="@drawable/spinner_iot_shape"/>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:minHeight="?actionBarSize"
-            android:padding="@dimen/appbar_padding"
-            android:text="@string/app_name"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+            android:layout_marginVertical="8dp"><ImageView
+            android:id="@+id/activity_iot_button_left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:background="@drawable/iot_activity_button_arrow"/>
+
+            <TextView
+                android:id="@+id/activity_iot_textview_pageTitle"
+                android:layout_width="220dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="weather sensors"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="24dp"/>
+
+            <ImageView
+                android:id="@+id/activity_iot_button_right"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:background="@drawable/iot_activity_button_arrow"
+                android:src="@drawable/ic_baseline_arrow_forward_24" />
+        </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
+        android:id="@+id/activity_iot_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
