@@ -15,6 +15,12 @@
         android:theme="@style/Theme.FarmerFriend"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".registration.SplashScreenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".registration.RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".IOT.IOT_Activity"
             android:exported="true"
             android:label="@string/title_activity_iot" />

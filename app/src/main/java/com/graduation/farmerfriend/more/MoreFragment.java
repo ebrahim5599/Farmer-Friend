@@ -18,6 +18,7 @@ public class MoreFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding=FragmentMoreBinding.inflate(inflater,container,false);
 
+        binding.fragmentMoreImageviewUserimage.setImageResource(R.drawable.will_smith);
         return binding.getRoot();
     }
 }

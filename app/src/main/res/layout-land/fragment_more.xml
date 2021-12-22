@@ -12,6 +12,14 @@
         tools:context=".more.MoreFragment">
 
         <androidx.cardview.widget.CardView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="55dp"
+            app:cardCornerRadius="80dp"
+            app:cardElevation="20dp"/>
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/fragment_more_cardview"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -25,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/ic_baseline_person_outline_24" />
+                tools:src="@drawable/will_smith" />
         </androidx.cardview.widget.CardView>
 
         <FrameLayout
@@ -45,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="104dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Fatma Hassan"
+                    android:text="Will Smith"
                     android:textColor="#101010"
                     android:textSize="34sp"
                     app:layout_constraintEnd_toEndOf="parent"
