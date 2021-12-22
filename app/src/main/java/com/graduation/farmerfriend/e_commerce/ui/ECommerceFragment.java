@@ -35,7 +35,6 @@ public class ECommerceFragment extends Fragment {
         View view = binding.getRoot();
 
 
-        binding.fragmentECommerceTextViewFarmerFriend.setText("Farmer\nFriend");
         binding.fragmentECommerceEditTextSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

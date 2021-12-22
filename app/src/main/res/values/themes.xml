@@ -17,6 +17,10 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.Farmer" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:fontFamily">@font/kitten_swash</item>
+    </style>
+
     <style name="Theme.FarmerFriend.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

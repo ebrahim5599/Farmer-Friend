@@ -1,16 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".control.ControlFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Control Fragment"
-        android:gravity="center"/>
+        android:layout_margin="16dp"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <!--        <RelativeLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content">-->
+
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:orientation="vertical">-->
+
+        <TextView
+            android:id="@+id/fragment_control_text_view_welcome_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/hacen_saudi_arabia"
+            android:text="Hello, "
+            android:textColor="@color/black"
+            android:textSize="28sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/hacen_saudi_arabia"
+            android:text="Let's control your farm now!"
+            android:textColor="#424242"
+            android:textSize="20sp" />
+        <!--            </LinearLayout>-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:layout_alignParentEnd="true"-->
+        <!--                android:background="@drawable/textview_background"-->
+        <!--                android:padding="8dp"-->
+        <!--                app:drawableStartCompat="@drawable/ic_round_notifications_24" />-->
+        <!--        </RelativeLayout>-->
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/smart_farm" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/hacen_saudi_arabia"
+            android:text="Details"
+            android:textColor="#424242"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/hacen_saudi_arabia"
+            android:text="details about our system"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/fragment_control_button_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="64dp"
+            android:backgroundTint="#00796B"
+            android:text="Register" />
+
+    </LinearLayout>
+</ScrollView>
