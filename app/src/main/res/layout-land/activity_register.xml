@@ -10,10 +10,10 @@
         android:layout_height="match_parent"
         android:src="@drawable/splash_screen"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#6D000000"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#6D000000"/>
 
     <ScrollView
         android:layout_width="match_parent"
