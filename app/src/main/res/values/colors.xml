@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="greenCartText">#044600</color>
     <color name="greyCartItemName">#3b3b3b</color>
+    <color name="red">#FB0505</color>
+    <color name="blue">#00C9FF</color>
+    <color name="bold">#4C5564</color>
 </resources>
