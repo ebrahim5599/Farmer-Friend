@@ -1,13 +1,330 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IOT.ui.main.IOTControlFragment">
 
-    <TextView
+    <ScrollView
+        android:id="@+id/fregment_iot_control_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/fregment_iot_control_textview_fertilizer_pump"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/fertilizer_pump"
+                android:textColor="#131313"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fregment_iot_control_cardview_waterpump" />
+
+            <TextView
+                android:id="@+id/fregment_iot_control_textview_water_pump"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="@string/water_pump"
+                android:textColor="#1B1A1A"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fregment_iot_control_cardview_viewresults" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fregment_iot_control_cardview_viewresults"
+                android:layout_width="350dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="#ECEAEA"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/fregment_iot_control_textview_manual_or_automatic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/automatic_or_manual"
+                        android:textColor="#131313"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/fregment_iot_control_cardview_chickbuttons" />
+
+                    <Button
+                        android:id="@+id/fregment_iot_control_button_manual_or_automatic"
+                        android:layout_width="150dp"
+                        android:layout_height="76dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/manual"
+                        app:cornerRadius="15dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fregment_iot_control_textview_manual_or_automatic" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/fregment_iot_control_cardview_chickbuttons"
+                        android:layout_width="180dp"
+                        android:layout_height="150dp"
+                        app:cardCornerRadius="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/fregment_iot_control_textview_manual_or_automatic"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/add_shape"
+                            android:backgroundTint="@color/white">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/fregment_iot_control_lamb_waterpump"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_margin="10dp"
+                                app:cardCornerRadius="50dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/fregment_iot_control_textview_waterpump"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/fregment_iot_control_textview_waterpump" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/fregment_iot_control_lamb_fertilizerpump"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_margin="10dp"
+                                app:cardCornerRadius="50dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/fregment_iot_control_textview_fertilizerpump"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/fregment_iot_control_textview_fertilizerpump" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/fregment_iot_control_lamb_manual"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_margin="10dp"
+                                app:cardCornerRadius="50dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/fregment_iot_control_textview_manual"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/fregment_iot_control_textview_manual" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/fregment_iot_control_lamb_automatic"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_margin="10dp"
+                                app:cardCornerRadius="50dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/fregment_iot_control_textview_automatic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/fregment_iot_control_textview_automatic" />
+
+                            <TextView
+                                android:id="@+id/fregment_iot_control_textview_waterpump"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="@string/water_pump"
+                                android:textColor="#0C0C0C"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/fregment_iot_control_textview_manual" />
+
+                            <TextView
+                                android:id="@+id/fregment_iot_control_textview_fertilizerpump"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="@string/fertilizer_pump"
+                                android:textColor="#0C0C0C"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/fregment_iot_control_textview_waterpump" />
+
+                            <TextView
+                                android:id="@+id/fregment_iot_control_textview_automatic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="@string/automatic"
+                                android:textColor="#0C0C0C"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/fregment_iot_control_textview_manual"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:text="@string/manual"
+                                android:textColor="#0C0C0C"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/fregment_iot_control_textview_automatic" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fregment_iot_control_cardview_waterpump"
+                android:layout_width="350dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="#ECEAEA"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.508"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fregment_iot_control_textview_water_pump">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/fregment_iot_control_cardview_waterpump_power"
+                        android:layout_width="120dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        app:cardBackgroundColor="#4C5564"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cardView2"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/fregment_iot_control_imageview_waterpump_power"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_margin="16dp"
+                            android:backgroundTintMode="screen"
+                            android:src="@drawable/fregment_iot_control_power_off"
+                            tools:layout_editor_absoluteX="214dp"
+                            tools:layout_editor_absoluteY="16dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView2"
+                        android:layout_width="180dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/fregment_iot_control_imageview_waterpump"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_margin="16dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:backgroundTint="@color/white"
+                            android:rotationX="0"
+                            android:rotationY="180"
+                            android:src="@drawable/fragment_iot_control_water_pump_image"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fregment_iot_control_cardview_fertilizerpump"
+                android:layout_width="350dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:backgroundTint="#ECEAEA"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fregment_iot_control_textview_fertilizer_pump">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/fregment_iot_control_cardview_fertilizerpump_power"
+                        android:layout_width="120dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        app:cardBackgroundColor="#4C5564"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cardView6"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/fregment_iot_control_imageview_fertilizerpump_power"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_margin="16dp"
+                            android:src="@drawable/fregment_iot_control_power_off"
+                            tools:layout_editor_absoluteX="214dp"
+                            tools:layout_editor_absoluteY="16dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView6"
+                        android:layout_width="180dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="15dp"
+                        app:cardPreventCornerOverlap="true"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/fregment_iot_control_imageview_fertilizerpump"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_margin="16dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:backgroundTint="@color/white"
+                            android:src="@drawable/fragment_iot_control_fertilizer_pump_image"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </FrameLayout>
