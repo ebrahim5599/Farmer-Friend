@@ -111,7 +111,7 @@ public class Location {
                         // and check the result in onActivityResult().
                         ResolvableApiException resolvable = (ResolvableApiException) e;
                         resolvable.startResolutionForResult(activity,
-                                1000);
+                                LOCATION_REQUEST_CODE);
                     } catch (IntentSender.SendIntentException sendEx) {
                         // Ignore the error.
                     }
@@ -126,6 +126,7 @@ public class Location {
     }
 
     public String getAddress() {
+//        getLocation();
         try {
             geocoder = new Geocoder(activity, Locale.US);
             List<Address> listAddress = geocoder.getFromLocation(wayLatitude, wayLongitude, 1);
