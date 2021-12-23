@@ -73,6 +73,16 @@
     <string name="automatic_or_manual">Automatic Or Manual</string>
     <string name="automatic">Automatic</string>
     <string name="manual">Manual</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="luminous_intensity">Luminous Intensity</string>
+    <string name="temperature">Temperature</string>
+    <string name="moisture">Moisture</string>
+    <string-array name="area_num">
+        <item>Area 1</item>
+        <item>Area 2</item>
+    </string-array>
+
 
 
 </resources>

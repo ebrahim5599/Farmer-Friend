@@ -21,7 +21,8 @@ public class ControlFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentControlBinding.inflate(getLayoutInflater(),container,false);
-        binding.textView.setOnClickListener(new View.OnClickListener() {
+
+        binding.fragmentControlButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(requireContext(), IOT_Activity.class);

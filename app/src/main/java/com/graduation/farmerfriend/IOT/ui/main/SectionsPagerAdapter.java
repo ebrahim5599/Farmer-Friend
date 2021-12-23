@@ -23,7 +23,7 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
         switch (position) {
             case 0:
                 return IOTWeatherFragment.newInstance(position + 1);
-            case 1:
+            case 2:
                 return IOTControlFragment.newInstance();
             default:
                 return IOTSoilFragment.newInstance();
