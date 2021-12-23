@@ -9,10 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.databinding.ActivityUserData10Binding;
 import com.graduation.farmerfriend.databinding.ActivityUserDataBinding;
-import com.graduation.farmerfriend.e_commerce.ui.User_Data;
 import com.graduation.farmerfriend.location.Location;
 
 public class UserDataActivity extends AppCompatActivity {
@@ -55,10 +52,7 @@ public class UserDataActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == location.getLOCATION_REQUEST_CODE()) {
-
-            Toast.makeText(this, "     mm", Toast.LENGTH_SHORT).show();
-            if () {
-                Toast.makeText(this, "afsfa", Toast.LENGTH_SHORT).show();
+            if (requestCode == location.getLOCATION_REQUEST_CODE()) {
                 // If request is cancelled, the result arrays are empty.
                 location.getLocation();
             }
