@@ -127,7 +127,6 @@ public class Location {
 
     public String getAddress() {
         try {
-            Toast.makeText(activity, wayLatitude+"", Toast.LENGTH_SHORT).show();
             geocoder = new Geocoder(activity, Locale.US);
             List<Address> listAddress = geocoder.getFromLocation(wayLatitude, wayLongitude, 1);
 
