@@ -1,18 +1,12 @@
-package com.graduation.farmerfriend.e_commerce;
+package com.graduation.farmerfriend.e_commerce.ui.Search;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.databinding.FragmentSearchBinding;
 import com.graduation.farmerfriend.databinding.ItemSearchBinding;
 
 public class ViewRecycleSearchAdapter extends RecyclerView.Adapter<ViewRecycleSearchAdapter.ViewHolder>{

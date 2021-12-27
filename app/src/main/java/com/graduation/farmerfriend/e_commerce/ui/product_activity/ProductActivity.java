@@ -2,17 +2,18 @@ package com.graduation.farmerfriend.e_commerce.ui.product_activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.ActivityProductBinding;
+import com.graduation.farmerfriend.e_commerce.ui.Search.Search;
+import com.graduation.farmerfriend.e_commerce.ui.cart.CartActivity;
+import com.graduation.farmerfriend.e_commerce.ui.wishlist.WishlistActivity;
 
 public class ProductActivity extends AppCompatActivity {
 
@@ -30,8 +31,6 @@ public class ProductActivity extends AppCompatActivity {
         binding = ActivityProductBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
-        binding.activityProductTextViewFarmerFriend.setText("Farmer\nFriend");
 
         Intent intent = getIntent();
         chooseFragment = intent.getStringExtra("FRAGMENT_NO");
@@ -106,7 +105,30 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
 
+        binding.activityProductTextViewWishList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), WishlistActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        binding.activityProductTextViewCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.activityProductEditTextSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(),Search.class);
+                    startActivity(intent);
+
+            }
+        });
 
     }
 

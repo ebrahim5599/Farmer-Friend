@@ -1,4 +1,4 @@
-package com.graduation.farmerfriend.e_commerce;
+package com.graduation.farmerfriend.e_commerce.ui.Search;
 
 public class Search_Item {
 

@@ -78,11 +78,12 @@
     <string name="luminous_intensity">Luminous Intensity</string>
     <string name="temperature">Temperature</string>
     <string name="moisture">Moisture</string>
+    <string name="user_data">User Data</string>
+    <string name="control_panel">Control Panel</string>
     <string-array name="area_num">
         <item>Area 1</item>
         <item>Area 2</item>
     </string-array>
-
 
 
 </resources>
