@@ -10,6 +10,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/activity_user_data_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/setting_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/activity_user_data_frame_items"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/fragment_more_cardview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/activity_user_data_image" />
+
+        <TextView
+            android:id="@+id/activity_user_data_textview_user_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/user_data"
+            android:textColor="#0C0C0C"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/activity_user_data_frame_items" />
+
         <LinearLayout
             android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
@@ -18,7 +51,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/activity_user_data_frame_items">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -170,9 +203,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:visibility="gone"
             android:text="@string/result"
             android:textColor="@color/black"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/User_Data_button_location"
             app:layout_constraintStart_toStartOf="@+id/User_Data_button_location"
             app:layout_constraintTop_toBottomOf="@+id/User_Data_button_location" />
@@ -221,6 +254,7 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:icon="@drawable/ic_baseline_location_on_24" />
+
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

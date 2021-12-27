@@ -1,30 +1,44 @@
-package com.graduation.farmerfriend.e_commerce.ui;
+package com.graduation.farmerfriend.e_commerce.ui.Search;
 
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.databinding.FragmentSearchBinding;
-import com.graduation.farmerfriend.e_commerce.Search_Item;
-import com.graduation.farmerfriend.e_commerce.ViewRecycleSearchAdapter;
+import com.graduation.farmerfriend.databinding.ActivitySearchBinding;
+import com.graduation.farmerfriend.e_commerce.ui.cart.CartActivity;
+import com.graduation.farmerfriend.e_commerce.ui.wishlist.WishlistActivity;
 
-public class Search extends Fragment {
+public class Search extends AppCompatActivity {
 
-    FragmentSearchBinding binding;
-
+    ActivitySearchBinding binding ;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        binding = FragmentSearchBinding.inflate(inflater, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        Search_Item [] search ={
+        binding.activitySearchTextViewCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.activitySearchTextViewWishList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), WishlistActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Search_Item[] search ={
                 new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
                 new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
                 new Search_Item(R.drawable.corn,"Corn","100$","corn is a heat_loving with varieties for eating"),
@@ -43,10 +57,11 @@ public class Search extends Fragment {
         };
 
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        binding.fragmentSearchRecycleviewSearchItem.setLayoutManager(linearLayoutManager);
-        ViewRecycleSearchAdapter recycleViewAdapter = new ViewRecycleSearchAdapter(getContext(),search);
-        binding.fragmentSearchRecycleviewSearchItem.setAdapter(recycleViewAdapter);
-        return binding.getRoot() ;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        binding.activitySearchRecycleviewSearchItem.setLayoutManager(linearLayoutManager);
+        ViewRecycleSearchAdapter recycleViewAdapter = new ViewRecycleSearchAdapter(getApplicationContext(),search);
+        binding.activitySearchRecycleviewSearchItem.setAdapter(recycleViewAdapter);
+
     }
 }
+
