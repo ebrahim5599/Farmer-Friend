@@ -4,19 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentECommerceBinding;
 import com.graduation.farmerfriend.e_commerce.Data;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
+import com.graduation.farmerfriend.e_commerce.ui.Search.Search;
 import com.graduation.farmerfriend.e_commerce.ui.cart.CartActivity;
 import com.graduation.farmerfriend.e_commerce.ui.deals.DealsActivity;
 
@@ -38,10 +36,8 @@ public class ECommerceFragment extends Fragment {
         binding.fragmentECommerceEditTextSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView,new Search()).addToBackStack(null).commit();
-//                Intent intent = new Intent(getContext(),SearchActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getContext(), Search.class);
+               startActivity(intent);
             }
         });
 

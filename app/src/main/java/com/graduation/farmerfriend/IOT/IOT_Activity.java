@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.graduation.farmerfriend.IOT.ui.main.SectionsPagerAdapter;
+import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.ActivityIotBinding;
 
 public class IOT_Activity extends AppCompatActivity {
@@ -21,6 +22,9 @@ public class IOT_Activity extends AppCompatActivity {
 
         binding = ActivityIotBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.activityIotImageviewUserimage.setImageResource(R.drawable.will_smith);
+
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this);
         ViewPager2 viewPager = binding.activityIotViewPager;
         viewPager.setAdapter(sectionsPagerAdapter);

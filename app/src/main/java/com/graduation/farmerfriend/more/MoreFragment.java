@@ -3,6 +3,7 @@ package com.graduation.farmerfriend.more;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import com.graduation.farmerfriend.store.StoreActivity;
 public class MoreFragment extends Fragment {
     FragmentMoreBinding binding ;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding=FragmentMoreBinding.inflate(inflater,container,false);
         binding.fragmentMoreImageviewUserimage.setImageResource(R.drawable.will_smith);

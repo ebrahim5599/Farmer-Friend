@@ -349,7 +349,7 @@
     </ScrollView>
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/fragment_e_commerce_appbar"
+        android:id="@+id/activity_product_appbar"
         android:layout_width="match_parent"
         android:layout_height="84dp"
         android:background="@drawable/setting_background"
@@ -362,7 +362,7 @@
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/fragment_e_commerce_toolbar"
+                android:id="@+id/activity_search_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -384,12 +384,12 @@
                 android:textSize="20sp"/>
 
             <TextView
-                android:id="@+id/fragment_e_commerce_editText_search"
+                android:id="@+id/activity_product_editText_search"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
-                android:layout_toStartOf="@id/fragment_e_commerce_textView_wish_list"
+                android:layout_toStartOf="@id/activity_product_textView_wish_list"
                 android:layout_toEndOf="@id/fragment_e_commerce_textView_farmer_friend"
                 android:background="@drawable/edittext_background"
                 android:drawableLeft="@drawable/search_icon"
@@ -397,10 +397,10 @@
                 android:text="Search" />
 
             <TextView
-                android:id="@+id/fragment_e_commerce_textView_wish_list"
+                android:id="@+id/activity_product_textView_wish_list"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
-                android:layout_toStartOf="@id/fragment_e_commerce_textView_cart"
+                android:layout_toStartOf="@id/activity_product_textView_cart"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/textview_background"
@@ -409,7 +409,7 @@
                 app:drawableStartCompat="@drawable/ic_baseline_heart_24" />
 
             <TextView
-                android:id="@+id/fragment_e_commerce_textView_cart"
+                android:id="@+id/activity_product_textView_cart"
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:layout_alignParentEnd="true"
