@@ -10,9 +10,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.graduation.farmerfriend.databinding.ActivityUserDataBinding;
+import com.graduation.farmerfriend.location.AddressCallBack;
 import com.graduation.farmerfriend.location.Location;
 
-public class UserDataActivity extends AppCompatActivity {
+public class UserDataActivity extends AppCompatActivity implements AddressCallBack {
 
     ActivityUserDataBinding binding;
     private Location location;
@@ -22,22 +23,19 @@ public class UserDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityUserDataBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        location = new Location(UserDataActivity.this, 1001);
-        location.getLocation();
+//        location.getLocation();
         binding.UserDataButtonLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                location.getLocation();
+                location = new Location(UserDataActivity.this, 1001,UserDataActivity.this);
+                location.getLocation();
                 binding.UserDataActivityTextViewLocationAddress.setVisibility(View.VISIBLE);
-                binding.UserDataActivityTextViewLocationAddress.setText(location.getAddress());
-                binding.UserDataEdittextCity.setText(location.getCity());
-                binding.UserDataEdittextGovernorate.setText(location.getGovernorate());
             }
         });
 
 
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -58,5 +56,12 @@ public class UserDataActivity extends AppCompatActivity {
             }
 
         }
+    }
+    @Override
+    public void getAddress(String address) {
+        binding.UserDataActivityTextViewLocationAddress.setText(address);
+        binding.UserDataEdittextCity.setText(location.getCity());
+        binding.UserDataEdittextGovernorate.setText(location.getGovernorate());
+        location.destroy();
     }
 }

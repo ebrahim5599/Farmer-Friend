@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,14 +19,12 @@ import com.graduation.farmerfriend.databinding.FragmentHomeBinding;
 import com.graduation.farmerfriend.models.Root;
 import com.graduation.farmerfriend.repos.ForecastRepo;
 
+import java.util.Locale;
+
 public class HomeFragment extends Fragment {
 
     FragmentHomeBinding fragmentHomeBinding;
     ForecastViewModel viewModel;
-    ForecastRepo forecastRepo;
-
-
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -36,22 +33,19 @@ public class HomeFragment extends Fragment {
 
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = fragmentHomeBinding.getRoot();
-        forecastRepo = new ForecastRepo(getContext());
-        viewModel = new ViewModelProvider(this).get(ForecastViewModel.class);
-        viewModel.init(getContext());
-        viewModel.setForecastData();
+        viewModel = new ViewModelProvider(getActivity()).get(ForecastViewModel.class);
         viewModel.getForecastModelLiveData().observe(getViewLifecycleOwner(), new Observer<Root>() {
             @Override
             public void onChanged(Root forecastModel) {
-                fragmentHomeBinding.textViewDegree.setText(String.format("%d°", Math.round(forecastModel.current.temp_c)));
+                fragmentHomeBinding.textViewDegree.setText(String.format(Locale.US,"%d°", Math.round(forecastModel.current.temp_c)));
 
                 String imageUrl = "https://" + forecastModel.current.condition.icon;
                 Log.i("Glide error", forecastModel.forecast.forecastday.toString());
                 Glide.with(requireContext()).load(imageUrl).into(fragmentHomeBinding.imageView);
-                fragmentHomeBinding.textViewLocation.setText(forecastModel.location.name + ", " + forecastModel.location.country);
+                fragmentHomeBinding.textViewLocation.setText(String.format(Locale.US,"%s, %s", forecastModel.location.name, forecastModel.location.country));
                 fragmentHomeBinding.textViewConditionText.setText(forecastModel.current.condition.text);
-                fragmentHomeBinding.textViewHumidity.setText(String.format("%d %%", forecastModel.current.humidity));
-                fragmentHomeBinding.textViewWind.setText(String.format("%s km/h", String.valueOf(Math.round(forecastModel.current.wind_kph))));
+                fragmentHomeBinding.textViewHumidity.setText(String.format(Locale.US,"%d %%", forecastModel.current.humidity));
+                fragmentHomeBinding.textViewWind.setText(String.format(Locale.US,"%d km/h", Math.round(forecastModel.current.wind_kph)));
             }
         });
         EcommerceAdapter ecommerceAdapter = new EcommerceAdapter();
