@@ -123,6 +123,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@color/white"/>
+
                 <View
                     android:layout_width="0dp"
                     android:layout_height="3dp"
