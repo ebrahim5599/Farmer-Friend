@@ -15,8 +15,13 @@
         android:theme="@style/Theme.FarmerFriend"
         android:usesCleartextTraffic="true">
         <activity
+
             android:name=".store.AddToStoreActivity"
             android:exported="false" />
+
+      <activity
+            android:name=".e_commerce.ui.Search.Search"
+            android:exported="true" />
         <activity
             android:name=".registration.LoginActivity"
             android:exported="false" />
