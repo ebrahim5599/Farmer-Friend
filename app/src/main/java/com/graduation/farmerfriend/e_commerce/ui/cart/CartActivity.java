@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.graduation.farmerfriend.databinding.ActivityCartBinding;
-import com.graduation.farmerfriend.e_commerce.ui.User_Data;
 
 public class CartActivity extends AppCompatActivity {
     ActivityCartBinding binding;

@@ -48,9 +48,6 @@
             android:name=".e_commerce.ui.ItemDescriptionActivity"
             android:exported="true" />
         <activity
-            android:name=".e_commerce.ui.User_Data"
-            android:exported="true" />
-        <activity
             android:name=".e_commerce.ui.product_activity.ProductActivity"
             android:exported="true" />
         <activity
