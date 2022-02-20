@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                 } else if (destination.getId() == R.id.bestSellerFragment) {
 //                    binding.mainToolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.storeFragment) {
+//                    binding.mainToolbar.setVisibility(View.GONE);
+                    bottomNavigationView.setVisibility(View.GONE);
                 } else {
 //                    binding.mainToolbar.setVisibility(View.VISIBLE);
                     bottomNavigationView.setVisibility(View.VISIBLE);
