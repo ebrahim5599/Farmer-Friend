@@ -84,6 +84,11 @@
         <item>Area 1</item>
         <item>Area 2</item>
     </string-array>
+    <string name="title_activity_shop">ShopActivity</string>
+    <string name="more">More</string>
+    <string name="shop">Shop</string>
+    <string name="control">Control</string>
+    <string name="home">Home</string>
 
 
 </resources>

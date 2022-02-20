@@ -7,16 +7,26 @@
     <fragment
         android:id="@+id/seedProductsFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.SeedProductsFragment"
-        android:label="fragment_seed_products"
+        android:label="Seeds"
         tools:layout="@layout/fragment_seed_products" />
     <fragment
         android:id="@+id/fertilizerProductsFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.FertilizerProductsFragment"
-        android:label="fragment_fertilizer_products"
+        android:label="Fertilizers"
         tools:layout="@layout/fragment_fertilizer_products" />
     <fragment
         android:id="@+id/toolProductsFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.ToolProductsFragment"
-        android:label="fragment_tool_products"
+        android:label="Tools"
         tools:layout="@layout/fragment_tool_products" />
+    <fragment
+        android:id="@+id/wishlistFragment"
+        android:name="com.graduation.farmerfriend.WishlistFragment"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.graduation.farmerfriend.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>
