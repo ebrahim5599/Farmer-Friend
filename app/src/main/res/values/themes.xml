@@ -26,8 +26,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.FarmerFriend.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
-        <item name="background" >
+    <style name="Theme.FarmerFriend.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="background">
             @drawable/relative_layout_background
         </item>
     </style>

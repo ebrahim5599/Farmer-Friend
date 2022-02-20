@@ -35,4 +35,5 @@ public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.Be
             super(itemView);
         }
     }
+
 }

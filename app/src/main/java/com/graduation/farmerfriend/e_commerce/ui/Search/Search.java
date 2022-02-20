@@ -9,8 +9,8 @@ import android.view.View;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.ActivitySearchBinding;
-import com.graduation.farmerfriend.e_commerce.ui.cart.CartActivity;
-import com.graduation.farmerfriend.e_commerce.ui.wishlist.WishlistActivity;
+//import com.graduation.farmerfriend.e_commerce.ui.cart.CartActivity;
+//import com.graduation.farmerfriend.e_commerce.ui.wishlist.WishlistActivity;
 
 public class Search extends AppCompatActivity {
 
@@ -25,16 +25,16 @@ public class Search extends AppCompatActivity {
         binding.activitySearchTextViewCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+//                startActivity(intent);
             }
         });
 
         binding.activitySearchTextViewWishList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), WishlistActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getApplicationContext(), WishlistActivity.class);
+//                startActivity(intent);
             }
         });
 

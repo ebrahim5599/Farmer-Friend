@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.graduation.farmerfriend.databinding.ActivityCartBinding;
+//import com.graduation.farmerfriend.databinding.ActivityCartBinding;
 import com.graduation.farmerfriend.databinding.ActivityUserData10Binding;
 import com.graduation.farmerfriend.databinding.ActivityUserDataBinding;
 import com.graduation.farmerfriend.location.Location;
