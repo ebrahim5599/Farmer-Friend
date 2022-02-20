@@ -41,14 +41,14 @@ public class ECommerceFragment extends Fragment {
         binding.fragmentECommerceSeedsView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_ECommerceFragment_to_seedProductsFragment);
+                Navigation.findNavController(view).navigate(R.id.seedProductsFragment);
             }
         });
 
         binding.fragmentECommerceFertilizersView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_ECommerceFragment_to_fertilizerProductsFragment);
+                Navigation.findNavController(view).navigate(R.id.fertilizerProductsFragment);
             }
         });
 
@@ -57,7 +57,7 @@ public class ECommerceFragment extends Fragment {
             public void onClick(View view) {
 
 
-                Navigation.findNavController(view).navigate(R.id.action_ECommerceFragment_to_toolProductsFragment);
+                Navigation.findNavController(view).navigate(R.id.toolProductsFragment);
             }
         });
 
@@ -66,14 +66,14 @@ public class ECommerceFragment extends Fragment {
         binding.fragmentECommerceTextviewBestSellerViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_ECommerceFragment_to_bestSellerFragment);
+                Navigation.findNavController(view).navigate(R.id.bestSellerFragment);
             }
         });
 
         binding.fragmentECommerceTextviewHotDealsViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_ECommerceFragment_to_hotDealsFragment);
+                Navigation.findNavController(view).navigate(R.id.hotDealsFragment);
             }
         });
 
@@ -81,21 +81,21 @@ public class ECommerceFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Navigation.findNavController(view).navigate(R.id.action_ECommerceFragment_to_seedProductsFragment);
+                Navigation.findNavController(view).navigate(R.id.seedProductsFragment);
             }
         });
 
         binding.fragmentECommerceTextviewFertilizersViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_ECommerceFragment_to_fertilizerProductsFragment);
+                Navigation.findNavController(view).navigate(R.id.fertilizerProductsFragment);
             }
         });
 
         binding.fragmentECommerceTextviewToolsViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_ECommerceFragment_to_toolProductsFragment);
+                Navigation.findNavController(view).navigate(R.id.toolProductsFragment);
             }
         });
 
@@ -191,10 +191,10 @@ public class ECommerceFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.cartFragment){
-            Navigation.findNavController(requireView()).navigate(R.id.action_ECommerceFragment_to_cartFragment);
+            Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
         }
         else if (item.getItemId() == R.id.wishlistFragment){
-            Navigation.findNavController(requireView()).navigate(R.id.action_ECommerceFragment_to_wishlistFragment);
+            Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment);
         }
         return super.onOptionsItemSelected(item);
     }
