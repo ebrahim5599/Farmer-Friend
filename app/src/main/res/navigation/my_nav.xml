@@ -89,4 +89,14 @@
         android:name="com.graduation.farmerfriend.e_commerce.ui.deals.HotDealsFragment"
         android:label="@string/hot_deals"
         tools:layout="@layout/fragment_hot_deals"/>
+    <fragment
+        android:id="@+id/storeFragment"
+        android:name="com.graduation.farmerfriend.StoreFragment"
+        android:label="@string/store"
+        tools:layout="@layout/fragment_store" />
+    <fragment
+        android:id="@+id/storeAddItemFragment"
+        android:name="com.graduation.farmerfriend.StoreAddItemFragment"
+        android:label="fragment_store_add_item"
+        tools:layout="@layout/fragment_store_add_item" />
 </navigation>

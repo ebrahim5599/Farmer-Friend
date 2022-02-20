@@ -28,7 +28,7 @@ public class MoreFragment extends Fragment {
         binding.fragmentMoreTextviewStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), StoreActivity.class));
+                Navigation.findNavController(view).navigate(R.id.storeFragment);
             }
         });
 
