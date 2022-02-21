@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentWishlistBinding;
 import com.graduation.farmerfriend.e_commerce.ui.wishlist.WishlistAdapter;
 
@@ -57,15 +58,6 @@ public class WishlistFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // This callback will only be called when MyFragment is at least Started.
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                Navigation.findNavController(requireView()).navigate(R.id.ECommerceFragment);
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -78,7 +70,7 @@ public class WishlistFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        binding = FragmentWishlistBinding.inflate(inflater,container,false);
+        binding = FragmentWishlistBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
         WishlistAdapter wishlistAdapter = new WishlistAdapter();

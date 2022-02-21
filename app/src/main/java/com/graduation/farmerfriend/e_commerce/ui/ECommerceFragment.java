@@ -1,6 +1,5 @@
 package com.graduation.farmerfriend.e_commerce.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -18,13 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentECommerceBinding;
 import com.graduation.farmerfriend.e_commerce.Data;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
-import com.graduation.farmerfriend.e_commerce.ui.product_activity.ProductActivity;
-
-import java.util.Objects;
 
 
 public class ECommerceFragment extends Fragment {
@@ -191,26 +186,18 @@ public class ECommerceFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.cartFragment){
+//            ECommerceFragmentDirections.ActionToCart action =
+//                    ECommerceFragmentDirections.actionToCart();
+//            action.setFromWhichFragment(Constants.FROM_E_COMMERCE_FRAGMENT);
             Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
         }
         else if (item.getItemId() == R.id.wishlistFragment){
-            Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment);
+//            ECommerceFragmentDirections.ActionToWishlist action =
+//                    ECommerceFragmentDirections.actionToWishlist();
+//            action.setFromWhichFragment(Constants.FROM_E_COMMERCE_FRAGMENT);
+            Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment );
         }
         return super.onOptionsItemSelected(item);
     }
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        // This callback will only be called when MyFragment is at least Started.
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                Navigation.findNavController(requireView()).navigate(R.id.homeFragment);
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
-
-        // The callback can be enabled or disabled here or in handleOnBackPressed()
-    }
 }

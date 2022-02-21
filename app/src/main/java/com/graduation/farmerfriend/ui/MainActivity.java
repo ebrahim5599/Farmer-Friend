@@ -3,17 +3,13 @@ package com.graduation.farmerfriend.ui;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
-import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.transition.Visibility;
 
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -26,14 +22,10 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
-import com.graduation.farmerfriend.control.ControlFragment;
-import com.graduation.farmerfriend.control.RegistrationFragment;
 import com.graduation.farmerfriend.databinding.ActivityMainBinding;
-import com.graduation.farmerfriend.e_commerce.ui.product_activity.FertilizerProductsFragment;
 import com.graduation.farmerfriend.home.ForecastViewModel;
 import com.graduation.farmerfriend.location.AddressCallBack;
 import com.graduation.farmerfriend.location.Location;
-
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements AddressCallBack {
@@ -42,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     private SharedPreferences.Editor editor;
     ActivityMainBinding binding;
     private AppBarConfiguration appBarConfiguration;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +48,9 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         viewModel.init(this);
         location = new Location(this, 1002, this);
         location.getLocation();
-        setSupportActionBar(binding.mainToolbar);
+        toolbar = binding.mainToolbar;
+        setSupportActionBar(toolbar);
+
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -72,31 +67,37 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 if (destination.getId() == R.id.wishlistFragment) {
-//                    binding.mainToolbar.setVisibility(View.GONE);
+//                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.cartFragment) {
-//                    binding.mainToolbar.setVisibility(View.GONE);
+//                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.seedProductsFragment) {
-//                    binding.mainToolbar.setVisibility(View.GONE);
+//                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.toolProductsFragment) {
-//                    binding.mainToolbar.setVisibility(View.GONE);
+//                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.fertilizerProductsFragment) {
-//                    binding.mainToolbar.setVisibility(View.GONE);
+//                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.hotDealsFragment) {
-//                    binding.mainToolbar.setVisibility(View.GONE);
+//                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.bestSellerFragment) {
-//                    binding.mainToolbar.setVisibility(View.GONE);
+//                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.storeFragment) {
-//                    binding.mainToolbar.setVisibility(View.GONE);
+                    toolbar.setVisibility(View.GONE);
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.storeAddItemFragment) {
+                    toolbar.setVisibility(View.GONE);
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.itemDescriptionFragment) {
+                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 } else {
-//                    binding.mainToolbar.setVisibility(View.VISIBLE);
+                    toolbar.setVisibility(View.VISIBLE);
                     bottomNavigationView.setVisibility(View.VISIBLE);
                 }
             }

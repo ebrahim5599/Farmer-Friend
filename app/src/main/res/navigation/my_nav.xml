@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.graduation.farmerfriend.home.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_ECommerceFragment"
             app:destination="@id/ECommerceFragment" />
@@ -23,31 +23,31 @@
         android:id="@+id/ECommerceFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.ECommerceFragment"
         android:label="@string/shop"
-        tools:layout="@layout/fragment_e_commerce" >
+        tools:layout="@layout/fragment_e_commerce">
         <action
             android:id="@+id/action_ECommerceFragment_to_fertilizerProductsFragment"
             app:destination="@id/fertilizerProductsFragment" />
         <action
-            android:id="@+id/action_ECommerceFragment_to_cartFragment"
+            android:id="@+id/action_to_cart"
             app:destination="@id/cartFragment"
-            app:popUpTo="@id/homeFragment"/>
+            app:popUpTo="@id/homeFragment" />
         <action
             android:id="@+id/action_ECommerceFragment_to_bestSellerFragment"
             app:destination="@id/bestSellerFragment"
-            app:popUpTo="@id/homeFragment"/>
+            app:popUpTo="@id/homeFragment" />
         <action
-            android:id="@+id/action_ECommerceFragment_to_wishlistFragment"
+            android:id="@+id/action_to_wishlist"
             app:destination="@id/wishlistFragment"
-            app:popUpTo="@id/homeFragment"/>
+            app:popUpTo="@id/homeFragment" />
         <action
             android:id="@+id/action_ECommerceFragment_to_seedProductsFragment"
-            app:destination="@id/seedProductsFragment"/>
+            app:destination="@id/seedProductsFragment" />
         <action
             android:id="@+id/action_ECommerceFragment_to_toolProductsFragment"
-            app:destination="@id/toolProductsFragment"/>
+            app:destination="@id/toolProductsFragment" />
         <action
             android:id="@+id/action_ECommerceFragment_to_hotDealsFragment"
-            app:destination="@id/hotDealsFragment"/>
+            app:destination="@id/hotDealsFragment" />
     </fragment>
     <fragment
         android:id="@+id/moreFragment"
@@ -58,37 +58,80 @@
         android:id="@+id/fertilizerProductsFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.FertilizerProductsFragment"
         android:label="@string/fertilizers"
-        tools:layout="@layout/fragment_fertilizer_products" />
-    <fragment
-        android:id="@+id/cartFragment"
-        android:name="com.graduation.farmerfriend.CartFragment"
-        android:label="@string/Cart"
-        tools:layout="@layout/fragment_cart" />
-    <fragment
-        android:id="@+id/bestSellerFragment"
-        android:name="com.graduation.farmerfriend.e_commerce.ui.deals.BestSellerFragment"
-        android:label="@string/best_sellers"
-        tools:layout="@layout/fragment_best_selers" />
-    <fragment
-        android:id="@+id/wishlistFragment"
-        android:name="com.graduation.farmerfriend.WishlistFragment"
-        android:label="@string/wishlist"
-        tools:layout="@layout/fragment_wishlist" />
+        tools:layout="@layout/fragment_fertilizer_products">
+        <action
+            android:id="@+id/action_to_cart"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_to_wishlist"
+            app:destination="@id/wishlistFragment" />
+    </fragment>
     <fragment
         android:id="@+id/seedProductsFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.SeedProductsFragment"
         android:label="@string/seeds"
-        tools:layout="@layout/fragment_seed_products" />
+        tools:layout="@layout/fragment_seed_products">
+        <action
+            android:id="@+id/action_to_cart"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_to_wishlist"
+            app:destination="@id/wishlistFragment" />
+    </fragment>
     <fragment
         android:id="@+id/toolProductsFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.ToolProductsFragment"
         android:label="@string/tools"
-        tools:layout="@layout/fragment_tool_products" />
+        tools:layout="@layout/fragment_tool_products">
+        <action
+            android:id="@+id/action_to_wishlist"
+            app:destination="@id/wishlistFragment" />
+        <action
+            android:id="@+id/action_to_cart"
+            app:destination="@id/cartFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/hotDealsFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.deals.HotDealsFragment"
         android:label="@string/hot_deals"
-        tools:layout="@layout/fragment_hot_deals"/>
+        tools:layout="@layout/fragment_hot_deals">
+        <action
+            android:id="@+id/action_hotDealsFragment_to_bestSellerFragment"
+            app:destination="@id/bestSellerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bestSellerFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.deals.BestSellerFragment"
+        android:label="@string/best_sellers"
+        tools:layout="@layout/fragment_best_selers">
+        <action
+            android:id="@+id/action_bestSellerFragment_to_wishlistFragment"
+            app:destination="@id/wishlistFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.graduation.farmerfriend.CartFragment"
+        android:label="@string/Cart"
+        tools:layout="@layout/fragment_cart">
+        <argument
+            android:name="fromWhichFragment"
+            app:argType="string"
+            android:defaultValue="E_COMMERCE"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/wishlistFragment"
+        android:name="com.graduation.farmerfriend.WishlistFragment"
+        android:label="@string/wishlist"
+        tools:layout="@layout/fragment_wishlist">
+        <argument
+            android:name="fromWhichFragment"
+            app:argType="string"
+            android:defaultValue="E_COMMERCE"/>
+    </fragment>
     <fragment
         android:id="@+id/storeFragment"
         android:name="com.graduation.farmerfriend.StoreFragment"
@@ -97,6 +140,10 @@
     <fragment
         android:id="@+id/storeAddItemFragment"
         android:name="com.graduation.farmerfriend.StoreAddItemFragment"
-        android:label="fragment_store_add_item"
         tools:layout="@layout/fragment_store_add_item" />
+    <fragment
+        android:id="@+id/itemDescriptionFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.ItemDescriptionFragment"
+        tools:layout="@layout/fragment_item_description" />
+
 </navigation>

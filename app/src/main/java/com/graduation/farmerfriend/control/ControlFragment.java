@@ -31,13 +31,13 @@ public class ControlFragment extends Fragment {
     ViewPager2 viewPager2;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentControlBinding.inflate(getLayoutInflater(),container,false);
 
         //TODO:**************************************************************************************************
         RegistrationFragment registrationFragment = new RegistrationFragment();
-        boolean first_run = false;
+        boolean first_run = true;
         if(first_run){
             binding.linearVisibility.setVisibility(View.GONE);
             if (savedInstanceState == null) {

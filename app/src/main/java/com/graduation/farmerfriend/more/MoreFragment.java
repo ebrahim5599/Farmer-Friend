@@ -1,6 +1,5 @@
 package com.graduation.farmerfriend.more;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentMoreBinding;
-import com.graduation.farmerfriend.store.StoreActivity;
 
 public class MoreFragment extends Fragment {
     FragmentMoreBinding binding ;
@@ -33,20 +31,5 @@ public class MoreFragment extends Fragment {
         });
 
         return binding.getRoot();
-    }
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // This callback will only be called when MyFragment is at least Started.
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                Navigation.findNavController(requireView()).navigate(R.id.homeFragment);
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
-
-        // The callback can be enabled or disabled here or in handleOnBackPressed()
     }
 }
