@@ -34,6 +34,7 @@ public class IOT_Activity extends AppCompatActivity {
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this);
         ViewPager2 viewPager = binding.activityIotViewPager;
         viewPager.setAdapter(sectionsPagerAdapter);
+
         binding.activityIotTextviewPageTitle.setText(setPageTitle(viewPager.getCurrentItem()));
         binding.activityIotButtonRight.setOnClickListener(new View.OnClickListener() {
             @Override
