@@ -91,7 +91,7 @@
                         android:layout_marginTop="4dp"
                         android:fontFamily="@font/hacen_saudi_arabia"
                         android:text="Seeds"
-                        android:textColor="#104A00"
+                        android:textColor="@color/green_Product_Activity_Text"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -116,7 +116,7 @@
                         android:fontFamily="@font/hacen_saudi_arabia"
                         android:gravity="center"
                         android:text="Fertilizers"
-                        android:textColor="#104A00"
+                        android:textColor="@color/green_Product_Activity_Text"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -141,7 +141,7 @@
                         android:layout_marginTop="4dp"
                         android:fontFamily="@font/hacen_saudi_arabia"
                         android:text="Tools"
-                        android:textColor="#104A00"
+                        android:textColor="@color/green_Product_Activity_Text"
                         android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -173,7 +173,7 @@
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/hacen_saudi_arabia"
                     android:text="view all"
-                    android:textColor="#114D00"
+                    android:textColor="@color/green_Ecommerce_Text"
                     android:textSize="16sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -212,7 +212,7 @@
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/hacen_saudi_arabia"
                     android:text="view all"
-                    android:textColor="#114D00"
+                    android:textColor="@color/green_Ecommerce_Text"
                     android:textSize="16sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -251,7 +251,7 @@
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/hacen_saudi_arabia"
                     android:text="view all"
-                    android:textColor="#114D00"
+                    android:textColor="@color/green_Ecommerce_Text"
                     android:textSize="16sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -290,7 +290,7 @@
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/hacen_saudi_arabia"
                     android:text="view all"
-                    android:textColor="#114D00"
+                    android:textColor="@color/green_Ecommerce_Text"
                     android:textSize="16sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -329,7 +329,7 @@
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/hacen_saudi_arabia"
                     android:text="view all"
-                    android:textColor="#114D00"
+                    android:textColor="@color/green_Ecommerce_Text"
                     android:textSize="16sp" />
 
                 <androidx.recyclerview.widget.RecyclerView

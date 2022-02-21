@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FarmerFriend"
+        android:theme="@style/Splash_Screen"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".e_commerce.ui.Search.Search"
@@ -27,15 +27,15 @@
         <activity
             android:name=".registration.LoginActivity"
             android:exported="false" />
-        <activity
-            android:name=".registration.SplashScreenActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--        <activity-->
+<!--            android:name=".registration.SplashScreenActivity"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
         <activity
             android:name=".registration.RegisterActivity"
             android:exported="false" />

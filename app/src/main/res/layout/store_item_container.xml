@@ -39,7 +39,7 @@
                 android:layout_toEndOf="@id/store_item_image"
                 android:fontFamily="@font/hacen_saudi_arabia"
                 android:text="Mint"
-                android:textColor="@color/greyCartItemName"
+                android:textColor="@color/grey_Cart_Item_Name"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -73,7 +73,7 @@
                     android:background="@drawable/shape_without_borders"
                     android:paddingHorizontal="8dp"
                     android:text="200"
-                    android:textColor="#5D5D5D"
+                    android:textColor="@color/grey_card_Container_text"
                     android:textSize="18sp" />
 
                 <ImageButton

@@ -38,6 +38,28 @@
     <!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
     <!--&lt;!&ndash;                    android:layout_height="wrap_content">&ndash;&gt;-->
 
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:orientation="vertical">-->
+
+        <TextView
+            android:id="@+id/fragment_control_text_view_welcome_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/hacen_saudi_arabia"
+            android:text="Hello, "
+            android:textColor="@color/black"
+            android:textSize="28sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/hacen_saudi_arabia"
+            android:text="Let's control your farm now!"
+            android:textColor="@color/black_Control_fragment_Text"
+            android:textSize="20sp" />
+        <!--            </LinearLayout>-->
     <!--&lt;!&ndash;                    <LinearLayout&ndash;&gt;-->
     <!--&lt;!&ndash;                        android:layout_width="wrap_content"&ndash;&gt;-->
     <!--&lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
@@ -70,6 +92,14 @@
     <!--        &lt;!&ndash;                app:drawableStartCompat="@drawable/ic_round_notifications_24" />&ndash;&gt;-->
     <!--        &lt;!&ndash;        </RelativeLayout>&ndash;&gt;-->
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/hacen_saudi_arabia"
+            android:text="Details"
+            android:textColor="@color/black_Control_fragment_Text"
+            android:textSize="22sp" />
     <!--        <ImageView-->
     <!--            android:layout_width="300dp"-->
     <!--            android:layout_height="300dp"-->
@@ -87,6 +117,16 @@
     <!--            android:textColor="#424242"-->
     <!--            android:textSize="22sp" />-->
 
+        <Button
+            android:id="@+id/fragment_control_button_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="64dp"
+            android:backgroundTint="@color/green_Store_Activity_Button"
+            android:text="Register" />
     <!--        <TextView-->
     <!--            android:layout_width="wrap_content"-->
     <!--            android:layout_height="wrap_content"-->

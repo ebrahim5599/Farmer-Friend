@@ -13,7 +13,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#6D000000"/>
+        android:background="@color/grey_Login_View"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
                 android:padding="16dp"
-                android:backgroundTint="#21735C"
+                android:backgroundTint="@color/green_Login_Button"
                 android:text="log in"
                 android:textColor="@color/white" />
 

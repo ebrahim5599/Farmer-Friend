@@ -13,7 +13,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#6D000000"/>
+            android:background="@color/grey_Login_View"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,8 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="80dp"
-                android:gravity="center"
                 android:fontFamily="@font/hacen_saudi_arabia"
+                android:gravity="center"
                 android:text="Register"
                 android:textColor="@color/white"
                 android:textSize="44sp"
@@ -38,8 +38,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/border"
@@ -87,8 +87,8 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
+                android:backgroundTint="@color/green_Login_Button"
                 android:padding="16dp"
-                android:backgroundTint="#21735C"
                 android:text="Register"
                 android:textColor="@color/white" />
 
