@@ -70,7 +70,7 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="water_pump">Water Pump</string>
     <string name="fertilizer_pump">Fertilizer Pump</string>
-    <string name="automatic_or_manual">Automatic Or Manual</string>
+    <string name="automatic_or_manual">Automatic or Manual</string>
     <string name="automatic">Automatic</string>
     <string name="manual">Manual</string>
     <string name="humidity">Humidity</string>
@@ -84,6 +84,12 @@
         <item>Area 1</item>
         <item>Area 2</item>
     </string-array>
+    <string name="title_activity_shop">ShopActivity</string>
+    <string name="more">More</string>
+    <string name="shop">Shop</string>
+    <string name="control">Control</string>
+    <string name="home">Home</string>
+    <string name="Add_tem_Image">Add Item Image</string>
 
 
 </resources>

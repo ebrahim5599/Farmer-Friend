@@ -78,7 +78,7 @@ public class StoreItemsAdapter extends RecyclerView.Adapter<StoreItemsAdapter.Vi
             item_name  = itemView.findViewById(R.id.activity_store_item_name);
             item_details = itemView.findViewById(R.id.activity_store_item_details);
             item_numbers = itemView.findViewById(R.id.activity_store_item_numbers);
-
+//
             buttonPlus = itemView.findViewById(R.id.activity_store_imageButton_plus);
             buttonMinus= itemView.findViewById(R.id.activity_store_imageButton_minus);
         }

@@ -18,7 +18,7 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.Cart
 
     Context context;
 
-    CartItemsAdapter(Context context) {
+    public CartItemsAdapter(Context context) {
         this.context = context;
     }
 

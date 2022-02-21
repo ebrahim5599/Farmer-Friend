@@ -1,12 +1,18 @@
 package com.graduation.farmerfriend.e_commerce.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,14 +20,6 @@ import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentECommerceBinding;
 import com.graduation.farmerfriend.e_commerce.Data;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
-import com.graduation.farmerfriend.e_commerce.ui.Search.Search;
-import com.graduation.farmerfriend.e_commerce.ui.cart.CartActivity;
-import com.graduation.farmerfriend.e_commerce.ui.deals.DealsActivity;
-
-import com.graduation.farmerfriend.e_commerce.ui.wishlist.WishlistActivity;
-
-import com.graduation.farmerfriend.e_commerce.ui.product_activity.ProductActivity;
-
 
 
 public class ECommerceFragment extends Fragment {
@@ -29,115 +27,82 @@ public class ECommerceFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentECommerceBinding.inflate(inflater,container,false);
+        binding = FragmentECommerceBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        setHasOptionsMenu(true);
 
 
-        binding.fragmentECommerceEditTextSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Search.class);
-               startActivity(intent);
-            }
-        });
 
         binding.fragmentECommerceSeedsView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ProductActivity.class);
-                intent.putExtra("FRAGMENT_NO","1");
-                startActivity(intent);
+                Navigation.findNavController(view).navigate(R.id.seedProductsFragment);
             }
         });
 
         binding.fragmentECommerceFertilizersView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ProductActivity.class);
-                intent.putExtra("FRAGMENT_NO","2");
-                startActivity(intent);
+                Navigation.findNavController(view).navigate(R.id.fertilizerProductsFragment);
             }
         });
 
         binding.fragmentECommerceToolsView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ProductActivity.class);
-                intent.putExtra("FRAGMENT_NO","3");
-                startActivity(intent);
-            }
-        });
-        binding.fragmentECommerceTextViewWishList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), WishlistActivity.class);
-                startActivity(intent);
+
+
+                Navigation.findNavController(view).navigate(R.id.toolProductsFragment);
             }
         });
 
 
-        binding.fragmentECommerceTextViewCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), CartActivity.class);
-                startActivity(intent);
-            }
-        });
 
         binding.fragmentECommerceTextviewBestSellerViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(getContext(), "Best Seller", Toast.LENGTH_SHORT).show();
-                Intent n = new Intent(getActivity(), DealsActivity.class);
-                n.putExtra("BEST_SELLER", "true");
-                startActivity(n);
+                Navigation.findNavController(view).navigate(R.id.bestSellerFragment);
             }
         });
 
         binding.fragmentECommerceTextviewHotDealsViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(getContext(), "Hot deals", Toast.LENGTH_SHORT).show();
-                Intent n = new Intent(getActivity(), DealsActivity.class);
-                n.putExtra("BEST_SELLER", "false");
-                startActivity(n);
+                Navigation.findNavController(view).navigate(R.id.hotDealsFragment);
             }
         });
 
         binding.fragmentECommerceTextviewSeedsViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ProductActivity.class);
-                intent.putExtra("FRAGMENT_NO","1");
-                startActivity(intent);
+
+                Navigation.findNavController(view).navigate(R.id.seedProductsFragment);
             }
         });
 
         binding.fragmentECommerceTextviewFertilizersViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ProductActivity.class);
-                intent.putExtra("FRAGMENT_NO","2");
-                startActivity(intent);            }
+                Navigation.findNavController(view).navigate(R.id.fertilizerProductsFragment);
+            }
         });
 
         binding.fragmentECommerceTextviewToolsViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ProductActivity.class);
-                intent.putExtra("FRAGMENT_NO","3");
-                startActivity(intent);            }
+                Navigation.findNavController(view).navigate(R.id.toolProductsFragment);
+            }
         });
 
         Data[] data_best_seller = {
                 new Data(R.drawable.image1, "rice", "50$", "no"),
                 new Data(R.drawable.image2, "fyuegif", "100$", "50%"),
-                new Data(R.drawable.image3,"rice","50$","no"),
-                new Data(R.drawable.image4,"fyuegif","100$","50%"),
-                new Data(R.drawable.image5,"rice","50$","no"),
-                new Data(R.drawable.image6,"fyuegif","100$","50%"),
-                new Data(R.drawable.image7,"rice","50$","no"),
-                new Data(R.drawable.image8,"fyuegif","100$","50%")
+                new Data(R.drawable.image3, "rice", "50$", "no"),
+                new Data(R.drawable.image4, "fyuegif", "100$", "50%"),
+                new Data(R.drawable.image5, "rice", "50$", "no"),
+                new Data(R.drawable.image6, "fyuegif", "100$", "50%"),
+                new Data(R.drawable.image7, "rice", "50$", "no"),
+                new Data(R.drawable.image8, "fyuegif", "100$", "50%")
         };
 
         binding.fragmentECommerceRecycleViewBestSeller.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
@@ -147,12 +112,12 @@ public class ECommerceFragment extends Fragment {
         Data[] data_hot_deals = {
                 new Data(R.drawable.image1, "rice", "50$", "no"),
                 new Data(R.drawable.image2, "fyuegif", "100$", "50%"),
-                new Data(R.drawable.image3,"rice","50$","no"),
-                new Data(R.drawable.image4,"fyuegif","100$","50%"),
-                new Data(R.drawable.image5,"rice","50$","no"),
-                new Data(R.drawable.image6,"fyuegif","100$","50%"),
-                new Data(R.drawable.image7,"rice","50$","no"),
-                new Data(R.drawable.image8,"fyuegif","100$","50%")
+                new Data(R.drawable.image3, "rice", "50$", "no"),
+                new Data(R.drawable.image4, "fyuegif", "100$", "50%"),
+                new Data(R.drawable.image5, "rice", "50$", "no"),
+                new Data(R.drawable.image6, "fyuegif", "100$", "50%"),
+                new Data(R.drawable.image7, "rice", "50$", "no"),
+                new Data(R.drawable.image8, "fyuegif", "100$", "50%")
         };
 
         binding.fragmentECommerceRecycleViewHotDeals.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
@@ -160,14 +125,14 @@ public class ECommerceFragment extends Fragment {
         binding.fragmentECommerceRecycleViewHotDeals.setAdapter(recycleViewAdapterHot);
 
         Data[] data_seeds = {
-            new Data(R.drawable.image1, "rice", "50$", "no"),
+                new Data(R.drawable.image1, "rice", "50$", "no"),
                 new Data(R.drawable.image2, "fyuegif", "100$", "50%"),
-                new Data(R.drawable.image3,"rice","50$","no"),
-                new Data(R.drawable.image4,"fyuegif","100$","50%"),
-                new Data(R.drawable.image5,"rice","50$","no"),
-                new Data(R.drawable.image6,"fyuegif","100$","50%"),
-                new Data(R.drawable.image7,"rice","50$","no"),
-                new Data(R.drawable.image8,"fyuegif","100$","50%")
+                new Data(R.drawable.image3, "rice", "50$", "no"),
+                new Data(R.drawable.image4, "fyuegif", "100$", "50%"),
+                new Data(R.drawable.image5, "rice", "50$", "no"),
+                new Data(R.drawable.image6, "fyuegif", "100$", "50%"),
+                new Data(R.drawable.image7, "rice", "50$", "no"),
+                new Data(R.drawable.image8, "fyuegif", "100$", "50%")
         };
 
         binding.fragmentECommerceRecycleviewSeeds.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
@@ -177,33 +142,62 @@ public class ECommerceFragment extends Fragment {
         Data[] data_fertilize = {
                 new Data(R.drawable.image1, "rice", "50$", "no"),
                 new Data(R.drawable.image2, "fyuegif", "100$", "50%"),
-                new Data(R.drawable.image3,"rice","50$","no"),
-                new Data(R.drawable.image4,"fyuegif","100$","50%"),
-                new Data(R.drawable.image5,"rice","50$","no"),
-                new Data(R.drawable.image6,"fyuegif","100$","50%"),
-                new Data(R.drawable.image7,"rice","50$","no"),
-                new Data(R.drawable.image8,"fyuegif","100$","50%")
+                new Data(R.drawable.image3, "rice", "50$", "no"),
+                new Data(R.drawable.image4, "fyuegif", "100$", "50%"),
+                new Data(R.drawable.image5, "rice", "50$", "no"),
+                new Data(R.drawable.image6, "fyuegif", "100$", "50%"),
+                new Data(R.drawable.image7, "rice", "50$", "no"),
+                new Data(R.drawable.image8, "fyuegif", "100$", "50%")
         };
 
         binding.fragmentECommerceRecycleviewFertilizers.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-        ViewRecycleProductsAdapter recycleViewAdapterf = new ViewRecycleProductsAdapter(getContext(),data_fertilize);
+        ViewRecycleProductsAdapter recycleViewAdapterf = new ViewRecycleProductsAdapter(getContext(), data_fertilize);
         binding.fragmentECommerceRecycleviewFertilizers.setAdapter(recycleViewAdapterf);
 
         Data[] data_tools = {
                 new Data(R.drawable.image1, "rice", "50$", "no"),
                 new Data(R.drawable.image2, "fyuegif", "100$", "50%"),
-                new Data(R.drawable.image3,"rice","50$","no"),
-                new Data(R.drawable.image4,"fyuegif","100$","50%"),
-                new Data(R.drawable.image5,"rice","50$","no"),
-                new Data(R.drawable.image6,"fyuegif","100$","50%"),
-                new Data(R.drawable.image7,"rice","50$","no"),
-                new Data(R.drawable.image8,"fyuegif","100$","50%")
+                new Data(R.drawable.image3, "rice", "50$", "no"),
+                new Data(R.drawable.image4, "fyuegif", "100$", "50%"),
+                new Data(R.drawable.image5, "rice", "50$", "no"),
+                new Data(R.drawable.image6, "fyuegif", "100$", "50%"),
+                new Data(R.drawable.image7, "rice", "50$", "no"),
+                new Data(R.drawable.image8, "fyuegif", "100$", "50%")
         };
 
         binding.fragmentECommerceRecycleviewTools.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-        ViewRecycleProductsAdapter recycleViewAdaptert = new ViewRecycleProductsAdapter(getContext(),data_tools);
+        ViewRecycleProductsAdapter recycleViewAdaptert = new ViewRecycleProductsAdapter(getContext(), data_tools);
         binding.fragmentECommerceRecycleviewTools.setAdapter(recycleViewAdaptert);
 
         return view;
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.shop_main_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.cartFragment){
+//            ECommerceFragmentDirections.ActionToCart action =
+//                    ECommerceFragmentDirections.actionToCart();
+//            action.setFromWhichFragment(Constants.FROM_E_COMMERCE_FRAGMENT);
+            Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
+        }
+        else if (item.getItemId() == R.id.wishlistFragment){
+//            ECommerceFragmentDirections.ActionToWishlist action =
+//                    ECommerceFragmentDirections.actionToWishlist();
+//            action.setFromWhichFragment(Constants.FROM_E_COMMERCE_FRAGMENT);
+            Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment );
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

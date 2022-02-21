@@ -3,7 +3,7 @@
     <style name="Theme.FarmerFriend" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">#3A8C07</item>
+        <item name="colorPrimaryVariant">#00796B</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -26,8 +26,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.FarmerFriend.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
-        <item name="background" >
+    <style name="Theme.FarmerFriend.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="background">
             @drawable/relative_layout_background
         </item>
     </style>

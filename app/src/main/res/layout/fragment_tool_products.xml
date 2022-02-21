@@ -8,26 +8,15 @@
     tools:context=".e_commerce.ui.product_activity.ToolProductsFragment">
 
 
-    <TextView
-        android:id="@+id/fragment_tool_products_textview_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/hacen_saudi_arabia"
-        android:text="Tools"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:layout_marginStart="10dp"
-        app:layout_constraintStart_toStartOf="@+id/fragment_tool_products_recycler_view"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_tool_products_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="700dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_tool_products_textview_name" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

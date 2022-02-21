@@ -3,7 +3,7 @@ package com.graduation.farmerfriend.e_commerce;
 import android.content.Context;
 
 import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.e_commerce.ui.ItemDescriptionActivity;
+import com.graduation.farmerfriend.e_commerce.ui.ItemDescriptionFragment;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycleProductsAdapter.ViewHolder> {
@@ -38,8 +39,7 @@ public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycle
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, ItemDescriptionActivity.class);
-                context.startActivity(intent);
+                Navigation.findNavController(holder.itemView).navigate(R.id.itemDescriptionFragment);
             }
         });
     }

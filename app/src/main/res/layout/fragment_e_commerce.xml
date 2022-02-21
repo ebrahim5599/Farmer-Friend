@@ -6,71 +6,6 @@
     android:layout_height="match_parent"
     android:isScrollContainer="true">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/fragment_e_commerce_appbar"
-        android:layout_width="match_parent"
-        android:layout_height="84dp"
-        android:background="@drawable/setting_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/fragment_e_commerce_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_scrollFlags="enterAlways|scroll|snap|exitUntilCollapsed" />
-
-            <TextView
-                android:id="@+id/fragment_e_commerce_editText_search"
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"
-                android:layout_toStartOf="@id/fragment_e_commerce_textView_wish_list"
-                android:background="@drawable/edittext_background"
-                android:drawableLeft="@drawable/search_icon"
-                android:gravity="center_vertical"
-                android:text="Search" />
-
-            <TextView
-                android:id="@+id/fragment_e_commerce_textView_wish_list"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
-                android:layout_toStartOf="@id/fragment_e_commerce_textView_cart"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/textview_background"
-                android:gravity="center"
-                android:padding="8dp"
-                app:drawableStartCompat="@drawable/ic_baseline_heart_24" />
-
-            <TextView
-                android:id="@+id/fragment_e_commerce_textView_cart"
-                android:layout_width="38dp"
-                android:layout_height="38dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/textview_background"
-                android:gravity="center"
-                android:padding="8dp"
-                app:drawableStartCompat="@drawable/ic_baseline_shopping_cart_24"/>
-
-
-        </RelativeLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
     <ScrollView
         android:id="@+id/fragment_e_commerce_scrollview"
         android:layout_width="match_parent"
@@ -94,29 +29,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <androidx.cardview.widget.CardView
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="8dp">
+                    android:layout_height="128dp"
+                    android:background="@drawable/relative_layout_background">
 
-                    <ImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
+                        app:shapeAppearanceOverlay="@style/Shape_shop_top"
                         android:src="@drawable/setting_background"/>
-                </androidx.cardview.widget.CardView>
+                </FrameLayout>
 
-<!--                <ImageView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="180dp"-->
-<!--                    android:src="@drawable/setting_background" />-->
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="32dp"
