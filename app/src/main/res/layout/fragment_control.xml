@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/hacen_saudi_arabia"
             android:text="Let's control your farm now!"
-            android:textColor="#424242"
+            android:textColor="@color/black_Control_fragment_Text"
             android:textSize="20sp" />
         <!--            </LinearLayout>-->
 
@@ -63,7 +63,7 @@
             android:layout_marginStart="16dp"
             android:fontFamily="@font/hacen_saudi_arabia"
             android:text="Details"
-            android:textColor="#424242"
+            android:textColor="@color/black_Control_fragment_Text"
             android:textSize="22sp" />
 
         <TextView
@@ -82,7 +82,7 @@
             android:layout_marginTop="64dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="64dp"
-            android:backgroundTint="#00796B"
+            android:backgroundTint="@color/green_Store_Activity_Button"
             android:text="Register" />
 
     </LinearLayout>

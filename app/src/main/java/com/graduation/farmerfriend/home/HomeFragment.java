@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -38,7 +39,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(Root forecastModel) {
                 fragmentHomeBinding.textViewDegree.setText(String.format(Locale.US,"%d°", Math.round(forecastModel.current.temp_c)));
-
                 String imageUrl = "https://" + forecastModel.current.condition.icon;
                 Log.i("Glide error", forecastModel.forecast.forecastday.toString());
                 Glide.with(requireContext()).load(imageUrl).into(fragmentHomeBinding.imageView);
@@ -48,6 +48,7 @@ public class HomeFragment extends Fragment {
                 fragmentHomeBinding.textViewWind.setText(String.format(Locale.US,"%d km/h", Math.round(forecastModel.current.wind_kph)));
             }
         });
+
         EcommerceAdapter ecommerceAdapter = new EcommerceAdapter();
         fragmentHomeBinding.homeRecyclerViewEcommerce.setAdapter(ecommerceAdapter);
         NewsAdapter newsAdapter = new NewsAdapter();

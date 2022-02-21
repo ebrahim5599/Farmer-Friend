@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:backgroundTint="#00695C"
+        android:backgroundTint="@color/green_Cart_Activity_Button"
 
         android:text="@string/buy" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

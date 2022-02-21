@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#F0F0F0"
+            android:backgroundTint="@color/grey_Iot_Soil_Cardview"
             app:cardCornerRadius="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2">
@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:backgroundTint="#F0F0F0"
+            android:backgroundTint="@color/grey_Iot_Soil_Cardview"
             app:cardCornerRadius="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3">
@@ -182,7 +182,7 @@
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="#F0F0F0"
+            android:backgroundTint="@color/grey_Iot_Soil_Cardview"
             app:cardCornerRadius="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/cardView2"
