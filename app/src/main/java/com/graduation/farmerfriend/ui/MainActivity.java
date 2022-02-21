@@ -11,12 +11,16 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,6 +30,7 @@ import com.graduation.farmerfriend.databinding.ActivityMainBinding;
 import com.graduation.farmerfriend.home.ForecastViewModel;
 import com.graduation.farmerfriend.location.AddressCallBack;
 import com.graduation.farmerfriend.location.Location;
+
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements AddressCallBack {
@@ -61,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         location.getLocation();
         toolbar = binding.mainToolbar;
         setSupportActionBar(toolbar);
-
 
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -107,6 +111,9 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                 } else if (destination.getId() == R.id.itemDescriptionFragment) {
                     toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.userDataFragment) {
+                    toolbar.setVisibility(View.GONE);
+                    bottomNavigationView.setVisibility(View.GONE);
                 } else {
                     toolbar.setVisibility(View.VISIBLE);
                     bottomNavigationView.setVisibility(View.VISIBLE);
@@ -125,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 //        getMenuInflater().inflate(R.menu.shop_main_menu,menu);
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -159,7 +167,6 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this, "on destroy", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -170,5 +177,17 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         location.destroy();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == location.getLOCATION_REQUEST_CODE()) {
+            if (requestCode == location.getLOCATION_REQUEST_CODE()) {
+                // If request is cancelled, the result arrays are empty.
+                location.getLocation();
+            }
+
+        }
     }
+
+
 }

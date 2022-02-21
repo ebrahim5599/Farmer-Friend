@@ -5,6 +5,8 @@
     android:id="@+id/my_nav"
     app:startDestination="@id/homeFragment">
 
+
+    <!--main fragment in bottom nav -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.graduation.farmerfriend.home.HomeFragment"
@@ -54,6 +56,11 @@
         android:name="com.graduation.farmerfriend.more.MoreFragment"
         android:label="@string/more"
         tools:layout="@layout/fragment_more" />
+
+
+    <!--    fragment of e_commerce categories -->
+
+
     <fragment
         android:id="@+id/fertilizerProductsFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.FertilizerProductsFragment"
@@ -91,6 +98,10 @@
             app:destination="@id/cartFragment" />
     </fragment>
 
+
+    <!--    fragments of deals -->
+
+
     <fragment
         android:id="@+id/hotDealsFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.deals.HotDealsFragment"
@@ -111,6 +122,10 @@
             app:destination="@id/wishlistFragment" />
     </fragment>
 
+
+    <!--    cart and wishlist-->
+
+
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.graduation.farmerfriend.CartFragment"
@@ -118,8 +133,8 @@
         tools:layout="@layout/fragment_cart">
         <argument
             android:name="fromWhichFragment"
-            app:argType="string"
-            android:defaultValue="E_COMMERCE"/>
+            android:defaultValue="E_COMMERCE"
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -129,9 +144,29 @@
         tools:layout="@layout/fragment_wishlist">
         <argument
             android:name="fromWhichFragment"
-            app:argType="string"
-            android:defaultValue="E_COMMERCE"/>
+            android:defaultValue="E_COMMERCE"
+            app:argType="string" />
     </fragment>
+
+
+    <!-- ecommerce item description    -->
+
+
+    <fragment
+        android:id="@+id/itemDescriptionFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.ItemDescriptionFragment"
+        tools:layout="@layout/fragment_item_description" />
+    <!-- ecommerce user data  -->
+    <fragment
+        android:id="@+id/userDataFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.cart.UserDataFragment"
+        android:label="fragment_user_data"
+        tools:layout="@layout/fragment_user_data" />
+
+
+    <!--store fragment-->
+
+
     <fragment
         android:id="@+id/storeFragment"
         android:name="com.graduation.farmerfriend.StoreFragment"
@@ -141,9 +176,6 @@
         android:id="@+id/storeAddItemFragment"
         android:name="com.graduation.farmerfriend.StoreAddItemFragment"
         tools:layout="@layout/fragment_store_add_item" />
-    <fragment
-        android:id="@+id/itemDescriptionFragment"
-        android:name="com.graduation.farmerfriend.e_commerce.ui.ItemDescriptionFragment"
-        tools:layout="@layout/fragment_item_description" />
+
 
 </navigation>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -14,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.graduation.farmerfriend.databinding.FragmentCartBinding;
 import com.graduation.farmerfriend.e_commerce.ui.cart.CartItemsAdapter;
-import com.graduation.farmerfriend.e_commerce.ui.cart.UserDataActivity;
+import com.graduation.farmerfriend.e_commerce.ui.cart.UserDataFragment;
 
 
 public class CartFragment extends Fragment {
@@ -64,8 +65,7 @@ public class CartFragment extends Fragment {
         binding.cartButtonCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(requireContext(), UserDataActivity.class);
-                startActivity(intent);
+                Navigation.findNavController(requireView()).navigate(R.id.userDataFragment);
             }
         });
         // Inflate the layout for this fragment
