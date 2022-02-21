@@ -39,6 +39,17 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_FarmerFriend);
+        setContentView(R.layout.activity_main);
+
+        try {
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES,MODE_PRIVATE);
+        editor= sharedPreferences.edit();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, MODE_PRIVATE);
@@ -159,4 +170,5 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         location.destroy();
     }
 
+    }
 }
