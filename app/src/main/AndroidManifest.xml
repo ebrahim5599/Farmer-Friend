@@ -15,14 +15,6 @@
         android:theme="@style/Theme.FarmerFriend"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".e_commerce.ui.ShopActivity"
-            android:exported="false"
-            android:label="@string/title_activity_shop"
-            android:theme="@style/Theme.FarmerFriend.NoActionBar" />
-        <activity
-            android:name=".store.AddToStoreActivity"
-            android:exported="false" />
-        <activity
             android:name=".e_commerce.ui.Search.Search"
             android:exported="true" />
         <activity
@@ -47,21 +39,7 @@
         <activity
             android:name=".e_commerce.ui.cart.UserDataActivity"
             android:exported="true" />
-        <activity
-            android:name=".e_commerce.ui.ItemDescriptionActivity"
-            android:exported="true" />
 
-        <activity
-            android:name=".e_commerce.ui.product_activity.ProductActivity"
-            android:exported="true" />
-        <activity
-            android:name=".e_commerce.ui.deals.DealsActivity"
-            android:exported="true"
-            android:label="@string/title_activity_deals"
-            android:theme="@style/Theme.FarmerFriend.NoActionBar" />
-        <activity
-            android:name=".store.StoreActivity"
-            android:exported="true" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true" />

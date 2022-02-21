@@ -1,7 +1,6 @@
 package com.graduation.farmerfriend;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -17,8 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.graduation.farmerfriend.databinding.FragmentStoreBinding;
-import com.graduation.farmerfriend.store.AddToStoreActivity;
-import com.graduation.farmerfriend.store.StoreActivity;
 import com.graduation.farmerfriend.store.StoreItems;
 import com.graduation.farmerfriend.store.StoreItemsAdapter;
 
@@ -70,13 +67,6 @@ public class StoreFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                Navigation.findNavController(requireView()).navigate(R.id.moreFragment);
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     @Override
@@ -97,7 +87,7 @@ public class StoreFragment extends Fragment {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(requireContext(), AddToStoreActivity.class));
+                Navigation.findNavController(view).navigate(R.id.storeAddItemFragment);
             }
         });
 

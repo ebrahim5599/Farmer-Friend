@@ -34,19 +34,4 @@ public class BestSellerFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // This callback will only be called when MyFragment is at least Started.
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                Navigation.findNavController(requireView()).navigate(R.id.ECommerceFragment);
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
-
-        // The callback can be enabled or disabled here or in handleOnBackPressed()
-    }
 }
