@@ -1,25 +1,17 @@
 package com.graduation.farmerfriend.control;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
-
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.control.iot_fragments.IOTAdapter;
@@ -37,7 +29,7 @@ public class ControlFragment extends Fragment {
 
         //TODO:**************************************************************************************************
         RegistrationFragment registrationFragment = new RegistrationFragment();
-        boolean first_run = true;
+        boolean first_run = false;
         if(first_run){
             binding.linearVisibility.setVisibility(View.GONE);
             if (savedInstanceState == null) {
@@ -77,33 +69,21 @@ public class ControlFragment extends Fragment {
         binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#00796B"));
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // This callback will only be called when MyFragment is at least Started.
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                Navigation.findNavController(requireView()).navigate(R.id.homeFragment);
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
-
-        // The callback can be enabled or disabled here or in handleOnBackPressed()
-    }
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        Toast.makeText(requireContext(),"onPause() IOTControl ",Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Toast.makeText(requireContext(),"onDestroy() IOTControl ",Toast.LENGTH_LONG).show();
-    }
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+//        // This callback will only be called when MyFragment is at least Started.
+//        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+//            @Override
+//            public void handleOnBackPressed() {
+//                Navigation.findNavController(requireView()).navigate(R.id.homeFragment);
+//            }
+//        };
+//        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+//
+//        // The callback can be enabled or disabled here or in handleOnBackPressed()
+//    }
 
     public String setTabTitle(int pageNumber) {
         switch (pageNumber) {

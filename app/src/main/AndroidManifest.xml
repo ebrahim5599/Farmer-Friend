@@ -16,7 +16,14 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".e_commerce.ui.Search.Search"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
         <activity
             android:name=".registration.LoginActivity"
             android:exported="false" />
@@ -37,12 +44,12 @@
             android:exported="true"
             android:label="@string/title_activity_iot" />
         <activity
-            android:name=".e_commerce.ui.cart.UserDataActivity"
-            android:exported="true" />
-
-        <activity
             android:name=".ui.MainActivity"
-            android:exported="true" />
+            android:exported="true">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".e_commerce.ui.Search.Search"/>
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
