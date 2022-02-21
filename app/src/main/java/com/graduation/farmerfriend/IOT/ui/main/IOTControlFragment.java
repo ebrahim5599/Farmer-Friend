@@ -1,23 +1,14 @@
 package com.graduation.farmerfriend.IOT.ui.main;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
-import androidx.annotation.MainThread;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentIotControlBinding;
 
@@ -40,7 +31,6 @@ public class IOTControlFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(IOTControlViewModel.class);
 
         binding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.RED);
-
         binding.fregmentIotControlButtonManualOrAutomatic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +82,4 @@ public class IOTControlFragment extends Fragment {
         });
         return binding.getRoot();
     }
-
-
 }
