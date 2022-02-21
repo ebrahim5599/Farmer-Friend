@@ -1,5 +1,7 @@
 package com.graduation.farmerfriend.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
 
+import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentHomeBinding;
 import com.graduation.farmerfriend.models.Root;
 import com.graduation.farmerfriend.repos.ForecastRepo;
@@ -31,6 +34,7 @@ public class HomeFragment extends Fragment {
 
     FragmentHomeBinding fragmentHomeBinding;
     ForecastViewModel viewModel;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,6 +42,8 @@ public class HomeFragment extends Fragment {
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = fragmentHomeBinding.getRoot();
         setHasOptionsMenu(true);
+        requireActivity();
+        sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
         return view;
     }
 
@@ -53,7 +59,7 @@ public class HomeFragment extends Fragment {
                 String imageUrl = "https://" + forecastModel.current.condition.icon;
                 Log.i("Glide error", forecastModel.forecast.forecastday.toString());
                 Glide.with(requireContext()).load(imageUrl).into(fragmentHomeBinding.imageView);
-                fragmentHomeBinding.textViewLocation.setText(String.format(Locale.US,"%s, %s", forecastModel.location.name, forecastModel.location.country));
+                fragmentHomeBinding.textViewLocation.setText(sharedPreferences.getString(Constants.LOCATION_ADDRESS,"Cairo, Egypt"));
                 fragmentHomeBinding.textViewConditionText.setText(forecastModel.current.condition.text);
                 fragmentHomeBinding.textViewHumidity.setText(String.format(Locale.US,"%d %%", forecastModel.current.humidity));
                 fragmentHomeBinding.textViewWind.setText(String.format(Locale.US,"%d km/h", Math.round(forecastModel.current.wind_kph)));

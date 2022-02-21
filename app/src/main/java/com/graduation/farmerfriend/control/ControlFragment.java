@@ -29,7 +29,7 @@ public class ControlFragment extends Fragment {
 
         //TODO:**************************************************************************************************
         RegistrationFragment registrationFragment = new RegistrationFragment();
-        boolean first_run = false;
+        boolean first_run = true;
         if(first_run){
             binding.linearVisibility.setVisibility(View.GONE);
             if (savedInstanceState == null) {

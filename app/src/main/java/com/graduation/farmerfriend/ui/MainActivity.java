@@ -40,37 +40,32 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     ActivityMainBinding binding;
     private AppBarConfiguration appBarConfiguration;
     private Toolbar toolbar;
+    private ForecastViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_FarmerFriend);
-        setContentView(R.layout.activity_main);
-
-        try {
-            Thread.sleep(1000);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
-
-        SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES,MODE_PRIVATE);
-        editor= sharedPreferences.edit();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, MODE_PRIVATE);
         editor = sharedPreferences.edit();
-
-        ForecastViewModel viewModel = new ViewModelProvider(this).get(ForecastViewModel.class);
+        viewModel = new ViewModelProvider(this).get(ForecastViewModel.class);
         viewModel.init(this);
+        viewModel.setForecastData(sharedPreferences.getString(Constants.LOCATION, "Cairo"));
         location = new Location(this, 1002, this);
         location.getLocation();
+
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         toolbar = binding.mainToolbar;
         setSupportActionBar(toolbar);
-
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.controlFragment, R.id.ECommerceFragment, R.id.moreFragment).build();
-
 
         // Removing shadow from bottomActionBar.
 
@@ -171,8 +166,10 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
 
     @Override
     public void getAddress(String address) {
-        String s = String.format(Locale.US, "%f,%f", location.getWayLatitude(), location.getWayLongitude());
-        editor.putString(Constants.LOCATION, s);
+        String lat_lang = String.format(Locale.US, "%f,%f", location.getWayLatitude(), location.getWayLongitude());
+        String address_CC = String.format(Locale.US, "%s,%s" , location.getCountry(),location.getCity());
+        editor.putString(Constants.LOCATION, lat_lang);
+        editor.putString(Constants.LOCATION_ADDRESS, address_CC);
         editor.apply();
         location.destroy();
     }

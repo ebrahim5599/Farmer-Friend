@@ -18,7 +18,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
-            android:backgroundTint="#ECEAEA"
+            android:backgroundTint="@color/grey_Iot_Control_cardview"
             app:cardCornerRadius="20dp"
             app:cardElevation="15dp">
 
@@ -30,27 +30,27 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_margin="16dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_margin="16dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/fregment_iot_control_textview_manual_or_automatic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:layout_marginBottom="16dp"
+                        android:gravity="center"
                         android:text="@string/automatic_or_manual"
-                        android:textColor="#131313"
+                        android:textColor="@color/black_Iot_Control_Text"
                         android:textSize="14sp" />
 
                     <Button
                         android:id="@+id/fregment_iot_control_button_manual_or_automatic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/green_Iot_Control_Button"
                         android:padding="24dp"
-                        android:backgroundTint="#00695C"
                         android:text="@string/manual"
                         app:cornerRadius="20dp" />
 
@@ -75,14 +75,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="3"
-                                android:paddingTop="8dp"
+                                android:orientation="vertical"
                                 android:paddingStart="8dp"
-                                android:paddingBottom="8dp"
-                                android:orientation="vertical">
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp">
 
 
                                 <TextView
@@ -92,8 +93,8 @@
                                     android:layout_weight="1"
                                     android:gravity="center_vertical"
                                     android:text="@string/automatic"
-                                    android:textColor="#0C0C0C"
-                                    android:textSize="12sp"/>
+                                    android:textColor="@color/black_Iot_control_text2"
+                                    android:textSize="12sp" />
 
                                 <TextView
                                     android:id="@+id/fregment_iot_control_textview_manual"
@@ -102,8 +103,8 @@
                                     android:layout_weight="1"
                                     android:gravity="center_vertical"
                                     android:text="@string/manual"
-                                    android:textColor="#0C0C0C"
-                                    android:textSize="12sp"/>
+                                    android:textColor="@color/black_Iot_control_text2"
+                                    android:textSize="12sp" />
 
                                 <TextView
                                     android:id="@+id/fregment_iot_control_textview_waterpump"
@@ -112,8 +113,8 @@
                                     android:layout_weight="1"
                                     android:gravity="center_vertical"
                                     android:text="@string/water_pump"
-                                    android:textColor="#0C0C0C"
-                                    android:textSize="12sp"/>
+                                    android:textColor="@color/black_Iot_control_text2"
+                                    android:textSize="12sp" />
 
                                 <TextView
                                     android:id="@+id/fregment_iot_control_textview_fertilizerpump"
@@ -123,44 +124,45 @@
                                     android:gravity="center_vertical"
                                     android:singleLine="false"
                                     android:text="@string/fertilizer_pump"
-                                    android:textColor="#0C0C0C"
-                                    android:textSize="11sp"/>
+                                    android:textColor="@color/black_Iot_control_text2"
+                                    android:textSize="11sp" />
 
                             </LinearLayout>
+
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1.5"
                                 android:gravity="right"
-                                android:padding="8dp"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:padding="8dp">
 
                                 <androidx.cardview.widget.CardView
                                     android:id="@+id/fregment_iot_control_lamb_automatic"
                                     android:layout_width="25dp"
                                     android:layout_height="25dp"
                                     android:layout_marginBottom="8dp"
-                                    app:cardCornerRadius="50dp"/>
+                                    app:cardCornerRadius="50dp" />
 
                                 <androidx.cardview.widget.CardView
                                     android:id="@+id/fregment_iot_control_lamb_manual"
                                     android:layout_width="25dp"
                                     android:layout_height="25dp"
                                     android:layout_marginBottom="8dp"
-                                    app:cardCornerRadius="50dp"/>
+                                    app:cardCornerRadius="50dp" />
 
                                 <androidx.cardview.widget.CardView
                                     android:id="@+id/fregment_iot_control_lamb_waterpump"
                                     android:layout_width="25dp"
                                     android:layout_height="25dp"
                                     android:layout_marginBottom="8dp"
-                                    app:cardCornerRadius="50dp"/>
+                                    app:cardCornerRadius="50dp" />
 
                                 <androidx.cardview.widget.CardView
                                     android:id="@+id/fregment_iot_control_lamb_fertilizerpump"
                                     android:layout_width="25dp"
                                     android:layout_height="25dp"
-                                    app:cardCornerRadius="50dp"/>
+                                    app:cardCornerRadius="50dp" />
                             </LinearLayout>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -184,7 +186,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            android:backgroundTint="#ECEAEA"
+            android:backgroundTint="@color/grey_Iot_Control_cardview"
             app:cardCornerRadius="20dp"
             app:cardElevation="15dp">
 
@@ -200,7 +202,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
-                    app:cardBackgroundColor="#4C5564"
+                    app:cardBackgroundColor="@color/grey_Iot_Control_OFF"
                     app:cardCornerRadius="15dp"
                     app:cardPreventCornerOverlap="true"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -272,7 +274,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="30dp"
-            android:backgroundTint="#ECEAEA"
+            android:backgroundTint="@color/grey_Iot_Control_cardview"
             app:cardCornerRadius="20dp"
             app:cardElevation="15dp">
 
@@ -288,7 +290,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
-                    app:cardBackgroundColor="#4C5564"
+                    app:cardBackgroundColor="@color/grey_Iot_Control_OFF"
                     app:cardCornerRadius="15dp"
                     app:cardPreventCornerOverlap="true"
                     app:layout_constraintBottom_toBottomOf="parent"

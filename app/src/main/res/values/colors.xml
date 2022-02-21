@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FB0505</color>
-    <color name="green_Cart_Text">#044600</color>
+    <color name="greenCartText">#044600</color>
     <color name="grey_Cart_Item_Name">#3b3b3b</color>
     <color name="grey_card_Container_text">#5D5D5D</color>
     <color name="green_Cart_Activity_Button">#00695C</color>

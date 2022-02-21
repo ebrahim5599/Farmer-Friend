@@ -24,7 +24,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(ForecastViewModel.class);
         viewModel.init(this);
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES,MODE_PRIVATE);
-
         viewModel.setForecastData(sharedPreferences.getString(Constants.LOCATION,"Cairo"));
 
 

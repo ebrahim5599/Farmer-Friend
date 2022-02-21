@@ -36,6 +36,7 @@ public class Location {
     private String addressText = "";
     private String governorate;
     private String city;
+    private String country;
 
     public Location(Activity activity, int locationRequestCode) {
         this.activity = activity;
@@ -143,6 +144,8 @@ public class Location {
                 Address address = listAddress.get(0);
                 governorate = address.getAdminArea();
                 city = address.getSubAdminArea();
+                country = address.getCountryName();
+
                 addressText = " your address is :\n" + address.getAddressLine(0);
 
             }
@@ -163,6 +166,10 @@ public class Location {
 
     public String getCity() {
         return city;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public void destroy() {
