@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.graduation.farmerfriend.R;
@@ -26,9 +25,9 @@ public class IOTControlFragment extends Fragment {
 
     private IOTControlViewModel mViewModel;
     FragmentIotControlBinding binding;
-    String buttontext  ;
-    int countclickwaterpump = 0;
-    int countclickfertlizerpump = 0;
+    String buttonText;
+    int countClickWaterPump = 0;
+    int countClickFertilizerPump = 0;
 
     public static IOTControlFragment newInstance() {
         return new IOTControlFragment();
@@ -40,24 +39,19 @@ public class IOTControlFragment extends Fragment {
         binding = FragmentIotControlBinding.inflate(inflater, container, false);
         mViewModel = new ViewModelProvider(this).get(IOTControlViewModel.class);
 
+        binding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.RED);
+
         binding.fregmentIotControlButtonManualOrAutomatic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttontext = (String) binding.fregmentIotControlButtonManualOrAutomatic.getText() ;
-
-                if(buttontext == "MANUAL"){
-                    binding.fregmentIotControlButtonManualOrAutomatic.setText("AUTOMATIC");
-                    binding.fregmentIotControlLambManual.setCardBackgroundColor(Color.RED);
-                    binding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.WHITE);
-                }
-                else if (buttontext == "AUTOMATIC"){
+                buttonText = (String) binding.fregmentIotControlButtonManualOrAutomatic.getText() ;
+                if(buttonText.equals("AUTOMATIC")){
                     binding.fregmentIotControlButtonManualOrAutomatic.setText("MANUAL");
                     binding.fregmentIotControlLambManual.setCardBackgroundColor(Color.WHITE);
                     binding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.RED);
-                }
-                else {
+                }else{
                     binding.fregmentIotControlButtonManualOrAutomatic.setText("AUTOMATIC");
-                    binding.fregmentIotControlLambManual.setCardBackgroundColor(Color.WHITE);
+                    binding.fregmentIotControlLambManual.setCardBackgroundColor(Color.RED);
                     binding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.WHITE);
                 }
             }
@@ -66,12 +60,12 @@ public class IOTControlFragment extends Fragment {
         binding.fregmentIotControlImageviewWaterpumpPower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                countclickwaterpump ++;
-                if(countclickwaterpump == 1) {
+                countClickWaterPump++;
+                if(countClickWaterPump == 1) {
                     binding.fregmentIotControlLambWaterpump.setCardBackgroundColor(Color.RED);
                     binding.fregmentIotControlCardviewWaterpumpPower.setCardBackgroundColor(Color.CYAN);
                     binding.fregmentIotControlImageviewWaterpumpPower.setImageResource(R.drawable.fregment_iot_control_power_on);
-                    countclickwaterpump = -1 ;
+                    countClickWaterPump = -1 ;
                 }else {
                     binding.fregmentIotControlLambWaterpump.setCardBackgroundColor(Color.WHITE);
                     binding.fregmentIotControlCardviewWaterpumpPower.setCardBackgroundColor(Color.rgb(76,85,100));
@@ -83,12 +77,12 @@ public class IOTControlFragment extends Fragment {
         binding.fregmentIotControlImageviewFertilizerpumpPower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                countclickfertlizerpump++;
-                if (countclickfertlizerpump == 1) {
+                countClickFertilizerPump++;
+                if (countClickFertilizerPump == 1) {
                     binding.fregmentIotControlLambFertilizerpump.setCardBackgroundColor(Color.RED);
                     binding.fregmentIotControlCardviewFertilizerpumpPower.setCardBackgroundColor(Color.CYAN);
                     binding.fregmentIotControlImageviewFertilizerpumpPower.setImageResource(R.drawable.fregment_iot_control_power_on);
-                    countclickfertlizerpump = -1;
+                    countClickFertilizerPump = -1;
                 }else{
                     binding.fregmentIotControlLambFertilizerpump.setCardBackgroundColor(Color.WHITE);
                     binding.fregmentIotControlCardviewFertilizerpumpPower.setCardBackgroundColor(Color.rgb(76,85,100));

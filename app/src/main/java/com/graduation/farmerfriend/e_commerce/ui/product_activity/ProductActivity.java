@@ -12,8 +12,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.ActivityProductBinding;
 import com.graduation.farmerfriend.e_commerce.ui.Search.Search;
-//import com.graduation.farmerfriend.e_commerce.ui.cart.CartActivity;
-//import com.graduation.farmerfriend.e_commerce.ui.wishlist.WishlistActivity;
 
 public class ProductActivity extends AppCompatActivity {
 

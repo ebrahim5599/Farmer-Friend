@@ -3,11 +3,17 @@ package com.graduation.farmerfriend.IOT;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.graduation.farmerfriend.IOT.ui.main.SectionsPagerAdapter;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.ActivityIotBinding;
@@ -55,6 +61,7 @@ public class IOT_Activity extends AppCompatActivity {
 
             }
         });
+
     }
 
     public String setPageTitle(int pageNumber) {
