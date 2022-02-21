@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
@@ -52,6 +53,16 @@ public class HotDealsFragment extends Fragment {
                 (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(requireActivity().getComponentName()));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.cartFragment) {
+            Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
+        } else if (item.getItemId() == R.id.wishlistFragment) {
+            Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
