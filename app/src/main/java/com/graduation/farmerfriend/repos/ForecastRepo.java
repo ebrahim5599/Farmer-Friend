@@ -19,12 +19,10 @@ import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ForecastRepo {
-    private static final String WEATHER_SERVICE_BASE_URL = " http://api.weatherapi.com";
+    private static final String WEATHER_SERVICE_BASE_URL = " https://api.weatherapi.com";
     private static ForecastRepo Instance;
-
     private ForecastInterface forecastInterface;
     private MutableLiveData<Root> forecastModelLiveDataLiveData;
-    Root forecastModel;
 
 
     public static ForecastRepo getInstance(){
@@ -67,8 +65,5 @@ public class ForecastRepo {
         return forecastModelLiveDataLiveData;
     }
 
-    public Root getForecastModel() {
-        return forecastModel;
-    }
 
 }

@@ -19,7 +19,7 @@ public class IOTAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return IOTWeatherFragment.newInstance(position + 1);
+                return IOTWeatherFragment.newInstance(position);
             case 2:
                 return IOTControlFragment.newInstance();
             default:
