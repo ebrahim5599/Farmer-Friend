@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
@@ -31,15 +32,16 @@ public class BestSellerFragment extends Fragment {
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
-        fragmentBestSelersBinding = FragmentBestSelersBinding.inflate(inflater,container,false);
+        fragmentBestSelersBinding = FragmentBestSelersBinding.inflate(inflater, container, false);
         View view = fragmentBestSelersBinding.getRoot();
         BestSellerAdapter adapter = new BestSellerAdapter();
         fragmentBestSelersBinding.fragmentBestSellersRecyclerView.setAdapter(adapter);
-        fragmentBestSelersBinding.fragmentBestSellersRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(),3));
+        fragmentBestSelersBinding.fragmentBestSellersRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
 
-        Log.i("Fragment","Best sellers oncreateView");
+        Log.i("Fragment", "Best sellers oncreateView");
         return view;
     }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -51,6 +53,16 @@ public class BestSellerFragment extends Fragment {
                 (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(requireActivity().getComponentName()));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.cartFragment) {
+            Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
+        } else if (item.getItemId() == R.id.wishlistFragment) {
+            Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
