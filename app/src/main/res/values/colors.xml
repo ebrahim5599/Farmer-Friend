@@ -31,5 +31,6 @@
     <color name="grey_Iot_Soil_Cardview">#F0F0F0</color>
     <color name="black_More_Text">#101010</color>
     <color name="black_More_Text2">#0E0E0E</color>
-
+    <color name="farmer_friend">#21735C</color>
+    <color name="dark_mode">#3C0B0A0A</color>
 </resources>
