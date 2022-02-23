@@ -29,6 +29,7 @@ import com.graduation.farmerfriend.models.Root;
 import com.graduation.farmerfriend.repos.ForecastRepo;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -42,7 +43,6 @@ public class HomeFragment extends Fragment {
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = fragmentHomeBinding.getRoot();
         setHasOptionsMenu(true);
-        requireActivity();
         sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
         return view;
     }
@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        viewModel = new ViewModelProvider(getActivity()).get(ForecastViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(ForecastViewModel.class);
         viewModel.getForecastModelLiveData().observe(getViewLifecycleOwner(), new Observer<Root>() {
             @Override
             public void onChanged(Root forecastModel) {

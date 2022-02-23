@@ -2,6 +2,10 @@ package com.graduation.farmerfriend.control;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -9,9 +13,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.control.iot_fragments.IOTAdapter;
@@ -21,16 +22,17 @@ public class ControlFragment extends Fragment {
 
     FragmentControlBinding binding;
     ViewPager2 viewPager2;
+    boolean isRegistered;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentControlBinding.inflate(getLayoutInflater(),container,false);
+        binding = FragmentControlBinding.inflate(getLayoutInflater(), container, false);
 
         //TODO:**************************************************************************************************
         RegistrationFragment registrationFragment = new RegistrationFragment();
-        boolean first_run = true;
-        if(first_run){
+        isRegistered = false;
+        if (isRegistered) {
             binding.linearVisibility.setVisibility(View.GONE);
             if (savedInstanceState == null) {
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
@@ -67,23 +69,9 @@ public class ControlFragment extends Fragment {
         ).attach();
         binding.tabs.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#00796B"));
         binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#00796B"));
+
     }
 
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        // This callback will only be called when MyFragment is at least Started.
-//        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-//            @Override
-//            public void handleOnBackPressed() {
-//                Navigation.findNavController(requireView()).navigate(R.id.homeFragment);
-//            }
-//        };
-//        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
-//
-//        // The callback can be enabled or disabled here or in handleOnBackPressed()
-//    }
 
     public String setTabTitle(int pageNumber) {
         switch (pageNumber) {

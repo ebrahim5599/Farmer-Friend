@@ -7,6 +7,6 @@
     <item android:drawable="@drawable/ic_splash_screen"
         android:gravity="center" />
 
-    <item android:drawable="@drawable/ic_farmer_friend"
-        android:bottom="20dp"/>
+<!--    <item android:drawable="@drawable/ic_farmer_friend"-->
+<!--        android:bottom="20dp"/>-->
 </layer-list>
