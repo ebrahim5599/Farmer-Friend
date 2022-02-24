@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.graduation.farmerfriend.IOTModels.IOTRoot;
-import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentIotSoilBinding;
 
 import java.text.MessageFormat;
@@ -38,8 +37,9 @@ public class IOTSoilFragment extends Fragment {
         mViewModel.getIOTModelLiveData().observe(getViewLifecycleOwner(), new Observer<IOTRoot>() {
             @Override
             public void onChanged(IOTRoot iotRoot) {
-                binding.fragmentIOTSoilTextViewTemp.setText(MessageFormat.format("{0} C", iotRoot.sensors.stemp));
-                binding.fragmentIOTSoilTextViewMoisture.setText(MessageFormat.format("{0} %", iotRoot.sensors.smoisture));
+
+                binding.fragmentIOTSoilTextViewTemp.setText(MessageFormat.format("{0} C", iotRoot.sensors.soilTemp));
+                binding.fragmentIOTSoilTextViewMoisture.setText(MessageFormat.format("{0} %", iotRoot.sensors.moisture));
             }
         });
         return binding.getRoot();

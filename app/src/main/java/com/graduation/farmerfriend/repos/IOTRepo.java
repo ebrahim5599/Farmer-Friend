@@ -6,9 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.graduation.farmerfriend.IOTModels.Control;
 import com.graduation.farmerfriend.IOTModels.IOTRoot;
-import com.graduation.farmerfriend.IOTModels.Sensors;
 import com.graduation.farmerfriend.apis.IOTInterface;
 
 
@@ -69,6 +67,7 @@ public class IOTRepo {
         iotInterface.getIOTData().enqueue(new Callback<IOTRoot>() {
             @Override
             public void onResponse(Call<IOTRoot> call, @NonNull Response<IOTRoot> response) {
+                Log.d("IOTData", "onResponse: "+response.body());
                 assert response.body() != null;
                 iOTAllLiveData.postValue(response.body());
                 Log.d("IOTData", String.valueOf("good call"));

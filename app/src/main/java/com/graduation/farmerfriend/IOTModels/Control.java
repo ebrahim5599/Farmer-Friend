@@ -1,27 +1,27 @@
 package com.graduation.farmerfriend.IOTModels;
 
 public class Control{
-    public boolean ferSwitch;
+    public boolean fertSwitch;
     public boolean isAuto;
     public boolean waterSwitch;
 
-    public boolean getFerSwitch() {
-        return ferSwitch;
+    public boolean isFertSwitch() {
+        return fertSwitch;
     }
 
-    public void setFerSwitch(boolean ferSwitch) {
-        this.ferSwitch = ferSwitch;
+    public void setFertSwitch(boolean fertSwitch) {
+        this.fertSwitch = fertSwitch;
     }
 
-    public boolean getIsAuto() {
+    public boolean isAuto() {
         return isAuto;
     }
 
-    public void setIsAuto(boolean isAuto) {
-        this.isAuto = isAuto;
+    public void setAuto(boolean auto) {
+        isAuto = auto;
     }
 
-    public boolean getWaterSwitch() {
+    public boolean isWaterSwitch() {
         return waterSwitch;
     }
 
