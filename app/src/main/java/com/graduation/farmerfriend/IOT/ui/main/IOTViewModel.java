@@ -21,6 +21,7 @@ public class IOTViewModel extends ViewModel {
         return iotRootLiveData;
     }
     public void getIOTData() {
+//        IOTRoot iotRoot = new IOTRoot();
         iotRepo.getIOTAllData();
     }
 
