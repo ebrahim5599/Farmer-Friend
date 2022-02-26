@@ -3,18 +3,20 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/grey_Ecommerce_Container_CardView">
-
+>
     <androidx.cardview.widget.CardView
         android:layout_width="144dp"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         app:cardCornerRadius="16dp"
-        app:cardElevation="8dp">
+        app:cardElevation="8dp"
+        android:backgroundTint="@color/grey_Ecomerce_Contanire">
+        
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
 
             <ImageView
                 android:id="@+id/product_image"

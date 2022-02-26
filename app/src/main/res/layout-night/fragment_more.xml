@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".more.MoreFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/setting_background"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="75dp"
+            app:cardCornerRadius="80dp"
+            app:cardElevation="20dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fragment_more_cardview"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            app:cardCornerRadius="80dp"
+            app:cardElevation="20dp">
+
+            <ImageView
+                android:id="@+id/fragment_more_imageview_userimage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/will_smith" />
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/fragment_more_frame_items"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="160dp"
+            android:background="@drawable/fragment_more_cardview" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/fragment_more_cardview"
+            android:background="@color/black">
+
+            <TextView
+                android:id="@+id/fragment_more_textview_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Will Smith"
+                android:textColor="@color/black_More_Text"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_more_textview_community"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/fragment_more_item_background"
+                android:drawableStart="@drawable/ic_baseline_family_restroom_24"
+                android:drawablePadding="10dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:text="@string/community"
+                android:textColor="@color/black_More_Text2"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_name" />
+
+            <TextView
+                android:id="@+id/fragment_more_textview_store"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/fragment_more_item_background"
+                android:drawableStart="@drawable/ic_baseline_store_24"
+                android:drawablePadding="10dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="@string/store"
+                android:textColor="@color/black_More_Text2"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_community" />
+
+            <TextView
+                android:id="@+id/fragment_more_textview_help"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/fragment_more_item_background"
+                android:drawableStart="@drawable/ic_baseline_help_center_24"
+                android:drawablePadding="10dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="@string/help"
+                android:textColor="@color/black_More_Text2"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_store" />
+
+            <TextView
+                android:id="@+id/fragment_more_textview_setting"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/fragment_more_item_background"
+                android:drawableStart="@drawable/ic_baseline_settings_24"
+                android:drawablePadding="10dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="@string/setting"
+                android:textColor="@color/black_More_Text2"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_help" />
+
+            <TextView
+                android:id="@+id/fragment_more_textview_about"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/fragment_more_item_background"
+                android:drawableStart="@drawable/ic_baseline_error_24"
+                android:drawablePadding="10dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="@string/about_us"
+                android:textColor="@color/black_More_Text2"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_setting" />
+
+            <TextView
+                android:id="@+id/fragment_more_textview_logout"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/fragment_more_item_background"
+                android:drawableStart="@drawable/ic_baseline_login_24"
+                android:drawablePadding="10dp"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="@string/log_out"
+                android:textColor="@color/black_More_Text2"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.508"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_about"
+                app:layout_constraintVertical_bias="0.037" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</ScrollView>
