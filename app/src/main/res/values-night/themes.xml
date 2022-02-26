@@ -3,7 +3,7 @@
     <style name="Theme.FarmerFriend" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimaryVariant">#00796B</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -13,4 +13,32 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Farmer" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:fontFamily">@font/kitten_swash</item>
+    </style>
+
+    <style name="Theme.FarmerFriend.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.FarmerFriend.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="background">
+            @drawable/relative_layout_background
+        </item>
+    </style>
+
+    <style name="Theme.FarmerFriend.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="Splash_Screen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_image</item>
+        <item name="android:statusBarColor">@color/dark_mode</item>
+    </style>
+
+    <!--    <style name="AppTheme.NoActionBar">-->
+    <!--        <item name="windowActionBar">false</item>-->
+    <!--        <item name="windowNoTitle">true</item>-->
+    <!--    </style>-->
 </resources>
