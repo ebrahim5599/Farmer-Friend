@@ -33,4 +33,6 @@
     <color name="black_More_Text2">#0E0E0E</color>
     <color name="farmer_friend">#21735C</color>
     <color name="dark_mode">#3C0B0A0A</color>
+    <color name="white_dark">#FFFFFF</color>
+    <color name="grey_Fragment_Registration">#6D000000</color>
 </resources>

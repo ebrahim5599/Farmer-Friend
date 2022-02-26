@@ -1,5 +1,6 @@
 package com.graduation.farmerfriend.more;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentMoreBinding;
+import com.graduation.farmerfriend.registration.RegisterActivity;
 
 public class MoreFragment extends Fragment {
     FragmentMoreBinding binding ;
@@ -30,6 +32,13 @@ public class MoreFragment extends Fragment {
             }
         });
 
+        binding.fragmentMoreTextviewCommunity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(),RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
         return binding.getRoot();
     }
 }
