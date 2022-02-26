@@ -11,8 +11,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -20,10 +18,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.graduation.farmerfriend.IOT.ui.main.IOTViewModel;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.ActivityMainBinding;
@@ -40,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     ActivityMainBinding binding;
     private AppBarConfiguration appBarConfiguration;
     private Toolbar toolbar;
-    private ForecastViewModel viewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +47,17 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         setContentView(binding.getRoot());
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        viewModel = new ViewModelProvider(this).get(ForecastViewModel.class);
-        viewModel.init(this);
+        ForecastViewModel viewModel = new ViewModelProvider(this).get(ForecastViewModel.class);
         viewModel.setForecastData(sharedPreferences.getString(Constants.LOCATION, "Cairo"));
+
+        IOTViewModel mViewModel = new ViewModelProvider(this).get(IOTViewModel.class);
+        mViewModel.init();
+        mViewModel.getIOTData();
         location = new Location(this, 1002, this);
         location.getLocation();
 
         try {
-            Thread.sleep(2500);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         toolbar = binding.mainToolbar;
         setSupportActionBar(toolbar);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.controlFragment, R.id.ECommerceFragment, R.id.moreFragment).build();
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.controlFragment, R.id.cameraFragment, R.id.ECommerceFragment, R.id.moreFragment).build();
 
         // Removing shadow from bottomActionBar.
 
