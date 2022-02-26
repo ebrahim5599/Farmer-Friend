@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         toolbar = binding.mainToolbar;
         setSupportActionBar(toolbar);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.controlFragment, R.id.ECommerceFragment, R.id.moreFragment).build();
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.controlFragment, R.id.cameraFragment, R.id.ECommerceFragment, R.id.moreFragment).build();
 
         // Removing shadow from bottomActionBar.
 
