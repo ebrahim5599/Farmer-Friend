@@ -11,7 +11,7 @@
     <string name="myproducts">My Products</string>
     <string name="buy">Buy</string>
     <string name="Cart">Cart</string>
-    <string name="total">"Total   = "</string>
+    <string name="total">"Total   ="</string>
     <string name="delete">Delete</string>
     <string name="title_activity_deals">dealsActivity</string>
     <!-- Strings used for fragments for navigation -->
