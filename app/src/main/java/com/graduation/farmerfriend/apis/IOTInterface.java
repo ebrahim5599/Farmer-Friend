@@ -1,6 +1,8 @@
 package com.graduation.farmerfriend.apis;
 
+import com.graduation.farmerfriend.IOTModels.Control;
 import com.graduation.farmerfriend.IOTModels.IOTRoot;
+import com.graduation.farmerfriend.IOTModels.Sensors;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -10,12 +12,12 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
 public interface IOTInterface {
-    @PUT("/userId0.json")
-    Call<IOTRoot> put(@Body IOTRoot iotRoot);
 
-//    @POST("/UserId0.json")
-//    Call<IOTRoot> postForFirstTime();
+    @PUT("control.json")
+    Call<Control> changeControl(@Body Control control);
 
-    @GET("/userId0.json")
-    Call<IOTRoot> getIOTData();
+    @GET("control.json")
+    Call<Control> getControlData();
+    @GET("sensors.json")
+    Call<Sensors> getSensorsData();
 }

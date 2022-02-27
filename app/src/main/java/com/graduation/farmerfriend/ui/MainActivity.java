@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
 
         IOTViewModel mViewModel = new ViewModelProvider(this).get(IOTViewModel.class);
         mViewModel.init();
-        mViewModel.getIOTData();
+        mViewModel.getControlData();
+        mViewModel.getSensorsData();
         location = new Location(this, 1002, this);
         location.getLocation();
 

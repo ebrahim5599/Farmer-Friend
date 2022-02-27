@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.graduation.farmerfriend.IOTModels.Control;
 import com.graduation.farmerfriend.IOTModels.IOTRoot;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentIotControlBinding;
@@ -44,17 +45,14 @@ public class IOTControlFragment extends Fragment {
         iotRepo = IOTRepo.getInstance();
         mViewModel = new ViewModelProvider(requireActivity()).get(IOTViewModel.class);
         mViewModel.init();
-        mViewModel.getIOTModelLiveData().observe(getViewLifecycleOwner(), new Observer<IOTRoot>() {
+        mViewModel.getIOTControlLiveData().observe(getViewLifecycleOwner(), new Observer<Control>() {
             @Override
-            public void onChanged(IOTRoot iotRoot) {
-                isAuto = iotRoot.control.isAuto;
-                waterSwitch = iotRoot.control.waterSwitch;
-                ferSwitch = iotRoot.control.fertSwitch;
-                iotModel = iotRoot;
-                putIOT(iotRoot);
+            public void onChanged(Control control) {
+                isAuto = control.isAuto;
+                waterSwitch = control.waterSwitch;
+                ferSwitch = control.fertSwitch;
+                putIOT(control);
             }
-
-
         });
         return binding.getRoot();
     }
@@ -66,10 +64,10 @@ public class IOTControlFragment extends Fragment {
 
     }
 
-    private void putIOT(IOTRoot iotRoot) {
-        Log.d("TAG", "putIOT: "+iotRoot.control.waterSwitch);
+    private void putIOT(Control control) {
+        Log.d("TAG", "putIOT: "+control.waterSwitch);
 
-        if (iotRoot.control.isAuto) {
+        if (control.isAuto) {
             binding.fregmentIotControlButtonManualOrAutomatic.setText(R.string.manual);
             binding.fregmentIotControlLambManual.setCardBackgroundColor(Color.WHITE);
             binding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.RED);
@@ -90,8 +88,8 @@ public class IOTControlFragment extends Fragment {
                 buttonText = (String) binding.fregmentIotControlButtonManualOrAutomatic.getText();
 
                 if (buttonText.equals(getString(R.string.automatic))) {
-                    iotRoot.control.setAuto(true);
-                    iotRepo.putIOTData(iotRoot);
+                    control.setAuto(true);
+                    iotRepo.changeControl(control);
 //                    mViewModel.getIOTData();
 
                     binding.fregmentIotControlButtonManualOrAutomatic.setText(R.string.manual);
@@ -101,8 +99,8 @@ public class IOTControlFragment extends Fragment {
                     binding.fregmentIotControlImageviewFertilizerpumpPower.setEnabled(false);
                     binding.fregmentIotControlImageviewWaterpumpPower.setEnabled(false);
                 } else {
-                    iotRoot.control.setAuto(false);
-                    iotRepo.putIOTData(iotRoot);
+                    control.setAuto(false);
+                    iotRepo.changeControl(control);
 //                    mViewModel.getIOTData();
 
                     binding.fregmentIotControlButtonManualOrAutomatic.setText(R.string.automatic);
@@ -116,7 +114,7 @@ public class IOTControlFragment extends Fragment {
         });
 
 
-        if (iotRoot.control.fertSwitch) {
+        if (control.fertSwitch) {
             isFertilizerPumpON = true;
             binding.fregmentIotControlLambFertilizerpump.setCardBackgroundColor(Color.RED);
             binding.fregmentIotControlCardviewFertilizerpumpPower.setCardBackgroundColor(Color.CYAN);
@@ -133,8 +131,8 @@ public class IOTControlFragment extends Fragment {
             public void onClick(View view) {
                 if (isFertilizerPumpON) {
 
-                    iotRoot.control.setFertSwitch(false);
-                    iotRepo.putIOTData(iotRoot);
+                    control.setFertSwitch(false);
+                    iotRepo.changeControl(control);
 //                    mViewModel.getIOTData();
 
 
@@ -143,8 +141,8 @@ public class IOTControlFragment extends Fragment {
                     binding.fregmentIotControlImageviewFertilizerpumpPower.setImageResource(R.drawable.fregment_iot_control_power_off);
                     isFertilizerPumpON = false;
                 } else {
-                    iotRoot.control.setFertSwitch(true);
-                    iotRepo.putIOTData(iotRoot);
+                    control.setFertSwitch(true);
+                    iotRepo.changeControl(control);
 //                    mViewModel.getIOTData();
 
                     binding.fregmentIotControlLambFertilizerpump.setCardBackgroundColor(Color.RED);
@@ -155,7 +153,7 @@ public class IOTControlFragment extends Fragment {
             }
         });
 
-        if (iotRoot.control.waterSwitch) {
+        if (control.waterSwitch) {
             isWaterPumpON = true;
             binding.fregmentIotControlLambWaterpump.setCardBackgroundColor(Color.RED);
             binding.fregmentIotControlCardviewWaterpumpPower.setCardBackgroundColor(Color.CYAN);
@@ -172,8 +170,8 @@ public class IOTControlFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (isWaterPumpON) {
-                    iotRoot.control.setWaterSwitch(false);
-                    iotRepo.putIOTData(iotRoot);
+                    control.setWaterSwitch(false);
+                    iotRepo.changeControl(control);
 //                    mViewModel.getIOTData();
 
                     binding.fregmentIotControlLambWaterpump.setCardBackgroundColor(Color.WHITE);
@@ -181,8 +179,8 @@ public class IOTControlFragment extends Fragment {
                     binding.fregmentIotControlImageviewWaterpumpPower.setImageResource(R.drawable.fregment_iot_control_power_off);
                     isWaterPumpON = false;
                 } else {
-                    iotRoot.control.setWaterSwitch(true);
-                    iotRepo.putIOTData(iotRoot);
+                    control.setWaterSwitch(true);
+                    iotRepo.changeControl(control);
 //                    mViewModel.getIOTData();
 
                     binding.fregmentIotControlLambWaterpump.setCardBackgroundColor(Color.RED);
@@ -197,6 +195,6 @@ public class IOTControlFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mViewModel.getIOTData();
+        mViewModel.getControlData();
     }
 }

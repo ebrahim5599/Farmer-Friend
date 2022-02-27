@@ -6,7 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.graduation.farmerfriend.IOTModels.Control;
 import com.graduation.farmerfriend.IOTModels.IOTRoot;
+import com.graduation.farmerfriend.IOTModels.Sensors;
 import com.graduation.farmerfriend.apis.IOTInterface;
 
 
@@ -19,10 +21,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class IOTRepo {
 
-    private static final String IOT_SERVICE_BASE_URL = "https://iotfarmsystem-default-rtdb.firebaseio.com";
+    private static final String IOT_SERVICE_BASE_URL = "https://iotfarmsystem-default-rtdb.firebaseio.com/userId0/";
     private static IOTRepo Instance;
     private final IOTInterface iotInterface;
     private final MutableLiveData<IOTRoot> iOTAllLiveData;
+    private final MutableLiveData<Control> iOTControlLiveData;
+    private final MutableLiveData<Sensors> iOTSensorsLiveData;
 
 
     public static IOTRepo getInstance() {
@@ -34,6 +38,8 @@ public class IOTRepo {
 
     private IOTRepo() {
         iOTAllLiveData = new MutableLiveData<>();
+        iOTSensorsLiveData = new MutableLiveData<>();
+        iOTControlLiveData = new MutableLiveData<>();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -46,35 +52,55 @@ public class IOTRepo {
                 .create(IOTInterface.class);
     }
 
-    public void putIOTData(IOTRoot iotRoot) {
-        Log.d("IOTData", "putIOTData()");
-        iotInterface.put(iotRoot).enqueue(new Callback<IOTRoot>() {
+
+    public void changeControl(Control control) {
+        iotInterface.changeControl(control).enqueue(new Callback<Control>() {
             @Override
-            public void onResponse(@NonNull Call<IOTRoot> call, @NonNull Response<IOTRoot> response) {
+            public void onResponse(Call<Control> call, @NonNull Response<Control> response) {
                 assert response.body() != null;
-                Log.i("IOTData", String.valueOf("good put"));
+                Log.i("IOTData", "good put");
             }
 
             @Override
-            public void onFailure(@NonNull Call<IOTRoot> call, @NonNull Throwable t) {
+            public void onFailure(Call<Control> call, Throwable t) {
+                Log.d("IOTData", t.toString());
+            }
+        });
+
+    }
+
+
+    public void getControlData() {
+        Log.d("IOTData", "getIOTAllData() ");
+        iotInterface.getControlData().enqueue(new Callback<Control>() {
+            @Override
+            public void onResponse(Call<Control> call, @NonNull Response<Control> response) {
+                Log.d("IOTData", "onResponse: " + response.body());
+                assert response.body() != null;
+                iOTControlLiveData.postValue(response.body());
+                Log.d("IOTData", String.valueOf("good call"));
+            }
+
+            @Override
+            public void onFailure(Call<Control> call, Throwable t) {
                 Log.d("IOTData", t.toString());
             }
         });
     }
 
-    public void getIOTAllData() {
-        Log.d("IOTData", "getIOTAllData() ");
-        iotInterface.getIOTData().enqueue(new Callback<IOTRoot>() {
+    public void getSensorsData() {
+        Log.d("IOTData", "getSensorsData() ");
+        iotInterface.getSensorsData().enqueue(new Callback<Sensors>() {
             @Override
-            public void onResponse(Call<IOTRoot> call, @NonNull Response<IOTRoot> response) {
-                Log.d("IOTData", "onResponse: "+response.body());
+            public void onResponse(Call<Sensors> call, @NonNull Response<Sensors> response) {
+                Log.d("IOTData", "onResponse: " + response.body());
                 assert response.body() != null;
-                iOTAllLiveData.postValue(response.body());
+                iOTSensorsLiveData.postValue(response.body());
                 Log.d("IOTData", String.valueOf("good call"));
             }
 
             @Override
-            public void onFailure(Call<IOTRoot> call, Throwable t) {
+            public void onFailure(Call<Sensors> call, Throwable t) {
                 Log.d("IOTData", t.toString());
             }
         });
@@ -82,5 +108,13 @@ public class IOTRepo {
 
     public LiveData<IOTRoot> getIOTModelLiveData() {
         return iOTAllLiveData;
+    }
+
+    public LiveData<Control> getControlLiveData() {
+        return iOTControlLiveData;
+    }
+
+    public LiveData<Sensors> getSensorsLiveData() {
+        return iOTSensorsLiveData;
     }
 }

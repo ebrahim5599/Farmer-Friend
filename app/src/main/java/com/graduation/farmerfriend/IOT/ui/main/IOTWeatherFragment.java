@@ -1,6 +1,7 @@
 package com.graduation.farmerfriend.IOT.ui.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.graduation.farmerfriend.IOTModels.IOTRoot;
+import com.graduation.farmerfriend.IOTModels.Sensors;
 import com.graduation.farmerfriend.databinding.FragmentIotWeatherBinding;
 
 import java.text.MessageFormat;
@@ -57,14 +59,15 @@ public class IOTWeatherFragment extends Fragment {
         TextView textViewTemp = binding.fragmentIotWeatherTextViewTemp;
         mViewModel = new ViewModelProvider(requireActivity()).get(IOTViewModel.class);
         mViewModel.init();
-        mViewModel.getIOTModelLiveData().observe(getViewLifecycleOwner(), new Observer<IOTRoot>() {
+        mViewModel.getIOTSensorsLiveData().observe(getViewLifecycleOwner(), new Observer<Sensors>() {
             @Override
-            public void onChanged(IOTRoot iotRoot) {
-                progressBar.setProgress(iotRoot.sensors.airTemp);
-                binding.fragmentIotWeatherTextViewHumidity.setText(MessageFormat.format("{0} %", iotRoot.sensors.humidity));
-                binding.fragmentIotWeatherTextViewTemp.setText(MessageFormat.format("{0} C", iotRoot.sensors.airTemp));
-                binding.fragmentIotWeatherTextViewLuminousIntensity.setText(MessageFormat.format("{0} lx", iotRoot.sensors.luminous));
-                binding.fragmentIotWeatherTextViewPressure.setText(MessageFormat.format("{0} mb", iotRoot.sensors.pressure));
+            public void onChanged(Sensors sensors) {
+//                Log.d("TAG", "onChanged: "+sensors.soilTemp);
+                progressBar.setProgress(sensors.airTemp);
+                binding.fragmentIotWeatherTextViewHumidity.setText(MessageFormat.format("{0} %", sensors.humidity));
+                binding.fragmentIotWeatherTextViewTemp.setText(MessageFormat.format("{0} C", sensors.airTemp));
+                binding.fragmentIotWeatherTextViewLuminousIntensity.setText(MessageFormat.format("{0} lx", sensors.luminous));
+                binding.fragmentIotWeatherTextViewPressure.setText(MessageFormat.format("{0} mb", sensors.pressure));
             }
         });
 
@@ -105,6 +108,6 @@ public class IOTWeatherFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mViewModel.getIOTData();
+        mViewModel.getSensorsData();
     }
 }
