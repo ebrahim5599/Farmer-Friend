@@ -2,12 +2,13 @@ package com.graduation.farmerfriend.camera
 
 import android.Manifest
 import android.content.ContentValues
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,22 +18,36 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.video.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.graduation.farmerfriend.R
+import androidx.fragment.app.Fragment
 import com.graduation.farmerfriend.databinding.FragmentCameraBinding
-import com.graduation.farmerfriend.ui.MainActivity
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import android.R
+import android.R.attr
+
+import android.widget.ImageView
+
+import android.R.attr.data
+import android.provider.AlarmClock
+import com.graduation.farmerfriend.ui.MainActivity
+import android.provider.AlarmClock.EXTRA_MESSAGE
+
+import android.widget.EditText
+import java.io.File
+import android.graphics.BitmapFactory
+import androidx.camera.view.video.OutputFileResults
+
 
 class CameraFragment : Fragment() {
 
     private lateinit var viewBinding: FragmentCameraBinding
     private var imageCapture: ImageCapture? = null
     private lateinit var cameraExecutor: ExecutorService
+    private var message : String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +55,7 @@ class CameraFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        viewBinding = FragmentCameraBinding.inflate(inflater,container,false);
+        viewBinding = FragmentCameraBinding.inflate(inflater, container, false);
 
         // Request camera permissions
         if (allPermissionsGranted()) {
@@ -51,7 +66,9 @@ class CameraFragment : Fragment() {
             )
         }
         // Set up the listeners for take photo and video capture buttons
-        viewBinding.imageCaptureButton.setOnClickListener { takePhoto() }
+        viewBinding.imageCaptureButton.setOnClickListener {
+            takePhoto()
+        }
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         return viewBinding.root;
@@ -88,6 +105,7 @@ class CameraFragment : Fragment() {
             put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
                 put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/Farmer Friend")
+                message = "Pictures/Farmer Friend/$name.jpg"
             }
         }
 
@@ -113,11 +131,15 @@ class CameraFragment : Fragment() {
                 override fun
                         onImageSaved(output: ImageCapture.OutputFileResults) {
                     val msg = "Photo capture succeeded: ${output.savedUri}"
+//                    message = output.savedUri.toString()
                     Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
+                    /////////////////////////////
                 }
             }
         )
+
+        goToActivity()
     }
 
     private fun startCamera() {
@@ -155,6 +177,33 @@ class CameraFragment : Fragment() {
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
+//    private fun getImage() {
+//        val imgFile = File(message)
+//        if (imgFile.exists()) {
+//            val myBitmap =
+//                BitmapFactory.decodeFile(imgFile.absolutePath + "/2022-03-03-01-12-01-745.jpg")
+////            Toast.makeText(context, imgFile.absolutePath + "2022-03-03-01-12-01-745.jpg", Toast.LENGTH_LONG).show()
+//            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+//            viewBinding.perviewLastImage.setImageBitmap(myBitmap)
+//        } else
+//            Toast.makeText(context, "not exist", Toast.LENGTH_LONG).show()
+//
+//    }
+    private fun goToActivity(){
+        activity?.let{
+            val intent = Intent (it, CameraResultActivity::class.java)
+            intent.putExtra("PATH", message)
+            it.startActivity(intent)
+        }
+    }
+
+    //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == 444) {
+//            val photo = data!!.extras!!["data"] as Bitmap?
+//            viewBinding.perviewLastImage.setImageBitmap(photo)
+//        }
+//    }
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
             activity?.baseContext!!, it

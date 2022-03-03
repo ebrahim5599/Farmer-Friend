@@ -46,4 +46,9 @@
         <item name="color">@color/white</item>
     </style>
 
+    <style name="collapsing_toolbar_style" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#a51e22</item>
+        <item name="colorPrimaryVariant">#a51e22</item>
+        <item name="colorOnPrimary">#a51e22</item>
+    </style>
 </resources>
