@@ -68,8 +68,10 @@ public class HomeFragment extends Fragment {
 
         EcommerceAdapter ecommerceAdapter = new EcommerceAdapter();
         fragmentHomeBinding.homeRecyclerViewEcommerce.setAdapter(ecommerceAdapter);
+
         NewsAdapter newsAdapter = new NewsAdapter();
         fragmentHomeBinding.homeRecyclerViewNews.setAdapter(newsAdapter);
+
         fragmentHomeBinding.viewAllECommerce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

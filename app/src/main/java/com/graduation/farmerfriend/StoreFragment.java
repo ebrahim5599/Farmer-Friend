@@ -93,10 +93,10 @@ public class StoreFragment extends Fragment {
 
 
         ArrayList<StoreItems> storeArrayList = new ArrayList<>();
-        storeArrayList.add(new StoreItems("Mint", "mint gamed gedan", 5, R.drawable.will_smith));
-        storeArrayList.add(new StoreItems("Mint", "mint gamed gedan", 20, R.drawable.will_smith));
-        storeArrayList.add(new StoreItems("Mint", "mint gamed gedan", 5, R.drawable.will_smith));
-        storeArrayList.add(new StoreItems("Mint", "mint gamed gedan", 5, R.drawable.will_smith));
+        storeArrayList.add(new StoreItems("Mint", "details for mint", 5, R.drawable.will_smith));
+        storeArrayList.add(new StoreItems("Mint", "details for mint", 20, R.drawable.will_smith));
+        storeArrayList.add(new StoreItems("Mint", "details for mint", 5, R.drawable.will_smith));
+        storeArrayList.add(new StoreItems("Mint", "details for mint", 5, R.drawable.will_smith));
 
 
         binding.activityStoreRecycleViewStore.setLayoutManager(new LinearLayoutManager(requireContext()));

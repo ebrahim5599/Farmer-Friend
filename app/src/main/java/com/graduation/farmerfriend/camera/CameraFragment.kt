@@ -69,6 +69,10 @@ class CameraFragment : Fragment() {
         viewBinding.imageCaptureButton.setOnClickListener {
             takePhoto()
         }
+
+        viewBinding.lastDetails.setOnClickListener{
+            goToActivity()
+        }
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         return viewBinding.root;
@@ -105,7 +109,9 @@ class CameraFragment : Fragment() {
             put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
                 put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/Farmer Friend")
-                message = "Pictures/Farmer Friend/$name.jpg"
+//                message = "Pictures/Farmer Friend/$name.jpg"
+//                message = MediaStore.Images.Media.RELATIVE_PATH + "/$name.jpg"
+
             }
         }
 
@@ -131,15 +137,13 @@ class CameraFragment : Fragment() {
                 override fun
                         onImageSaved(output: ImageCapture.OutputFileResults) {
                     val msg = "Photo capture succeeded: ${output.savedUri}"
-//                    message = output.savedUri.toString()
+                    message = output.savedUri.toString()
+                    goToActivity()
                     Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
-                    /////////////////////////////
                 }
             }
         )
-
-        goToActivity()
     }
 
     private fun startCamera() {
@@ -197,7 +201,7 @@ class CameraFragment : Fragment() {
         }
     }
 
-    //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
 //        if (requestCode == 444) {
 //            val photo = data!!.extras!!["data"] as Bitmap?

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.ActivityCameraResultBinding;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
@@ -39,26 +40,31 @@ public class CameraResultActivity extends AppCompatActivity {
         Intent n = getIntent();
         path = n.getStringExtra("PATH");
         Toast.makeText(getBaseContext(), "path is: " + path, Toast.LENGTH_SHORT).show();
-        getImage();
+//        getImage();
+//        Picasso.get().load(path).into(binding.previewImage);
+        Picasso.get().load(path).rotate(90).into(binding.toolbarImage);
+
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && requestCode == 444 && data != null){
-            binding.previewImage.setImageBitmap((Bitmap) data.getExtras().get("Pictures/Farmer Friend"));
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == Activity.RESULT_OK && requestCode == 444 && data != null){
+//            binding.previewImage.setImageBitmap((Bitmap) data.getExtras().get("Pictures/Farmer Friend"));
+//        }
+//    }
 
-    private void getImage(){
-        File imgFile = new  File(path);
-        if(imgFile.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            binding.previewImage.setImageBitmap(myBitmap);
-            Toast.makeText(getBaseContext(), "exist", Toast.LENGTH_SHORT).show();
-        }else
-            Toast.makeText(getBaseContext(), "not exist", Toast.LENGTH_SHORT).show();
-    }
+//    private void getImage(){
+//        File imgFile = new  File(path);
+////        File imgFile = new  File("/external_files/Pictures/Farmer Friend/");
+//        if(imgFile.exists()){
+//            Bitmap myBitmap = BitmapFactory.decodeFile(path);
+//            binding.previewImage.setImageBitmap(myBitmap);
+//            Toast.makeText(getBaseContext(), "exist", Toast.LENGTH_SHORT).show();
+//        }else
+//            Toast.makeText(getBaseContext(), "not exist", Toast.LENGTH_SHORT).show();
+//    }
+
 //    private fun getImage() {
 //        val imgFile = File(message)
 //        if (imgFile.exists()) {
