@@ -18,8 +18,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.graduation.farmerfriend.IOT.ui.main.IOTViewModel;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
@@ -37,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     ActivityMainBinding binding;
     private AppBarConfiguration appBarConfiguration;
     private Toolbar toolbar;
-
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,29 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         setContentView(binding.getRoot());
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, MODE_PRIVATE);
         editor = sharedPreferences.edit();
+
+        //TODO: TEST **********************************************
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+        myRef.setValue("Hello, World!");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = snapshot.getValue(String.class);
+                Toast.makeText(MainActivity.this, value, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Toast.makeText(MainActivity.this, "failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+        //TODO: TEST **********************************************
+
         ForecastViewModel viewModel = new ViewModelProvider(this).get(ForecastViewModel.class);
         viewModel.setForecastData(sharedPreferences.getString(Constants.LOCATION, "Cairo"));
 

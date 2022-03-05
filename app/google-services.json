@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "576170551394",
+    "firebase_url": "https://iotfarmsystem-default-rtdb.firebaseio.com",
+    "project_id": "iotfarmsystem",
+    "storage_bucket": "iotfarmsystem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576170551394:android:d7791e6298f1776a5bc93b",
+        "android_client_info": {
+          "package_name": "com.graduation.farmerfriend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576170551394-7aqvfkjam19rtfoijfiefh0ditb12ehm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.graduation.farmerfriend",
+            "certificate_hash": "51ad985c723afb32e55f7300f6237289cfb0b362"
+          }
+        },
+        {
+          "client_id": "576170551394-8gvm0dq6gtn5ms24squb1detsk851h1s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMcHG8k6Zszu709YwbVGc7gXjBOs2jp6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576170551394-8gvm0dq6gtn5ms24squb1detsk851h1s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
