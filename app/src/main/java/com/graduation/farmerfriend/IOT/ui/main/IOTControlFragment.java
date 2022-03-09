@@ -34,7 +34,6 @@ public class IOTControlFragment extends Fragment {
     private IOTRoot iotModel;
     IOTRepo iotRepo;
 
-    //fat
     public static IOTControlFragment newInstance() {
         return new IOTControlFragment();
     }

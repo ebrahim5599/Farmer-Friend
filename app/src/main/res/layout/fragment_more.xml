@@ -68,7 +68,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-<!--            //fat-->
 
             <TextView
                 android:id="@+id/fragment_more_textview_community"

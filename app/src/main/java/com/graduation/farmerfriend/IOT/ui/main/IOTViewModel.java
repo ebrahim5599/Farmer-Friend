@@ -27,7 +27,7 @@ public class IOTViewModel extends ViewModel {
     }
 
     public LiveData<Sensors> getIOTSensorsLiveData(){ return iotSensorsLiveData; }
-    //fat
+
 
     public void getControlData() {}
     public void getSensorsData() {}
