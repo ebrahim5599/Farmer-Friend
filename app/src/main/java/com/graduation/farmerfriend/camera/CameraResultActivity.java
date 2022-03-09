@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.ActivityCameraResultBinding;
 import com.squareup.picasso.Picasso;
@@ -39,10 +40,11 @@ public class CameraResultActivity extends AppCompatActivity {
 
         Intent n = getIntent();
         path = n.getStringExtra("PATH");
-        Toast.makeText(getBaseContext(), "path is: " + path, Toast.LENGTH_SHORT).show();
-//        getImage();
+//        Toast.makeText(getBaseContext(), "path is: " + path, Toast.LENGTH_SHORT).show();
+
 //        Picasso.get().load(path).into(binding.previewImage);
-        Picasso.get().load(path).rotate(90).into(binding.toolbarImage);
+//        Picasso.get().load(path).rotate(90).(binding.toolbarImage);
+        Glide.with(CameraResultActivity.this).load(path).into(binding.toolbarImage);
 
     }
 
