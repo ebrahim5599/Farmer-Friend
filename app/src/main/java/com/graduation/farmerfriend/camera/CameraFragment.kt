@@ -39,7 +39,13 @@ import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.widget.EditText
 import java.io.File
 import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import androidx.camera.view.video.OutputFileResults
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.Target
+import com.squareup.picasso.Picasso
 
 
 class CameraFragment : Fragment() {
@@ -70,11 +76,21 @@ class CameraFragment : Fragment() {
             takePhoto()
         }
 
-        viewBinding.lastDetails.setOnClickListener{
+//        viewBinding.lastDetails.setOnClickListener{
+////            goToActivity()
+//            viewBinding.previewImageNow.visibility = View.VISIBLE
+//            viewBinding.previewCameraNow.visibility = View.GONE
+//        }
+
+        viewBinding.retakeThePhoto.setOnClickListener {
+            viewBinding.previewCameraNow.visibility = View.VISIBLE
+            viewBinding.previewImageNow.visibility = View.GONE
+        }
+
+        viewBinding.goToTheProcessing.setOnClickListener {
             goToActivity()
         }
         cameraExecutor = Executors.newSingleThreadExecutor()
-
         return viewBinding.root;
     }
 
@@ -97,6 +113,12 @@ class CameraFragment : Fragment() {
         cameraExecutor.shutdown()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewBinding.previewImageNow.visibility = View.GONE
+        viewBinding.previewCameraNow.visibility = View.VISIBLE
+    }
+
     private fun takePhoto() {
         // Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return
@@ -109,9 +131,6 @@ class CameraFragment : Fragment() {
             put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
                 put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/Farmer Friend")
-//                message = "Pictures/Farmer Friend/$name.jpg"
-//                message = MediaStore.Images.Media.RELATIVE_PATH + "/$name.jpg"
-
             }
         }
 
@@ -138,12 +157,41 @@ class CameraFragment : Fragment() {
                         onImageSaved(output: ImageCapture.OutputFileResults) {
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     message = output.savedUri.toString()
+//                    goToActivity()
+//                    Picasso.get().load(message).rotate(90f).into(viewBinding.showImageHere)
+                    viewBinding.previewImageNow.visibility = View.VISIBLE
+                    viewBinding.previewCameraNow.visibility = View.GONE
+                    Glide.with(this@CameraFragment).load(message).into(viewBinding.showImageHere)
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                    Log.d(TAG, msg)
+                }
+            }
+        )
+    }
+
+    private fun savePicture(){
+/*
+// Set up image capture listener, which is triggered after photo has
+        // been taken
+        imageCapture.takePicture(
+            outputOptions,
+            ContextCompat.getMainExecutor(requireContext()),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onError(exc: ImageCaptureException) {
+                    Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
+                }
+
+                override fun
+                        onImageSaved(output: ImageCapture.OutputFileResults) {
+                    val msg = "Photo capture succeeded: ${output.savedUri}"
+                    message = output.savedUri.toString()
                     goToActivity()
                     Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
                 }
             }
         )
+ */
     }
 
     private fun startCamera() {
@@ -181,18 +229,7 @@ class CameraFragment : Fragment() {
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
-//    private fun getImage() {
-//        val imgFile = File(message)
-//        if (imgFile.exists()) {
-//            val myBitmap =
-//                BitmapFactory.decodeFile(imgFile.absolutePath + "/2022-03-03-01-12-01-745.jpg")
-////            Toast.makeText(context, imgFile.absolutePath + "2022-03-03-01-12-01-745.jpg", Toast.LENGTH_LONG).show()
-//            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-//            viewBinding.perviewLastImage.setImageBitmap(myBitmap)
-//        } else
-//            Toast.makeText(context, "not exist", Toast.LENGTH_LONG).show()
-//
-//    }
+
     private fun goToActivity(){
         activity?.let{
             val intent = Intent (it, CameraResultActivity::class.java)
@@ -201,13 +238,6 @@ class CameraFragment : Fragment() {
         }
     }
 
-//        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == 444) {
-//            val photo = data!!.extras!!["data"] as Bitmap?
-//            viewBinding.perviewLastImage.setImageBitmap(photo)
-//        }
-//    }
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
             activity?.baseContext!!, it

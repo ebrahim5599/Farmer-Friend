@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
+/*
         //TODO: TEST **********************************************
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
             }
         });
         //TODO: TEST **********************************************
-
+*/
         ForecastViewModel viewModel = new ViewModelProvider(this).get(ForecastViewModel.class);
         viewModel.setForecastData(sharedPreferences.getString(Constants.LOCATION, "Cairo"));
 
