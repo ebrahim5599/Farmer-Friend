@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     private AppBarConfiguration appBarConfiguration;
     private Toolbar toolbar;
     private DatabaseReference mDatabase;
+    //fat
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
