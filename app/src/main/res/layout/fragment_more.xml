@@ -68,6 +68,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <TextView
                 android:id="@+id/fragment_more_textview_community"
                 android:layout_width="335dp"
