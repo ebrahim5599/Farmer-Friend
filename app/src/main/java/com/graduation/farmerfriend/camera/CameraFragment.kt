@@ -162,7 +162,7 @@ class CameraFragment : Fragment() {
                     viewBinding.previewImageNow.visibility = View.VISIBLE
                     viewBinding.previewCameraNow.visibility = View.GONE
                     Glide.with(this@CameraFragment).load(message).into(viewBinding.showImageHere)
-//                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
                 }
             }
