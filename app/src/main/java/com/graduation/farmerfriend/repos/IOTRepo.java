@@ -3,14 +3,24 @@ package com.graduation.farmerfriend.repos;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.graduation.farmerfriend.IOTModels.Control;
 import com.graduation.farmerfriend.IOTModels.IOTRoot;
 import com.graduation.farmerfriend.IOTModels.Sensors;
 import com.graduation.farmerfriend.apis.IOTInterface;
 
+
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -20,13 +30,12 @@ import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class IOTRepo {
-
-    private static final String IOT_SERVICE_BASE_URL = "https://iotfarmsystem-default-rtdb.firebaseio.com/userId0/";
-    private static IOTRepo Instance;
-    private final IOTInterface iotInterface;
-    private final MutableLiveData<IOTRoot> iOTAllLiveData;
-    private final MutableLiveData<Control> iOTControlLiveData;
-    private final MutableLiveData<Sensors> iOTSensorsLiveData;
+    private FirebaseDatabase database ;
+    private DatabaseReference referencecontrol ;
+    private DatabaseReference referencesensors ;
+    private final MutableLiveData<Control> iOTControlLiveData ;
+    private final MutableLiveData<Sensors> iOTSensorsLiveData ;
+    private static IOTRepo Instance ;
 
 
     public static IOTRepo getInstance() {
@@ -37,78 +46,58 @@ public class IOTRepo {
     }
 
     private IOTRepo() {
-        iOTAllLiveData = new MutableLiveData<>();
-        iOTSensorsLiveData = new MutableLiveData<>();
+        database = FirebaseDatabase.getInstance();
+        referencecontrol = database.getReference("userId0").child("control");
+        referencesensors = database.getReference("userId0").child("sensors");
         iOTControlLiveData = new MutableLiveData<>();
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.level(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        iOTSensorsLiveData =  new MutableLiveData<>();
 
-        iotInterface = new retrofit2.Retrofit.Builder()
-                .baseUrl(IOT_SERVICE_BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(IOTInterface.class);
+        ReadData();
+
     }
 
+    public void WriteDataAuto(Boolean value){
+        referencecontrol.child("isAuto").setValue(value);
+    }
 
-    public void changeControl(Control control) {
-        iotInterface.changeControl(control).enqueue(new Callback<Control>() {
+    public void WriteDataWater(Boolean value){
+        referencecontrol.child("waterSwitch").setValue(value);
+    }
+
+    public void WriteDataFertilizer(Boolean value){
+        referencecontrol.child("fertSwitch").setValue(value);
+    }
+
+    public void ReadData() {
+
+        referencecontrol.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onResponse(Call<Control> call, @NonNull Response<Control> response) {
-                assert response.body() != null;
-                Log.i("IOTData", "good put");
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                iOTControlLiveData.setValue(snapshot.getValue(Control.class));
+                Log.i("onchanged",snapshot.getValue(Control.class).fertSwitch+"");
             }
 
             @Override
-            public void onFailure(Call<Control> call, Throwable t) {
-                Log.d("IOTData", t.toString());
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        referencesensors.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                iOTSensorsLiveData.setValue(snapshot.getValue(Sensors.class));
+                Log.i("onchanged",snapshot.getValue(Sensors.class).airTemp+"");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
     }
 
-
-    public void getControlData() {
-        Log.d("IOTData", "getIOTAllData() ");
-        iotInterface.getControlData().enqueue(new Callback<Control>() {
-            @Override
-            public void onResponse(Call<Control> call, @NonNull Response<Control> response) {
-                Log.d("IOTData", "onResponse: " + response.body());
-                assert response.body() != null;
-                iOTControlLiveData.postValue(response.body());
-                Log.d("IOTData", String.valueOf("good call"));
-            }
-
-            @Override
-            public void onFailure(Call<Control> call, Throwable t) {
-                Log.d("IOTData", t.toString());
-            }
-        });
-    }
-
-    public void getSensorsData() {
-        Log.d("IOTData", "getSensorsData() ");
-        iotInterface.getSensorsData().enqueue(new Callback<Sensors>() {
-            @Override
-            public void onResponse(Call<Sensors> call, @NonNull Response<Sensors> response) {
-                Log.d("IOTData", "onResponse: " + response.body());
-                assert response.body() != null;
-                iOTSensorsLiveData.postValue(response.body());
-                Log.d("IOTData", String.valueOf("good call"));
-            }
-
-            @Override
-            public void onFailure(Call<Sensors> call, Throwable t) {
-                Log.d("IOTData", t.toString());
-            }
-        });
-    }
-
-    public LiveData<IOTRoot> getIOTModelLiveData() {
-        return iOTAllLiveData;
-    }
 
     public LiveData<Control> getControlLiveData() {
         return iOTControlLiveData;

@@ -59,22 +59,6 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         DatabaseReference myRef = database.getReference("message");
         myRef.setValue("Hello, World!");
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = snapshot.getValue(String.class);
-                Toast.makeText(MainActivity.this, value, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Failed to read value
-                Toast.makeText(MainActivity.this, "failed", Toast.LENGTH_SHORT).show();
-            }
-        });
-        //TODO: TEST **********************************************
 
         ForecastViewModel viewModel = new ViewModelProvider(this).get(ForecastViewModel.class);
         viewModel.setForecastData(sharedPreferences.getString(Constants.LOCATION, "Cairo"));
