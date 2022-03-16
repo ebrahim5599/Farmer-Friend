@@ -1,28 +1,11 @@
 package com.graduation.farmerfriend.camera;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.core.ImageInfo;
-import androidx.camera.core.ImageProxy;
-
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Rect;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
-import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.ActivityCameraResultBinding;
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
 
 public class CameraResultActivity extends AppCompatActivity {
 
