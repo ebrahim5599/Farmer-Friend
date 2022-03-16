@@ -13,10 +13,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCaptureException
-import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -32,6 +28,7 @@ import android.R.attr
 import android.widget.ImageView
 
 import android.R.attr.data
+import android.annotation.SuppressLint
 import android.provider.AlarmClock
 import com.graduation.farmerfriend.ui.MainActivity
 import android.provider.AlarmClock.EXTRA_MESSAGE
@@ -39,13 +36,21 @@ import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.widget.EditText
 import java.io.File
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.graphics.drawable.Drawable
+import android.media.ExifInterface
+import android.media.Image
+import android.provider.MediaStore.MediaColumns.ORIENTATION
+import androidx.camera.core.*
 import androidx.camera.view.video.OutputFileResults
+import androidx.core.graphics.BitmapCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.Target
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.newFixedThreadPoolContext
+import kotlinx.coroutines.newSingleThreadContext
 
 
 class CameraFragment : Fragment() {
@@ -53,7 +58,8 @@ class CameraFragment : Fragment() {
     private lateinit var viewBinding: FragmentCameraBinding
     private var imageCapture: ImageCapture? = null
     private lateinit var cameraExecutor: ExecutorService
-    private var message : String? = null
+    private var message: String? = null
+    private var finalBitmap : Bitmap? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -85,10 +91,11 @@ class CameraFragment : Fragment() {
         viewBinding.retakeThePhoto.setOnClickListener {
             viewBinding.previewCameraNow.visibility = View.VISIBLE
             viewBinding.previewImageNow.visibility = View.GONE
+            startCamera()
         }
 
         viewBinding.goToTheProcessing.setOnClickListener {
-            goToActivity()
+            savePhoto()
         }
         cameraExecutor = Executors.newSingleThreadExecutor()
         return viewBinding.root;
@@ -108,6 +115,7 @@ class CameraFragment : Fragment() {
             }.toTypedArray()
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
         cameraExecutor.shutdown()
@@ -119,7 +127,7 @@ class CameraFragment : Fragment() {
         viewBinding.previewCameraNow.visibility = View.VISIBLE
     }
 
-    private fun takePhoto() {
+    private fun savePhoto() {
         // Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return
 
@@ -143,6 +151,7 @@ class CameraFragment : Fragment() {
             )
             .build()
 
+
         // Set up image capture listener, which is triggered after photo has
         // been taken
         imageCapture.takePicture(
@@ -157,41 +166,53 @@ class CameraFragment : Fragment() {
                         onImageSaved(output: ImageCapture.OutputFileResults) {
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     message = output.savedUri.toString()
-//                    goToActivity()
-//                    Picasso.get().load(message).rotate(90f).into(viewBinding.showImageHere)
-                    viewBinding.previewImageNow.visibility = View.VISIBLE
-                    viewBinding.previewCameraNow.visibility = View.GONE
-                    Glide.with(this@CameraFragment).load(message).into(viewBinding.showImageHere)
-//                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                    goToActivity()
+//                    viewBinding.previewImageNow.visibility = View.VISIBLE
+//                    viewBinding.previewCameraNow.visibility = View.GONE
+//                    Glide.with(this@CameraFragment).load(message).into(viewBinding.showImageHere)
                     Log.d(TAG, msg)
                 }
             }
         )
     }
 
-    private fun savePicture(){
-/*
-// Set up image capture listener, which is triggered after photo has
-        // been taken
-        imageCapture.takePicture(
-            outputOptions,
-            ContextCompat.getMainExecutor(requireContext()),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onError(exc: ImageCaptureException) {
-                    Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
-                }
+    private fun takePhoto() {
+        // Get a stable reference of the modifiable image capture use case
+        val imageCapture = imageCapture ?: return
 
-                override fun
-                        onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val msg = "Photo capture succeeded: ${output.savedUri}"
-                    message = output.savedUri.toString()
-                    goToActivity()
-                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-                    Log.d(TAG, msg)
-                }
+        imageCapture.takePicture(ContextCompat.getMainExecutor(requireContext()), object :
+            ImageCapture.OnImageCapturedCallback() {
+            @SuppressLint("UnsafeOptInUsageError")
+            override fun onCaptureSuccess(image: ImageProxy) {
+                super.onCaptureSuccess(image)
+                viewBinding.previewImageNow.visibility = View.VISIBLE
+                viewBinding.previewCameraNow.visibility = View.GONE
+                finalBitmap = image.image?.toBitmap()?.let { rotateBitmap(it, 90f) }
+//                viewBinding.showImageHere.setImageBitmap(finalBitmap)
+                Glide.with(this@CameraFragment).load(finalBitmap).into(viewBinding.showImageHere)
             }
+
+            override fun onError(exception: ImageCaptureException) {
+                super.onError(exception)
+                Toast.makeText(context, exception.toString(), Toast.LENGTH_SHORT).show()
+                Log.e("TAG", "Photo capture failed: ${exception}", exception)
+            }
+        }
         )
- */
+    }
+
+    private fun Image.toBitmap(): Bitmap {
+        val buffer = planes[0].buffer
+        buffer.rewind()
+        val bytes = ByteArray(buffer.capacity())
+        buffer.get(bytes)
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+    }
+
+    private fun rotateBitmap(source: Bitmap, angle: Float): Bitmap? {
+        val matrix = Matrix()
+        matrix.postRotate(angle)
+        return Bitmap.createBitmap(source, 0, 0, source.width, source.height, matrix, true)
     }
 
     private fun startCamera() {
@@ -230,9 +251,9 @@ class CameraFragment : Fragment() {
     }
 
 
-    private fun goToActivity(){
-        activity?.let{
-            val intent = Intent (it, CameraResultActivity::class.java)
+    private fun goToActivity() {
+        activity?.let {
+            val intent = Intent(it, CameraResultActivity::class.java)
             intent.putExtra("PATH", message)
             it.startActivity(intent)
         }
