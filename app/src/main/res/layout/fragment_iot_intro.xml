@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".control.iot_fragments.IotIntroFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/smart_farm"/>
+
+        <TextView
+            android:id="@+id/iot_intro_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
+            android:textColor="#424242"
+            android:text="@string/iot_intro_message" />
+
+        <Button
+            android:id="@+id/iot_intro_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_gravity="center"
+            android:padding="16dp"
+            android:backgroundTint="@color/green_Cart_Activity_Button"
+            android:text="@string/apply_now"/>
+    </LinearLayout>
+</ScrollView>

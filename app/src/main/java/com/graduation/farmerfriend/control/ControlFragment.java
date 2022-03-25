@@ -2,6 +2,7 @@ package com.graduation.farmerfriend.control;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,21 +18,37 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.control.iot_fragments.IOTAdapter;
 import com.graduation.farmerfriend.databinding.FragmentControlBinding;
+import com.graduation.farmerfriend.databinding.FragmentIotIntroBinding;
+import com.graduation.farmerfriend.databinding.FragmentIotWaitingCodeBinding;
+import com.graduation.farmerfriend.databinding.FragmentRegistrationBinding;
 
 public class ControlFragment extends Fragment {
 
     FragmentControlBinding binding;
+    FragmentRegistrationBinding fragmentRegistrationBinding;
+
+//    FragmentIotIntroBinding b;
+//    FragmentIotWaitingCodeBinding c;
+
     ViewPager2 viewPager2;
-    boolean isRegistered;
+    boolean isRegistered = true;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentControlBinding.inflate(getLayoutInflater(), container, false);
+//        if(isRegistered){
+//            b = FragmentIotIntroBinding.inflate(getLayoutInflater(), container, false);
+//
+//            return b.getRoot();
+//        }else{
+//            c = FragmentIotWaitingCodeBinding.inflate(getLayoutInflater(), container, false);
+//
+//            return c.getRoot();
+//        }
 
+        binding = FragmentControlBinding.inflate(inflater, container, false);
         //TODO:**************************************************************************************************
         RegistrationFragment registrationFragment = new RegistrationFragment();
-        isRegistered = false;
         if (isRegistered) {
             binding.linearVisibility.setVisibility(View.GONE);
             if (savedInstanceState == null) {
@@ -82,5 +99,30 @@ public class ControlFragment extends Fragment {
             default:
                 return "Control";
         }
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i("testFragmentLifeCycle", "ControlFragmentOnPause()");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i("testFragmentLifeCycle", "ControlFragmentOnStop()");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.i("testFragmentLifeCycle", "ControlFragmentOnDestroyView()");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i("testFragmentLifeCycle", "ControlFragmentOnDestroy()");
     }
 }

@@ -91,6 +91,15 @@
     <string name="home">Home</string>
     <string name="Add_tem_Image">Add Item Image</string>
     <string name="plant_details">Details</string>
+    <string name="apply_now">Apply now</string>
+    <string name="iot_intro_message">Control your farm remotely, subscribe now to our system to follow your farm through the farmer\'s friend application</string>
+    <string name="additional_data_required">Additional data required</string>
+    <string name="sent_request">Sent request</string>
+    <string name="email">Email</string>
+    <string name="what_is_the_approximate_area_of_the_farm">What is the approximate area of the farm?</string>
+    <string name="farm_location">Farm location</string>
+    <string name="enter">Enter</string>
+    <string name="enter_the_farm_code_you_received">Enter the farm code you received.</string>
 
 
 </resources>
