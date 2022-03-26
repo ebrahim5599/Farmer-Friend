@@ -38,6 +38,7 @@ import java.io.File
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 
+
 import android.media.Image
 import android.net.Uri
 import androidx.camera.core.*
@@ -53,6 +54,22 @@ import java.nio.ByteBuffer
 import org.tensorflow.lite.support.image.TensorImage
 import java.net.URI
 
+import android.graphics.drawable.Drawable
+import android.media.ExifInterface
+import android.media.Image
+import android.provider.MediaStore.MediaColumns.ORIENTATION
+import androidx.camera.core.*
+import androidx.camera.view.video.OutputFileResults
+import androidx.core.graphics.BitmapCompat
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.Target
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.newFixedThreadPoolContext
+import kotlinx.coroutines.newSingleThreadContext
+
+
 
 class CameraFragment : Fragment() {
 
@@ -66,6 +83,7 @@ class CameraFragment : Fragment() {
     private var result: String? = null
     private var camera: Boolean = false
     private var image:Boolean = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,6 +118,7 @@ class CameraFragment : Fragment() {
             viewBinding.previewCameraNow.visibility = View.VISIBLE
             viewBinding.previewImageNow.visibility = View.GONE
             startCamera()
+
         }
 
         viewBinding.imageGallryButton.setOnClickListener {
@@ -129,6 +148,7 @@ class CameraFragment : Fragment() {
         cameraExecutor = Executors.newSingleThreadExecutor()
         return viewBinding.root
     }
+    
 
     companion object {
         private const val TAG = "FarmerFriend"
@@ -197,6 +217,7 @@ class CameraFragment : Fragment() {
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     message = output.savedUri.toString()
 
+
                     finalBitmap?.let { image_processing(it) }
 
 
@@ -245,6 +266,7 @@ class CameraFragment : Fragment() {
         // Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return
 
+
         imageCapture.takePicture(ContextCompat.getMainExecutor(requireContext()), object :
             ImageCapture.OnImageCapturedCallback() {
             @SuppressLint("UnsafeOptInUsageError")
@@ -252,6 +274,7 @@ class CameraFragment : Fragment() {
                 super.onCaptureSuccess(image)
                 viewBinding.previewImageNow.visibility = View.VISIBLE
                 viewBinding.previewCameraNow.visibility = View.GONE
+
                 finalBitmap = image.image?.toBitmap()?.let { rotateBitmap(it, 0f) }
 //                viewBinding.showImageHere.setImageBitmap(finalBitmap)
                 Glide.with(this@CameraFragment).load(finalBitmap).into(viewBinding.showImageHere)
@@ -262,6 +285,7 @@ class CameraFragment : Fragment() {
                 Toast.makeText(context, exception.toString(), Toast.LENGTH_SHORT).show()
                 Log.e("TAG", "Photo capture failed: ${exception}", exception)
             }
+
         }
         )
     }
@@ -318,13 +342,14 @@ class CameraFragment : Fragment() {
     private fun goToActivity() {
         activity?.let {
             val intent = Intent(it, CameraResultActivity::class.java)
-
+            
             if (message?.isNotEmpty() == true) {
                 intent.putExtra("PATH", message)
             }else if (gallery?.isNotEmpty() == true){
                 intent.putExtra("PATH", gallery)
             }
             intent.putExtra("result",result)
+
             it.startActivity(intent)
 
         }

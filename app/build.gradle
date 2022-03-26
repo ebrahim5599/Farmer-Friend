@@ -93,7 +93,11 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-database'
-
+    //rx android
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+//    rxandroid adapter
+    implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
 }
 
 apply plugin: 'com.google.gms.google-services'

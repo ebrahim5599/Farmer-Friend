@@ -7,10 +7,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.graduation.farmerfriend.models.Root;
-import com.graduation.farmerfriend.registration.SplashScreenActivity;
 import com.graduation.farmerfriend.repos.ForecastRepo;
 
-import kotlin.jvm.internal.FloatCompanionObject;
 
 public class ForecastViewModel extends ViewModel {
     private ForecastRepo forecastRepo;
@@ -31,5 +29,9 @@ public class ForecastViewModel extends ViewModel {
 //        return null;
     }
 
-
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        forecastRepo.onClear();
+    }
 }
