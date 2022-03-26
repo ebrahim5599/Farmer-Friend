@@ -11,6 +11,7 @@ public class CameraResultActivity extends AppCompatActivity {
 
     private ActivityCameraResultBinding binding;
     private String path;
+    private String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,9 @@ public class CameraResultActivity extends AppCompatActivity {
 
         Intent n = getIntent();
         path = n.getStringExtra("PATH");
+        result = n.getStringExtra("result");
+
+        binding.Result.setText(result);
 //        Toast.makeText(getBaseContext(), "path is: " + path, Toast.LENGTH_SHORT).show();
 
 //        Picasso.get().load(path).into(binding.previewImage);
@@ -35,7 +39,10 @@ public class CameraResultActivity extends AppCompatActivity {
         Glide.with(CameraResultActivity.this).load(path).into(binding.toolbarImage);
     }
 
-//    @Override
+
+
+
+    //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
 //        if (resultCode == Activity.RESULT_OK && requestCode == 444 && data != null){
