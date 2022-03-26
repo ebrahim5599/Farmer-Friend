@@ -29,7 +29,6 @@ public class IOTViewModel extends ViewModel {
     public LiveData<Sensors> getIOTSensorsLiveData(){ return iotSensorsLiveData; }
 
 
-    public void getControlData() {}
     public void getSensorsData() {}
 
 
