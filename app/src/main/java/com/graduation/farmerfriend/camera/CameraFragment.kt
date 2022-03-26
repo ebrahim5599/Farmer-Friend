@@ -13,10 +13,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCaptureException
-import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -32,6 +28,7 @@ import android.R.attr
 import android.widget.ImageView
 
 import android.R.attr.data
+import android.annotation.SuppressLint
 import android.provider.AlarmClock
 import com.graduation.farmerfriend.ui.MainActivity
 import android.provider.AlarmClock.EXTRA_MESSAGE
@@ -39,13 +36,22 @@ import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.widget.EditText
 import java.io.File
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
-import androidx.camera.view.video.OutputFileResults
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import android.graphics.Matrix
+
+import android.media.Image
+import android.net.Uri
+import androidx.camera.core.*
+import androidx.core.app.SharedElementCallback
+
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.Target
-import com.squareup.picasso.Picasso
+import com.graduation.farmerfriend.e_commerce.Category
+import com.graduation.farmerfriend.ml.Model
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.io.IOException
+import java.nio.ByteBuffer
+import org.tensorflow.lite.support.image.TensorImage
+import java.net.URI
 
 
 class CameraFragment : Fragment() {
@@ -53,7 +59,13 @@ class CameraFragment : Fragment() {
     private lateinit var viewBinding: FragmentCameraBinding
     private var imageCapture: ImageCapture? = null
     private lateinit var cameraExecutor: ExecutorService
-    private var message : String? = null
+    private var message: String? = null
+    private var finalBitmap : Bitmap? = null
+    private var img_gallery: Bitmap? = null
+    private var gallery: String? = null
+    private var result: String? = null
+    private var camera: Boolean = false
+    private var image:Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +73,7 @@ class CameraFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        viewBinding = FragmentCameraBinding.inflate(inflater, container, false);
+        viewBinding = FragmentCameraBinding.inflate(inflater, container, false)
 
         // Request camera permissions
         if (allPermissionsGranted()) {
@@ -74,6 +86,8 @@ class CameraFragment : Fragment() {
         // Set up the listeners for take photo and video capture buttons
         viewBinding.imageCaptureButton.setOnClickListener {
             takePhoto()
+            camera = true
+            image = false
         }
 
 //        viewBinding.lastDetails.setOnClickListener{
@@ -85,13 +99,35 @@ class CameraFragment : Fragment() {
         viewBinding.retakeThePhoto.setOnClickListener {
             viewBinding.previewCameraNow.visibility = View.VISIBLE
             viewBinding.previewImageNow.visibility = View.GONE
+            startCamera()
+        }
+
+        viewBinding.imageGallryButton.setOnClickListener {
+            viewBinding.previewImageNow.visibility = View.VISIBLE
+            viewBinding.previewCameraNow.visibility = View.GONE
+            image = true
+            camera = false
+            message = null
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
+            startActivityForResult(intent, 100)
+
         }
 
         viewBinding.goToTheProcessing.setOnClickListener {
-            goToActivity()
+
+            if(camera){
+                savePhoto()
+            }else if (image){
+                img_gallery?.let { it1 -> image_processing(it1) }
+            }
+
+            viewBinding.previewImageNow.visibility = View.GONE
+            viewBinding.previewCameraNow.visibility = View.VISIBLE
         }
+
         cameraExecutor = Executors.newSingleThreadExecutor()
-        return viewBinding.root;
+        return viewBinding.root
     }
 
     companion object {
@@ -108,18 +144,19 @@ class CameraFragment : Fragment() {
             }.toTypedArray()
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
         cameraExecutor.shutdown()
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewBinding.previewImageNow.visibility = View.GONE
-        viewBinding.previewCameraNow.visibility = View.VISIBLE
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        viewBinding.previewImageNow.visibility = View.GONE
+//        viewBinding.previewCameraNow.visibility = View.VISIBLE
+//    }
 
-    private fun takePhoto() {
+    private fun savePhoto() {
         // Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return
 
@@ -134,6 +171,7 @@ class CameraFragment : Fragment() {
             }
         }
 
+
         // Create output options object which contains file + metadata
         val outputOptions = ImageCapture.OutputFileOptions
             .Builder(
@@ -142,6 +180,7 @@ class CameraFragment : Fragment() {
                 contentValues
             )
             .build()
+
 
         // Set up image capture listener, which is triggered after photo has
         // been taken
@@ -157,41 +196,88 @@ class CameraFragment : Fragment() {
                         onImageSaved(output: ImageCapture.OutputFileResults) {
                     val msg = "Photo capture succeeded: ${output.savedUri}"
                     message = output.savedUri.toString()
-//                    goToActivity()
-//                    Picasso.get().load(message).rotate(90f).into(viewBinding.showImageHere)
-                    viewBinding.previewImageNow.visibility = View.VISIBLE
-                    viewBinding.previewCameraNow.visibility = View.GONE
-                    Glide.with(this@CameraFragment).load(message).into(viewBinding.showImageHere)
-//                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+
+                    finalBitmap?.let { image_processing(it) }
+
+
+
+//                    viewBinding.previewImageNow.visibility = View.VISIBLE
+//                    viewBinding.previewCameraNow.visibility = View.GONE
+//                    Glide.with(this@CameraFragment).load(message).into(viewBinding.showImageHere)
                     Log.d(TAG, msg)
                 }
             }
         )
     }
 
-    private fun savePicture(){
-/*
-// Set up image capture listener, which is triggered after photo has
-        // been taken
-        imageCapture.takePicture(
-            outputOptions,
-            ContextCompat.getMainExecutor(requireContext()),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onError(exc: ImageCaptureException) {
-                    Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
-                }
+    private fun image_processing(bitmap : Bitmap){
 
-                override fun
-                        onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val msg = "Photo capture succeeded: ${output.savedUri}"
-                    message = output.savedUri.toString()
-                    goToActivity()
-                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-                    Log.d(TAG, msg)
-                }
+        var  bitmap = bitmap?.let { it1 -> Bitmap.createScaledBitmap(it1, 224, 224, true) }
+
+        val model = context?.let { it1 -> Model.newInstance(it1) }
+
+        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
+
+        val tensorImage = TensorImage(DataType.FLOAT32)
+        tensorImage.load(bitmap)
+        val byteBuffer: ByteBuffer = tensorImage.buffer
+
+        inputFeature0.loadBuffer(byteBuffer)
+
+        val outputs = model?.process(inputFeature0)
+        val outputFeature0 = outputs?.outputFeature0AsTensorBuffer
+
+        result =
+            """${outputFeature0!!.floatArray[0]}  ${outputFeature0.floatArray[1]}  ${outputFeature0.floatArray[2]}  ${outputFeature0.floatArray[3]}
+                       ${outputFeature0.floatArray[4]}  ${outputFeature0.floatArray[5]}  ${outputFeature0.floatArray[6]}  ${outputFeature0.floatArray[7]}
+                       ${outputFeature0.floatArray[8]}  ${outputFeature0.floatArray[9]}  ${outputFeature0.floatArray[10]}  ${outputFeature0.floatArray[11]}
+                       ${outputFeature0.floatArray[12]}  ${outputFeature0.floatArray[13]}  ${outputFeature0.floatArray[14]}  ${outputFeature0.floatArray[15]}
+                       ${outputFeature0.floatArray[16]}  ${outputFeature0.floatArray[17]}  ${outputFeature0.floatArray[18]}  ${outputFeature0.floatArray[19]}
+                       ${outputFeature0.floatArray[20]}  ${outputFeature0.floatArray[21]}  ${outputFeature0.floatArray[22]}  ${outputFeature0.floatArray[23]}
+                       ${outputFeature0.floatArray[24]}  ${outputFeature0.floatArray[25]}  ${outputFeature0.floatArray[26]}  ${outputFeature0.floatArray[27]}
+                       ${outputFeature0.floatArray[28]}  ${outputFeature0.floatArray[29]}  ${outputFeature0.floatArray[30]}  ${outputFeature0.floatArray[31]}"""
+
+        model.close()
+        goToActivity()
+    }
+
+    private fun takePhoto() {
+        // Get a stable reference of the modifiable image capture use case
+        val imageCapture = imageCapture ?: return
+
+        imageCapture.takePicture(ContextCompat.getMainExecutor(requireContext()), object :
+            ImageCapture.OnImageCapturedCallback() {
+            @SuppressLint("UnsafeOptInUsageError")
+            override fun onCaptureSuccess(image: ImageProxy) {
+                super.onCaptureSuccess(image)
+                viewBinding.previewImageNow.visibility = View.VISIBLE
+                viewBinding.previewCameraNow.visibility = View.GONE
+                finalBitmap = image.image?.toBitmap()?.let { rotateBitmap(it, 0f) }
+//                viewBinding.showImageHere.setImageBitmap(finalBitmap)
+                Glide.with(this@CameraFragment).load(finalBitmap).into(viewBinding.showImageHere)
             }
+
+            override fun onError(exception: ImageCaptureException) {
+                super.onError(exception)
+                Toast.makeText(context, exception.toString(), Toast.LENGTH_SHORT).show()
+                Log.e("TAG", "Photo capture failed: ${exception}", exception)
+            }
+        }
         )
- */
+    }
+
+    private fun Image.toBitmap(): Bitmap {
+        val buffer = planes[0].buffer
+        buffer.rewind()
+        val bytes = ByteArray(buffer.capacity())
+        buffer.get(bytes)
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+    }
+
+    private fun rotateBitmap(source: Bitmap, angle: Float): Bitmap? {
+        val matrix = Matrix()
+        matrix.postRotate(angle)
+        return Bitmap.createBitmap(source, 0, 0, source.width, source.height, matrix, true)
     }
 
     private fun startCamera() {
@@ -229,14 +315,21 @@ class CameraFragment : Fragment() {
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
+    private fun goToActivity() {
+        activity?.let {
+            val intent = Intent(it, CameraResultActivity::class.java)
 
-    private fun goToActivity(){
-        activity?.let{
-            val intent = Intent (it, CameraResultActivity::class.java)
-            intent.putExtra("PATH", message)
+            if (message?.isNotEmpty() == true) {
+                intent.putExtra("PATH", message)
+            }else if (gallery?.isNotEmpty() == true){
+                intent.putExtra("PATH", gallery)
+            }
+            intent.putExtra("result",result)
             it.startActivity(intent)
+
         }
     }
+
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
@@ -259,6 +352,25 @@ class CameraFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 100) {
+
+
+            val contentResolver = requireContext().contentResolver
+
+            viewBinding.showImageHere.setImageURI(data!!.data)
+            val uri = data.data
+            gallery = uri.toString()
+            try {
+                img_gallery = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
         }
     }
 
