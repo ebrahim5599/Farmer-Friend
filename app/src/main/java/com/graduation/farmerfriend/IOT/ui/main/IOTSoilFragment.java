@@ -56,6 +56,5 @@ public class IOTSoilFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mViewModel.getSensorsData();
     }
 }

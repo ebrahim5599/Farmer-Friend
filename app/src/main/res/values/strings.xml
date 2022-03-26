@@ -91,6 +91,8 @@
     <string name="home">Home</string>
     <string name="Add_tem_Image">Add Item Image</string>
     <string name="plant_details">Details</string>
+    <string name="no_internet">NO Internet connection</string>
+    <string name="check_your_conn">Check your internet connection and the page will reload automatically</string>
 
 
 </resources>

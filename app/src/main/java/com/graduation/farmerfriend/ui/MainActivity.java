@@ -2,19 +2,31 @@ package com.graduation.farmerfriend.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.LinkProperties;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,7 +56,11 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     private AppBarConfiguration appBarConfiguration;
     private Toolbar toolbar;
     private DatabaseReference mDatabase;
+    private static final String TAG = "MainActivity";
+    private static final String DEBUG_TAG = "NetworkStatusExample";
+    private boolean isConnected = false;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +75,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
 
         IOTViewModel mViewModel = new ViewModelProvider(this).get(IOTViewModel.class);
         mViewModel.init();
-        mViewModel.getControlData();
-        mViewModel.getSensorsData();
+
         location = new Location(this, 1002, this);
         location.getLocation();
 
@@ -69,6 +84,61 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        ConnectivityManager connectivityManager = getSystemService(ConnectivityManager.class);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            connectivityManager.registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback() {
+                @Override
+                public void onAvailable(Network network) {
+                    Log.e(TAG, "The default network is now: " + network);
+                }
+
+                @Override
+                public void onLost(Network network) {
+                    Log.e(TAG, "The application no longer has a default network. The last default network was " + network);
+                }
+
+                @Override
+                public void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
+                    if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+                            && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED)) {
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                isConnected = true;
+                                binding.mainActivityNoInternetConnection.setVisibility(View.GONE);
+                                binding.fragmentContainerView.setVisibility(View.VISIBLE);
+                            }
+                        };
+                        handler.post(runnable);
+//                        handler.removeCallbacks(runnable);
+                    }
+                    Log.e(TAG, "The default network changed capabilities: " + networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED));
+
+                }
+
+                @Override
+                public void onLinkPropertiesChanged(Network network, LinkProperties linkProperties) {
+                    Log.e(TAG, "The default network changed link properties: " + linkProperties);
+                }
+            });
+        }
+//        ConnectivityManager connMgr =
+//                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//        boolean isWifiConn = false;
+//        boolean isMobileConn = false;
+//        for (Network network : connMgr.getAllNetworks()) {
+//            NetworkInfo networkInfo = connMgr.getNetworkInfo(network);
+//            if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+//                isWifiConn |= networkInfo.isConnected();
+//            }
+//            if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
+//                isMobileConn |= networkInfo.isConnected();
+//            }
+//        }
+//        Log.d(DEBUG_TAG, "Wifi connected: " + isWifiConn);
+//        Log.d(DEBUG_TAG, "Mobile connected: " + isMobileConn);
 
         toolbar = binding.mainToolbar;
         setSupportActionBar(toolbar);
@@ -78,7 +148,9 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         // Removing shadow from bottomActionBar.
 
         // Navigation between fragments.
-        NavController navCo = Navigation.findNavController(this, R.id.fragmentContainerView);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+        assert navHostFragment != null;
+        NavController navCo = navHostFragment.getNavController();
         NavigationUI.setupActionBarWithNavController(this, navCo, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, navCo);
         navCo.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
@@ -120,6 +192,16 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                 } else {
                     toolbar.setVisibility(View.VISIBLE);
                     bottomNavigationView.setVisibility(View.VISIBLE);
+                }
+                if (!isConnected) {
+                    if (destination.getId() == R.id.cameraFragment) {
+                        binding.fragmentContainerView.setVisibility(View.VISIBLE);
+                        binding.mainActivityNoInternetConnection.setVisibility((View.GONE));
+                    }
+                    else {
+                        binding.fragmentContainerView.setVisibility(View.GONE);
+                        binding.mainActivityNoInternetConnection.setVisibility((View.VISIBLE));
+                    }
                 }
             }
         });
@@ -175,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     @Override
     public void getAddress(String address) {
         String lat_lang = String.format(Locale.US, "%f,%f", location.getWayLatitude(), location.getWayLongitude());
-        String address_CC = String.format(Locale.US, "%s,%s" , location.getCountry(),location.getCity());
+        String address_CC = String.format(Locale.US, "%s,%s", location.getCountry(), location.getCity());
         editor.putString(Constants.LOCATION, lat_lang);
         editor.putString(Constants.LOCATION_ADDRESS, address_CC);
         editor.apply();
