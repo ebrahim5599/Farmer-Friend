@@ -12,6 +12,9 @@ public class CameraResultActivity extends AppCompatActivity {
     private ActivityCameraResultBinding binding;
     private String path;
     private String result;
+    private String disease;
+    private Float max ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +33,21 @@ public class CameraResultActivity extends AppCompatActivity {
         Intent n = getIntent();
         path = n.getStringExtra("PATH");
         result = n.getStringExtra("result");
+        disease = n.getStringExtra("disease");
+        max = n.getFloatExtra("max", 0f);
 
-        binding.Result.setText(result);
+        binding.ActivityCameraResultPlantNameResult.setText(result);
+        binding.ActivityCameraResultTheDiseaseResult.setText(disease);
+        binding.ActivityCameraResultTheRatioResult.setText(max+" %");
+        Glide.with(CameraResultActivity.this).load(path).into(binding.toolbarImage);
+
+
+
 //        Toast.makeText(getBaseContext(), "path is: " + path, Toast.LENGTH_SHORT).show();
 
 //        Picasso.get().load(path).into(binding.previewImage);
 //        Picasso.get().load(path).rotate(90).(binding.toolbarImage);
-        Glide.with(CameraResultActivity.this).load(path).into(binding.toolbarImage);
+
     }
 
 

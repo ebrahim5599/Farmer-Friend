@@ -93,6 +93,11 @@
     <string name="plant_details">Details</string>
     <string name="no_internet">NO Internet connection</string>
     <string name="check_your_conn">Check your internet connection and the page will reload automatically</string>
+    <string name="plant_name">Plant Name</string>
+    <string name="the_disease">The Disease</string>
+    <string name="The_ratio">The Ratio</string>
+    <string name="weather">Weather</string>
+    <string name="soil">Soil</string>
 
 
 </resources>
