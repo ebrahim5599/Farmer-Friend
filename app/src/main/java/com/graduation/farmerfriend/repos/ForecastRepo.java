@@ -5,19 +5,15 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.apis.ForecastInterface;
-import com.graduation.farmerfriend.models.Root;
+import com.graduation.farmerfriend.forecast_models.RootForeCast;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.BiFunction;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -27,7 +23,7 @@ public class ForecastRepo {
     private static final String WEATHER_SERVICE_BASE_URL = " https://api.weatherapi.com";
     private static ForecastRepo Instance;
     private ForecastInterface forecastInterface;
-    private MutableLiveData<Root> forecastModelLiveDataLiveData;
+    private MutableLiveData<RootForeCast> forecastModelLiveDataLiveData;
     private static final String TAG = "ForecastRepo";
     private CompositeDisposable compositeDisposable;
 
@@ -67,60 +63,32 @@ public class ForecastRepo {
 //
 //            }
 //        });
-        Single<Root> forecastObservable = forecastInterface.getCurrentForecast("ac1763cd50fd42cd9fe131850210912", location, "en", 3)
+        Single<RootForeCast> forecastObservable = forecastInterface.getCurrentForecast("ac1763cd50fd42cd9fe131850210912", location, "en", 3)
                 .subscribeOn(Schedulers.io());
         compositeDisposable = new CompositeDisposable();
-////        Observable.zip(forecastObservable,forecastObservable,new BiFunction<Root, Root,String>() {
-////
-////            @Override
-////            public String apply(Root root, Root root2) throws Throwable {
-////                return "";
-////            }
-////        }).subscribe();
-//        Observable.zip(forecastObservable,forecastObservable,(root, root2) -> compenda(root,root2)).subscribe();
 
 
-        SingleObserver<Root> forecastObserver = new SingleObserver<Root>() {
+        SingleObserver<RootForeCast> forecastObserver = new SingleObserver<RootForeCast>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
                 compositeDisposable.add(d);
             }
 
             @Override
-            public void onSuccess(@NonNull Root root) {
+            public void onSuccess(@NonNull RootForeCast root) {
                 forecastModelLiveDataLiveData.postValue(root);
             }
-
             @Override
             public void onError(@NonNull Throwable e) {
                 Log.d(TAG, "onError: " + e.getMessage());
             }
         };
-//            @Override
-//            public void onSubscribe(@NonNull Disposable d) {
-//                compositeDisposable.add(d);
-//            }
-//
-//            @Override
-//            public void onNext(Root root) {
-//                forecastModelLiveDataLiveData.postValue(root);
-//            }
-//
-//            @Override
-//            public void onError(@NonNull Throwable e) {
-//                Log.d(TAG, "onError: "+e.getMessage());
-//            }
-//
-//            @Override
-//            public void onComplete() {
-//
-//            }
 
         forecastObservable.subscribe(forecastObserver);
 
     }
 
-    public LiveData<Root> getForecastModelLiveData() {
+    public LiveData<RootForeCast> getForecastModelLiveData() {
         return forecastModelLiveDataLiveData;
     }
 
@@ -128,8 +96,8 @@ public class ForecastRepo {
         compositeDisposable.clear();
     }
 
-    private int compenda(Root root1, Root root2) {
-        String root12 = root1.forecast.getForecastday().get(0).date + root2.forecast.forecastday.get(0).date;
+    private int compenda(RootForeCast rootForeCast1, RootForeCast rootForeCast2) {
+        String root12 = rootForeCast1.forecast.getForecastDay().get(0).date + rootForeCast2.forecast.forecastday.get(0).date;
         return 5;
     }
 }

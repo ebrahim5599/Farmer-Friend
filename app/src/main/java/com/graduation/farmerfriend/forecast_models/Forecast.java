@@ -1,15 +1,15 @@
-package com.graduation.farmerfriend.models;
+package com.graduation.farmerfriend.forecast_models;
 
 import java.util.List;
 
 public class Forecast{
     public List<Forecastday> forecastday;
 
-    public List<Forecastday> getForecastday() {
+    public List<Forecastday> getForecastDay() {
         return forecastday;
     }
 
-    public void setForecastday(List<Forecastday> forecastday) {
+    public void setForecastDay(List<Forecastday> forecastday) {
         this.forecastday = forecastday;
     }
 }

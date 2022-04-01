@@ -13,7 +13,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -21,7 +20,6 @@ import android.net.ConnectivityManager;
 import android.net.LinkProperties;
 import android.net.Network;
 import android.net.NetworkCapabilities;
-import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,19 +28,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.graduation.farmerfriend.IOT.ui.main.IOTViewModel;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.ActivityMainBinding;
-import com.graduation.farmerfriend.home.ForecastViewModel;
 import com.graduation.farmerfriend.location.AddressCallBack;
 import com.graduation.farmerfriend.location.Location;
 
@@ -55,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     ActivityMainBinding binding;
     private AppBarConfiguration appBarConfiguration;
     private Toolbar toolbar;
-    private DatabaseReference mDatabase;
     private static final String TAG = "MainActivity";
     private static final String DEBUG_TAG = "NetworkStatusExample";
     private boolean isConnected = false;
@@ -70,15 +59,17 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        ForecastViewModel viewModel = new ViewModelProvider(this).get(ForecastViewModel.class);
+        MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        viewModel.init();
         viewModel.setForecastData(sharedPreferences.getString(Constants.LOCATION, "Cairo"));
 
-        IOTViewModel mViewModel = new ViewModelProvider(this).get(IOTViewModel.class);
-        mViewModel.init();
 
         location = new Location(this, 1002, this);
         location.getLocation();
-
+        viewModel.getEcommerceAllProducts();
+        viewModel.getEcommerceSeedProducts();
+        viewModel.getEcommerceFerProducts();
+        viewModel.getEcommerceToolProducts();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -197,8 +188,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                     if (destination.getId() == R.id.cameraFragment) {
                         binding.fragmentContainerView.setVisibility(View.VISIBLE);
                         binding.mainActivityNoInternetConnection.setVisibility((View.GONE));
-                    }
-                    else {
+                    } else {
                         binding.fragmentContainerView.setVisibility(View.GONE);
                         binding.mainActivityNoInternetConnection.setVisibility((View.VISIBLE));
                     }

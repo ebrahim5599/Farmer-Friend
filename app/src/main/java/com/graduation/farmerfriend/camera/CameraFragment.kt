@@ -52,22 +52,7 @@ import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.IOException
 import java.nio.ByteBuffer
 import org.tensorflow.lite.support.image.TensorImage
-import java.net.URI
 
-import android.graphics.drawable.Drawable
-import android.media.ExifInterface
-import android.media.Image
-import android.provider.MediaStore.MediaColumns.ORIENTATION
-import androidx.camera.core.*
-import androidx.camera.view.video.OutputFileResults
-import androidx.core.graphics.BitmapCompat
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.Target
-import com.squareup.picasso.Picasso
-import kotlinx.coroutines.newFixedThreadPoolContext
-import kotlinx.coroutines.newSingleThreadContext
 
 
 

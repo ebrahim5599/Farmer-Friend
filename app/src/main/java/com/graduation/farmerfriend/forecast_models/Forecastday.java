@@ -1,4 +1,4 @@
-package com.graduation.farmerfriend.models;
+package com.graduation.farmerfriend.forecast_models;
 
 import java.util.List;
 
