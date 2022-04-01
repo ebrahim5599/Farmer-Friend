@@ -12,27 +12,26 @@
         <ImageView
             android:id="@+id/fragment_iot_more_info_header1"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="100dp"
             android:scaleType="centerCrop"
             android:src="@drawable/setting_background" />
 
         <ImageView
             android:id="@+id/fragment_iot_more_info_header2"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/fragment_more_cardview" />
 
-        <TextView
-            android:id="@+id/fragment_iot_more_info_header_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="144dp"
-            android:layout_centerHorizontal="true"
-            android:text="@string/additional_data_required"
-            android:textColor="#0C0C0C"
-            android:textSize="24sp" />
-
+<!--        <TextView-->
+<!--            android:id="@+id/fragment_iot_more_info_header_text"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="72dp"-->
+<!--            android:text="@string/additional_data_required"-->
+<!--            android:textColor="#0C0C0C"-->
+<!--            android:textSize="24sp" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,15 +105,34 @@
                 android:background="@drawable/user_data_shape"
                 android:inputType="text" />
 
-            <Button
+            <FrameLayout
                 android:id="@+id/iot_more_info_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="32dp"
-                android:backgroundTint="@color/green_Cart_Activity_Button"
-                android:padding="16dp"
-                android:text="@string/sent_request" />
+                android:layout_marginTop="64dp"
+                android:background="@drawable/iot_system_button">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sent_request"
+                    android:textColor="@color/white"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:background="?android:attr/selectableItemBackground" />
+            </FrameLayout>
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="32dp"-->
+<!--                android:backgroundTint="@color/green_Cart_Activity_Button"-->
+<!--                android:padding="16dp"-->
+<!--                android:text="@string/sent_request" />-->
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

@@ -2,6 +2,7 @@ package com.graduation.farmerfriend.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
@@ -40,10 +41,10 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
 
     private Location location;
     private SharedPreferences.Editor editor;
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
     private AppBarConfiguration appBarConfiguration;
     private Toolbar toolbar;
-    private DatabaseReference mDatabase;
+    private NavController navCo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +74,12 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         toolbar = binding.mainToolbar;
         setSupportActionBar(toolbar);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.controlFragment, R.id.cameraFragment, R.id.ECommerceFragment, R.id.moreFragment).build();
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.controlContainerFragment, R.id.cameraFragment, R.id.ECommerceFragment, R.id.moreFragment).build();
 
         // Removing shadow from bottomActionBar.
 
         // Navigation between fragments.
-        NavController navCo = Navigation.findNavController(this, R.id.fragmentContainerView);
+        navCo = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavigationUI.setupActionBarWithNavController(this, navCo, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, navCo);
         navCo.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
@@ -117,7 +118,23 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                 } else if (destination.getId() == R.id.userDataFragment) {
                     toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
-                } else {
+                }
+
+                else if (destination.getId() == R.id.loginFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.registrationFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.iotIntroFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.iotMoreInfoFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.iotWaitingCodeFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.controlFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                }
+
+                else {
                     toolbar.setVisibility(View.VISIBLE);
                     bottomNavigationView.setVisibility(View.VISIBLE);
                 }
@@ -125,6 +142,14 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         });
 
     }
+
+// TODO:   @Override
+//    public void onBackPressed() {
+//        if(navCo.getCurrentDestination().getId() == R.id.iotWaitingCodeFragment){
+//            finish();
+//        }else
+//            super.onBackPressed();
+//    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -175,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     @Override
     public void getAddress(String address) {
         String lat_lang = String.format(Locale.US, "%f,%f", location.getWayLatitude(), location.getWayLongitude());
-        String address_CC = String.format(Locale.US, "%s,%s" , location.getCountry(),location.getCity());
+        String address_CC = String.format(Locale.US, "%s,%s", location.getCountry(), location.getCity());
         editor.putString(Constants.LOCATION, lat_lang);
         editor.putString(Constants.LOCATION_ADDRESS, address_CC);
         editor.apply();

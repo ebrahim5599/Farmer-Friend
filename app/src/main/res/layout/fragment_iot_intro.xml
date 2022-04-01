@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="16dp"
         android:orientation="vertical">
 
@@ -28,14 +29,35 @@
             android:textColor="#424242"
             android:text="@string/iot_intro_message" />
 
-        <Button
+        <FrameLayout
             android:id="@+id/iot_intro_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:layout_gravity="center"
-            android:padding="16dp"
-            android:backgroundTint="@color/green_Cart_Activity_Button"
-            android:text="@string/apply_now"/>
+            android:layout_marginTop="32dp"
+            android:background="@drawable/iot_system_button">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/apply_now"
+                android:textColor="@color/white"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:background="?android:attr/selectableItemBackground" />
+        </FrameLayout>
+
+<!--        <Button-->
+<!--            android:id="@+id/iot_intro_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:padding="16dp"-->
+<!--            android:backgroundTint="@color/green_Cart_Activity_Button"-->
+<!--            android:text="@string/apply_now"/>-->
     </LinearLayout>
 </ScrollView>
