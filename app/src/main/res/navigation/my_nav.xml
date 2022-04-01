@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_homeFragment_to_ECommerceFragment"
             app:destination="@id/ECommerceFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_itemDescriptionFragment"
+            app:destination="@id/itemDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/controlFragment"
@@ -50,6 +53,9 @@
         <action
             android:id="@+id/action_ECommerceFragment_to_hotDealsFragment"
             app:destination="@id/hotDealsFragment" />
+        <action
+            android:id="@+id/action_ECommerceFragment_to_itemDescriptionFragment"
+            app:destination="@id/itemDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/moreFragment"
@@ -63,7 +69,7 @@
 
     <fragment
         android:id="@+id/fertilizerProductsFragment"
-        android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.FertilizerProductsFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.product_categories.FertilizerProductsFragment"
         android:label="@string/fertilizers"
         tools:layout="@layout/fragment_fertilizer_products">
         <action
@@ -72,10 +78,13 @@
         <action
             android:id="@+id/action_to_wishlist"
             app:destination="@id/wishlistFragment" />
+        <action
+            android:id="@+id/action_fertilizerProductsFragment_to_itemDescriptionFragment"
+            app:destination="@id/itemDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/seedProductsFragment"
-        android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.SeedProductsFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.product_categories.SeedProductsFragment"
         android:label="@string/seeds"
         tools:layout="@layout/fragment_seed_products">
         <action
@@ -84,10 +93,13 @@
         <action
             android:id="@+id/action_to_wishlist"
             app:destination="@id/wishlistFragment" />
+        <action
+            android:id="@+id/action_seedProductsFragment_to_itemDescriptionFragment"
+            app:destination="@id/itemDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/toolProductsFragment"
-        android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.ToolProductsFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.product_categories.ToolProductsFragment"
         android:label="@string/tools"
         tools:layout="@layout/fragment_tool_products">
         <action
@@ -96,6 +108,9 @@
         <action
             android:id="@+id/action_to_cart"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_toolProductsFragment_to_itemDescriptionFragment"
+            app:destination="@id/itemDescriptionFragment" />
     </fragment>
 
 
@@ -110,6 +125,9 @@
         <action
             android:id="@+id/action_hotDealsFragment_to_bestSellerFragment"
             app:destination="@id/bestSellerFragment" />
+        <action
+            android:id="@+id/action_hotDealsFragment_to_itemDescriptionFragment"
+            app:destination="@id/itemDescriptionFragment" />
     </fragment>
 
     <fragment
@@ -120,6 +138,9 @@
         <action
             android:id="@+id/action_bestSellerFragment_to_wishlistFragment"
             app:destination="@id/wishlistFragment" />
+        <action
+            android:id="@+id/action_bestSellerFragment_to_itemDescriptionFragment"
+            app:destination="@id/itemDescriptionFragment" />
     </fragment>
 
 
@@ -155,7 +176,13 @@
     <fragment
         android:id="@+id/itemDescriptionFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.ItemDescriptionFragment"
-        tools:layout="@layout/fragment_item_description" />
+        tools:layout="@layout/fragment_item_description"
+        >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
     <!-- ecommerce user data  -->
     <fragment
         android:id="@+id/userDataFragment"

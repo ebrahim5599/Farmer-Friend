@@ -3,31 +3,16 @@ package com.graduation.farmerfriend.repos;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.graduation.farmerfriend.IOTModels.Control;
-import com.graduation.farmerfriend.IOTModels.IOTRoot;
 import com.graduation.farmerfriend.IOTModels.Sensors;
-import com.graduation.farmerfriend.apis.IOTInterface;
-
-
-import java.util.ArrayList;
-import java.util.List;
-
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class IOTRepo {

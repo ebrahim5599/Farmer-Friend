@@ -10,18 +10,18 @@ import android.os.Handler;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
-import com.graduation.farmerfriend.home.ForecastViewModel;
+import com.graduation.farmerfriend.home.HomeViewModel;
 import com.graduation.farmerfriend.ui.MainActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    ForecastViewModel viewModel;
+    HomeViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        viewModel = new ViewModelProvider(this).get(ForecastViewModel.class);
+        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES,MODE_PRIVATE);
         viewModel.setForecastData(sharedPreferences.getString(Constants.LOCATION,"Cairo"));
 

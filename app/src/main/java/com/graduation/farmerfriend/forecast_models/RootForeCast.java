@@ -1,6 +1,6 @@
-package com.graduation.farmerfriend.models;
+package com.graduation.farmerfriend.forecast_models;
 
-public class Root{
+public class RootForeCast {
     public Location location;
     public Current current;
     public Forecast forecast;

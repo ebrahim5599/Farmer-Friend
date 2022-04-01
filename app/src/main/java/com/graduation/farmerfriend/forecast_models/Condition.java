@@ -1,4 +1,4 @@
-package com.graduation.farmerfriend.models;
+package com.graduation.farmerfriend.forecast_models;
 
 public class Condition{
     public String text;

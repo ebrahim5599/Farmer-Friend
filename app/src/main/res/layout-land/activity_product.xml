@@ -201,7 +201,7 @@
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/activity_product_fragment"
-                android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.SeedProductsFragment"
+                android:name="com.graduation.farmerfriend.e_commerce.ui.product_categories.SeedProductsFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />

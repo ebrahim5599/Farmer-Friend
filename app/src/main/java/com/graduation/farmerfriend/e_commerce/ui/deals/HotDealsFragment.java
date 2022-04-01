@@ -9,6 +9,9 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -24,10 +27,14 @@ import android.widget.SearchView;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentHotDealsBinding;
+import com.graduation.farmerfriend.ecommerce_models.Product;
+
+import java.util.ArrayList;
 
 
 public class HotDealsFragment extends Fragment {
-    FragmentHotDealsBinding fragmentHotDealsBinding;
+    private FragmentHotDealsBinding fragmentHotDealsBinding;
+    private HotDealsViewModel viewModel;
 
 
     @Override
@@ -36,9 +43,16 @@ public class HotDealsFragment extends Fragment {
         setHasOptionsMenu(true);
         fragmentHotDealsBinding = FragmentHotDealsBinding.inflate(inflater, container, false);
         View view = fragmentHotDealsBinding.getRoot();
-        HotDealsAdapter adapter = new HotDealsAdapter();
-        fragmentHotDealsBinding.fragmentHotDealsRecyclerView.setAdapter(adapter);
-        fragmentHotDealsBinding.fragmentHotDealsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+        viewModel = new ViewModelProvider(this).get(HotDealsViewModel.class);
+        viewModel.init();
+        viewModel.allProductLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
+            @Override
+            public void onChanged(ArrayList<Product> productArrayList) {
+                HotDealsAdapter adapter = new HotDealsAdapter(productArrayList,requireContext());
+                fragmentHotDealsBinding.fragmentHotDealsRecyclerView.setAdapter(adapter);
+                fragmentHotDealsBinding.fragmentHotDealsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+            }
+        });
         return view;
     }
 
