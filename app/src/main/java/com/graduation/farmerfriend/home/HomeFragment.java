@@ -2,6 +2,7 @@ package com.graduation.farmerfriend.home;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +22,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
+import com.graduation.farmerfriend.IOT.ui.main.IOTViewModel;
+import com.graduation.farmerfriend.IOTModels.Control;
+import com.graduation.farmerfriend.IOTModels.Sensors;
 import com.graduation.farmerfriend.R;
 
 import com.graduation.farmerfriend.constants.Constants;
@@ -27,10 +33,15 @@ import com.graduation.farmerfriend.ecommerce_models.Product;
 import com.graduation.farmerfriend.forecast_models.RootForeCast;
 
 import java.util.ArrayList;
+
+import java.text.MessageFormat;
 import java.util.Locale;
 
 public class HomeFragment extends Fragment {
 
+    boolean isWaterPumpON = false;
+    boolean isFertilizerPumpON = false;
+    private IOTViewModel mViewModel;
     FragmentHomeBinding fragmentHomeBinding;
     HomeViewModel viewModel;
     private SharedPreferences sharedPreferences;
@@ -44,7 +55,61 @@ public class HomeFragment extends Fragment {
         setHasOptionsMenu(true);
         productArrayList = new ArrayList<>();
         sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
+
+        mViewModel = new ViewModelProvider(requireActivity()).get(IOTViewModel .class);
+        mViewModel.init();
+        mViewModel.getIOTSensorsLiveData().observe(getViewLifecycleOwner(), new Observer<Sensors>() {
+            @Override
+            public void onChanged(Sensors sensors) {
+                Log.d("TAG", "onChanged: "+sensors.soilTemp);
+                fragmentHomeBinding.fragmentIOTSoilTextViewTemp.setText(MessageFormat.format("{0} C", sensors.soilTemp));
+                fragmentHomeBinding.fragmentIOTSoilTextViewMoisture.setText(MessageFormat.format("{0} %", sensors.moisture));
+
+                fragmentHomeBinding.fragmentWeatherProgressBar.setProgress(sensors.airTemp);
+                fragmentHomeBinding.fragmentIotWeatherTextViewHumidity.setText(MessageFormat.format("{0} %", sensors.humidity));
+                fragmentHomeBinding.fragmentIotWeatherTextViewTemp.setText(MessageFormat.format("{0} C", sensors.airTemp));
+                fragmentHomeBinding.fragmentIotWeatherTextViewLuminousIntensity.setText(MessageFormat.format("{0} lx", sensors.luminous));
+                fragmentHomeBinding.fragmentIotWeatherTextViewPressure.setText(MessageFormat.format("{0} mb", sensors.pressure));
+
+            }
+        });
+
+        mViewModel.getIOTControlLiveData().observe(getViewLifecycleOwner(), new Observer<Control>() {
+            @Override
+            public void onChanged(Control control) {
+
+                putIOT(control);
+            }
+        });
+
         return view;
+    }
+
+    private void putIOT(Control control) {
+        Log.d("TAG", "putIOT: "+control.waterSwitch);
+
+        if (control.isAuto) {
+            fragmentHomeBinding.fregmentIotControlLambManual.setCardBackgroundColor(Color.WHITE);
+            fragmentHomeBinding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.RED);
+        } else {
+            fragmentHomeBinding.fregmentIotControlLambManual.setCardBackgroundColor(Color.RED);
+            fragmentHomeBinding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.WHITE);
+        }
+
+        if (control.fertSwitch) {
+            isFertilizerPumpON = true;
+            fragmentHomeBinding.fregmentIotControlLambFertilizerpump.setCardBackgroundColor(Color.RED);
+        } else {
+            fragmentHomeBinding.fregmentIotControlLambFertilizerpump.setCardBackgroundColor(Color.WHITE);
+        }
+
+        if (control.waterSwitch) {
+            isWaterPumpON = true;
+            fragmentHomeBinding.fregmentIotControlLambWaterpump.setCardBackgroundColor(Color.RED);
+
+        } else {
+            fragmentHomeBinding.fregmentIotControlLambWaterpump.setCardBackgroundColor(Color.WHITE);
+        }
     }
 
     @Override
@@ -75,6 +140,7 @@ public class HomeFragment extends Fragment {
         });
 
 
+
         NewsAdapter newsAdapter = new NewsAdapter();
         fragmentHomeBinding.homeRecyclerViewNews.setAdapter(newsAdapter);
 
@@ -99,4 +165,7 @@ public class HomeFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }

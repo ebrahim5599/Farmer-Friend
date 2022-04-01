@@ -54,6 +54,19 @@ import java.nio.ByteBuffer
 import org.tensorflow.lite.support.image.TensorImage
 
 
+import android.graphics.drawable.Drawable
+import android.media.ExifInterface
+import android.provider.MediaStore.MediaColumns.ORIENTATION
+import androidx.camera.core.*
+import androidx.camera.view.video.OutputFileResults
+import androidx.core.graphics.BitmapCompat
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction import com.bumptech.glide.request.target.Target
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.newFixedThreadPoolContext
+import kotlinx.coroutines.newSingleThreadContext
+
+
 
 
 class CameraFragment : Fragment() {
@@ -68,6 +81,8 @@ class CameraFragment : Fragment() {
     private var result: String? = null
     private var camera: Boolean = false
     private var image:Boolean = false
+    private var max: Float = 0.0f
+    private var disease: String? = null
 
 
     override fun onCreateView(
@@ -103,7 +118,6 @@ class CameraFragment : Fragment() {
             viewBinding.previewCameraNow.visibility = View.VISIBLE
             viewBinding.previewImageNow.visibility = View.GONE
             startCamera()
-
         }
 
         viewBinding.imageGallryButton.setOnClickListener {
@@ -126,8 +140,6 @@ class CameraFragment : Fragment() {
                 img_gallery?.let { it1 -> image_processing(it1) }
             }
 
-            viewBinding.previewImageNow.visibility = View.GONE
-            viewBinding.previewCameraNow.visibility = View.VISIBLE
         }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -233,18 +245,34 @@ class CameraFragment : Fragment() {
         val outputs = model?.process(inputFeature0)
         val outputFeature0 = outputs?.outputFeature0AsTensorBuffer
 
-        result =
-            """${outputFeature0!!.floatArray[0]}  ${outputFeature0.floatArray[1]}  ${outputFeature0.floatArray[2]}  ${outputFeature0.floatArray[3]}
-                       ${outputFeature0.floatArray[4]}  ${outputFeature0.floatArray[5]}  ${outputFeature0.floatArray[6]}  ${outputFeature0.floatArray[7]}
-                       ${outputFeature0.floatArray[8]}  ${outputFeature0.floatArray[9]}  ${outputFeature0.floatArray[10]}  ${outputFeature0.floatArray[11]}
-                       ${outputFeature0.floatArray[12]}  ${outputFeature0.floatArray[13]}  ${outputFeature0.floatArray[14]}  ${outputFeature0.floatArray[15]}
-                       ${outputFeature0.floatArray[16]}  ${outputFeature0.floatArray[17]}  ${outputFeature0.floatArray[18]}  ${outputFeature0.floatArray[19]}
-                       ${outputFeature0.floatArray[20]}  ${outputFeature0.floatArray[21]}  ${outputFeature0.floatArray[22]}  ${outputFeature0.floatArray[23]}
-                       ${outputFeature0.floatArray[24]}  ${outputFeature0.floatArray[25]}  ${outputFeature0.floatArray[26]}  ${outputFeature0.floatArray[27]}
-                       ${outputFeature0.floatArray[28]}  ${outputFeature0.floatArray[29]}  ${outputFeature0.floatArray[30]}  ${outputFeature0.floatArray[31]}"""
+        val name = arrayOf<String> ("Apple","Apple","Apple","Apple","Corn(maize)","Corn(maize)","Corn(maize)","Corn(maize)","Grape","Grape","Grape","Grape",
+        "Orange","Peach","Peach","Pepper(bell)","Pepper(bell)","Potato","Potato","Potato","Strawberry","Strawberry","Tomato","Tomato","Tomato","Tomato","Tomato",
+        "Tomato","Tomato","Tomato","Tomato","Tomato")
+
+        val disease_array = arrayOf<String> ("Apple_scab","Black_rot","Cedar_apple_rust","healthy","Cercospora_leaf_spot Gray_leaf_spot","Common_rust",
+        "healthy","Northern_Leaf_Blight","Black_rot","Esca_(Black_Measles)","healthy","Leaf_blight_(Isariopsis_Leaf_Spot)","Haunglongbing_(Citrus_greening)",
+        "Bacterial_spot","healthy","Bacterial_spot","healthy","Early_blight","healthy","Late_blight","healthy","Leaf_scorch","Bacterial_spot","Early_blight",
+            "healthy","Late_blight","Leaf_Mold","Septoria_leaf_spot","Spider_mites Two-spotted_spider_mite","Target_Spot","Tomato_mosaic_virus","Tomato_Yellow_Leaf_Curl_Virus")
+
+        max = outputFeature0!!.floatArray[0]
+        var i :Int = 0
+        var index :Int = 0
+        for (i in 1..31) {
+           if (outputFeature0!!.floatArray[i] > max){
+               max = outputFeature0!!.floatArray[i]
+               index = i
+           }
+        }
+        result = name[index]
+        disease = disease_array[index]
+        max = max * 100
 
         model.close()
         goToActivity()
+
+        viewBinding.previewCameraNow.visibility = View.VISIBLE
+        viewBinding.previewImageNow.visibility = View.GONE
+        startCamera()
     }
 
     private fun takePhoto() {
@@ -333,12 +361,17 @@ class CameraFragment : Fragment() {
             }else if (gallery?.isNotEmpty() == true){
                 intent.putExtra("PATH", gallery)
             }
+
             intent.putExtra("result",result)
+            intent.putExtra("disease",disease)
+            intent.putExtra("max", max)
 
             it.startActivity(intent)
 
         }
     }
+
+
 
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
