@@ -141,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         // Removing shadow from bottomActionBar.
 
         // Navigation between fragments.
-        navCo = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         assert navHostFragment != null;
         NavController navCo = navHostFragment.getNavController();
