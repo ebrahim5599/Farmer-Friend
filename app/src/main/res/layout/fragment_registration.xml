@@ -3,19 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".control.RegistrationFragment">
-
-    <!--    <FrameLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:background="#6D000000"/>-->
+    tools:context=".registration.RegistrationFragment">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerInside"
-        android:src="@drawable/ic_splash_screen" />
-
+        android:src="@drawable/splash_screen" />
 
     <View
         android:layout_width="match_parent"
@@ -34,7 +27,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="40dp"
                 android:fontFamily="@font/hacen_saudi_arabia"
                 android:gravity="center"
                 android:text="Register"
@@ -42,22 +35,69 @@
                 android:textSize="44sp"
                 android:textStyle="bold" />
 
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:drawablePadding="10dp"
+                    android:hint="First Name"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:drawablePadding="10dp"
+                    android:hint="Last Name"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/border"
+                android:drawableLeft="@drawable/account"
+                android:drawablePadding="10dp"
+                android:hint="Username"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
                 android:background="@drawable/border"
                 android:drawableLeft="@drawable/ic_email"
                 android:drawablePadding="10dp"
                 android:hint="Email"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:padding="16dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +112,6 @@
                 android:padding="16dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,6 +128,7 @@
                 android:textColorHint="@color/white" />
 
             <Button
+                android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -98,17 +138,6 @@
                 android:padding="16dp"
                 android:text="Register"
                 android:textColor="@color/white" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="24dp"
-                android:gravity="right"
-                android:text="Already Have An Account"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
 
         </LinearLayout>
     </ScrollView>

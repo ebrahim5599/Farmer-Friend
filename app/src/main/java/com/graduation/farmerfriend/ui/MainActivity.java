@@ -2,6 +2,7 @@ package com.graduation.farmerfriend.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -42,12 +43,13 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
 
     private Location location;
     private SharedPreferences.Editor editor;
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
     private AppBarConfiguration appBarConfiguration;
     private Toolbar toolbar;
     private static final String TAG = "MainActivity";
     private static final String DEBUG_TAG = "NetworkStatusExample";
     private boolean isConnected = false;
+    private NavController navCo;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -134,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         toolbar = binding.mainToolbar;
         setSupportActionBar(toolbar);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.controlFragment, R.id.cameraFragment, R.id.ECommerceFragment, R.id.moreFragment).build();
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.controlContainerFragment, R.id.cameraFragment, R.id.ECommerceFragment, R.id.moreFragment).build();
 
         // Removing shadow from bottomActionBar.
 
@@ -180,7 +182,23 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                 } else if (destination.getId() == R.id.userDataFragment) {
                     toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
-                } else {
+                }
+
+                else if (destination.getId() == R.id.loginFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.registrationFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.iotIntroFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.iotMoreInfoFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.iotWaitingCodeFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.controlFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                }
+
+                else {
                     toolbar.setVisibility(View.VISIBLE);
                     bottomNavigationView.setVisibility(View.VISIBLE);
                 }

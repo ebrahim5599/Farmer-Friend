@@ -208,6 +208,117 @@
         android:name="com.graduation.farmerfriend.camera.CameraFragment"
         android:label="@string/camera"
         tools:layout="@layout/fragment_camera" />
+    <fragment
+        android:id="@+id/controlContainerFragment"
+        android:name="com.graduation.farmerfriend.control.ControlContainerFragment"
+        android:label="@string/control"
+        tools:layout="@layout/fragment_control_container" >
+        <action
+            android:id="@+id/next_action"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
 
+        <action
+            android:id="@+id/action_controlContainerFragment_to_iotIntroFragment"
+            app:destination="@id/iotIntroFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
 
+        <action
+            android:id="@+id/action_controlContainerFragment_to_controlFragment"
+            app:destination="@id/controlFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.graduation.farmerfriend.registration.RegistrationFragment"
+        android:label="@string/fragment_registration"
+        tools:layout="@layout/fragment_registration2" >
+        <action
+            android:id="@+id/next_action"
+            app:destination="@id/iotIntroFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/controlContainerFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.graduation.farmerfriend.registration.LoginFragment"
+        android:label="@string/login_fragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/next_action"
+            app:destination="@id/registrationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+            android:id="@+id/action_loginFragment_to_iotIntroFragment"
+            app:destination="@id/iotIntroFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/controlContainerFragment"/>
+        <action
+            android:id="@+id/action_loginFragment_to_controlFragment"
+            app:destination="@id/controlFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/controlContainerFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/iotIntroFragment"
+        android:name="com.graduation.farmerfriend.control.iot_fragments.IotIntroFragment"
+        android:label="@string/fragment_iot_intro"
+        tools:layout="@layout/fragment_iot_intro" >
+        <action
+            android:id="@+id/next_action"
+            app:destination="@id/iotMoreInfoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/iotMoreInfoFragment"
+        android:name="com.graduation.farmerfriend.control.iot_fragments.IotMoreInfoFragment"
+        android:label="@string/fragment_iot_more_info"
+        tools:layout="@layout/fragment_iot_more_info" >
+        <action
+            android:id="@+id/next_action"
+            app:destination="@id/iotWaitingCodeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/iotWaitingCodeFragment"
+        android:name="com.graduation.farmerfriend.control.iot_fragments.IotWaitingCodeFragment"
+        android:label="@string/fragment_iot_waiting_code"
+        tools:layout="@layout/fragment_iot_waiting_code" >
+        <action
+            android:id="@+id/next_action"
+            app:destination="@id/controlFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/controlContainerFragment"/>
+    </fragment>
 </navigation>

@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registration.RegisterActivity">
+    tools:context=".registration.RegistrationFragment">
+
+    <!--    <FrameLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:background="#6D000000"/>-->
 
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        />
+
+
+    <View
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -76,12 +88,13 @@
                 android:textColorHint="@color/white" />
 
             <Button
+                android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
-                android:backgroundTint="@color/green_Login_Button"
+                android:backgroundTint="#21735C"
                 android:padding="16dp"
                 android:text="Register"
                 android:textColor="@color/white" />
@@ -95,8 +108,8 @@
                 android:gravity="right"
                 android:text="Already Have An Account"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
     </ScrollView>
-</RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".control.iot_fragments.IotMoreInfoFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/fragment_iot_more_info_header1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/setting_background" />
+
+        <ImageView
+            android:id="@+id/fragment_iot_more_info_header2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/fragment_more_cardview" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/fragment_iot_more_info_header_text"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_marginTop="72dp"-->
+<!--            android:text="@string/additional_data_required"-->
+<!--            android:textColor="#0C0C0C"-->
+<!--            android:textSize="24sp" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_iot_more_info_header2"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/phone"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/fragment_iot_more_info_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/user_data_shape"
+                android:inputType="phone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/email"
+                android:textColor="@color/black" />
+
+            <EditText
+
+                android:id="@+id/fragment_iot_more_info_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/user_data_shape"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/what_is_the_approximate_area_of_the_farm"
+                android:textColor="@color/black" />
+
+            <EditText
+
+                android:id="@+id/fragment_iot_more_info_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/user_data_shape"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/farm_location"
+                android:textColor="@color/black" />
+
+            <EditText
+
+                android:id="@+id/fragment_iot_more_info_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/user_data_shape"
+                android:inputType="text" />
+
+            <FrameLayout
+                android:id="@+id/iot_more_info_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="64dp"
+                android:background="@drawable/iot_system_button">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sent_request"
+                    android:textColor="@color/white"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:background="?android:attr/selectableItemBackground" />
+            </FrameLayout>
+<!--            <Button-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="32dp"-->
+<!--                android:backgroundTint="@color/green_Cart_Activity_Button"-->
+<!--                android:padding="16dp"-->
+<!--                android:text="@string/sent_request" />-->
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
