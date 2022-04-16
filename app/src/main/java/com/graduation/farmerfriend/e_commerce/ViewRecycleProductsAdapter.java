@@ -1,26 +1,32 @@
 package com.graduation.farmerfriend.e_commerce;
 
-import android.content.Context;
-
+import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.e_commerce.ui.ItemDescriptionFragment;
+import com.graduation.farmerfriend.e_commerce.ui.ECommerceFragmentDirections;
+import com.graduation.farmerfriend.ecommerce_models.Product;
+import com.graduation.farmerfriend.home.HomeFragmentDirections;
+import com.squareup.picasso.Picasso;
 
-import android.content.Intent;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycleProductsAdapter.ViewHolder> {
 
-    private Data[] data;
-    private Context context;
+    private ArrayList<Product> data;
+    private final Context context;
 
-    public ViewRecycleProductsAdapter(Context con, Data[] data) {
+    public ViewRecycleProductsAdapter(Context con, ArrayList<Product> data) {
         this.context = con;
         this.data = data;
     }
@@ -31,22 +37,31 @@ public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycle
     }
 
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.image.setImageResource(data[position].getImage());
-        holder.text_name.setText(data[position].getName());
-        holder.text_price.setText(data[position].getPrice());
+//        holder.image.setImageResource(data[position].getImage());
+        holder.text_name.setText(data.get(position).productName);
+        holder.text_price.setText(String.format("%deg", data.get(position).price));
+        if (data.get(position).productImage != null) {
+            String[] imageName = data.get(position).productImage.split("s/");
+            Glide.with(context).load("http://teamweb2022-001-site1.itempurl.com/productImages/" + imageName[1]).into(holder.image);
+        }
 //        holder.text_discount.setText(data[position].getDiscount());
+
+//        Glide.with(context).load("https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AAUEAjj.img?h=748&w=1119&m=6&q=60&o=f&l=f").into(holder.image);
+        int productId = data.get(position).productId;
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(holder.itemView).navigate(R.id.itemDescriptionFragment);
+                ECommerceFragmentDirections.ActionECommerceFragmentToItemDescriptionFragment action = ECommerceFragmentDirections.actionECommerceFragmentToItemDescriptionFragment();
+                action.setId(productId);
+                Navigation.findNavController(holder.itemView).navigate(action);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return data.length;
+        return data.size();
     }
 
 

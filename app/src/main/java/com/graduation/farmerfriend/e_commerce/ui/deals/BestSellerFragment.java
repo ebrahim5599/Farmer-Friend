@@ -8,6 +8,8 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -22,9 +24,13 @@ import android.widget.SearchView;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentBestSelersBinding;
+import com.graduation.farmerfriend.ecommerce_models.Product;
+
+import java.util.ArrayList;
 
 public class BestSellerFragment extends Fragment {
     FragmentBestSelersBinding fragmentBestSelersBinding;
+    BestSellerViewModel viewModel;
 
 
     @Override
@@ -34,9 +40,16 @@ public class BestSellerFragment extends Fragment {
 
         fragmentBestSelersBinding = FragmentBestSelersBinding.inflate(inflater, container, false);
         View view = fragmentBestSelersBinding.getRoot();
-        BestSellerAdapter adapter = new BestSellerAdapter();
-        fragmentBestSelersBinding.fragmentBestSellersRecyclerView.setAdapter(adapter);
-        fragmentBestSelersBinding.fragmentBestSellersRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+        viewModel = new ViewModelProvider(this).get(BestSellerViewModel.class);
+        viewModel.init();
+        viewModel.allProductLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
+            @Override
+            public void onChanged(ArrayList<Product> productArrayList) {
+                BestSellerAdapter adapter = new BestSellerAdapter(productArrayList,requireContext());
+                fragmentBestSelersBinding.fragmentBestSellersRecyclerView.setAdapter(adapter);
+                fragmentBestSelersBinding.fragmentBestSellersRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+            }
+        });
 
         Log.i("Fragment", "Best sellers oncreateView");
         return view;

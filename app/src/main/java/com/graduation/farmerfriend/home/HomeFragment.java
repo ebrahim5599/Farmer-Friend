@@ -2,6 +2,7 @@ package com.graduation.farmerfriend.home;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,24 +20,32 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
+import com.graduation.farmerfriend.IOT.ui.main.IOTViewModel;
+import com.graduation.farmerfriend.IOTModels.Control;
+import com.graduation.farmerfriend.IOTModels.Sensors;
 import com.graduation.farmerfriend.R;
 
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentHomeBinding;
-import com.graduation.farmerfriend.models.Root;
-import com.graduation.farmerfriend.repos.ForecastRepo;
+import com.graduation.farmerfriend.ecommerce_models.Product;
+import com.graduation.farmerfriend.forecast_models.RootForeCast;
 
+import java.util.ArrayList;
+
+import java.text.MessageFormat;
 import java.util.Locale;
-import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
+    boolean isWaterPumpON = false;
+    boolean isFertilizerPumpON = false;
+    private IOTViewModel mViewModel;
     FragmentHomeBinding fragmentHomeBinding;
-    ForecastViewModel viewModel;
+    HomeViewModel viewModel;
     private SharedPreferences sharedPreferences;
+    ArrayList<Product> productArrayList;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,18 +53,73 @@ public class HomeFragment extends Fragment {
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = fragmentHomeBinding.getRoot();
         setHasOptionsMenu(true);
+        productArrayList = new ArrayList<>();
         sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
+
+        mViewModel = new ViewModelProvider(requireActivity()).get(IOTViewModel .class);
+        mViewModel.init();
+        mViewModel.getIOTSensorsLiveData().observe(getViewLifecycleOwner(), new Observer<Sensors>() {
+            @Override
+            public void onChanged(Sensors sensors) {
+                Log.d("TAG", "onChanged: "+sensors.soilTemp);
+                fragmentHomeBinding.fragmentIOTSoilTextViewTemp.setText(MessageFormat.format("{0} C", sensors.soilTemp));
+                fragmentHomeBinding.fragmentIOTSoilTextViewMoisture.setText(MessageFormat.format("{0} %", sensors.moisture));
+
+                fragmentHomeBinding.fragmentWeatherProgressBar.setProgress(sensors.airTemp);
+                fragmentHomeBinding.fragmentIotWeatherTextViewHumidity.setText(MessageFormat.format("{0} %", sensors.humidity));
+                fragmentHomeBinding.fragmentIotWeatherTextViewTemp.setText(MessageFormat.format("{0} C", sensors.airTemp));
+                fragmentHomeBinding.fragmentIotWeatherTextViewLuminousIntensity.setText(MessageFormat.format("{0} lx", sensors.luminous));
+                fragmentHomeBinding.fragmentIotWeatherTextViewPressure.setText(MessageFormat.format("{0} mb", sensors.pressure));
+
+            }
+        });
+
+        mViewModel.getIOTControlLiveData().observe(getViewLifecycleOwner(), new Observer<Control>() {
+            @Override
+            public void onChanged(Control control) {
+
+                putIOT(control);
+            }
+        });
+
         return view;
+    }
+
+    private void putIOT(Control control) {
+        Log.d("TAG", "putIOT: "+control.waterSwitch);
+
+        if (control.isAuto) {
+            fragmentHomeBinding.fregmentIotControlLambManual.setCardBackgroundColor(Color.WHITE);
+            fragmentHomeBinding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.RED);
+        } else {
+            fragmentHomeBinding.fregmentIotControlLambManual.setCardBackgroundColor(Color.RED);
+            fragmentHomeBinding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.WHITE);
+        }
+
+        if (control.fertSwitch) {
+            isFertilizerPumpON = true;
+            fragmentHomeBinding.fregmentIotControlLambFertilizerpump.setCardBackgroundColor(Color.RED);
+        } else {
+            fragmentHomeBinding.fregmentIotControlLambFertilizerpump.setCardBackgroundColor(Color.WHITE);
+        }
+
+        if (control.waterSwitch) {
+            isWaterPumpON = true;
+            fragmentHomeBinding.fregmentIotControlLambWaterpump.setCardBackgroundColor(Color.RED);
+
+        } else {
+            fragmentHomeBinding.fregmentIotControlLambWaterpump.setCardBackgroundColor(Color.WHITE);
+        }
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        viewModel = new ViewModelProvider(requireActivity()).get(ForecastViewModel.class);
-        viewModel.getForecastModelLiveData().observe(getViewLifecycleOwner(), new Observer<Root>() {
+        viewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        viewModel.getForecastModelLiveData().observe(getViewLifecycleOwner(), new Observer<RootForeCast>() {
             @Override
-            public void onChanged(Root forecastModel) {
+            public void onChanged(RootForeCast forecastModel) {
                 fragmentHomeBinding.textViewDegree.setText(String.format(Locale.US,"%d°", Math.round(forecastModel.current.temp_c)));
                 String imageUrl = "https://" + forecastModel.current.condition.icon;
                 Log.i("Glide error", forecastModel.forecast.forecastday.toString());
@@ -65,9 +130,16 @@ public class HomeFragment extends Fragment {
                 fragmentHomeBinding.textViewWind.setText(String.format(Locale.US,"%d km/h", Math.round(forecastModel.current.wind_kph)));
             }
         });
+        viewModel.getAllProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
+            @Override
+            public void onChanged(ArrayList<Product> productArrayList) {
+                HomeFragment.this.productArrayList = productArrayList;
+                EcommerceAdapter ecommerceAdapter = new EcommerceAdapter(productArrayList,requireContext());
+                fragmentHomeBinding.homeRecyclerViewEcommerce.setAdapter(ecommerceAdapter);
+            }
+        });
 
-        EcommerceAdapter ecommerceAdapter = new EcommerceAdapter();
-        fragmentHomeBinding.homeRecyclerViewEcommerce.setAdapter(ecommerceAdapter);
+
 
         NewsAdapter newsAdapter = new NewsAdapter();
         fragmentHomeBinding.homeRecyclerViewNews.setAdapter(newsAdapter);
@@ -93,4 +165,7 @@ public class HomeFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }

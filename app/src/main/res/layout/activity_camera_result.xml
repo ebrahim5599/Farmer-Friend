@@ -85,25 +85,83 @@
             android:layout_margin="16dp"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/preview_image"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="380dp" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-            <ImageView
+                <TextView
+                    android:id="@+id/Activity_camera_result_plant_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
+                    android:text="@string/plant_name"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/Activity_camera_result_plant_name_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="380dp" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-            <ImageView
+                <TextView
+                    android:id="@+id/Activity_camera_result_the_disease"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/the_disease"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/Activity_camera_result_the_disease_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="380dp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/take"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="16dp" />
+                <TextView
+                    android:id="@+id/Activity_camera_result_The_ratio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/The_ratio"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/Activity_camera_result_The_ratio_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black" />
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

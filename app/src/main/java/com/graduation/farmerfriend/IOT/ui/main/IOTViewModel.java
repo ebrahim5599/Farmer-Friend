@@ -12,7 +12,6 @@ import java.util.List;
 
 public class IOTViewModel extends ViewModel {
     private IOTRepo iotRepo;
-    private LiveData<IOTRoot> iotRootLiveData;
     private LiveData<Control> iotControlLiveData;
     private LiveData<Sensors> iotSensorsLiveData;
 
@@ -27,10 +26,4 @@ public class IOTViewModel extends ViewModel {
     }
 
     public LiveData<Sensors> getIOTSensorsLiveData(){ return iotSensorsLiveData; }
-
-
-    public void getControlData() {}
-    public void getSensorsData() {}
-
-
 }

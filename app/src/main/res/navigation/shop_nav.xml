@@ -6,17 +6,17 @@
     app:startDestination="@id/seedProductsFragment">
     <fragment
         android:id="@+id/seedProductsFragment"
-        android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.SeedProductsFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.product_categories.SeedProductsFragment"
         android:label="Seeds"
         tools:layout="@layout/fragment_seed_products" />
     <fragment
         android:id="@+id/fertilizerProductsFragment"
-        android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.FertilizerProductsFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.product_categories.FertilizerProductsFragment"
         android:label="Fertilizers"
         tools:layout="@layout/fragment_fertilizer_products" />
     <fragment
         android:id="@+id/toolProductsFragment"
-        android:name="com.graduation.farmerfriend.e_commerce.ui.product_activity.ToolProductsFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.product_categories.ToolProductsFragment"
         android:label="Tools"
         tools:layout="@layout/fragment_tool_products" />
     <fragment

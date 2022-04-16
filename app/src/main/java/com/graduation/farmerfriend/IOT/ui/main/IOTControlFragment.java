@@ -28,10 +28,6 @@ public class IOTControlFragment extends Fragment {
     String buttonText;
     boolean isWaterPumpON = false;
     boolean isFertilizerPumpON = false;
-    private boolean isAuto;
-    private boolean waterSwitch;
-    private boolean ferSwitch;
-    private IOTRoot iotModel;
     IOTRepo iotRepo;
 
     public static IOTControlFragment newInstance() {
@@ -173,6 +169,5 @@ public class IOTControlFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        mViewModel.getControlData();
     }
 }
