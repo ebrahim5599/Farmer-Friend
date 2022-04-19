@@ -39,10 +39,12 @@ public class EcommerceRepo {
         }
         return Instance;
     }
+
     EcommerceRepo(){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
         eCommerceInterface = new retrofit2.Retrofit.Builder()
                 .baseUrl(ECOMMERCE_SERVICE_BASE_URL)
                 .client(client)
@@ -50,6 +52,7 @@ public class EcommerceRepo {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(ECommerceInterface.class);
+
         allProductsLiveData = new MutableLiveData<>();
         seedProductsLiveData = new MutableLiveData<>();
         toolProductsLiveData = new MutableLiveData<>();
