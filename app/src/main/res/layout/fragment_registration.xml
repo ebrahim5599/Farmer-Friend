@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registration.RegistrationFragment">
+    tools:context=".registration.ui.RegistrationFragment">
 
     <ImageView
         android:layout_width="match_parent"
@@ -45,6 +45,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/register_first_name_edit_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
@@ -57,6 +58,7 @@
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" />
                 <EditText
+                    android:id="@+id/register_last_name_edit_text"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -71,6 +73,7 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/register_username_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -85,6 +88,7 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
             <EditText
+                android:id="@+id/register_email_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -94,11 +98,12 @@
                 android:drawableLeft="@drawable/ic_email"
                 android:drawablePadding="10dp"
                 android:hint="Email"
-                android:inputType="textPassword"
+                android:inputType="textEmailAddress"
                 android:padding="16dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
             <EditText
+                android:id="@+id/register_password_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -113,6 +118,7 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
             <EditText
+                android:id="@+id/register_confirm_password_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -141,4 +147,10 @@
 
         </LinearLayout>
     </ScrollView>
-</FrameLayout>
+    <ProgressBar
+        android:id="@+id/loading_register"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+</RelativeLayout>

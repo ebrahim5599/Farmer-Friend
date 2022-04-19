@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registration.LoginFragment">
+    tools:context=".registration.ui.LoginFragment">
 
     <ImageView
         android:layout_width="match_parent"
@@ -36,6 +36,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/login_email_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -52,6 +53,7 @@
                 android:textColorHint="@color/white" />
 
             <EditText
+                android:id="@+id/login_password_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -150,4 +152,10 @@
 <!--            </LinearLayout>-->
         </LinearLayout>
     </ScrollView>
+    <ProgressBar
+        android:id="@+id/loading_login"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 </RelativeLayout>
