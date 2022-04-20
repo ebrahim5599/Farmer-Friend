@@ -162,7 +162,9 @@ public class HomeFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
+        if (item.getItemId() == R.id.community) {
+            Toast.makeText(getContext(), "Community", Toast.LENGTH_SHORT).show();
+        }
         return super.onOptionsItemSelected(item);
     }
 

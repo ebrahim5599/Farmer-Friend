@@ -1,7 +1,5 @@
 package com.graduation.farmerfriend.registration.ui;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
