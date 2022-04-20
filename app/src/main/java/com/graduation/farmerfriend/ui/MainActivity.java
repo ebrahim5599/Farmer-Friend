@@ -29,6 +29,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.graduation.farmerfriend.R;
@@ -93,8 +94,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
 
                 @Override
                 public void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
-                    if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
-                            && networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED)) {
+                    if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
                         Handler handler = new Handler(Looper.getMainLooper());
                         Runnable runnable = new Runnable() {
                             @Override
@@ -254,6 +254,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         return super.onOptionsItemSelected(item);
     }
 
