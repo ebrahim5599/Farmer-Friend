@@ -54,6 +54,7 @@
                     android:layout_marginTop="104dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="Will Smith"
+                    android:gravity="center"
                     android:textColor="@color/black_More_Text"
                     android:textSize="34sp"
                     app:layout_constraintEnd_toEndOf="parent"

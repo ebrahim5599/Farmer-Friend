@@ -16,39 +16,29 @@
             android:layout_height="match_parent"
             tools:ignore="MissingClass" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="104dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/grey_Login_View"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
+            android:background="@color/grey_Login_View">
 
             <ImageView
                 android:id="@+id/image_capture_button"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:layout_marginStart="160dp"
+                android:layout_centerInParent="true"
                 android:src="@drawable/camera" />
 
             <ImageView
                 android:id="@+id/image_gallry_button"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:layout_marginStart="50dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="32dp"
                 android:src="@drawable/gallery" />
 
-            <Button
-                android:id="@+id/last_details"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_marginStart="50dp"
-                android:text="last details"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:visibility="gone" />
-        </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout

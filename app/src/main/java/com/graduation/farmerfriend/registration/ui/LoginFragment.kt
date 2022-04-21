@@ -1,5 +1,7 @@
 package com.graduation.farmerfriend.registration.ui
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.graduation.farmerfriend.R
+import com.graduation.farmerfriend.constants.Constants
 import com.graduation.farmerfriend.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -20,6 +23,7 @@ class LoginFragment : Fragment() {
     private var hasIotSystem : Boolean = false
     private lateinit var registrationViewModel: RegistrationViewModel
     private var emailPattern : String = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    private lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +39,7 @@ class LoginFragment : Fragment() {
                 popExit = R.anim.slide_out_right
             }
         }
+        sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE)
 
         registrationViewModel = ViewModelProvider(this)[RegistrationViewModel::class.java]
 /* 1 */
@@ -64,6 +69,11 @@ class LoginFragment : Fragment() {
         registrationViewModel.userDataMutableLiveData.observe(
             viewLifecycleOwner
         ) { userData ->
+
+            sharedPreferences.edit().putBoolean(Constants.LOGGED_IN, true).apply()
+            sharedPreferences.edit().putString(Constants.FIRST_AND_LAST_NAME,
+                userData.firstName+" " +userData.lastName).apply()
+
             Toast.makeText(context, userData.firstName, Toast.LENGTH_SHORT).show()
             viewBinding.loadingLogin.visibility = View.GONE
             if (userData.hasIotSystem)
