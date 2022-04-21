@@ -1,5 +1,7 @@
 package com.graduation.farmerfriend.control
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.graduation.farmerfriend.R
+import com.graduation.farmerfriend.constants.Constants
 import com.graduation.farmerfriend.databinding.FragmentControlContainerBinding
 
 
@@ -15,6 +18,8 @@ class ControlContainerFragment : Fragment() {
     private lateinit var viewBinding: FragmentControlContainerBinding
     private var loginStatus: Boolean = false
     private var hasIotSystem: Boolean = false
+    private lateinit var sharedPreferences : SharedPreferences
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +28,9 @@ class ControlContainerFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         viewBinding = FragmentControlContainerBinding.inflate(inflater, container, false)
+
+        sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE)
+        loginStatus = sharedPreferences.getBoolean(Constants.LOGGED_IN, false)
 
 //        val options = navOptions {
 //            anim {
