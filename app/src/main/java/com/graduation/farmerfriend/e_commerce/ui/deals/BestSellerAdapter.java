@@ -45,6 +45,7 @@ public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.Be
         if (productArrayList.get(position).productImage != null) {
             String[] imageName = productArrayList.get(position).productImage.split("s/");
             Glide.with(context).load("http://teamweb2022-001-site1.itempurl.com/productImages/" + imageName[1]).into(holder.productImageView);
+        }else {
         }
         int productId = productArrayList.get(position).productId;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
