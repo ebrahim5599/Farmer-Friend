@@ -288,7 +288,7 @@ class CameraFragment : Fragment() {
                 viewBinding.previewImageNow.visibility = View.VISIBLE
                 viewBinding.previewCameraNow.visibility = View.GONE
 
-                finalBitmap = image.image?.toBitmap()?.let { rotateBitmap(it, 0f) }
+                finalBitmap = image.image?.toBitmap()?.let { rotateBitmap(it, 90f) }
 //                viewBinding.showImageHere.setImageBitmap(finalBitmap)
                 Glide.with(this@CameraFragment).load(finalBitmap).into(viewBinding.showImageHere)
             }
