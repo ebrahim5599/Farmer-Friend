@@ -6,8 +6,7 @@
 
     <item android:drawable="@drawable/ic_splash_screen"
         android:gravity="top"
-        android:top="190dp" />
-
+        android:top="180dp" />
 
     <item android:drawable="@drawable/ic_farmer_friend"
         android:gravity="bottom"

@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EcommerceRepo {
     private static EcommerceRepo Instance;
-    private static final String ECOMMERCE_SERVICE_BASE_URL = "http://teamweb2022-001-site1.itempurl.com/";
+    private static final String ECOMMERCE_SERVICE_BASE_URL = "http://teamweb992022-001-site1.htempurl.com/";
     private final ECommerceInterface eCommerceInterface;
     private CompositeDisposable compositeDisposable;
     private static final String TAG = "EcommerceRepo";
