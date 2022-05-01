@@ -167,6 +167,9 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                 } else if (destination.getId() == R.id.hotDealsFragment) {
 //                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
+                }else if (destination.getId() == R.id.about_us) {
+                    toolbar.setVisibility(View.GONE);
+                    bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.bestSellerFragment) {
 //                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);

@@ -1,8 +1,11 @@
 package com.graduation.farmerfriend.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -163,7 +166,15 @@ public class HomeFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.community) {
-            Toast.makeText(getContext(), "Community", Toast.LENGTH_SHORT).show();
+            PackageManager packageManager = getActivity().getPackageManager();
+            Intent intent = packageManager.getLaunchIntentForPackage("com.example.farmer_club");
+            if (intent != null) {
+                startActivity(intent);
+            } else {
+                Intent google_play = new Intent(android.content.Intent.ACTION_VIEW);
+                google_play.setData(Uri.parse("http://play.google.com/store/apps/details?id=com.example.farmer_club"));
+                startActivity(google_play);
+            }
         }
         return super.onOptionsItemSelected(item);
     }
