@@ -270,8 +270,8 @@ class CameraFragment : Fragment() {
         model.close()
         goToActivity()
 
-        viewBinding.previewCameraNow.visibility = View.VISIBLE
         viewBinding.previewImageNow.visibility = View.GONE
+        viewBinding.previewCameraNow.visibility = View.VISIBLE
         startCamera()
     }
 
@@ -289,6 +289,7 @@ class CameraFragment : Fragment() {
                 viewBinding.previewCameraNow.visibility = View.GONE
 
                 finalBitmap = image.image?.toBitmap()?.let { rotateBitmap(it, 90f) }
+
 //                viewBinding.showImageHere.setImageBitmap(finalBitmap)
                 Glide.with(this@CameraFragment).load(finalBitmap).into(viewBinding.showImageHere)
             }
@@ -315,6 +316,7 @@ class CameraFragment : Fragment() {
         val matrix = Matrix()
         matrix.postRotate(angle)
         return Bitmap.createBitmap(source, 0, 0, source.width, source.height, matrix, true)
+
     }
 
     private fun startCamera() {
