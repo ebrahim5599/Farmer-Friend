@@ -279,7 +279,6 @@ class CameraFragment : Fragment() {
         // Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return
 
-
         imageCapture.takePicture(ContextCompat.getMainExecutor(requireContext()), object :
             ImageCapture.OnImageCapturedCallback() {
             @SuppressLint("UnsafeOptInUsageError")
@@ -297,7 +296,7 @@ class CameraFragment : Fragment() {
             override fun onError(exception: ImageCaptureException) {
                 super.onError(exception)
                 Toast.makeText(context, exception.toString(), Toast.LENGTH_SHORT).show()
-                Log.e("TAG", "Photo capture failed: ${exception}", exception)
+                Log.e("TAG", "Photo capture failed: $exception", exception)
             }
 
         }
