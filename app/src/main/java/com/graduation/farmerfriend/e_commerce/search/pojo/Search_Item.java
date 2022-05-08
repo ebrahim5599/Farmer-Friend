@@ -1,4 +1,4 @@
-package com.graduation.farmerfriend.e_commerce.ui.Search;
+package com.graduation.farmerfriend.e_commerce.search.pojo;
 
 public class Search_Item {
 

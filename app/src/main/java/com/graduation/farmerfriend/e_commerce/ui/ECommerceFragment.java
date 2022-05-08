@@ -21,11 +21,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentECommerceBinding;
 import com.graduation.farmerfriend.e_commerce.Data;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
+import com.graduation.farmerfriend.e_commerce.search.ui.SearchViewModel;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ import java.util.ArrayList;
 
 public class ECommerceFragment extends Fragment {
     FragmentECommerceBinding binding;
+    private SearchViewModel searchViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +46,7 @@ public class ECommerceFragment extends Fragment {
         EcommerceFragmentViewModel viewModel = new ViewModelProvider(requireActivity()).get(EcommerceFragmentViewModel.class);
         viewModel.init();
 
+        searchViewModel = new SearchViewModel();
 
         binding.fragmentECommerceSeedsView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,17 +107,6 @@ public class ECommerceFragment extends Fragment {
             }
         });
 
-//        Data[] data_best_seller = {
-//                new Data(R.drawable.image1, "rice", "50$", "no"),
-//                new Data(R.drawable.image2, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image3, "rice", "50$", "no"),
-//                new Data(R.drawable.image4, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image5, "rice", "50$", "no"),
-//                new Data(R.drawable.image6, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image7, "rice", "50$", "no"),
-//                new Data(R.drawable.image8, "fyuegif", "100$", "50%")
-//        };
-
         viewModel.getAllProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
             @Override
             public void onChanged(ArrayList<Product> productArrayList) {
@@ -123,17 +116,6 @@ public class ECommerceFragment extends Fragment {
                 binding.fragmentECommerceRecycleViewBestSeller.setAdapter(recycleViewAdapterBest);
             }
         });
-
-//        Data[] data_hot_deals = {
-//                new Data(R.drawable.image1, "rice", "50$", "no"),
-//                new Data(R.drawable.image2, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image3, "rice", "50$", "no"),
-//                new Data(R.drawable.image4, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image5, "rice", "50$", "no"),
-//                new Data(R.drawable.image6, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image7, "rice", "50$", "no"),
-//                new Data(R.drawable.image8, "fyuegif", "100$", "50%")
-//        };
 
         viewModel.getAllProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
                     @Override
@@ -145,16 +127,6 @@ public class ECommerceFragment extends Fragment {
                 }
         );
 
-//        Data[] data_seeds = {
-//                new Data(R.drawable.image1, "rice", "50$", "no"),
-//                new Data(R.drawable.image2, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image3, "rice", "50$", "no"),
-//                new Data(R.drawable.image4, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image5, "rice", "50$", "no"),
-//                new Data(R.drawable.image6, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image7, "rice", "50$", "no"),
-//                new Data(R.drawable.image8, "fyuegif", "100$", "50%")
-//        };
         viewModel.getSeedProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
             @Override
             public void onChanged(ArrayList<Product> productArrayList) {
@@ -163,17 +135,6 @@ public class ECommerceFragment extends Fragment {
                 binding.fragmentECommerceRecycleviewSeeds.setAdapter(recycleViewAdapters);
             }
         });
-
-//        Data[] data_fertilize = {
-//                new Data(R.drawable.image1, "rice", "50$", "no"),
-//                new Data(R.drawable.image2, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image3, "rice", "50$", "no"),
-//                new Data(R.drawable.image4, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image5, "rice", "50$", "no"),
-//                new Data(R.drawable.image6, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image7, "rice", "50$", "no"),
-//                new Data(R.drawable.image8, "fyuegif", "100$", "50%")
-//        };
 
         viewModel.getFerProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
             @Override
@@ -184,16 +145,6 @@ public class ECommerceFragment extends Fragment {
             }
         });
 
-//        Data[] data_tools = {
-//                new Data(R.drawable.image1, "rice", "50$", "no"),
-//                new Data(R.drawable.image2, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image3, "rice", "50$", "no"),
-//                new Data(R.drawable.image4, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image5, "rice", "50$", "no"),
-//                new Data(R.drawable.image6, "fyuegif", "100$", "50%"),
-//                new Data(R.drawable.image7, "rice", "50$", "no"),
-//                new Data(R.drawable.image8, "fyuegif", "100$", "50%")
-//        };
         viewModel.getToolProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
             @Override
             public void onChanged(ArrayList<Product> productArrayList) {
@@ -215,12 +166,26 @@ public class ECommerceFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.shop_main_menu, menu);
-        SearchManager searchManager =
-                (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(requireActivity().getComponentName()));
+
+        SearchManager searchManager = (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView)menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().getComponentName()));
+        searchView.setQueryHint("type here to search");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Toast.makeText(getContext(), "onQueryTextSubmit "+s, Toast.LENGTH_SHORT).show();
+                searchViewModel.getSearchResult(s);
+            return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                Toast.makeText(getContext(),"onQueryTextChange "+ s, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
     }
 
     @Override

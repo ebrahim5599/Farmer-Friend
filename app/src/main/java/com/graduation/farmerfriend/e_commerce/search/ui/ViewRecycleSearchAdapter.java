@@ -1,4 +1,4 @@
-package com.graduation.farmerfriend.e_commerce.ui.Search;
+package com.graduation.farmerfriend.e_commerce.search.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,15 +7,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.databinding.ItemSearchBinding;
+import com.graduation.farmerfriend.e_commerce.search.pojo.SearchResultPojo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewRecycleSearchAdapter extends RecyclerView.Adapter<ViewRecycleSearchAdapter.ViewHolder>{
 
-    Search_Item[] search ;
+    private List<SearchResultPojo> search = new ArrayList<>();
     Context context ;
 
-    public ViewRecycleSearchAdapter(Context context,Search_Item[] search) {
-        this.search = search;
+    public ViewRecycleSearchAdapter(Context context) {
         this.context = context;
     }
 
@@ -29,15 +33,20 @@ public class ViewRecycleSearchAdapter extends RecyclerView.Adapter<ViewRecycleSe
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.binding.itemsearchTextviewName.setText(search[position].getName());
-        holder.binding.itemsearchTextviewPrice.setText(search[position].getPrice());
-        holder.binding.itemsearchImageviewItem.setImageResource(search[position].getImage());
-        holder.binding.itemsearchTextviewDescription.setText(search[position].getDescription());
+        holder.binding.itemsearchTextviewName.setText(search.get(position).getProductName());
+        holder.binding.itemsearchTextviewPrice.setText(String.valueOf(search.get(position).getPrice()));
+        Glide.with(context).load(search.get(position).getProductImage()).into(holder.binding.itemsearchImageviewItem);
+        holder.binding.itemsearchTextviewDescription.setText(search.get(position).getDescription()+"");
     }
 
     @Override
     public int getItemCount() {
-        return search.length;
+        return search.size();
+    }
+
+    public void setList(List<SearchResultPojo> searchResultList){
+        search = searchResultList;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

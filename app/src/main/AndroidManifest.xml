@@ -29,7 +29,7 @@
             android:name=".camera.CameraResultActivity"
             android:exported="false" />
         <activity
-            android:name=".e_commerce.ui.Search.Search"
+            android:name=".e_commerce.search.ui.SearchActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
