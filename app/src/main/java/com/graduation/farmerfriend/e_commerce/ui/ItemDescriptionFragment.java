@@ -63,7 +63,7 @@ public class ItemDescriptionFragment extends Fragment {
             public void onChanged(Product product) {
                 binding.itemDescriptionTextviewDescription.setText(String.valueOf(product.description));
                 binding.itemDescriptionTextviewName.setText(String.valueOf(product.productName));
-                binding.itemDescriptionTextviewPrice.setText(String.valueOf(product.price));
+            //    binding.itemDescriptionTextviewPrice.setText(String.valueOf(product.price));
                 if (product.productImage != null) {
                     String[] imageName = product.productImage.split("s/");
                     Glide.with(ItemDescriptionFragment.this).load("http://teamweb992022-001-site1.htempurl.com/productImages/" + imageName[1]).into((ImageView) binding.itemDescriptionImageviewProduct);
