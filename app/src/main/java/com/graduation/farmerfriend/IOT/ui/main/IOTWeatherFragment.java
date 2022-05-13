@@ -58,7 +58,7 @@ public class IOTWeatherFragment extends Fragment {
         ProgressBar progressBar = binding.fragmentWeatherProgressBar;
         TextView textViewTemp = binding.fragmentIotWeatherTextViewTemp;
         mViewModel = new ViewModelProvider(requireActivity()).get(IOTViewModel.class);
-        mViewModel.init();
+        mViewModel.init(requireContext());
         mViewModel.getIOTSensorsLiveData().observe(getViewLifecycleOwner(), new Observer<Sensors>() {
             @Override
             public void onChanged(Sensors sensors) {

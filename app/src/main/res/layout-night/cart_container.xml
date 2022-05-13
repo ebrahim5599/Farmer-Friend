@@ -93,17 +93,6 @@
             android:textColor="@color/greenCartText"
             android:textSize="18sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView_price_currency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="2dp"
-            android:text="EGP"
-            android:textColor="@color/greenCartText"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
     </LinearLayout>
 
     <LinearLayout
@@ -168,7 +157,7 @@
         app:layout_constraintTop_toTopOf="@+id/wishlist_button_wishlist">
 
         <TextView
-            android:id="@+id/itemsearchTextviewPrice"
+            android:id="@+id/TextviewTotalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -178,16 +167,6 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView_price_total_currency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="2dp"
-            android:text="EGP"
-            android:textColor="@color/greenCartText"
-            android:textSize="18sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

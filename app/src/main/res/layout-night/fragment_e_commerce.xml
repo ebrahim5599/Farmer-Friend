@@ -160,7 +160,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/hacen_saudi_arabia"
-                    android:text="Best Seller"
+                    android:text="@string/all_products"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -186,45 +186,6 @@
                     android:orientation="horizontal" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/relative_layout_background3"
-                android:backgroundTint="@color/grey_Ecomerce_RelativeLayout">
-
-                <TextView
-                    android:id="@+id/fragment_e_commerce_textview_hot_deals_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:fontFamily="@font/hacen_saudi_arabia"
-                    android:text="Hot deals"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/fragment_e_commerce_textview_hotDealsViewAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="16dp"
-                    android:fontFamily="@font/hacen_saudi_arabia"
-                    android:text="view all"
-                    android:textColor="@color/green_Ecommerce_Text"
-                    android:textSize="16sp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/fragment_e_commerce_recycleView_HotDeals"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/fragment_e_commerce_textview_hot_deals_label"
-                    android:layout_marginStart="20dp"
-                    android:orientation="horizontal" />
-            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"

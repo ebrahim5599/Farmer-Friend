@@ -19,4 +19,11 @@ public class SharedPref {
     public void putStringPref(String key,String value){
         editor.putString(key,value).apply();
     }
+
+    public boolean getBoolPref(String key) {
+       return sharedPreferences.getBoolean(key,false);
+    }
+    public void putBoolPref(String key,boolean value){
+        editor.putBoolean(key,value).apply();
+    }
 }

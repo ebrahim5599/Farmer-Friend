@@ -114,6 +114,6 @@
     <string name="weather">Weather</string>
     <string name="soil">Soil</string>
     <string name="no_item_description">No item description</string>
-
+    <string name="all_products">All Products</string>
 
 </resources>
