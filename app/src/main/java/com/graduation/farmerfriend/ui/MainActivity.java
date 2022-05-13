@@ -182,9 +182,9 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                 } else if (destination.getId() == R.id.userDataFragment) {
                     toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
-                }
-
-                else if (destination.getId() == R.id.loginFragment) {
+                }else if (destination.getId() == R.id.searchFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else if (destination.getId() == R.id.loginFragment) {
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.registrationFragment) {
                     bottomNavigationView.setVisibility(View.GONE);

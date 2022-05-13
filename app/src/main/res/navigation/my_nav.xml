@@ -53,6 +53,10 @@
         <action
             android:id="@+id/action_ECommerceFragment_to_itemDescriptionFragment"
             app:destination="@id/itemDescriptionFragment" />
+        <action
+            android:id="@+id/action_ECommerceFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/moreFragment"
@@ -311,4 +315,11 @@
         android:name="com.graduation.farmerfriend.about_us"
         android:label=" About As"
         tools:layout="@layout/fragment_about_us" />
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.search.ui.SearchFragment"
+        android:label="@string/title_activity_search"
+        tools:layout="@layout/fragment_search" />
+
 </navigation>
