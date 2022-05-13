@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.imageview.ShapeableImageView;
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.bitmaps.BitmapHandling;
 import com.graduation.farmerfriend.ecommerce_models.Cart;
 import com.graduation.farmerfriend.ecommerce_models.PatchCart;
 
