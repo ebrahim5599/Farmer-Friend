@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:shapeAppearanceOverlay="@style/roundedImage"
-        app:srcCompat="@drawable/corn00" />
+        app:srcCompat="@drawable/no_product" />
 
 
     <TextView

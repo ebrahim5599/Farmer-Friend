@@ -270,15 +270,14 @@ class CameraFragment : Fragment() {
         model.close()
         goToActivity()
 
-        viewBinding.previewCameraNow.visibility = View.VISIBLE
         viewBinding.previewImageNow.visibility = View.GONE
+        viewBinding.previewCameraNow.visibility = View.VISIBLE
         startCamera()
     }
 
     private fun takePhoto() {
         // Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return
-
 
         imageCapture.takePicture(ContextCompat.getMainExecutor(requireContext()), object :
             ImageCapture.OnImageCapturedCallback() {
@@ -288,7 +287,8 @@ class CameraFragment : Fragment() {
                 viewBinding.previewImageNow.visibility = View.VISIBLE
                 viewBinding.previewCameraNow.visibility = View.GONE
 
-                finalBitmap = image.image?.toBitmap()?.let { rotateBitmap(it, 0f) }
+                finalBitmap = image.image?.toBitmap()?.let { rotateBitmap(it, 90f) }
+
 //                viewBinding.showImageHere.setImageBitmap(finalBitmap)
                 Glide.with(this@CameraFragment).load(finalBitmap).into(viewBinding.showImageHere)
             }
@@ -296,7 +296,7 @@ class CameraFragment : Fragment() {
             override fun onError(exception: ImageCaptureException) {
                 super.onError(exception)
                 Toast.makeText(context, exception.toString(), Toast.LENGTH_SHORT).show()
-                Log.e("TAG", "Photo capture failed: ${exception}", exception)
+                Log.e("TAG", "Photo capture failed: $exception", exception)
             }
 
         }
@@ -315,6 +315,7 @@ class CameraFragment : Fragment() {
         val matrix = Matrix()
         matrix.postRotate(angle)
         return Bitmap.createBitmap(source, 0, 0, source.width, source.height, matrix, true)
+
     }
 
     private fun startCamera() {

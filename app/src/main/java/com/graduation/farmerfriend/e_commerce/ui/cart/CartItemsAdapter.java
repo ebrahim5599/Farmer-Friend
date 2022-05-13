@@ -80,6 +80,7 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.Cart
             cartViewModel.changeQuantity(cartId, patchCarts);
             holder.textViewTotalPrice.setText(String.format(Locale.US,"%.2f eg", carts.get(holder.getAbsoluteAdapterPosition()).product.price * carts.get(holder.getAbsoluteAdapterPosition()).quantity));
         });
+        holder.imageViewItem.setImageBitmap(BitmapHandling.decodeSampledBitmapFromResource(context.getResources(), R.drawable.no_product, 250, 100));
         holder.textViewPrice.setText(String.format(Locale.US,"%.2f eg", carts.get(position).product.price));
         holder.textViewNumberOfItems.setText(String.format(Locale.US,"%d", carts.get(position).quantity));
         holder.textViewItemName.setText(carts.get(position).product.productName);

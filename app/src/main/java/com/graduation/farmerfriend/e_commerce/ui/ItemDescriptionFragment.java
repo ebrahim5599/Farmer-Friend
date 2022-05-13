@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
@@ -72,7 +73,7 @@ public class ItemDescriptionFragment extends Fragment {
 
                 if (product.productImage != null) {
                     String[] imageName = product.productImage.split("s/");
-                    Glide.with(ItemDescriptionFragment.this).load("http://teamweb2022-001-site1.itempurl.com/productImages/" + imageName[1]).into(binding.itemDescriptionImageviewProduct);
+                    Glide.with(ItemDescriptionFragment.this).load("http://teamweb992022-001-site1.htempurl.com/productImages/" + imageName[1]).into((ImageView) binding.itemDescriptionImageviewProduct);
                 }
 
                 onclick(product);
