@@ -35,10 +35,15 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
         holder.product_name.setText(list.get(position).getProductName());
-        holder.product_description.setText(String.valueOf(list.get(position).getDescription()));
         holder.product_price.setText(String.valueOf(list.get(position).getPrice()));
+
+        if (!String.valueOf(list.get(position).getDescription()).equals("null"))
+            holder.product_description.setText(String.valueOf(list.get(position).getDescription()));
+        else
+            holder.product_description.setText(R.string.no_item_description);
+
         if (list.get(position).getProductImage() != null)
-            Glide.with(context).load("http://teamweb992022-001-site1.htempurl.com/"+list.get(position)
+            Glide.with(context).load("http://teamweb992022-001-site1.htempurl.com/" + list.get(position)
                     .getProductImage()).into(holder.product_image);
     }
 
@@ -47,12 +52,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         return list.size();
     }
 
-    public void setList(List<SearchResultPojo> searchResultList){
+    public void setList(List<SearchResultPojo> searchResultList) {
         list = searchResultList;
         notifyDataSetChanged();
     }
 
-    public void setListEmpty(){
+    public void setListEmpty() {
         list.clear();
         notifyDataSetChanged();
     }
