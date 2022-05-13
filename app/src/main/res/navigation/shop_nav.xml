@@ -26,7 +26,7 @@
         tools:layout="@layout/fragment_wishlist" />
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.graduation.farmerfriend.CartFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
 </navigation>

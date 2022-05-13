@@ -3,6 +3,8 @@ package com.graduation.farmerfriend.constants;
 public class Constants {
     public static String MAIN_SHARED_PREFERENCES = "MAIN";
     public static String LOCATION = "LOCATION";
+    public static String USER_ID = "USER_ID";
+    public static String HAS_IOT_SYSTEM ="HAS_IOT_SYSTEM";
     public static String LOCATION_ADDRESS = "LOCATION_ADDRESS";
     public static String NAVIGATION_FRAGMENT = "FRAGMENT NAME";
     public static String FRAGMENT_SEEDS = "SEEDS";

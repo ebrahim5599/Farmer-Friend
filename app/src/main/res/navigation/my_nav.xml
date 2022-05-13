@@ -51,9 +51,6 @@
             android:id="@+id/action_ECommerceFragment_to_toolProductsFragment"
             app:destination="@id/toolProductsFragment" />
         <action
-            android:id="@+id/action_ECommerceFragment_to_hotDealsFragment"
-            app:destination="@id/hotDealsFragment" />
-        <action
             android:id="@+id/action_ECommerceFragment_to_itemDescriptionFragment"
             app:destination="@id/itemDescriptionFragment" />
     </fragment>
@@ -117,23 +114,11 @@
     <!--    fragments of deals -->
 
 
-    <fragment
-        android:id="@+id/hotDealsFragment"
-        android:name="com.graduation.farmerfriend.e_commerce.ui.deals.HotDealsFragment"
-        android:label="@string/hot_deals"
-        tools:layout="@layout/fragment_hot_deals">
-        <action
-            android:id="@+id/action_hotDealsFragment_to_bestSellerFragment"
-            app:destination="@id/bestSellerFragment" />
-        <action
-            android:id="@+id/action_hotDealsFragment_to_itemDescriptionFragment"
-            app:destination="@id/itemDescriptionFragment" />
-    </fragment>
 
     <fragment
         android:id="@+id/bestSellerFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.deals.BestSellerFragment"
-        android:label="@string/best_sellers"
+        android:label="@string/all_products"
         tools:layout="@layout/fragment_best_selers">
         <action
             android:id="@+id/action_bestSellerFragment_to_wishlistFragment"
@@ -149,7 +134,7 @@
 
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.graduation.farmerfriend.CartFragment"
+        android:name="com.graduation.farmerfriend.e_commerce.ui.cart.CartFragment"
         android:label="@string/Cart"
         tools:layout="@layout/fragment_cart">
         <argument

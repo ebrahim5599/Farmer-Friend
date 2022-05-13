@@ -16,8 +16,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="320dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/welcome_to_iot_light" />
+            android:scaleType="fitCenter"/>
 
         <FrameLayout
             android:id="@+id/go_to_farm"

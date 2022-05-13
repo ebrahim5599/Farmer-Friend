@@ -74,17 +74,10 @@ public class ECommerceFragment extends Fragment {
             }
         });
 
-        binding.fragmentECommerceTextviewHotDealsViewAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.hotDealsFragment);
-            }
-        });
 
         binding.fragmentECommerceTextviewSeedsViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Navigation.findNavController(view).navigate(R.id.seedProductsFragment);
             }
         });
@@ -119,7 +112,7 @@ public class ECommerceFragment extends Fragment {
             public void onChanged(ArrayList<Product> productArrayList) {
 
                 binding.fragmentECommerceRecycleViewBestSeller.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                ViewRecycleProductsAdapter recycleViewAdapterBest = new ViewRecycleProductsAdapter(getContext(), productArrayList);
+                ViewRecycleProductsAdapter recycleViewAdapterBest = new ViewRecycleProductsAdapter(getContext(), productArrayList,"Ecommerce");
                 binding.fragmentECommerceRecycleViewBestSeller.setAdapter(recycleViewAdapterBest);
             }
         });
@@ -135,15 +128,7 @@ public class ECommerceFragment extends Fragment {
 //                new Data(R.drawable.image8, "fyuegif", "100$", "50%")
 //        };
 
-        viewModel.getAllProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
-                    @Override
-                    public void onChanged(ArrayList<Product> productArrayList) {
-                        binding.fragmentECommerceRecycleViewHotDeals.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                        ViewRecycleProductsAdapter recycleViewAdapterHot = new ViewRecycleProductsAdapter(getContext(), productArrayList);
-                        binding.fragmentECommerceRecycleViewHotDeals.setAdapter(recycleViewAdapterHot);
-                    }
-                }
-        );
+
 
 //        Data[] data_seeds = {
 //                new Data(R.drawable.image1, "rice", "50$", "no"),
@@ -159,7 +144,7 @@ public class ECommerceFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<Product> productArrayList) {
                 binding.fragmentECommerceRecycleviewSeeds.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                ViewRecycleProductsAdapter recycleViewAdapters = new ViewRecycleProductsAdapter(getContext(), productArrayList);
+                ViewRecycleProductsAdapter recycleViewAdapters = new ViewRecycleProductsAdapter(getContext(), productArrayList,"Ecommerce");
                 binding.fragmentECommerceRecycleviewSeeds.setAdapter(recycleViewAdapters);
             }
         });
@@ -179,7 +164,7 @@ public class ECommerceFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<Product> productArrayList) {
                 binding.fragmentECommerceRecycleviewFertilizers.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                ViewRecycleProductsAdapter recycleViewAdapterFer = new ViewRecycleProductsAdapter(getContext(), productArrayList);
+                ViewRecycleProductsAdapter recycleViewAdapterFer = new ViewRecycleProductsAdapter(getContext(), productArrayList,"Ecommerce");
                 binding.fragmentECommerceRecycleviewFertilizers.setAdapter(recycleViewAdapterFer);
             }
         });
@@ -198,7 +183,7 @@ public class ECommerceFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<Product> productArrayList) {
                 binding.fragmentECommerceRecycleviewTools.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                ViewRecycleProductsAdapter recycleViewAdaptert = new ViewRecycleProductsAdapter(getContext(), productArrayList);
+                ViewRecycleProductsAdapter recycleViewAdaptert = new ViewRecycleProductsAdapter(getContext(), productArrayList,"Ecommerce");
                 binding.fragmentECommerceRecycleviewTools.setAdapter(recycleViewAdaptert);
             }
         });

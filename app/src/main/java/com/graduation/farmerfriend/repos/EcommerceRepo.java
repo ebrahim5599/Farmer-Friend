@@ -6,6 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.graduation.farmerfriend.apis.ECommerceInterface;
+import com.graduation.farmerfriend.ecommerce_models.Cart;
+import com.graduation.farmerfriend.ecommerce_models.PatchCart;
+import com.graduation.farmerfriend.ecommerce_models.PostCart;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
 import java.util.ArrayList;
@@ -23,15 +26,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EcommerceRepo {
     private static EcommerceRepo Instance;
-    private static final String ECOMMERCE_SERVICE_BASE_URL = "http://teamweb2022-001-site1.itempurl.com/";
+    private static final String ECOMMERCE_SERVICE_BASE_URL = "http://teamweb992022-001-site1.htempurl.com/";
     private final ECommerceInterface eCommerceInterface;
     private CompositeDisposable compositeDisposable;
     private static final String TAG = "EcommerceRepo";
-    private final MutableLiveData<ArrayList<Product>> allProductsLiveData ;
-    private final MutableLiveData<ArrayList<Product>> seedProductsLiveData ;
-    private final MutableLiveData<ArrayList<Product>> toolProductsLiveData ;
-    private final MutableLiveData<ArrayList<Product>> ferProductsLiveData ;
-    private final MutableLiveData<Product> singleProductLiveData ;
+    private final MutableLiveData<ArrayList<Product>> allProductsLiveData;
+    private final MutableLiveData<ArrayList<Product>> seedProductsLiveData;
+    private final MutableLiveData<ArrayList<Product>> toolProductsLiveData;
+    private final MutableLiveData<ArrayList<Product>> ferProductsLiveData;
+    private final MutableLiveData<Product> singleProductLiveData;
+    private final MutableLiveData<ArrayList<Cart>> cartLiveData;
 
     public static EcommerceRepo getInstance() {
         if (Instance == null) {
@@ -40,7 +44,7 @@ public class EcommerceRepo {
         return Instance;
     }
 
-    EcommerceRepo(){
+    EcommerceRepo() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -58,9 +62,10 @@ public class EcommerceRepo {
         toolProductsLiveData = new MutableLiveData<>();
         ferProductsLiveData = new MutableLiveData<>();
         singleProductLiveData = new MutableLiveData<>();
+        cartLiveData = new MutableLiveData<>();
     }
 
-    public void getEcommerceAllProducts(){
+    public void getEcommerceAllProducts() {
         Single<ArrayList<Product>> allProductsObservable = eCommerceInterface.getAllProducts()
                 .subscribeOn(Schedulers.io());
         compositeDisposable = new CompositeDisposable();
@@ -75,7 +80,7 @@ public class EcommerceRepo {
             @Override
             public void onSuccess(@NonNull ArrayList<Product> product) {
                 allProductsLiveData.postValue(product);
-                Log.d(TAG,String.valueOf(product.get(2).quantity));
+                Log.d(TAG, String.valueOf(product.get(2).quantity));
             }
 
             @Override
@@ -86,7 +91,7 @@ public class EcommerceRepo {
         allProductsObservable.subscribe(allProductsObserver);
     }
 
-    public void getEcommerceSeedProducts(){
+    public void getEcommerceSeedProducts() {
         Single<ArrayList<Product>> seedProductsObservable = eCommerceInterface.getSeedProducts()
                 .subscribeOn(Schedulers.io());
         compositeDisposable = new CompositeDisposable();
@@ -101,8 +106,9 @@ public class EcommerceRepo {
             @Override
             public void onSuccess(@NonNull ArrayList<Product> product) {
                 seedProductsLiveData.postValue(product);
-                Log.d(TAG,String.valueOf(product.get(0).productName));
+                Log.d(TAG, String.valueOf(product.get(0).productName));
             }
+
             @Override
             public void onError(@NonNull Throwable e) {
                 Log.d(TAG, "onError:" + e.getMessage());
@@ -111,7 +117,7 @@ public class EcommerceRepo {
         seedProductsObservable.subscribe(seedProductsObserver);
     }
 
-    public void getEcommerceFerProducts(){
+    public void getEcommerceFerProducts() {
         Single<ArrayList<Product>> ferProductsObservable = eCommerceInterface.getFerProducts()
                 .subscribeOn(Schedulers.io());
         compositeDisposable = new CompositeDisposable();
@@ -122,11 +128,13 @@ public class EcommerceRepo {
             public void onSubscribe(@NonNull Disposable d) {
                 compositeDisposable.add(d);
             }
+
             @Override
             public void onSuccess(@NonNull ArrayList<Product> product) {
                 ferProductsLiveData.postValue(product);
-                Log.d(TAG,String.valueOf(product.get(0).productName));
+                Log.d(TAG, String.valueOf(product.get(0).productName));
             }
+
             @Override
             public void onError(@NonNull Throwable e) {
                 Log.d(TAG, "onError: " + e.getMessage());
@@ -135,7 +143,7 @@ public class EcommerceRepo {
         ferProductsObservable.subscribe(ferProductsObserver);
     }
 
-    public void getEcommerceToolProducts(){
+    public void getEcommerceToolProducts() {
         Single<ArrayList<Product>> toolProductsObservable = eCommerceInterface.getToolProducts()
                 .subscribeOn(Schedulers.io());
         compositeDisposable = new CompositeDisposable();
@@ -146,11 +154,13 @@ public class EcommerceRepo {
             public void onSubscribe(@NonNull Disposable d) {
                 compositeDisposable.add(d);
             }
+
             @Override
             public void onSuccess(@NonNull ArrayList<Product> product) {
                 toolProductsLiveData.postValue(product);
-                Log.d(TAG,String.valueOf(product.get(0).productName));
+                Log.d(TAG, String.valueOf(product.get(0).productName));
             }
+
             @Override
             public void onError(@NonNull Throwable e) {
                 Log.d(TAG, "onError: " + e.getMessage());
@@ -158,7 +168,8 @@ public class EcommerceRepo {
         };
         toolProductsObservable.subscribe(toolProductsObserver);
     }
-    public void getProductByID(int id){
+
+    public void getProductByID(int id) {
         Single<Product> productSingle = eCommerceInterface.getProduct(id).subscribeOn(Schedulers.io());
         SingleObserver<Product> productSingleObserver = new SingleObserver<Product>() {
             @Override
@@ -168,8 +179,33 @@ public class EcommerceRepo {
 
             @Override
             public void onSuccess(@NonNull Product product) {
-                    singleProductLiveData.postValue(product);
+                singleProductLiveData.postValue(product);
 //                Log.d(TAG, "onSuccess: "+product.productName);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.d(TAG, "onError: " + e.getMessage());
+            }
+        };
+        productSingle.subscribe(productSingleObserver);
+
+    }
+
+    public void getCartItems(String userID) {
+        Single<ArrayList<Cart>> cartSingle = eCommerceInterface.getCartItems(userID).subscribeOn(Schedulers.io());
+
+        Log.d(TAG, "onSuccess: ");
+        SingleObserver<ArrayList<Cart>> cartSingleObserver = new SingleObserver<ArrayList<Cart>>() {
+
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(@NonNull ArrayList<Cart> carts) {
+                cartLiveData.postValue(carts);
             }
 
             @Override
@@ -177,24 +213,90 @@ public class EcommerceRepo {
                 Log.d(TAG, "onError: "+e.getMessage());
             }
         };
-        productSingle.subscribe(productSingleObserver);
+        cartSingle.subscribe(cartSingleObserver);
 
     }
+    public void patchQuantity(int cartID , ArrayList<PatchCart> patchCarts){
+        Single<Object> objectSingle = eCommerceInterface.changeQuantity(cartID,patchCarts).subscribeOn(Schedulers.io());
+        SingleObserver<Object> observer = new SingleObserver<Object>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
 
-    public LiveData<ArrayList<Product>> getAllLiveDataProducts(){
+            }
+
+            @Override
+            public void onSuccess(@NonNull Object o) {
+                Log.d(TAG, "onSuccess: patching");
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.d(TAG, "onError: "+e.toString());
+            }
+        };
+        objectSingle.subscribe(observer);
+    }
+    public void deleteProduct(int productId,String userId){
+        Single<Object> single =  eCommerceInterface.deleteProductFromCart(productId,userId).subscribeOn(Schedulers.io());
+        SingleObserver<Object> observer = new SingleObserver<Object>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(@NonNull Object o) {
+
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+
+            }
+        };
+        single.subscribe(observer);
+    }
+    public void addToCart(PostCart postCart){
+        Single<PostCart> cartSingle = eCommerceInterface.addToCart(postCart).subscribeOn(Schedulers.io());
+        SingleObserver<PostCart> cartSingleObserver =  new SingleObserver<PostCart>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(@NonNull PostCart postCart) {
+
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+
+            }
+        };
+        cartSingle.subscribe(cartSingleObserver);
+    }
+    public LiveData<ArrayList<Product>> getAllLiveDataProducts() {
         return allProductsLiveData;
     }
 
-    public LiveData<ArrayList<Product>> getSeedLiveDataProducts(){
+    public LiveData<ArrayList<Product>> getSeedLiveDataProducts() {
         return seedProductsLiveData;
     }
-    public LiveData<ArrayList<Product>> getToolLiveDataProducts(){
+
+    public LiveData<ArrayList<Product>> getToolLiveDataProducts() {
         return toolProductsLiveData;
     }
-    public LiveData<ArrayList<Product>> getFerLiveDataProducts(){
+
+    public LiveData<ArrayList<Product>> getFerLiveDataProducts() {
         return ferProductsLiveData;
     }
-    public LiveData<Product> getProductLiveData(){
+
+    public LiveData<Product> getProductLiveData() {
         return singleProductLiveData;
+    }
+
+    public LiveData<ArrayList<Cart>> getCartLiveData() {
+        return cartLiveData;
     }
 }

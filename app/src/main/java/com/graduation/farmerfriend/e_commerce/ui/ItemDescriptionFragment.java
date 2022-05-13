@@ -14,17 +14,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentItemDescriptionBinding;
+import com.graduation.farmerfriend.ecommerce_models.PostCart;
 import com.graduation.farmerfriend.ecommerce_models.Product;
+import com.graduation.farmerfriend.sharedPreferences.SharedPref;
 
 
 public class ItemDescriptionFragment extends Fragment {
     FragmentItemDescriptionBinding binding;
     private ItemDescViewModel viewModel;
     private static final String TAG = "ItemDescriptionFragment";
+    private SharedPref sharedPref;
 
 //    @Override
 //    public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +56,7 @@ public class ItemDescriptionFragment extends Fragment {
         viewModel.init();
         viewModel.getProductById(ItemDescriptionFragmentArgs.fromBundle(getArguments()).getId());
         Log.d(TAG, "onCreateView: " + ItemDescriptionFragmentArgs.fromBundle(getArguments()).getId());
+        sharedPref = new SharedPref(requireContext(),Constants.MAIN_SHARED_PREFERENCES);
         return view;
     }
 
@@ -63,9 +69,28 @@ public class ItemDescriptionFragment extends Fragment {
                 binding.itemDescriptionTextviewDescription.setText(String.valueOf(product.description));
                 binding.itemDescriptionTextviewName.setText(String.valueOf(product.productName));
                 binding.itemDescriptionTextviewPrice.setText(String.valueOf(product.price));
+
                 if (product.productImage != null) {
                     String[] imageName = product.productImage.split("s/");
                     Glide.with(ItemDescriptionFragment.this).load("http://teamweb2022-001-site1.itempurl.com/productImages/" + imageName[1]).into(binding.itemDescriptionImageviewProduct);
+                }
+
+                onclick(product);
+            }
+        });
+    }
+
+    private void onclick(Product product) {
+        binding.itemDescriptionButtonAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
+                    PostCart postCart = new PostCart(product.productId,sharedPref.getStringPref(Constants.USER_ID,""));
+                    viewModel.addToCart(postCart);
+                    Toast.makeText(requireContext(),"تمت اضافة "+product.productName +" لشنطة التسوق",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(requireContext(), "يرجى تسجيل الدخول حتى تستطيع الاضافة الى العربة ",Toast.LENGTH_SHORT).show();
+                    //TODO navigate to sign in fragment
                 }
             }
         });

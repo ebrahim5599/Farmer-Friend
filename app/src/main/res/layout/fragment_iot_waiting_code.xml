@@ -28,6 +28,7 @@
             android:text="Our team will contact with you soon."/>
 
         <EditText
+            android:id="@+id/iot_waiting_code_ET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
