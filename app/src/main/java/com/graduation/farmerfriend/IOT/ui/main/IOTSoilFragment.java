@@ -35,7 +35,7 @@ public class IOTSoilFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentIotSoilBinding.inflate(inflater, container, false);
         mViewModel = new ViewModelProvider(requireActivity()).get(IOTViewModel.class);
-        mViewModel.init();
+        mViewModel.init(requireContext());
         mViewModel.getIOTSensorsLiveData().observe(getViewLifecycleOwner(), new Observer<Sensors>() {
             @Override
             public void onChanged(Sensors sensors) {

@@ -49,6 +49,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/btnAddToCart"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_below="@id/product_name"

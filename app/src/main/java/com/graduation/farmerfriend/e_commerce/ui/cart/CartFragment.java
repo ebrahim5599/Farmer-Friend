@@ -1,11 +1,12 @@
-package com.graduation.farmerfriend;
+package com.graduation.farmerfriend.e_commerce.ui.cart;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,18 +14,29 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentCartBinding;
-import com.graduation.farmerfriend.e_commerce.ui.cart.CartItemsAdapter;
-import com.graduation.farmerfriend.e_commerce.ui.cart.UserDataFragment;
+import com.graduation.farmerfriend.ecommerce_models.Cart;
+import com.graduation.farmerfriend.home.HomeViewModel;
+import com.graduation.farmerfriend.sharedPreferences.SharedPref;
+
+import java.util.ArrayList;
 
 
 public class CartFragment extends Fragment {
 
-    FragmentCartBinding binding;
-
+    private FragmentCartBinding binding;
+    private CartViewModel cartViewModel;
+    private SharedPref sharedPref;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPref = new SharedPref(requireContext(),Constants.MAIN_SHARED_PREFERENCES);
+        cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+        cartViewModel.init();
+        cartViewModel.getCartData(sharedPref.getStringPref(Constants.USER_ID,null));
 
         // This callback will only be called when MyFragment is at least Started.
 //        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
@@ -52,10 +64,14 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-
-        CartItemsAdapter adapter = new CartItemsAdapter(requireContext());
-        binding.cartRecyclerView.setAdapter(adapter);
-        binding.cartRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        cartViewModel.getCartLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Cart>>() {
+                    @Override
+                    public void onChanged(ArrayList<Cart> carts) {
+                        CartItemsAdapter adapter = new CartItemsAdapter(CartFragment.this,requireContext(),carts,sharedPref.getStringPref(Constants.USER_ID,""));
+                        binding.cartRecyclerView.setAdapter(adapter);
+                        binding.cartRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+                    }
+                });
 
 //        Drawable mDivider = ContextCompat.getDrawable(requireContext(), R.drawable.ic_divider);
         DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);

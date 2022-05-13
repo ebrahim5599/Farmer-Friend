@@ -38,9 +38,9 @@ public class IOTControlFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentIotControlBinding.inflate(inflater, container, false);
-        iotRepo = IOTRepo.getInstance();
+        iotRepo = IOTRepo.getInstance(requireContext());
         mViewModel = new ViewModelProvider(requireActivity()).get(IOTViewModel.class);
-        mViewModel.init();
+        mViewModel.init(requireContext());
         mViewModel.getIOTControlLiveData().observe(getViewLifecycleOwner(), new Observer<Control>() {
             @Override
             public void onChanged(Control control) {

@@ -39,7 +39,7 @@ public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.Be
 
     @Override
     public void onBindViewHolder(@NonNull BestSellerViewHolder holder, int position) {
-        holder.productPriceTextView.setText(String.format("%deg", productArrayList.get(position).price));
+        holder.productPriceTextView.setText(String.format("%.2f eg", productArrayList.get(position).price));
         holder.productNameTextView.setText(productArrayList.get(position).productName);
 
         if (productArrayList.get(position).productImage != null) {
