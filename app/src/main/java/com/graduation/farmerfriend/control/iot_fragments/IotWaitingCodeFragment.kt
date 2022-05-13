@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.google.firebase.database.*
@@ -99,7 +98,7 @@ class IotWaitingCodeFragment : Fragment() {
 
             when {
 
-                viewBinding.iotWaitingCodeET.text.toString() == sharedPref.getStringPref(
+                viewBinding.iotWaitingCodeText.text.toString() == sharedPref.getStringPref(
                     Constants.USER_ID, ""
                 ) -> {
                     val rootRef = FirebaseDatabase.getInstance().reference

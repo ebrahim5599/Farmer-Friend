@@ -113,9 +113,9 @@ public class ECommerceFragment extends Fragment {
         viewModel.getAllProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
                     @Override
                     public void onChanged(ArrayList<Product> productArrayList) {
-                        binding.fragmentECommerceRecycleViewHotDeals.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                        ViewRecycleProductsAdapter recycleViewAdapterHot = new ViewRecycleProductsAdapter(getContext(), productArrayList);
-                        binding.fragmentECommerceRecycleViewHotDeals.setAdapter(recycleViewAdapterHot);
+                        binding.fragmentECommerceRecycleViewBestSeller.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
+                        ViewRecycleProductsAdapter recycleViewAdapterHot = new ViewRecycleProductsAdapter(getContext(), productArrayList,"Ecommerce");
+                        binding.fragmentECommerceRecycleViewBestSeller.setAdapter(recycleViewAdapterHot);
                     }
                 }
         );
