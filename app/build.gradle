@@ -101,8 +101,12 @@ dependencies {
     //rx android
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
-//    rxandroid adapter
+    // rx android adapter
     implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
+
+    // Splash Screen
+    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+
 
 }
 
