@@ -39,7 +39,7 @@ public class MoreFragment extends Fragment {
         mutableLiveDataForName = new MutableLiveData<>();
 
 
-        binding.fragmentMoreImageviewUserimage.setImageResource(R.drawable.will_smith);
+        binding.fragmentMoreImageviewUserimage.setImageResource(R.mipmap.ic_launcher);
         binding.fragmentMoreTextviewName.setText(sharedPreferences.getString(
                 Constants.FIRST_AND_LAST_NAME,"Log in"));
         
