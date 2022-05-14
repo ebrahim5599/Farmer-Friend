@@ -3,19 +3,19 @@ package com.graduation.farmerfriend.registration.ui
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.graduation.farmerfriend.R
 import com.graduation.farmerfriend.constants.Constants
 import com.graduation.farmerfriend.databinding.FragmentLoginBinding
+import com.graduation.farmerfriend.sharedPreferences.SharedPref
 
 class LoginFragment : Fragment() {
 
@@ -24,6 +24,7 @@ class LoginFragment : Fragment() {
     private lateinit var registrationViewModel: RegistrationViewModel
     private var emailPattern : String = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
     private lateinit var sharedPreferences : SharedPreferences
+    private lateinit var sharedPref : SharedPref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +41,7 @@ class LoginFragment : Fragment() {
             }
         }
         sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE)
+        sharedPref = SharedPref(requireContext(),Constants.MAIN_SHARED_PREFERENCES)
 
         registrationViewModel = ViewModelProvider(this)[RegistrationViewModel::class.java]
 /* 1 */
@@ -73,7 +75,9 @@ class LoginFragment : Fragment() {
             sharedPreferences.edit().putBoolean(Constants.LOGGED_IN, true).apply()
             sharedPreferences.edit().putString(Constants.FIRST_AND_LAST_NAME,
                 userData.firstName+" " +userData.lastName).apply()
-
+            sharedPref.putStringPref(Constants.USER_ID,userData.id)
+            Log.d("TAG", "onCreateView: "+userData.id)
+            sharedPref.putBoolPref(Constants.HAS_IOT_SYSTEM,userData.hasIotSystem)
             Toast.makeText(context, userData.firstName, Toast.LENGTH_SHORT).show()
             viewBinding.loadingLogin.visibility = View.GONE
             if (userData.hasIotSystem)

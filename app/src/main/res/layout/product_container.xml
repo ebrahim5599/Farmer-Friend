@@ -6,7 +6,7 @@
     android:background="#F3F2F2">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="250dp"
+        android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         app:cardCornerRadius="16dp"
@@ -49,6 +49,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/btnAddToCart"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_below="@id/product_name"
