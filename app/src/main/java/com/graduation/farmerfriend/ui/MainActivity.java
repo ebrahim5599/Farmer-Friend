@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.splashscreen.SplashScreen;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Handle the splash screen transition.
+        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
+
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_FarmerFriend);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -73,11 +77,11 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         viewModel.getEcommerceSeedProducts();
         viewModel.getEcommerceFerProducts();
         viewModel.getEcommerceToolProducts();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         ConnectivityManager connectivityManager = getSystemService(ConnectivityManager.class);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

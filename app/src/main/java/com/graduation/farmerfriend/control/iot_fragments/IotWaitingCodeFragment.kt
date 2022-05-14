@@ -49,7 +49,7 @@ class IotWaitingCodeFragment : Fragment() {
         viewBinding.iotWaitingCodeButton.setOnClickListener {
             findNavController().navigate(R.id.next_action, null, options)
 
-           if (viewBinding.iotWaitingCodeText.text.toString() == "5" ){
+           if (viewBinding.iotWaitingCodeText.text.toString() == "5"){
                var data = Data_HasIoT("/hasIotSystem","replace",true)
                Check(data)
            }
@@ -58,35 +58,6 @@ class IotWaitingCodeFragment : Fragment() {
            }
 
         }
-
-
-
-//        viewBinding.iotWaitingCodeButton.setOnClickListener {
-////            findNavController().navigate(R.id.controlFragment, null, options)
-//            Navigation.createNavigateOnClickListener(R.id.next_action, null)
-//        }
-
-//        viewBinding.iotWaitingCodeButton.setOnClickListener {
-//            val fragmentManager = requireActivity().supportFragmentManager
-//                val fragmentTransaction = fragmentManager.beginTransaction()
-//                fragmentTransaction.remove(this)
-//                fragmentTransaction.commit()
-//
-////            binding.registrationFragmentContainer.setVisibility(View.GONE);
-//
-//        }
-//        iotWaitingCodeFragment = IotWaitingCodeFragment()
-//        viewBinding.iotWaitingCodeButton.setOnClickListener {
-//            if (savedInstanceState == null) {
-//                val fragmentManager = requireActivity().supportFragmentManager
-//                val fragmentTransaction = fragmentManager.beginTransaction()
-//                fragmentTransaction.replace(
-//                    R.id.registration_fragment_container,
-//                    iotWaitingCodeFragment
-//                )
-//                fragmentTransaction.commit()
-//            }
-//        }
 
         return viewBinding.root
     }
@@ -134,14 +105,6 @@ class IotWaitingCodeFragment : Fragment() {
             }
         }
     }
-    //    override fun onBackPressed() {
-//        val navigationController = viewBinding.navigation.findNavController()
-//        if (navigationController.currentDestination?.id == R.id.homeFragment) {
-//            finish()
-//        } else {
-//            super.onBackPressed()
-//        }
-//    }
 
     fun Check(data: Data_HasIoT) {
 
