@@ -5,14 +5,13 @@
     <item android:drawable="@color/white"/>
 
     <item android:drawable="@drawable/ic_splash_screen"
-        android:gravity="top"
-        android:top="180dp" />
-
-    <item android:drawable="@drawable/ic_farmer_friend"
-        android:gravity="bottom"
-        android:bottom="80dp"
-        android:width="200dp"
-        android:height="150dp"
-        android:start="100dp" />
+        android:gravity="center_vertical"/>
 
 </layer-list>
+
+<!--<item android:drawable="@drawable/ic_farmer_friend"-->
+<!--android:gravity="bottom"-->
+<!--android:bottom="80dp"-->
+<!--android:width="200dp"-->
+<!--android:height="150dp"-->
+<!--android:start="100dp" />-->

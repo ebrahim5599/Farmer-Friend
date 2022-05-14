@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -45,6 +47,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         if (list.get(position).getProductImage() != null)
             Glide.with(context).load("http://teamweb992022-001-site1.htempurl.com/" + list.get(position)
                     .getProductImage()).into(holder.product_image);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, holder.product_name.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
