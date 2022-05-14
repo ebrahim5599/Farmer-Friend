@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -52,6 +53,7 @@ public class SearchFragment extends Fragment {
                 // observe any change in response.
                 searchAdapter.setList(searchResultPojo);
                 binding.loadingSearch.setVisibility(View.GONE);
+
             }
         });
         searchViewModel.errorMessage.observe(getViewLifecycleOwner(), new Observer<String>() {
