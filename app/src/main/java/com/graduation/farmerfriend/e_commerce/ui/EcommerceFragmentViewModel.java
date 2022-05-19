@@ -1,5 +1,8 @@
 package com.graduation.farmerfriend.e_commerce.ui;
 
+import android.content.Context;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,6 +13,7 @@ import java.util.ArrayList;
 
 public class EcommerceFragmentViewModel extends ViewModel {
     private EcommerceRepo ecommerceRepo;
+
 
     public void init() {
         ecommerceRepo = EcommerceRepo.getInstance();
@@ -29,4 +33,5 @@ public class EcommerceFragmentViewModel extends ViewModel {
     public LiveData<ArrayList<Product>> getAllProductsLiveData(){
         return  ecommerceRepo.getAllLiveDataProducts();
     }
+
 }

@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,9 +44,9 @@ public class ECommerceFragment extends Fragment {
         View view = binding.getRoot();
         setHasOptionsMenu(true);
 
+
         EcommerceFragmentViewModel viewModel = new ViewModelProvider(requireActivity()).get(EcommerceFragmentViewModel.class);
         viewModel.init();
-
         searchViewModel = new SearchViewModel();
 
         binding.fragmentECommerceSeedsView.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +170,7 @@ public class ECommerceFragment extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 Toast.makeText(getContext(), "onQueryTextSubmit "+s, Toast.LENGTH_SHORT).show();
                 searchViewModel.getSearchResult(s);
-            return false;
+                return false;
             }
 
             @Override
