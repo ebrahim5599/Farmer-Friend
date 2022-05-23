@@ -115,5 +115,7 @@
     <string name="soil">Soil</string>
     <string name="no_item_description">No item description</string>
     <string name="all_products">All Products</string>
+    <string name="add_item">Add Item</string>
+    <string name="upload_image">Upload Image</string>
 
 </resources>

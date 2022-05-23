@@ -43,6 +43,9 @@ public class IOTRepo {
         database = FirebaseDatabase.getInstance();
         Log.d("TAG", sharedPref.getStringPref(Constants.USER_ID, "userId0"));
         Toast.makeText(context, sharedPref.getStringPref(Constants.USER_ID, "userId0"), Toast.LENGTH_LONG).show();
+
+//        referenceControl = database.getReference().child("userId0").child("control");
+//        referenceSensors = database.getReference("userId0").child("sensors");
         referenceControl = database.getReference().child(sharedPref.getStringPref(Constants.USER_ID, "userId0")).child("control");
 
         referenceSensors = database.getReference(sharedPref.getStringPref(Constants.USER_ID, "userId0")).child("sensors");

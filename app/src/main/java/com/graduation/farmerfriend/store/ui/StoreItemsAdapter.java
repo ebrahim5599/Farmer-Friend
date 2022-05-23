@@ -1,7 +1,6 @@
-package com.graduation.farmerfriend.store;
+package com.graduation.farmerfriend.store.ui;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.store.pojo.StoreItems;
 
 import java.util.ArrayList;
 
