@@ -193,7 +193,7 @@
         android:name="com.graduation.farmerfriend.StoreAddItemFragment"
         tools:layout="@layout/fragment_store_add_item" />
     <fragment
-        android:id="@+id/cameraFragment"
+        android:id="@+id/fragment_camera"
         android:name="com.graduation.farmerfriend.camera.CameraFragment"
         android:label="@string/camera"
         tools:layout="@layout/fragment_camera" />

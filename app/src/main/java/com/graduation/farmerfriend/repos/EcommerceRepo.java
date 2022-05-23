@@ -302,7 +302,7 @@ public class EcommerceRepo {
 
             @Override
             public void onError(@NonNull Throwable e) {
-
+                Log.d(TAG, "onError: "+e);
             }
         };
         cartSingle.subscribe(cartSingleObserver);

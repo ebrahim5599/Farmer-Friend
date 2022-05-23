@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     private Toolbar toolbar;
     private static final String TAG = "MainActivity";
     private static final String DEBUG_TAG = "NetworkStatusExample";
-    private boolean isConnected = false;
     private NavController navCo;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -84,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
             e.printStackTrace();
         }
 //        ConnectivityManager connectivityManager = getSystemService(ConnectivityManager.class);
-//
+
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 //            connectivityManager.registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback() {
 //                @Override
@@ -142,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         toolbar = binding.mainToolbar;
         setSupportActionBar(toolbar);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.controlContainerFragment, R.id.cameraFragment, R.id.ECommerceFragment, R.id.moreFragment).build();
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.controlContainerFragment, R.id.fragment_camera, R.id.ECommerceFragment, R.id.moreFragment).build();
 
         // Removing shadow from bottomActionBar.
 
@@ -170,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                 } else if (destination.getId() == R.id.fertilizerProductsFragment) {
 //                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
-                }else if (destination.getId() == R.id.about_us) {
+                } else if (destination.getId() == R.id.about_us) {
                     toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.bestSellerFragment) {
@@ -188,8 +187,10 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                 } else if (destination.getId() == R.id.userDataFragment) {
                     toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
+
                 }else if (destination.getId() == R.id.searchFragment) {
                     bottomNavigationView.setVisibility(View.GONE);
+
                 } else if (destination.getId() == R.id.loginFragment) {
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.registrationFragment) {
@@ -202,14 +203,14 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.controlFragment) {
                     bottomNavigationView.setVisibility(View.GONE);
-                }
-
-                else {
+                } else {
                     toolbar.setVisibility(View.VISIBLE);
                     bottomNavigationView.setVisibility(View.VISIBLE);
                 }
 //                if (!isConnected) {
-//                    if (destination.getId() == R.id.cameraFragment) {
+
+//                    if (destination.getId() == R.id.fragment_camera) {
+
 //                        binding.fragmentContainerView.setVisibility(View.VISIBLE);
 //                        binding.mainActivityNoInternetConnection.setVisibility((View.GONE));
 //                    } else {
@@ -246,7 +247,19 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                 // Permission is granted. Continue the action or workflow
                 // in your app.
                 location.getLocation();
+//                Toast.makeText(this, String.valueOf(requestCode), Toast.LENGTH_SHORT).show();
             }
+//            Toast.makeText(this, String.valueOf(requestCode), Toast.LENGTH_SHORT).show();
+//            if (requestCode == 10) {
+//                Toast.makeText(this,"afds",Toast.LENGTH_SHORT).show();
+//            }
+            // If request is cancelled, the result arrays are empty.
+//                if (grantResults.length > 0 &&
+//                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    // Permission is granted. Continue the action or workflow
+//                    // in your app.
+//                    location.getLocation();
+//                }
 //            else {
 //                // Explain to the user that the feature is unavailable because
 //                // the features requires a permission that the user has denied.
@@ -283,10 +296,9 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == location.getLOCATION_REQUEST_CODE()) {
-            if (requestCode == location.getLOCATION_REQUEST_CODE()) {
-                // If request is cancelled, the result arrays are empty.
-                location.getLocation();
-            }
+            // If request is cancelled, the result arrays are empty.
+            location.getLocation();
+
 
         }
     }

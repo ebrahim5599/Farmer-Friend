@@ -52,6 +52,7 @@ class IotWaitingCodeFragment : Fragment() {
             }
         }
 
+
         viewBinding.iotWaitingCodeButton.setOnClickListener {
 
 
