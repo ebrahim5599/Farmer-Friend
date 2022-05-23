@@ -10,6 +10,6 @@ import retrofit2.http.Query;
 
 public interface SearchApiInterface {
 
-    @GET("api/Products/SearchActivity")
+    @GET("api/Products/Search")
     public Call<List<SearchResultPojo>> getSearchResult(@Query("name") String name);
 }

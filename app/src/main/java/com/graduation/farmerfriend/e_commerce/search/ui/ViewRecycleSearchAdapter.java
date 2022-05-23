@@ -17,7 +17,7 @@ import java.util.List;
 public class ViewRecycleSearchAdapter extends RecyclerView.Adapter<ViewRecycleSearchAdapter.ViewHolder>{
 
     private List<SearchResultPojo> search = new ArrayList<>();
-    Context context ;
+    private Context context ;
 
     public ViewRecycleSearchAdapter(Context context) {
         this.context = context;
@@ -33,10 +33,10 @@ public class ViewRecycleSearchAdapter extends RecyclerView.Adapter<ViewRecycleSe
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.binding.itemsearchTextviewName.setText(search.get(position).getProductName());
-        holder.binding.itemsearchTextviewPrice.setText(String.valueOf(search.get(position).getPrice()));
-        Glide.with(context).load(search.get(position).getProductImage()).into(holder.binding.itemsearchImageviewItem);
-        holder.binding.itemsearchTextviewDescription.setText(search.get(position).getDescription()+"");
+//        holder.binding.itemsearchTextviewName.setText(search.get(position).getProductName());
+//        holder.binding.itemsearchTextviewPrice.setText(String.valueOf(search.get(position).getPrice()));
+////        Glide.with(context).load(search.get(position).getProductImage()).into(holder.binding.itemsearchImageviewItem);
+//        holder.binding.itemsearchTextviewDescription.setText(search.get(position).getDescription()+"");
     }
 
     @Override
