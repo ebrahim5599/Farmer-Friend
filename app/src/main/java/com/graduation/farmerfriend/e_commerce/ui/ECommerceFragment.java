@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,15 +28,20 @@ import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentECommerceBinding;
 import com.graduation.farmerfriend.e_commerce.Data;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
+import com.graduation.farmerfriend.e_commerce.search.pojo.SearchResultPojo;
+import com.graduation.farmerfriend.e_commerce.search.ui.SearchAdapter;
 import com.graduation.farmerfriend.e_commerce.search.ui.SearchViewModel;
+import com.graduation.farmerfriend.e_commerce.search.ui.ViewRecycleSearchAdapter;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ECommerceFragment extends Fragment {
     FragmentECommerceBinding binding;
     private SearchViewModel searchViewModel;
+    private EcommerceFragmentViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,10 +49,12 @@ public class ECommerceFragment extends Fragment {
         View view = binding.getRoot();
         setHasOptionsMenu(true);
 
+
+
         EcommerceFragmentViewModel viewModel = new ViewModelProvider(requireActivity()).get(EcommerceFragmentViewModel.class);
         viewModel.init();
-
         searchViewModel = new SearchViewModel();
+
 
         binding.fragmentECommerceSeedsView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,6 +168,7 @@ public class ECommerceFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.shop_main_menu, menu);
 
+
         SearchManager searchManager = (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView)menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().getComponentName()));
@@ -169,7 +178,7 @@ public class ECommerceFragment extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 Toast.makeText(getContext(), "onQueryTextSubmit "+s, Toast.LENGTH_SHORT).show();
                 searchViewModel.getSearchResult(s);
-            return false;
+                return false;
             }
 
             @Override
@@ -178,6 +187,7 @@ public class ECommerceFragment extends Fragment {
                 return false;
             }
         });
+
 
     }
 
@@ -193,7 +203,9 @@ public class ECommerceFragment extends Fragment {
 //                    ECommerceFragmentDirections.actionToWishlist();
 //            action.setFromWhichFragment(Constants.FROM_E_COMMERCE_FRAGMENT);
             Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment);
-        }
+        } else if (item.getItemId() == R.id.search)
+            Navigation.findNavController(requireView()).navigate(R.id.searchFragment);
+
         return super.onOptionsItemSelected(item);
     }
 

@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.splashscreen.SplashScreen;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Handle the splash screen transition.
+        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
+
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_FarmerFriend);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         editor = sharedPreferences.edit();
 
         MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        viewModel.init();
+        viewModel.init(this);
         viewModel.setForecastData(sharedPreferences.getString(Constants.LOCATION, "Cairo"));
 
 
@@ -72,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         viewModel.getEcommerceSeedProducts();
         viewModel.getEcommerceFerProducts();
         viewModel.getEcommerceToolProducts();
+
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -109,13 +114,14 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
 //                    Log.e(TAG, "The default network changed capabilities: " + networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED));
 //
 //                }
-//
+
 //                @Override
 //                public void onLinkPropertiesChanged(Network network, LinkProperties linkProperties) {
 //                    Log.e(TAG, "The default network changed link properties: " + linkProperties);
 //                }
 //            });
 //        }
+
 //        ConnectivityManager connMgr =
 //                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 //        boolean isWifiConn = false;
@@ -181,6 +187,10 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                 } else if (destination.getId() == R.id.userDataFragment) {
                     toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
+
+                }else if (destination.getId() == R.id.searchFragment) {
+                    bottomNavigationView.setVisibility(View.GONE);
+
                 } else if (destination.getId() == R.id.loginFragment) {
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.registrationFragment) {
@@ -198,7 +208,9 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                     bottomNavigationView.setVisibility(View.VISIBLE);
                 }
 //                if (!isConnected) {
+
 //                    if (destination.getId() == R.id.fragment_camera) {
+
 //                        binding.fragmentContainerView.setVisibility(View.VISIBLE);
 //                        binding.mainActivityNoInternetConnection.setVisibility((View.GONE));
 //                    } else {

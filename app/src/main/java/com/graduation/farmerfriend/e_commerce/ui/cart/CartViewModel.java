@@ -1,5 +1,9 @@
 package com.graduation.farmerfriend.e_commerce.ui.cart;
 
+
+import android.app.Application;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 

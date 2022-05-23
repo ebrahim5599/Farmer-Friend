@@ -42,6 +42,23 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.math.log
 
+import org.tensorflow.lite.support.image.TensorImage
+
+
+import android.graphics.drawable.Drawable
+import android.media.ExifInterface
+import android.provider.MediaStore.MediaColumns.ORIENTATION
+import androidx.camera.core.*
+import androidx.camera.view.video.OutputFileResults
+import androidx.core.graphics.BitmapCompat
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction import com.bumptech.glide.request.target.Target
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.newFixedThreadPoolContext
+import kotlinx.coroutines.newSingleThreadContext
+import kotlin.jvm.JvmName as JvmName1
+
+
 
 class CameraFragment : Fragment() {
 
@@ -57,6 +74,7 @@ class CameraFragment : Fragment() {
     private var image: Boolean = false
     private var max: Float = 0.0f
     private var disease: String? = null
+    private var MY_CAMERA_PERMISSION_CODE = 100
 
 
     override fun onCreateView(
@@ -77,9 +95,10 @@ class CameraFragment : Fragment() {
         }
         // Set up the listeners for take photo and video capture buttons
         viewBinding.imageCaptureButton.setOnClickListener {
-            takePhoto()
-            camera = true
-            image = false
+                takePhoto()
+                camera = true
+                image = false
+
         }
 
 //        viewBinding.lastDetails.setOnClickListener{
@@ -469,17 +488,16 @@ class CameraFragment : Fragment() {
         requestCode: Int, permissions: Array<String>, grantResults:
         IntArray
     ) {
+
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             Toast.makeText(requireContext(),"$requestCode",Toast.LENGTH_SHORT).show()
             if (allPermissionsGranted()) {
+
                 startCamera()
             } else {
-                Toast.makeText(
-                    context,
-                    "Permissions not granted by the user.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(context, "Camera Permission Denied", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
@@ -501,6 +519,6 @@ class CameraFragment : Fragment() {
             }
 
         }
-    }
 
+    }
 }

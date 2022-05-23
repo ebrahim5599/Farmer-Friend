@@ -112,28 +112,29 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="64dp"
                 android:background="@drawable/iot_system_button">
+
                 <TextView
                     android:id="@+id/iot_more_info_button_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/sent_request"
-                    android:textColor="@color/white"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp"
+                    android:background="?android:attr/selectableItemBackground"
                     android:paddingStart="24dp"
+                    android:paddingTop="16dp"
                     android:paddingEnd="24dp"
+                    android:paddingBottom="16dp"
+                    android:text="@string/sent_request"
                     android:textAllCaps="true"
-                    android:textStyle="bold"
-                    android:background="?android:attr/selectableItemBackground" />
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
             </FrameLayout>
-<!--            <Button-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="32dp"-->
-<!--                android:backgroundTint="@color/green_Cart_Activity_Button"-->
-<!--                android:padding="16dp"-->
-<!--                android:text="@string/sent_request" />-->
+            <!--            <Button-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:layout_marginTop="32dp"-->
+            <!--                android:backgroundTint="@color/green_Cart_Activity_Button"-->
+            <!--                android:padding="16dp"-->
+            <!--                android:text="@string/sent_request" />-->
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>
