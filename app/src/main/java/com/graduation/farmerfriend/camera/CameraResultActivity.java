@@ -34,6 +34,7 @@ public class CameraResultActivity extends AppCompatActivity {
         path = n.getStringExtra("PATH");
         result = n.getStringExtra("result");
         disease = n.getStringExtra("disease");
+//        bitmabByteArray = n.getByteArrayExtra("image");
         max = n.getFloatExtra("max", 0f);
 
         binding.ActivityCameraResultPlantNameResult.setText(result);

@@ -1,5 +1,7 @@
 package com.graduation.farmerfriend.apis;
 
+import androidx.annotation.NonNull;
+
 import com.graduation.farmerfriend.ecommerce_models.Cart;
 import com.graduation.farmerfriend.ecommerce_models.PatchCart;
 import com.graduation.farmerfriend.ecommerce_models.PostCart;
@@ -17,6 +19,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ECommerceInterface {
+    @NonNull
     @GET("/api/Products")
     Single<ArrayList<Product>> getAllProducts();
     @GET("/api/Products/GetSeedProduct")

@@ -46,18 +46,18 @@ class IotWaitingCodeFragment : Fragment() {
         }
 
 
-        viewBinding.iotWaitingCodeButton.setOnClickListener {
-            findNavController().navigate(R.id.next_action, null, options)
-
-           if (viewBinding.iotWaitingCodeText.text.toString() == "5" ){
-               var data = Data_HasIoT("/hasIotSystem","replace",true)
-               Check(data)
-           }
-           else{
-               Toast.makeText(context,"The code is wrong", Toast.LENGTH_LONG).show()
-           }
-
-        }
+//        viewBinding.iotWaitingCodeButton.setOnClickListener {
+//            findNavController().navigate(R.id.next_action, null, options)
+//
+//           if (viewBinding.iotWaitingCodeText.text.toString() == "5" ){
+//               var data = Data_HasIoT("/hasIotSystem","replace",true)
+//               Check(data)
+//           }
+//           else{
+//               Toast.makeText(context,"The code is wrong", Toast.LENGTH_LONG).show()
+//           }
+//
+//        }
 
 
 
