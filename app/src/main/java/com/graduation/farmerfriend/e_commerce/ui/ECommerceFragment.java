@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,8 +49,11 @@ public class ECommerceFragment extends Fragment {
         View view = binding.getRoot();
         setHasOptionsMenu(true);
 
-        viewModel = new ViewModelProvider(requireActivity()).get(EcommerceFragmentViewModel.class);
+
+
+        EcommerceFragmentViewModel viewModel = new ViewModelProvider(requireActivity()).get(EcommerceFragmentViewModel.class);
         viewModel.init();
+        searchViewModel = new SearchViewModel();
 
 
         binding.fragmentECommerceSeedsView.setOnClickListener(new View.OnClickListener() {
@@ -163,6 +167,28 @@ public class ECommerceFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.shop_main_menu, menu);
+
+
+        SearchManager searchManager = (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView)menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(requireActivity().getComponentName()));
+        searchView.setQueryHint("type here to search");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Toast.makeText(getContext(), "onQueryTextSubmit "+s, Toast.LENGTH_SHORT).show();
+                searchViewModel.getSearchResult(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                Toast.makeText(getContext(),"onQueryTextChange "+ s, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
+
     }
 
     @Override

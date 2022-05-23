@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         editor = sharedPreferences.edit();
 
         MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        viewModel.init();
+        viewModel.init(this);
         viewModel.setForecastData(sharedPreferences.getString(Constants.LOCATION, "Cairo"));
 
 
@@ -77,50 +77,52 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         viewModel.getEcommerceSeedProducts();
         viewModel.getEcommerceFerProducts();
         viewModel.getEcommerceToolProducts();
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        ConnectivityManager connectivityManager = getSystemService(ConnectivityManager.class);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            connectivityManager.registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback() {
-                @Override
-                public void onAvailable(Network network) {
-                    Log.e(TAG, "The default network is now: " + network);
-                }
-
-                @Override
-                public void onLost(Network network) {
-                    Log.e(TAG, "The application no longer has a default network. The last default network was " + network);
-                }
-
-                @Override
-                public void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
-                    if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
-                        Handler handler = new Handler(Looper.getMainLooper());
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() {
-                                isConnected = true;
-                                binding.mainActivityNoInternetConnection.setVisibility(View.GONE);
-                                binding.fragmentContainerView.setVisibility(View.VISIBLE);
-                            }
-                        };
-                        handler.post(runnable);
-//                        handler.removeCallbacks(runnable);
-                    }
-                    Log.e(TAG, "The default network changed capabilities: " + networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED));
-
-                }
-
-                @Override
-                public void onLinkPropertiesChanged(Network network, LinkProperties linkProperties) {
-                    Log.e(TAG, "The default network changed link properties: " + linkProperties);
-                }
-            });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+//        ConnectivityManager connectivityManager = getSystemService(ConnectivityManager.class);
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            connectivityManager.registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback() {
+//                @Override
+//                public void onAvailable(Network network) {
+//                    Log.e(TAG, "The default network is now: " + network);
+//                }
+//
+//                @Override
+//                public void onLost(Network network) {
+//                    Log.e(TAG, "The application no longer has a default network. The last default network was " + network);
+//                }
+//
+//                @Override
+//                public void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
+//                    if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
+//                        Handler handler = new Handler(Looper.getMainLooper());
+//                        Runnable runnable = new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                isConnected = true;
+//                                binding.mainActivityNoInternetConnection.setVisibility(View.GONE);
+//                                binding.fragmentContainerView.setVisibility(View.VISIBLE);
+//                            }
+//                        };
+//                        handler.post(runnable);
+////                        handler.removeCallbacks(runnable);
+//                    }
+//                    Log.e(TAG, "The default network changed capabilities: " + networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED));
+//
+//                }
+
+//                @Override
+//                public void onLinkPropertiesChanged(Network network, LinkProperties linkProperties) {
+//                    Log.e(TAG, "The default network changed link properties: " + linkProperties);
+//                }
+//            });
+//        }
+
 //        ConnectivityManager connMgr =
 //                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 //        boolean isWifiConn = false;
@@ -206,15 +208,15 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                     toolbar.setVisibility(View.VISIBLE);
                     bottomNavigationView.setVisibility(View.VISIBLE);
                 }
-                if (!isConnected) {
-                    if (destination.getId() == R.id.cameraFragment) {
-                        binding.fragmentContainerView.setVisibility(View.VISIBLE);
-                        binding.mainActivityNoInternetConnection.setVisibility((View.GONE));
-                    } else {
-                        binding.fragmentContainerView.setVisibility(View.GONE);
-                        binding.mainActivityNoInternetConnection.setVisibility((View.VISIBLE));
-                    }
-                }
+//                if (!isConnected) {
+//                    if (destination.getId() == R.id.cameraFragment) {
+//                        binding.fragmentContainerView.setVisibility(View.VISIBLE);
+//                        binding.mainActivityNoInternetConnection.setVisibility((View.GONE));
+//                    } else {
+//                        binding.fragmentContainerView.setVisibility(View.GONE);
+//                        binding.mainActivityNoInternetConnection.setVisibility((View.VISIBLE));
+//                    }
+//                }
             }
         });
 

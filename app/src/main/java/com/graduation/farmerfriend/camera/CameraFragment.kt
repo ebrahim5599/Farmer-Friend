@@ -65,8 +65,7 @@ import androidx.fragment.app.FragmentTransaction import com.bumptech.glide.reque
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.newFixedThreadPoolContext
 import kotlinx.coroutines.newSingleThreadContext
-
-
+import kotlin.jvm.JvmName as JvmName1
 
 
 class CameraFragment : Fragment() {
@@ -83,6 +82,7 @@ class CameraFragment : Fragment() {
     private var image:Boolean = false
     private var max: Float = 0.0f
     private var disease: String? = null
+    private var MY_CAMERA_PERMISSION_CODE = 100
 
 
     override fun onCreateView(
@@ -103,9 +103,10 @@ class CameraFragment : Fragment() {
         }
         // Set up the listeners for take photo and video capture buttons
         viewBinding.imageCaptureButton.setOnClickListener {
-            takePhoto()
-            camera = true
-            image = false
+                takePhoto()
+                camera = true
+                image = false
+
         }
 
 //        viewBinding.lastDetails.setOnClickListener{
@@ -145,7 +146,7 @@ class CameraFragment : Fragment() {
         cameraExecutor = Executors.newSingleThreadExecutor()
         return viewBinding.root
     }
-    
+
 
     companion object {
         private const val TAG = "FarmerFriend"
@@ -356,7 +357,7 @@ class CameraFragment : Fragment() {
     private fun goToActivity() {
         activity?.let {
             val intent = Intent(it, CameraResultActivity::class.java)
-            
+
             if (message?.isNotEmpty() == true) {
                 intent.putExtra("PATH", message)
             }else if (gallery?.isNotEmpty() == true){
@@ -373,8 +374,6 @@ class CameraFragment : Fragment() {
     }
 
 
-
-
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
             activity?.baseContext!!, it
@@ -385,16 +384,14 @@ class CameraFragment : Fragment() {
         requestCode: Int, permissions: Array<String>, grantResults:
         IntArray
     ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (allPermissionsGranted()) {
+        if (requestCode == MY_CAMERA_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(context, "Camera Permission Granted", Toast.LENGTH_SHORT)
+                    .show()
                 startCamera()
             } else {
-                Toast.makeText(
-                    context,
-                    "Permissions not granted by the user.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(context, "Camera Permission Denied", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
@@ -416,6 +413,6 @@ class CameraFragment : Fragment() {
             }
 
         }
-    }
 
+    }
 }

@@ -26,4 +26,8 @@ public class SharedPref {
     public void putBoolPref(String key,boolean value){
         editor.putBoolean(key,value).apply();
     }
+
+    public Integer getIntPref(String key ){return  sharedPreferences.getInt(key,0);}
+    public void putIntPref(String key , Integer value){editor.putInt(key,value).apply();}
+
 }
