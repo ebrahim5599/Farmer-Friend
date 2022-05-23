@@ -176,6 +176,6 @@
         android:src="@drawable/ic_camera_24"
         app:fabSize="normal"
         app:layout_anchor="@id/activity_camera_appbar"
-        app:layout_anchorGravity="bottom|end" />
+        android:contentDescription="TODO" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
