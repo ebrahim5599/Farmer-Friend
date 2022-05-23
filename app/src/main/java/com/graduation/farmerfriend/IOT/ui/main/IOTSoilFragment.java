@@ -41,7 +41,8 @@ public class IOTSoilFragment extends Fragment {
             public void onChanged(Sensors sensors) {
                 Log.d("TAG", "onChanged: "+sensors.soilTemp);
                 binding.fragmentIOTSoilTextViewTemp.setText(MessageFormat.format("{0} C", sensors.soilTemp));
-                binding.fragmentIOTSoilTextViewMoisture.setText(MessageFormat.format("{0} %", sensors.moisture));
+                binding.fragmentIOTSoilTextViewHumidity.setText(MessageFormat.format("{0} %", sensors.humidity));
+                binding.fragmentIOTSoilTextViewAltitude.setText(MessageFormat.format("{0} M", sensors.altitude));
             }
         });
         return binding.getRoot();

@@ -74,6 +74,7 @@
     <string name="automatic">Automatic</string>
     <string name="manual">Manual</string>
     <string name="humidity">Humidity</string>
+    <string name="altitude">Altitude</string>
     <string name="pressure">Pressure</string>
     <string name="luminous_intensity">Luminous Intensity</string>
     <string name="temperature">Temperature</string>
@@ -114,6 +115,7 @@
     <string name="weather">Weather</string>
     <string name="soil">Soil</string>
     <string name="all_products">All Products</string>
+
 
 
 </resources>
