@@ -1,7 +1,8 @@
-package com.graduation.farmerfriend.store;
+package com.graduation.farmerfriend.store.pojo;
 
 public class StoreItems {
 
+    private int itemID;
     private String itemName;
     private String itemDetails;
     private int numberOfItems;
@@ -12,6 +13,19 @@ public class StoreItems {
         this.itemDetails = itemDetails;
         this.numberOfItems = numberOfItems;
         this.imageResource = imageResource;
+    }
+
+    public StoreItems(int itemID, String itemName, String itemDetails, int numberOfItems) {
+        this.itemID = itemID;
+        this.itemName = itemName;
+        this.itemDetails = itemDetails;
+        this.numberOfItems = numberOfItems;
+    }
+
+    public StoreItems(String itemName, String itemDetails, int numberOfItems) {
+        this.itemName = itemName;
+        this.itemDetails = itemDetails;
+        this.numberOfItems = numberOfItems;
     }
 
     public String getItemName() {
@@ -44,5 +58,13 @@ public class StoreItems {
 
     public void setImageResource(int imageResource) {
         this.imageResource = imageResource;
+    }
+
+    public int getItemID() {
+        return itemID;
+    }
+
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
     }
 }

@@ -185,12 +185,12 @@
 
     <fragment
         android:id="@+id/storeFragment"
-        android:name="com.graduation.farmerfriend.StoreFragment"
+        android:name="com.graduation.farmerfriend.store.ui.StoreFragment"
         android:label="@string/store"
         tools:layout="@layout/fragment_store" />
     <fragment
         android:id="@+id/storeAddItemFragment"
-        android:name="com.graduation.farmerfriend.StoreAddItemFragment"
+        android:name="com.graduation.farmerfriend.store.ui.StoreAddItemFragment"
         tools:layout="@layout/fragment_store_add_item" />
     <fragment
         android:id="@+id/fragment_camera"
