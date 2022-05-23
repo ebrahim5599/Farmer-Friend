@@ -10,7 +10,7 @@
         android:title="@string/control"
         android:icon="@drawable/ic_control_24"/>
 
-    <item android:id="@+id/cameraFragment"
+    <item android:id="@+id/fragment_camera"
         android:title="@string/camera"
         android:icon="@drawable/ic_camera_24"
         />
