@@ -58,8 +58,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation 'com.google.android.material:material:1.7.0-alpha01'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    // GSON Converter
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
     implementation 'com.squareup.picasso:picasso:2.71828'
@@ -99,8 +102,13 @@ dependencies {
     //rx android
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
-//    rxandroid adapter
+    // rx android adapter
     implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
+
+    // Splash Screen
+    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+
+
 }
 
 apply plugin: 'com.google.gms.google-services'

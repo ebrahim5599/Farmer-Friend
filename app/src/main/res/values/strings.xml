@@ -46,7 +46,7 @@
         <item>cairo</item>
     </string-array>
 
-    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_search">Search</string>
     <string name="wishlist">Wishlist</string>
     <string name="hot_deals">Hot deals</string>
     <string name="best_sellers">Best Sellers</string>
@@ -113,7 +113,7 @@
     <string name="The_ratio">The Ratio</string>
     <string name="weather">Weather</string>
     <string name="soil">Soil</string>
+    <string name="no_item_description">No item description</string>
     <string name="all_products">All Products</string>
-
 
 </resources>
