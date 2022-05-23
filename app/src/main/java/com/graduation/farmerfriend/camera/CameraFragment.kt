@@ -40,23 +40,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import kotlin.math.log
 
-import org.tensorflow.lite.support.image.TensorImage
-
-
-import android.graphics.drawable.Drawable
-import android.media.ExifInterface
-import android.provider.MediaStore.MediaColumns.ORIENTATION
-import androidx.camera.core.*
-import androidx.camera.view.video.OutputFileResults
-import androidx.core.graphics.BitmapCompat
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction import com.bumptech.glide.request.target.Target
-import com.squareup.picasso.Picasso
-import kotlinx.coroutines.newFixedThreadPoolContext
-import kotlinx.coroutines.newSingleThreadContext
-import kotlin.jvm.JvmName as JvmName1
 
 
 
