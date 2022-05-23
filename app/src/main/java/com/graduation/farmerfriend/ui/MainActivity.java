@@ -18,19 +18,11 @@ import androidx.navigation.ui.NavigationUI;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.ConnectivityManager;
-import android.net.LinkProperties;
-import android.net.Network;
-import android.net.NetworkCapabilities;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.graduation.farmerfriend.R;
@@ -77,11 +69,11 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         viewModel.getEcommerceFerProducts();
         viewModel.getEcommerceToolProducts();
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 //        ConnectivityManager connectivityManager = getSystemService(ConnectivityManager.class);
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
