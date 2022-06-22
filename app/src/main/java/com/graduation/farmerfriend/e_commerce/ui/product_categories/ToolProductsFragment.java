@@ -52,7 +52,7 @@ public class ToolProductsFragment extends Fragment {
                     @Override
                     public void onChanged(ArrayList<Product> productArrayList) {
                         toolArrayList = productArrayList;
-                        ProductItemAdapter adapter = new ProductItemAdapter(toolArrayList,requireContext(),"tool");
+                        ProductItemAdapter adapter = new ProductItemAdapter(toolArrayList, requireContext(), "tool");
                         binding.fragmentToolProductsRecyclerView.setAdapter(adapter);
                         binding.fragmentToolProductsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
                     }
@@ -78,13 +78,6 @@ public class ToolProductsFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.shop_main_menu, menu);
-
-        SearchManager searchManager =
-                (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(requireActivity().getComponentName()));
     }
 
     @Override
@@ -99,7 +92,8 @@ public class ToolProductsFragment extends Fragment {
                     ToolProductsFragmentDirections.actionToWishlist();
             action.setFromWhichFragment(Constants.FROM_TOOLS_FRAGMENT);
             Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment);
-        }
+        } else if (item.getItemId() == R.id.search)
+            Navigation.findNavController(requireView()).navigate(R.id.searchFragment);
         return super.onOptionsItemSelected(item);
     }
 }
