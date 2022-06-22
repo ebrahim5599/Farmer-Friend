@@ -99,9 +99,7 @@ class IotMoreInfoFragment : Fragment() {
                 .build()
 
             var mail = retrofit.create(Mailing::class.java)
-
             var call = mail.sendmail(user_data)
-
             call.enqueue(object : Callback<User_Data_Mail> {
                 override fun onResponse(
                     call: Call<User_Data_Mail>,
