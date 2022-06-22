@@ -37,7 +37,7 @@ public class SeedProductsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        seedViewModel =  new ViewModelProvider(this).get(SeedViewModel.class);
+        seedViewModel = new ViewModelProvider(this).get(SeedViewModel.class);
         binding = FragmentSeedProductsBinding.inflate(inflater, container, false);
         setHasOptionsMenu(true);
         return binding.getRoot();
@@ -53,7 +53,7 @@ public class SeedProductsFragment extends Fragment {
                     public void onChanged(ArrayList<Product> productArrayList) {
                         seedArrayList = productArrayList;
                         Log.d(TAG, "onChanged: " + productArrayList.get(0).productName);
-                        ProductItemAdapter adapter = new ProductItemAdapter(seedArrayList,requireContext(),"seed");
+                        ProductItemAdapter adapter = new ProductItemAdapter(seedArrayList, requireContext(), "seed");
                         binding.fragmentSeedsProductsRecyclerView.setAdapter(adapter);
                         binding.fragmentSeedsProductsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
                     }
@@ -80,13 +80,6 @@ public class SeedProductsFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.shop_main_menu, menu);
-
-        SearchManager searchManager =
-                (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(requireActivity().getComponentName()));
     }
 
     @Override
@@ -95,7 +88,8 @@ public class SeedProductsFragment extends Fragment {
             Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
         } else if (item.getItemId() == R.id.wishlistFragment) {
             Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment);
-        }
+        } else if (item.getItemId() == R.id.search)
+            Navigation.findNavController(requireView()).navigate(R.id.searchFragment);
         return super.onOptionsItemSelected(item);
     }
 }
