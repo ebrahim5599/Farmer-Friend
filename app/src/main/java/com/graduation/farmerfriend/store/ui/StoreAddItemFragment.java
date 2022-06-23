@@ -82,6 +82,14 @@ public class StoreAddItemFragment extends Fragment {
             }
         });
 
+        binding.removeUploadedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                image = null;
+                binding.uploadedImageRelativeLayout.setVisibility(View.GONE);
+            }
+        });
+
         return binding.getRoot();
     }
 
@@ -91,10 +99,11 @@ public class StoreAddItemFragment extends Fragment {
 
         if(requestCode == 99 && resultCode == RESULT_OK){
             Uri uri = data.getData();
+
             try {
                 InputStream inputStream = getActivity().getContentResolver().openInputStream(uri);
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                binding.uploadedImage.setVisibility(View.VISIBLE);
+                binding.uploadedImageRelativeLayout.setVisibility(View.VISIBLE);
                 binding.uploadedImage.setImageBitmap(bitmap);
                 image = getBytes(bitmap);
             } catch (FileNotFoundException e) {
