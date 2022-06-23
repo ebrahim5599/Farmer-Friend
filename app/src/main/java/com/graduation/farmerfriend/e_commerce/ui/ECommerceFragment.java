@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,8 +49,11 @@ public class ECommerceFragment extends Fragment {
         View view = binding.getRoot();
         setHasOptionsMenu(true);
 
-        viewModel = new ViewModelProvider(requireActivity()).get(EcommerceFragmentViewModel.class);
+
+
+        EcommerceFragmentViewModel viewModel = new ViewModelProvider(requireActivity()).get(EcommerceFragmentViewModel.class);
         viewModel.init();
+        searchViewModel = new SearchViewModel();
 
 
         binding.fragmentECommerceSeedsView.setOnClickListener(new View.OnClickListener() {
