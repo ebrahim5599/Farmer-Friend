@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class StoreDatabase extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "StoreDatabase";
-    public static final int DB_VERSION = 3;
+    public static final int DB_VERSION = 1;
 
     public static final String DB_ITEM_TABLE = "store_items";
     public static final String DB_ID_COLUMN = "id";
