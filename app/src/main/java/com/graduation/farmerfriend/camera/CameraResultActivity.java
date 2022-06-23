@@ -2,9 +2,11 @@ package com.graduation.farmerfriend.camera;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import com.bumptech.glide.Glide;
+import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.ActivityCameraResultBinding;
 
 public class CameraResultActivity extends AppCompatActivity {
@@ -23,17 +25,18 @@ public class CameraResultActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.cameraFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        binding.cameraFab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
 
         Intent n = getIntent();
         path = n.getStringExtra("PATH");
         result = n.getStringExtra("result");
         disease = n.getStringExtra("disease");
+//        bitmabByteArray = n.getByteArrayExtra("image");
         max = n.getFloatExtra("max", 0f);
 
         binding.ActivityCameraResultPlantNameResult.setText(result);

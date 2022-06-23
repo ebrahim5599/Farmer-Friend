@@ -1,5 +1,6 @@
 package com.graduation.farmerfriend.repos;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -27,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class EcommerceRepo {
     private static EcommerceRepo Instance;
     private static final String ECOMMERCE_SERVICE_BASE_URL = "http://teamweb992022-001-site1.htempurl.com/";
-    private final ECommerceInterface eCommerceInterface;
+    private  ECommerceInterface eCommerceInterface;
     private CompositeDisposable compositeDisposable;
     private static final String TAG = "EcommerceRepo";
     private final MutableLiveData<ArrayList<Product>> allProductsLiveData;
@@ -36,6 +37,9 @@ public class EcommerceRepo {
     private final MutableLiveData<ArrayList<Product>> ferProductsLiveData;
     private final MutableLiveData<Product> singleProductLiveData;
     private final MutableLiveData<ArrayList<Cart>> cartLiveData;
+    public static final String HEADER_CACHE_CONTROL = "Cache-Control";
+    public static final String HEADER_PRAGMA = "Pragma";
+    Context context;
 
     public static EcommerceRepo getInstance() {
         if (Instance == null) {
@@ -44,10 +48,17 @@ public class EcommerceRepo {
         return Instance;
     }
 
-    EcommerceRepo() {
+
+    public void init(Context context){
+
+        this.context = context ;
+
+
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .build();
 
         eCommerceInterface = new retrofit2.Retrofit.Builder()
                 .baseUrl(ECOMMERCE_SERVICE_BASE_URL)
@@ -56,6 +67,9 @@ public class EcommerceRepo {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(ECommerceInterface.class);
+    }
+    EcommerceRepo() {
+
 
         allProductsLiveData = new MutableLiveData<>();
         seedProductsLiveData = new MutableLiveData<>();
@@ -210,14 +224,15 @@ public class EcommerceRepo {
 
             @Override
             public void onError(@NonNull Throwable e) {
-                Log.d(TAG, "onError: "+e.getMessage());
+                Log.d(TAG, "onError: " + e.getMessage());
             }
         };
         cartSingle.subscribe(cartSingleObserver);
 
     }
-    public void patchQuantity(int cartID , ArrayList<PatchCart> patchCarts){
-        Single<Object> objectSingle = eCommerceInterface.changeQuantity(cartID,patchCarts).subscribeOn(Schedulers.io());
+
+    public void patchQuantity(int cartID, ArrayList<PatchCart> patchCarts) {
+        Single<Object> objectSingle = eCommerceInterface.changeQuantity(cartID, patchCarts).subscribeOn(Schedulers.io());
         SingleObserver<Object> observer = new SingleObserver<Object>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
@@ -231,13 +246,14 @@ public class EcommerceRepo {
 
             @Override
             public void onError(@NonNull Throwable e) {
-                Log.d(TAG, "onError: "+e.toString());
+                Log.d(TAG, "onError: " + e.toString());
             }
         };
         objectSingle.subscribe(observer);
     }
-    public void deleteProduct(int productId,String userId){
-        Single<Object> single =  eCommerceInterface.deleteProductFromCart(productId,userId).subscribeOn(Schedulers.io());
+
+    public void deleteProduct(int productId, String userId) {
+        Single<Object> single = eCommerceInterface.deleteProductFromCart(productId, userId).subscribeOn(Schedulers.io());
         SingleObserver<Object> observer = new SingleObserver<Object>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
@@ -256,9 +272,10 @@ public class EcommerceRepo {
         };
         single.subscribe(observer);
     }
-    public void addToCart(PostCart postCart){
+
+    public void addToCart(PostCart postCart) {
         Single<PostCart> cartSingle = eCommerceInterface.addToCart(postCart).subscribeOn(Schedulers.io());
-        SingleObserver<PostCart> cartSingleObserver =  new SingleObserver<PostCart>() {
+        SingleObserver<PostCart> cartSingleObserver = new SingleObserver<PostCart>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
 
@@ -271,11 +288,12 @@ public class EcommerceRepo {
 
             @Override
             public void onError(@NonNull Throwable e) {
-
+                Log.d(TAG, "onError: "+e);
             }
         };
         cartSingle.subscribe(cartSingleObserver);
     }
+
     public LiveData<ArrayList<Product>> getAllLiveDataProducts() {
         return allProductsLiveData;
     }
@@ -299,4 +317,6 @@ public class EcommerceRepo {
     public LiveData<ArrayList<Cart>> getCartLiveData() {
         return cartLiveData;
     }
+
+
 }

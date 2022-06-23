@@ -1,6 +1,7 @@
 package com.graduation.farmerfriend.control.iot_fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,16 +17,22 @@ import com.graduation.farmerfriend.control.iot_fragments.hasIoTSystem.Data_HasIo
 import com.graduation.farmerfriend.control.iot_fragments.hasIoTSystem.HasIoTSystem
 import com.graduation.farmerfriend.databinding.FragmentIotWaitingCodeBinding
 import com.graduation.farmerfriend.sharedPreferences.SharedPref
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
+import io.reactivex.rxjava3.core.SingleObserver
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
+import kotlin.collections.ArrayList
 
 class IotWaitingCodeFragment : Fragment() {
 
     private lateinit var viewBinding: FragmentIotWaitingCodeBinding
     private lateinit var sharedPref: SharedPref
+    var TAG = "IotWaitingCode";
 //    private lateinit var iotWaitingCodeFragment : IotWaitingCodeFragment
 
     override fun onCreateView(
@@ -47,15 +54,20 @@ class IotWaitingCodeFragment : Fragment() {
 
 
         viewBinding.iotWaitingCodeButton.setOnClickListener {
-            findNavController().navigate(R.id.next_action, null, options)
 
-           if (viewBinding.iotWaitingCodeText.text.toString() == "5"){
-               var data = Data_HasIoT("/hasIotSystem","replace",true)
-               Check(data)
-           }
-           else{
-               Toast.makeText(context,"The code is wrong", Toast.LENGTH_LONG).show()
-           }
+
+          // if (viewBinding.iotWaitingCodeText.text.toString() == "5" ){
+               //findNavController().navigate(R.id.next_action, null, options)
+//               var array_data = ArrayList<Data_HasIoT>()
+//               var data = Data_HasIoT()
+//               data.value = true
+//               array_data.add(data)
+//               Check(array_data)
+//           }
+//           else{
+//               Toast.makeText(context,"The code is wrong", Toast.LENGTH_LONG).show()
+//           }
+
 
         }
 
@@ -84,10 +96,12 @@ class IotWaitingCodeFragment : Fragment() {
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 } else {
-//                                Toast.makeText(requireContext(),"has iot ",Toast.LENGTH_SHORT).show()
-                                    //ToDo: call api to set "hasIOTSystem" to true
-                                    Navigation.findNavController(view)
-                                        .navigate(R.id.next_action, null)
+                                    var array_data = ArrayList<Data_HasIoT>()
+                                    var data = Data_HasIoT()
+                                    data.value = true
+                                    array_data.add(data)
+                                    Check(array_data)
+                                    Navigation.findNavController(view).navigate(R.id.next_action, null)
                                 }
                             }
 
@@ -106,38 +120,38 @@ class IotWaitingCodeFragment : Fragment() {
         }
     }
 
-    fun Check(data: Data_HasIoT) {
+    fun Check(data: ArrayList<Data_HasIoT>) {
 
-            var retrofit = Retrofit.Builder()
-                .baseUrl("http://teamweb992022-001-site1.htempurl.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+        var interceptor =  HttpLoggingInterceptor()
+        interceptor.level
+        var client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
-            var mail = retrofit.create(HasIoTSystem::class.java)
+        var retrofit = Retrofit.Builder()
+            .baseUrl("http://teamweb992022-001-site1.htempurl.com/")
+            .client(client)
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
-            var call = mail.Has_IoT("hfatma791@gmail.com",data)
 
-            call.enqueue(object : Callback<Data_HasIoT> {
-                override fun onResponse(
-                    call: Call<Data_HasIoT>,
-                    response: Response<Data_HasIoT>
-                ) {
-                    Toast.makeText(
-                        context,
-                        "Operation completed successfully",
-                        Toast.LENGTH_LONG
-                    ).show()
+        var IoT = retrofit.create(HasIoTSystem::class.java)
 
-                }
+        var username =  sharedPref.getStringPref(Constants.USER_NAME, "")
+        var objectSingle = IoT.Has_IoT(username, data).subscribeOn(Schedulers.io())
 
-                override fun onFailure(call: Call<Data_HasIoT>, t: Throwable) {
+        var observer: SingleObserver<Any> = object : SingleObserver<Any> {
+            override fun onSubscribe(d: Disposable) {}
+            override fun onSuccess(o: Any) {
+                Log.d(TAG, "onSuccess: patching")
+            }
 
-                    Toast.makeText(context, "The operation failed, try again", Toast.LENGTH_LONG)
-                        .show()
+            override fun onError(e: Throwable) {
+                Log.d(TAG, "onError: $e")
+            }
+        }
 
-                }
-
-            })
+        objectSingle.subscribe(observer)
 
     }
 }
+

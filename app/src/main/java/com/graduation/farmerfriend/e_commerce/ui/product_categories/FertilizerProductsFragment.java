@@ -75,7 +75,6 @@ public class FertilizerProductsFragment extends Fragment {
             Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment);
         } else if (item.getItemId() == R.id.search)
             Navigation.findNavController(requireView()).navigate(R.id.searchFragment);
-
         return super.onOptionsItemSelected(item);
     }
 

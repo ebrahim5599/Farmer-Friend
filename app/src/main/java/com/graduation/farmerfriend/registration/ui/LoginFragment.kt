@@ -76,6 +76,10 @@ class LoginFragment : Fragment() {
             sharedPreferences.edit().putString(Constants.FIRST_AND_LAST_NAME,
                 userData.firstName+" " +userData.lastName).apply()
             sharedPref.putStringPref(Constants.USER_ID,userData.id)
+            sharedPref.putStringPref(Constants.USER_NAME,userData.username)
+            sharedPref.putBoolPref(Constants.ENABLE,true)
+            sharedPref.putIntPref(Constants.COUNTER,2)
+            sharedPref.putStringPref(Constants.NAME_BUTTON_MAIL,"send request")
             Log.d("TAG", "onCreateView: "+userData.id)
             sharedPref.putBoolPref(Constants.HAS_IOT_SYSTEM,userData.hasIotSystem)
             Toast.makeText(context, userData.firstName, Toast.LENGTH_SHORT).show()

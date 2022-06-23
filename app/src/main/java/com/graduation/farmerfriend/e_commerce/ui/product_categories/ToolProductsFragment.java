@@ -52,7 +52,7 @@ public class ToolProductsFragment extends Fragment {
                     @Override
                     public void onChanged(ArrayList<Product> productArrayList) {
                         toolArrayList = productArrayList;
-                        ProductItemAdapter adapter = new ProductItemAdapter(toolArrayList,requireContext(),"tool");
+                        ProductItemAdapter adapter = new ProductItemAdapter(toolArrayList, requireContext(), "tool");
                         binding.fragmentToolProductsRecyclerView.setAdapter(adapter);
                         binding.fragmentToolProductsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
                     }
@@ -78,7 +78,6 @@ public class ToolProductsFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.shop_main_menu, menu);
-
     }
 
     @Override
