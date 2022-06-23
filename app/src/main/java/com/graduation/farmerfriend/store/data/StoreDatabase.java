@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class StoreDatabase extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "StoreDatabase";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 3;
 
     public static final String DB_ITEM_TABLE = "store_items";
     public static final String DB_ID_COLUMN = "id";
@@ -30,7 +30,7 @@ public class StoreDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // Called when database created for first time.
         sqLiteDatabase.execSQL("CREATE TABLE "+DB_ITEM_TABLE+" ("+DB_ID_COLUMN+" INTEGER PRIMARY KEY AUTOINCREMENT," +
-                DB_NAME_COLUMN+" TEXT NOT NULL, "+DB_DETAILS_COLUMN+" TEXT, "+DB_AMOUNT_COLUMN+" INTEGER NOT NULL)"); // Without Image.
+                DB_NAME_COLUMN+" TEXT NOT NULL, "+DB_DETAILS_COLUMN+" TEXT, "+DB_AMOUNT_COLUMN+" INTEGER NOT NULL, "+DB_IMAGE_COLUMN+" BLOB)"); // Without Image.
     }
 
     @Override
@@ -48,17 +48,18 @@ public class StoreDatabase extends SQLiteOpenHelper {
         values.put(DB_NAME_COLUMN, storeItems.getItemName());
         values.put(DB_DETAILS_COLUMN, storeItems.getItemDetails());
         values.put(DB_AMOUNT_COLUMN, storeItems.getNumberOfItems());
+        values.put(DB_IMAGE_COLUMN, storeItems.getImageResource());
 
         long result = sqLiteDatabase.insert(DB_ITEM_TABLE, null, values);
         return result != -1;
     }
 
     // Update
-    public boolean updateItemAmount(StoreItems storeItems){
+    public boolean updateItemAmount(StoreItems storeItems, int newValue){
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(DB_AMOUNT_COLUMN, storeItems.getNumberOfItems());
+        values.put(DB_AMOUNT_COLUMN, newValue);
 
         String[] args = {""+storeItems.getItemID()};
         int result = sqLiteDatabase.update(DB_ITEM_TABLE, values, DB_ID_COLUMN+"=?", args);
@@ -89,6 +90,7 @@ public class StoreDatabase extends SQLiteOpenHelper {
         int nameColumnIndex = cursor.getColumnIndex(DB_NAME_COLUMN);
         int detailsColumnIndex = cursor.getColumnIndex(DB_DETAILS_COLUMN);
         int amountColumnIndex = cursor.getColumnIndex(DB_AMOUNT_COLUMN);
+        int imageColumnIndex = cursor.getColumnIndex(DB_IMAGE_COLUMN);
 
         // لفحص الـ cursor هل يحتوي على بيانات أم لا
         if (cursor.moveToFirst()){
@@ -97,8 +99,9 @@ public class StoreDatabase extends SQLiteOpenHelper {
                 String name = cursor.getString(nameColumnIndex);
                 String details = cursor.getString(detailsColumnIndex);
                 int amount = cursor.getInt(amountColumnIndex);
+                byte[] image = cursor.getBlob(imageColumnIndex);
 
-                items.add(new StoreItems(id, name, details, amount));
+                items.add(new StoreItems(id, name, details, amount, image));
 
             } while (cursor.moveToNext());
             cursor.close();
@@ -106,13 +109,11 @@ public class StoreDatabase extends SQLiteOpenHelper {
         return items;
     }
 
-    // Search
-    public ArrayList<StoreItems> getAnItem(String nameSearch){
+    /* public ArrayList<StoreItems> getAllItems(){
         ArrayList<StoreItems> items = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
-        String[] args = {"%"+nameSearch+"%"};
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "+ DB_ITEM_TABLE + " WHERE "+DB_NAME_COLUMN+ " LIKE ?", args);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "+ DB_ITEM_TABLE, null);
 
         int idColumnIndex = cursor.getColumnIndex(DB_ID_COLUMN);
         int nameColumnIndex = cursor.getColumnIndex(DB_NAME_COLUMN);
@@ -128,6 +129,37 @@ public class StoreDatabase extends SQLiteOpenHelper {
                 int amount = cursor.getInt(amountColumnIndex);
 
                 items.add(new StoreItems(id, name, details, amount));
+
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return items;
+    } */
+
+    // Search
+    public ArrayList<StoreItems> getAnItem(String nameSearch){
+        ArrayList<StoreItems> items = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+
+        String[] args = {"%"+nameSearch+"%"};
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM "+ DB_ITEM_TABLE + " WHERE "+DB_NAME_COLUMN+ " LIKE ?", args);
+
+        int idColumnIndex = cursor.getColumnIndex(DB_ID_COLUMN);
+        int nameColumnIndex = cursor.getColumnIndex(DB_NAME_COLUMN);
+        int detailsColumnIndex = cursor.getColumnIndex(DB_DETAILS_COLUMN);
+        int amountColumnIndex = cursor.getColumnIndex(DB_AMOUNT_COLUMN);
+        int imageColumnIndex = cursor.getColumnIndex(DB_IMAGE_COLUMN);
+
+        // لفحص الـ cursor هل يحتوي على بيانات أم لا
+        if (cursor.moveToFirst()){
+            do {
+                int id = cursor.getInt(idColumnIndex);
+                String name = cursor.getString(nameColumnIndex);
+                String details = cursor.getString(detailsColumnIndex);
+                int amount = cursor.getInt(amountColumnIndex);
+                byte[] image = cursor.getBlob(imageColumnIndex);
+
+                items.add(new StoreItems(id, name, details, amount, image));
 
             } while (cursor.moveToNext());
             cursor.close();

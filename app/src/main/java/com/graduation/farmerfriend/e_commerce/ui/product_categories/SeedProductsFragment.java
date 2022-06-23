@@ -81,12 +81,6 @@ public class SeedProductsFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.shop_main_menu, menu);
 
-        SearchManager searchManager =
-                (SearchManager) requireActivity().getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(requireActivity().getComponentName()));
     }
 
     @Override
@@ -95,7 +89,9 @@ public class SeedProductsFragment extends Fragment {
             Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
         } else if (item.getItemId() == R.id.wishlistFragment) {
             Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment);
-        }
+        } else if (item.getItemId() == R.id.search)
+            Navigation.findNavController(requireView()).navigate(R.id.searchFragment);
+
         return super.onOptionsItemSelected(item);
     }
 }
