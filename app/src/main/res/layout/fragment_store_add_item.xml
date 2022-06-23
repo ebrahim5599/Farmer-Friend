@@ -109,6 +109,7 @@
                 android:inputType="number" />
 
             <ImageView
+                android:id="@+id/uploaded_image"
                 android:layout_width="240dp"
                 android:layout_height="240dp"
                 android:layout_gravity="center"
