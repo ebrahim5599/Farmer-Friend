@@ -2,33 +2,28 @@ package com.graduation.farmerfriend.store.ui;
 
 import static android.app.Activity.RESULT_OK;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentStoreAddItemBinding;
 import com.graduation.farmerfriend.store.data.StoreDatabase;
 import com.graduation.farmerfriend.store.pojo.StoreItems;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class StoreAddItemFragment extends Fragment {
 
@@ -105,7 +100,8 @@ public class StoreAddItemFragment extends Fragment {
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 binding.uploadedImageRelativeLayout.setVisibility(View.VISIBLE);
                 binding.uploadedImage.setImageBitmap(bitmap);
-                image = getBytes(bitmap);
+//                image = getBytes(bitmap);
+                image = resizeImage(getBytes(bitmap));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -116,5 +112,17 @@ public class StoreAddItemFragment extends Fragment {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         return stream.toByteArray();
+    }
+
+    private byte[] resizeImage(byte[] current_image){
+
+        while (current_image.length > 500000){
+            Bitmap bitmap = BitmapFactory.decodeByteArray(current_image, 0, current_image.length);
+            Bitmap resized = Bitmap.createScaledBitmap(bitmap, (int)(bitmap.getWidth()*0.4), (int)(bitmap.getHeight()*0.4), true);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            resized.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            current_image = stream.toByteArray();
+        }
+        return current_image;
     }
 }
