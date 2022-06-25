@@ -150,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/relative_layout_background2"
-                android:backgroundTint="@color/grey_Ecomerce_RelativeLayout">
+                android:backgroundTint="@color/grey_Ecommerce_RelativeLayout">
 
                 <TextView
                     android:id="@+id/fragment_e_commerce_textview_best_seller_label"
@@ -191,7 +191,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/relative_layout_background3"
-                android:backgroundTint="@color/grey_Ecomerce_RelativeLayout">
+                android:backgroundTint="@color/grey_Ecommerce_RelativeLayout">
 
                 <TextView
                     android:id="@+id/fragment_e_commerce_textview_seeds_label"
@@ -231,7 +231,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/relative_layout_background3"
-                android:backgroundTint="@color/grey_Ecomerce_RelativeLayout">
+                android:backgroundTint="@color/grey_Ecommerce_RelativeLayout">
 
                 <TextView
                     android:id="@+id/fragment_e_commerce_textview_fertilizer_label"
@@ -271,7 +271,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/relative_layout_background3"
-                android:backgroundTint="@color/grey_Ecomerce_RelativeLayout">
+                android:backgroundTint="@color/grey_Ecommerce_RelativeLayout">
 
                 <TextView
                     android:id="@+id/fragment_e_commerce_textview_tools_label"
