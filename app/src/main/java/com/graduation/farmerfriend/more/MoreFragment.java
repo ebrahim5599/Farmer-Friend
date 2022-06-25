@@ -1,6 +1,5 @@
 package com.graduation.farmerfriend.more;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
@@ -23,7 +21,6 @@ import android.widget.Toast;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentMoreBinding;
-import com.graduation.farmerfriend.ui.MainActivity;
 
 public class MoreFragment extends Fragment {
     FragmentMoreBinding binding ;
@@ -31,8 +28,8 @@ public class MoreFragment extends Fragment {
     private MutableLiveData<String> mutableLiveDataForName;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
+                             @NonNull Bundle savedInstanceState) {
         binding=FragmentMoreBinding.inflate(inflater,container,false);
 
         sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
@@ -88,8 +85,13 @@ public class MoreFragment extends Fragment {
                 sharedPreferences.edit().putBoolean(Constants.LOGGED_IN, false).apply();
                 sharedPreferences.edit().putString(Constants.FIRST_AND_LAST_NAME, "").apply();
                 sharedPreferences.edit().putString(Constants.USER_ID,"").apply();
+
                 mutableLiveDataForName.setValue("Log in");
                 binding.fragmentMoreTextviewLogin.setVisibility(View.VISIBLE);
+
+                sharedPreferences.edit().putBoolean(Constants.HAS_IOT_SYSTEM,false).apply();
+                mutableLiveDataForName.setValue("");
+
             }
         });
         return binding.getRoot();
