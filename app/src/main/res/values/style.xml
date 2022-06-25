@@ -4,6 +4,7 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">25dp</item>
         <item name="color">@color/white</item>
+        <item name="strokeColor">#757575</item>
     </style>
 
     <style name="ShapeAppearanceOverlay" parent="">

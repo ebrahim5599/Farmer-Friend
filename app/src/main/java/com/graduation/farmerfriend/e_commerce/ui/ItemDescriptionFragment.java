@@ -65,7 +65,7 @@ public class ItemDescriptionFragment extends Fragment {
             public void onChanged(Product product) {
                 binding.itemDescriptionTextviewDescription.setText(String.valueOf(product.description));
                 binding.itemDescriptionTextviewName.setText(String.valueOf(product.productName));
-//                binding.itemDescriptionTextviewPrice.setText(String.valueOf(product.price));
+                binding.itemDescriptionTextviewPrice.setText(String.valueOf(product.price));
 
 
                 if (product.productImage != null) {
