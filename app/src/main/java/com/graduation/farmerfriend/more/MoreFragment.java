@@ -85,8 +85,13 @@ public class MoreFragment extends Fragment {
                 sharedPreferences.edit().putBoolean(Constants.LOGGED_IN, false).apply();
                 sharedPreferences.edit().putString(Constants.FIRST_AND_LAST_NAME, "").apply();
                 sharedPreferences.edit().putString(Constants.USER_ID,"").apply();
+
+                mutableLiveDataForName.setValue("Log in");
+                binding.fragmentMoreTextviewLogin.setVisibility(View.VISIBLE);
+
                 sharedPreferences.edit().putBoolean(Constants.HAS_IOT_SYSTEM,false).apply();
                 mutableLiveDataForName.setValue("");
+
             }
         });
         return binding.getRoot();
