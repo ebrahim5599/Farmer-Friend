@@ -62,7 +62,15 @@
         android:id="@+id/moreFragment"
         android:name="com.graduation.farmerfriend.more.MoreFragment"
         android:label="@string/more"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/action_moreFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 
 
     <!--    fragment of e_commerce categories -->
@@ -145,6 +153,21 @@
             android:name="fromWhichFragment"
             android:defaultValue="E_COMMERCE"
             app:argType="string" />
+        <action
+            android:id="@+id/action_cartFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_cartFragment_to_userDataFragment"
+            app:destination="@id/userDataFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
     </fragment>
 
     <fragment
@@ -176,7 +199,7 @@
     <fragment
         android:id="@+id/userDataFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.cart.UserDataFragment"
-        android:label="fragment_user_data"
+        android:label="@string/additional_data_required"
         tools:layout="@layout/fragment_user_data" />
 
 
@@ -269,6 +292,15 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/controlContainerFragment"/>
+        <action
+            android:id="@+id/action_loginFragment_to_userDataFragment"
+            app:destination="@id/userDataFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/cartFragment"/>
+
     </fragment>
     <fragment
         android:id="@+id/iotIntroFragment"

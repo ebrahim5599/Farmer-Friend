@@ -1,5 +1,7 @@
 package com.graduation.farmerfriend.constants;
 
+import androidx.annotation.NonNull;
+
 public class Constants {
     public static String MAIN_SHARED_PREFERENCES = "MAIN";
     public static String LOCATION = "LOCATION";
@@ -26,5 +28,15 @@ public class Constants {
     // Registration constants.
     public static final String LOGGED_IN = "login status";
     public static final String FIRST_AND_LAST_NAME = "first and last name";
+
+    // Purchase process constants.
+    public static String FULL_NAME = "full name";
+    public static String PHONE_NUMBER = "phone number";
+    public static String GOVERNORATE = "governorate";
+    public static String CITY = "city";
+    public static String STREET = "street";
+    public static String DISTRICT = "district";
+    public static String SPECIAL_MARQUE = "special marque";
+    public static String PROPERTY_NUMBER = "property number";
 
 }
