@@ -61,7 +61,7 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:fontFamily="sans-serif-medium"
-                android:text="Farmer Friend"
+                android:text="Anonymous User"
                 android:textColor="@color/black_More_Text"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,24 +71,24 @@
 
             <TextView
                 android:id="@+id/fragment_more_textview_Login"
-                style="?android:listSeparatorTextViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
-                android:text="Log in to your account"
+                android:text="@string/log_in_to_your_account"
                 android:textColor="@color/black_More_Text"
                 android:textSize="24sp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_name" />
+<!--            style="?android:listSeparatorTextViewStyle"-->
 
             <TextView
                 android:id="@+id/fragment_more_textview_community"
                 android:layout_width="335dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/fragment_more_item_background"
                 android:drawablePadding="10dp"
                 android:fontFamily="sans-serif-condensed"
