@@ -18,6 +18,12 @@
         <action
             android:id="@+id/action_homeFragment_to_itemDescriptionFragment"
             app:destination="@id/itemDescriptionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_welcomeScreenFragment"
+            app:destination="@id/welcomeScreenFragment"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"/>
+
     </fragment>
     <fragment
         android:id="@+id/controlFragment"
@@ -368,6 +374,21 @@
         android:id="@+id/welcomeScreenFragment"
         android:name="com.graduation.farmerfriend.ui.WelcomeScreenFragment"
         android:label="@string/welcome"
-        tools:layout="@layout/fragment_welcome_screen" />
+        tools:layout="@layout/fragment_welcome_screen" >
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 
 </navigation>
