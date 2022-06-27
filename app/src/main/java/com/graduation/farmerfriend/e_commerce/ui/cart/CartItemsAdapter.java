@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.bitmaps.BitmapHandling;
-import com.graduation.farmerfriend.ecommerce_models.Cart;
+import com.graduation.farmerfriend.ecommerce_models.CartRoot;
 import com.graduation.farmerfriend.ecommerce_models.PatchCart;
 
 import java.util.ArrayList;
@@ -25,12 +25,12 @@ import java.util.Locale;
 public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.CartItemViewHolder> {
 
     Context context;
-    ArrayList<Cart> carts;
+    ArrayList<CartRoot> carts;
     private static final String TAG = "CartItemsAdapter";
     private final CartViewModel cartViewModel;
     String userId;
 
-    public CartItemsAdapter(Fragment fragment, Context context, ArrayList<Cart> carts, String userId) {
+    public CartItemsAdapter(Fragment fragment, Context context, ArrayList<CartRoot> carts, String userId) {
         this.context = context;
         this.carts = carts;
         this.userId = userId;
@@ -51,18 +51,18 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.Cart
             int numOfItems = carts.get(holder.getAbsoluteAdapterPosition()).quantity;
 
             carts.get(holder.getAbsoluteAdapterPosition()).quantity -= 1;
-            int cartId = carts.get(holder.getAbsoluteAdapterPosition()).cartId;
+            int cartItemsId = carts.get(holder.getAbsoluteAdapterPosition()).cartItemsId;
             if (numOfItems > 1) {
                 holder.textViewNumberOfItems.setText(String.valueOf(numOfItems - 1));
                 ArrayList<PatchCart> patchCarts = new ArrayList<>();
                 PatchCart patchCart = new PatchCart();
                 patchCart.value = numOfItems - 1;
                 patchCarts.add(patchCart);
-                cartViewModel.changeQuantity(cartId, patchCarts);
-                holder.textViewTotalPrice.setText(String.format(Locale.US,"%.2f eg", carts.get(holder.getAbsoluteAdapterPosition()).product.price * carts.get(holder.getAbsoluteAdapterPosition()).quantity));
+                cartViewModel.changeQuantity(cartItemsId, patchCarts);
+                holder.textViewTotalPrice.setText(String.format(Locale.US,"%.2f eg", carts.get(holder.getAbsoluteAdapterPosition()).tblProduct.price * carts.get(holder.getAbsoluteAdapterPosition()).quantity));
             }
             else {
-                cartViewModel.deleteProduct(carts.get(holder.getAbsoluteAdapterPosition()).productId,userId);
+                cartViewModel.deleteProduct(carts.get(holder.getAbsoluteAdapterPosition()).cartItemsId);
                 carts.remove(holder.getAbsoluteAdapterPosition());
                 notifyItemRemoved(holder.getAbsoluteAdapterPosition());
             }
@@ -72,25 +72,25 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.Cart
         holder.buttonPlus.setOnClickListener(view -> {
             int numOfItems = carts.get(holder.getAbsoluteAdapterPosition()).quantity;
             carts.get(holder.getAbsoluteAdapterPosition()).quantity += 1;
-            int cartId = carts.get(holder.getAbsoluteAdapterPosition()).cartId;
+            int cartItemsId = carts.get(holder.getAbsoluteAdapterPosition()).cartItemsId;
             holder.textViewNumberOfItems.setText(String.valueOf(numOfItems + 1));
             ArrayList<PatchCart> patchCarts = new ArrayList<>();
             PatchCart patchCart = new PatchCart();
             patchCart.value = numOfItems + 1;
             patchCarts.add(patchCart);
-            cartViewModel.changeQuantity(cartId, patchCarts);
-            holder.textViewTotalPrice.setText(String.format(Locale.US,"%.2f eg", carts.get(holder.getAbsoluteAdapterPosition()).product.price * carts.get(holder.getAbsoluteAdapterPosition()).quantity));
+            cartViewModel.changeQuantity(cartItemsId, patchCarts);
+            holder.textViewTotalPrice.setText(String.format(Locale.US,"%.2f eg", carts.get(holder.getAbsoluteAdapterPosition()).tblProduct.price * carts.get(holder.getAbsoluteAdapterPosition()).quantity));
         });
         holder.imageViewItem.setImageBitmap(BitmapHandling.decodeSampledBitmapFromResource(context.getResources(), R.drawable.no_product, 250, 100));
-        holder.textViewPrice.setText(String.format(Locale.US,"%.2f eg", carts.get(position).product.price));
+        holder.textViewPrice.setText(String.format(Locale.US,"%.2f eg", carts.get(position).tblProduct.price));
         holder.textViewNumberOfItems.setText(String.format(Locale.US,"%d", carts.get(position).quantity));
-        holder.textViewItemName.setText(carts.get(position).product.productName);
-        holder.textViewTotalPrice.setText(String.format(Locale.US,"%.2f eg", carts.get(position).product.price * carts.get(position).quantity));
+        holder.textViewItemName.setText(carts.get(position).tblProduct.productName);
+        holder.textViewTotalPrice.setText(String.format(Locale.US,"%.2f eg", carts.get(position).tblProduct.price * carts.get(position).quantity));
         Log.d(TAG, "onBindViewHolder: " + carts.get(position).quantity);
 
 
         holder.buttonDelete.setOnClickListener(view -> {
-            cartViewModel.deleteProduct(carts.get(holder.getAbsoluteAdapterPosition()).productId, userId);
+            cartViewModel.deleteProduct(carts.get(holder.getAbsoluteAdapterPosition()).cartItemsId);
             carts.remove(holder.getAbsoluteAdapterPosition());
             notifyItemRemoved(holder.getAbsoluteAdapterPosition());
         });

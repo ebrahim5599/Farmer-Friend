@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentCartBinding;
-import com.graduation.farmerfriend.ecommerce_models.Cart;
+import com.graduation.farmerfriend.ecommerce_models.CartRoot;
 import com.graduation.farmerfriend.home.HomeViewModel;
 import com.graduation.farmerfriend.sharedPreferences.SharedPref;
 
@@ -65,10 +65,10 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        cartViewModel.getCartLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<CartRoot>>() {
 
-        cartViewModel.getCartLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Cart>>() {
                     @Override
-                    public void onChanged(ArrayList<Cart> carts) {
+                    public void onChanged(ArrayList<CartRoot> carts) {
                         CartItemsAdapter adapter = new CartItemsAdapter(CartFragment.this,requireContext(),carts,sharedPref.getStringPref(Constants.USER_ID,""));
                         binding.cartRecyclerView.setAdapter(adapter);
                         binding.cartRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));

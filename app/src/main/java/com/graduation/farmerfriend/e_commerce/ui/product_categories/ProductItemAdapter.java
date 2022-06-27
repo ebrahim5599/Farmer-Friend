@@ -95,7 +95,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
             public void onClick(View view) {
 
                 if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
-                    PostCart postCart = new PostCart(productArrayList.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""));
+                    PostCart postCart = new PostCart(productArrayList.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""),1);
                     ecommerceRepo.addToCart(postCart);
                     Toast.makeText(context, "تمت اضافة " + productArrayList.get(holder.getAbsoluteAdapterPosition()).productName + " لشنطة التسوق", Toast.LENGTH_SHORT).show();
                 } else {
@@ -111,7 +111,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
         return productArrayList.size();
     }
 
-    public class ProductItemViewHolder extends RecyclerView.ViewHolder {
+    public static class ProductItemViewHolder extends RecyclerView.ViewHolder {
         TextView textViewProductName;
         TextView textViewProductPrice;
         ImageView imageView;

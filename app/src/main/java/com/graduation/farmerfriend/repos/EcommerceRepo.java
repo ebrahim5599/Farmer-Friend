@@ -7,7 +7,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.graduation.farmerfriend.apis.ECommerceInterface;
-import com.graduation.farmerfriend.ecommerce_models.Cart;
+import com.graduation.farmerfriend.ecommerce_models.CartRoot;
+import com.graduation.farmerfriend.ecommerce_models.IOTStatus;
 import com.graduation.farmerfriend.ecommerce_models.PatchCart;
 import com.graduation.farmerfriend.ecommerce_models.PostCart;
 import com.graduation.farmerfriend.ecommerce_models.Product;
@@ -27,7 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EcommerceRepo {
     private static EcommerceRepo Instance;
-    private static final String ECOMMERCE_SERVICE_BASE_URL = "http://teamweb992022-001-site1.htempurl.com/";
+    private static final String ECOMMERCE_SERVICE_BASE_URL = "http://newweb19992022-001-site1.ftempurl.com/";
     private  ECommerceInterface eCommerceInterface;
     private CompositeDisposable compositeDisposable;
     private static final String TAG = "EcommerceRepo";
@@ -36,7 +37,8 @@ public class EcommerceRepo {
     private final MutableLiveData<ArrayList<Product>> toolProductsLiveData;
     private final MutableLiveData<ArrayList<Product>> ferProductsLiveData;
     private final MutableLiveData<Product> singleProductLiveData;
-    private final MutableLiveData<ArrayList<Cart>> cartLiveData;
+    private final MutableLiveData<ArrayList<CartRoot>> cartLiveData;
+    final MutableLiveData<IOTStatus> iotStatusMutableLiveData;
     public static final String HEADER_CACHE_CONTROL = "Cache-Control";
     public static final String HEADER_PRAGMA = "Pragma";
     Context context;
@@ -76,6 +78,8 @@ public class EcommerceRepo {
         toolProductsLiveData = new MutableLiveData<>();
         ferProductsLiveData = new MutableLiveData<>();
         singleProductLiveData = new MutableLiveData<>();
+        iotStatusMutableLiveData = new MutableLiveData<>();
+
         cartLiveData = new MutableLiveData<>();
     }
 
@@ -94,7 +98,6 @@ public class EcommerceRepo {
             @Override
             public void onSuccess(@NonNull ArrayList<Product> product) {
                 allProductsLiveData.postValue(product);
-                Log.d(TAG, String.valueOf(product.get(2).quantity));
             }
 
             @Override
@@ -146,7 +149,6 @@ public class EcommerceRepo {
             @Override
             public void onSuccess(@NonNull ArrayList<Product> product) {
                 ferProductsLiveData.postValue(product);
-                Log.d(TAG, String.valueOf(product.get(0).productName));
             }
 
             @Override
@@ -172,7 +174,6 @@ public class EcommerceRepo {
             @Override
             public void onSuccess(@NonNull ArrayList<Product> product) {
                 toolProductsLiveData.postValue(product);
-                Log.d(TAG, String.valueOf(product.get(0).productName));
             }
 
             @Override
@@ -207,10 +208,10 @@ public class EcommerceRepo {
     }
 
     public void getCartItems(String userID) {
-        Single<ArrayList<Cart>> cartSingle = eCommerceInterface.getCartItems(userID).subscribeOn(Schedulers.io());
+        Single<ArrayList<CartRoot>> cartSingle = eCommerceInterface.getCartProducts(userID).subscribeOn(Schedulers.io());
 
         Log.d(TAG, "onSuccess: ");
-        SingleObserver<ArrayList<Cart>> cartSingleObserver = new SingleObserver<ArrayList<Cart>>() {
+        SingleObserver<ArrayList<CartRoot>> cartSingleObserver = new SingleObserver<ArrayList<CartRoot>>() {
 
             @Override
             public void onSubscribe(@NonNull Disposable d) {
@@ -218,7 +219,7 @@ public class EcommerceRepo {
             }
 
             @Override
-            public void onSuccess(@NonNull ArrayList<Cart> carts) {
+            public void onSuccess(@NonNull ArrayList<CartRoot> carts) {
                 cartLiveData.postValue(carts);
             }
 
@@ -232,7 +233,7 @@ public class EcommerceRepo {
     }
 
     public void patchQuantity(int cartID, ArrayList<PatchCart> patchCarts) {
-        Single<Object> objectSingle = eCommerceInterface.changeQuantity(cartID, patchCarts).subscribeOn(Schedulers.io());
+        Single<Object> objectSingle = eCommerceInterface.patchCartProductQuantity(cartID, patchCarts).subscribeOn(Schedulers.io());
         SingleObserver<Object> observer = new SingleObserver<Object>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
@@ -252,8 +253,8 @@ public class EcommerceRepo {
         objectSingle.subscribe(observer);
     }
 
-    public void deleteProduct(int productId, String userId) {
-        Single<Object> single = eCommerceInterface.deleteProductFromCart(productId, userId).subscribeOn(Schedulers.io());
+    public void deleteProduct(int cartItemsId) {
+        Single<Object> single = eCommerceInterface.deleteProductFromCart(cartItemsId).subscribeOn(Schedulers.io());
         SingleObserver<Object> observer = new SingleObserver<Object>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
@@ -274,7 +275,7 @@ public class EcommerceRepo {
     }
 
     public void addToCart(PostCart postCart) {
-        Single<PostCart> cartSingle = eCommerceInterface.addToCart(postCart).subscribeOn(Schedulers.io());
+        Single<PostCart> cartSingle = eCommerceInterface.postProductToCart(postCart).subscribeOn(Schedulers.io());
         SingleObserver<PostCart> cartSingleObserver = new SingleObserver<PostCart>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
@@ -292,6 +293,26 @@ public class EcommerceRepo {
             }
         };
         cartSingle.subscribe(cartSingleObserver);
+    }
+
+    public void checkIotStatus(String userName){
+        Single<IOTStatus> iotStatusSingle = eCommerceInterface.getIotStatus(userName);
+        SingleObserver<IOTStatus> iotStatusSingleObserver = new SingleObserver<IOTStatus>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(@NonNull IOTStatus iotStatus) {
+                    iotStatusMutableLiveData.postValue(iotStatus);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+
+            }
+        };
     }
 
     public LiveData<ArrayList<Product>> getAllLiveDataProducts() {
@@ -314,7 +335,7 @@ public class EcommerceRepo {
         return singleProductLiveData;
     }
 
-    public LiveData<ArrayList<Cart>> getCartLiveData() {
+    public LiveData<ArrayList<CartRoot>> getCartLiveData() {
         return cartLiveData;
     }
 
