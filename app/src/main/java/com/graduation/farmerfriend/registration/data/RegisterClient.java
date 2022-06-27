@@ -8,6 +8,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterClient {
+
     private static final String BASE_URL = "http://newweb19992022-001-site1.ftempurl.com/";
     private static RegisterClient INSTANCE;
     private RegistrationApiInterface registrationApiInterface;

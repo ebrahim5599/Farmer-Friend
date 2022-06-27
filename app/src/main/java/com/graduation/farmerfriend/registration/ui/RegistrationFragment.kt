@@ -1,5 +1,7 @@
 package com.graduation.farmerfriend.registration.ui
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.graduation.farmerfriend.R
+import com.graduation.farmerfriend.constants.Constants
 import com.graduation.farmerfriend.databinding.FragmentRegistrationBinding
 
 class RegistrationFragment : Fragment() {
@@ -20,6 +23,7 @@ class RegistrationFragment : Fragment() {
     private lateinit var registrationViewModel: RegistrationViewModel
     private var emailPattern: String = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
     private var passwordPattern: String = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$"
+    private lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +31,7 @@ class RegistrationFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         viewBinding = FragmentRegistrationBinding.inflate(inflater, container, false)
+        sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE)
 
         val options = navOptions {
             anim {
@@ -43,9 +48,16 @@ class RegistrationFragment : Fragment() {
             viewLifecycleOwner
         ) { userData ->
             Toast.makeText(context, userData.firstName, Toast.LENGTH_SHORT).show()
+            sharedPreferences.edit().putBoolean(Constants.LOGGED_IN, true).apply()
+            sharedPreferences.edit().putString(
+                Constants.FIRST_AND_LAST_NAME,
+                userData.firstName+" " +userData.lastName).apply()
+            sharedPreferences.edit().putString(Constants.USER_ID,userData.id)
+            sharedPreferences.edit().putString(Constants.USER_NAME,userData.username)
+
             Log.i("info", "Success")
             viewBinding.loadingRegister.visibility = View.GONE
-            findNavController().navigate(R.id.next_action)
+            findNavController().navigate(R.id.action_registrationFragment_to_iotIntroFragment)
         }
 
         registrationViewModel.errorMessage.observe(
@@ -62,6 +74,10 @@ class RegistrationFragment : Fragment() {
 
         viewBinding.registerButton.setOnClickListener {
             performRegistration()
+        }
+
+        viewBinding.backToLogin.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         return viewBinding.root

@@ -7,7 +7,7 @@
     <string name="seeds">Seeds</string>
     <string name="machine_shops">Machine Shops</string>
     <string name="add">Add to Cart</string>
-    <string name="myproducts">My Products</string>
+    <string name="my_products">My Products</string>
     <string name="buy">Buy</string>
     <string name="Cart">Cart</string>
     <string name="total">"Total   ="</string>
@@ -25,7 +25,7 @@
     <string name="item_name">Corn Seeds</string>
     <string name="description">Description</string>
     <string name="results">Results</string>
-    <string name="name">Name</string>
+    <string name="full_name">Full Name</string>
     <string name="phone">Phone</string>
     <string name="governorate">Governorate</string>
     <string name="district">District</string>
@@ -40,10 +40,10 @@
     <string name="location"> ADD YOUR LOCATION</string>
     <string name="save">SAVE</string>
 
-<!--    <string-array name="gov_array">-->
-<!--        <item>Sharqia</item>-->
-<!--        <item>cairo</item>-->
-<!--    </string-array>-->
+    <!--    <string-array name="gov_array">-->
+    <!--        <item>Sharqia</item>-->
+    <!--        <item>cairo</item>-->
+    <!--    </string-array>-->
 
     <string name="title_activity_search">Search</string>
     <string name="wishlist">Wishlist</string>
@@ -92,7 +92,7 @@
     <string name="plant_details">Details</string>
     <string name="apply_now">Apply now</string>
     <string name="iot_intro_message">Control your farm remotely, subscribe now to our system to follow your farm through the farmer\'s friend application</string>
-    <string name="additional_data_required">Additional data required</string>
+    <string name="additional_data_required">Additional Data</string>
     <string name="sent_request">Send request</string>
     <string name="email">Email</string>
     <string name="what_is_the_approximate_area_of_the_farm">What is the approximate area of the farm?</string>
@@ -116,5 +116,11 @@
     <string name="all_products">All Products</string>
     <string name="add_item">Add Item</string>
     <string name="upload_image">Upload Image</string>
-
+    <string name="log_in_to_your_account">Log in to your account</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_up">sign up</string>
+    <string name="log_in">log in</string>
+    <string name="skip_now">skip now</string>
+    <string name="welcome">Welcome</string>
 </resources>

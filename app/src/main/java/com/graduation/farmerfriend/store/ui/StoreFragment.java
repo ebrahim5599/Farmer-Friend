@@ -26,12 +26,13 @@ public class StoreFragment extends Fragment {
 
     private FragmentStoreBinding binding;
     private StoreDatabase myDatabase;
+    private ArrayList<StoreItems> items;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentStoreBinding.inflate(inflater,container,false);
+        binding = FragmentStoreBinding.inflate(inflater, container, false);
         //get the drawable
         @SuppressLint("UseCompatLoadingForDrawables")
         Drawable myFabSrc = getResources().getDrawable(R.drawable.ic_add);
@@ -49,24 +50,16 @@ public class StoreFragment extends Fragment {
             }
         });
 
-//        myDatabase = new StoreDatabase(getContext());
-        ArrayList<StoreItems> storeArrayList = new ArrayList<>();
-
-//        ArrayList<StoreItems> items = myDatabase.getAllItems();
-//        for (StoreItems item : items ) {
-//            items.add(new StoreItems(item.getItemName(), item.getItemDetails(), item.getNumberOfItems(), R.drawable.no_product));
-//        }
-        storeArrayList.add(new StoreItems("Mint", "details for mint", 5, R.drawable.no_product));
-        storeArrayList.add(new StoreItems("Mint", "details for mint", 20, R.drawable.no_product));
-        storeArrayList.add(new StoreItems("Mint", "details for mint", 5, R.drawable.no_product));
-        storeArrayList.add(new StoreItems("Mint", "details for mint", 5, R.drawable.no_product));
-
+        myDatabase = new StoreDatabase(getContext());
+//        ArrayList<StoreItems> storeArrayList = new ArrayList<>();
+        if (myDatabase.getAllItems() != null)
+            items = myDatabase.getAllItems();
 
         binding.activityStoreRecycleViewStore.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.activityStoreRecycleViewStore.setHasFixedSize(true);
-        StoreItemsAdapter storeItemsAdapter = new StoreItemsAdapter(requireContext(), storeArrayList);
-        binding.activityStoreRecycleViewStore.setAdapter(storeItemsAdapter);
 
+        StoreItemsAdapter storeItemsAdapter = new StoreItemsAdapter(requireContext(), items);
+        binding.activityStoreRecycleViewStore.setAdapter(storeItemsAdapter);
         return binding.getRoot();
     }
 }

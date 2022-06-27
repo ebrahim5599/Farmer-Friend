@@ -84,7 +84,7 @@ public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycle
                 Toast.makeText(context, "تمت اضافة " + data.get(holder.getAbsoluteAdapterPosition()).productName + " لشنطة التسوق", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context, "يرجى تسجيل الدخول حتى تستطيع الاضافة الى العربة ", Toast.LENGTH_SHORT).show();
-                //TODO navigate to sign in fragment
+                // Navigation.findNavController(view).navigate(R.id.loginFragment);
             }
         });
     }
