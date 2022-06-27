@@ -1,41 +1,29 @@
 package com.graduation.farmerfriend.e_commerce.ui;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentECommerceBinding;
-import com.graduation.farmerfriend.e_commerce.Data;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
-import com.graduation.farmerfriend.e_commerce.search.pojo.SearchResultPojo;
-import com.graduation.farmerfriend.e_commerce.search.ui.SearchAdapter;
 import com.graduation.farmerfriend.e_commerce.search.ui.SearchViewModel;
-import com.graduation.farmerfriend.e_commerce.search.ui.ViewRecycleSearchAdapter;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class ECommerceFragment extends Fragment {
