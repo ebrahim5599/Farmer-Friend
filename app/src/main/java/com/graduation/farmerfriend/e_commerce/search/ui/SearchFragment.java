@@ -29,7 +29,7 @@ public class SearchFragment extends Fragment {
 
     private SearchViewModel searchViewModel;
     private SearchAdapter searchAdapter;
-    private FragmentSearchBinding binding;
+    FragmentSearchBinding binding;
     private String emptyText = "empty_text|empty text";
 
     @Override

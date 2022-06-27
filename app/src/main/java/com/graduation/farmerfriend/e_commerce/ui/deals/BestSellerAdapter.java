@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
@@ -13,8 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.e_commerce.ui.ECommerceFragmentDirections;
+import com.graduation.farmerfriend.ecommerce_models.PostCart;
 import com.graduation.farmerfriend.ecommerce_models.Product;
+import com.graduation.farmerfriend.repos.EcommerceRepo;
+import com.graduation.farmerfriend.sharedPreferences.SharedPref;
 
 import java.util.ArrayList;
 
@@ -22,11 +27,15 @@ public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.Be
     ArrayList<Product> productArrayList;
 
     Context context;
+    private final SharedPref sharedPref;
+    private final EcommerceRepo ecommerceRepo;
 
     BestSellerAdapter(ArrayList<Product> productArrayList,
                       Context context) {
         this.productArrayList = productArrayList;
         this.context = context;
+        sharedPref = new SharedPref(context, Constants.MAIN_SHARED_PREFERENCES);
+        ecommerceRepo = EcommerceRepo.getInstance();
     }
 
     @NonNull
@@ -56,6 +65,21 @@ public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.Be
                 Navigation.findNavController(holder.itemView).navigate(action);
             }
         });
+        holder.btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
+                    PostCart postCart = new PostCart(productArrayList.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""),1);
+                    ecommerceRepo.addToCart(postCart);
+                    Toast.makeText(context, "تمت اضافة " + productArrayList.get(holder.getAbsoluteAdapterPosition()).productName + " لشنطة التسوق", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "يرجى تسجيل الدخول حتى تستطيع الاضافة الى العربة ", Toast.LENGTH_SHORT).show();
+                    //TODO navigate to sign in fragment
+                }
+            }
+        });
+
     }
 
     @Override
@@ -68,12 +92,15 @@ public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.Be
         private TextView productNameTextView;
         private TextView productPriceTextView;
         private ShapeableImageView productImageView;
+        private TextView btnAddToCart;
 
         public BestSellerViewHolder(@NonNull View itemView) {
             super(itemView);
             productNameTextView = itemView.findViewById(R.id.product_name);
             productPriceTextView = itemView.findViewById(R.id.product_price);
             productImageView = itemView.findViewById(R.id.product_image);
+            btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
+
         }
     }
 
