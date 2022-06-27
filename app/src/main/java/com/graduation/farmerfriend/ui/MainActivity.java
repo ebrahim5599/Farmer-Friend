@@ -49,13 +49,17 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     protected void onCreate(Bundle savedInstanceState) {
         // Handle the splash screen transition.
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
-
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+//        if (!sharedPreferences.getBoolean(Constants.LOGGED_IN, false))
+//            Navigation.findNavController(binding.getRoot()).navigate(R.id.welcomeScreenFragment);
+
         setTheme(R.style.Theme_FarmerFriend);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, MODE_PRIVATE);
-        editor = sharedPreferences.edit();
 
         MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         viewModel.init(this);

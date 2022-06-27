@@ -10,11 +10,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.e_commerce.search.pojo.SearchResultPojo;
+import com.graduation.farmerfriend.e_commerce.ui.ECommerceFragmentDirections;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +54,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, holder.product_name.getText(), Toast.LENGTH_SHORT).show();
+                SearchFragmentDirections.ActionSearchFragmentToItemDescriptionFragment action = SearchFragmentDirections.actionSearchFragmentToItemDescriptionFragment();
+                action.setId(holder.itemView.getId());
+                Navigation.findNavController(holder.itemView).navigate(action);
             }
         });
     }

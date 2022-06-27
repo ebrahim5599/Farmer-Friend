@@ -15,6 +15,7 @@ public class UserData {
     public boolean hasIotSystem;
     public String firstName;
     public String lastName;
+    public String profileImage;
 
     public Object getMessage() {
         return message;
@@ -102,5 +103,13 @@ public class UserData {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 }
