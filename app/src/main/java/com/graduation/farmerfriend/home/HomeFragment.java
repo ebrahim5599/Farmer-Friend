@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -164,7 +165,7 @@ public class HomeFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.community) {
-            PackageManager packageManager = getActivity().getPackageManager();
+            PackageManager packageManager = requireActivity().getPackageManager();
             Intent intent = packageManager.getLaunchIntentForPackage("com.example.farmer_club");
             if (intent != null) {
                 startActivity(intent);

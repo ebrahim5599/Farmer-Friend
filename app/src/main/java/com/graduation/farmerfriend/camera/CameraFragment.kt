@@ -28,9 +28,12 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.graduation.farmerfriend.databinding.FragmentCameraBinding
 import com.graduation.farmerfriend.ml.Model
+import com.graduation.farmerfriend.permissions.FragmentPermissionHelper
+import com.graduation.farmerfriend.permissions.FragmentPermissionInterface
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -40,8 +43,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-
-
 
 
 class CameraFragment : Fragment() {
@@ -73,15 +74,35 @@ class CameraFragment : Fragment() {
         if (allPermissionsGranted()) {
             startCamera()
         } else {
-            ActivityCompat.requestPermissions(
-                requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
-            )
+//            ActivityCompat.requestPermissions(
+//                requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+//            )
+
+            val fragmentCameraPermissionHelper = FragmentPermissionHelper()
+            fragmentCameraPermissionHelper.startPermissionRequest(
+                this, Manifest.permission.CAMERA
+            ) {
+                run {
+                    if (it) {
+                        startCamera()
+                    } else {
+                        // Explain to the user that the feature is unavailable because the
+                        // features requires a permission that the user has denied. At the
+                        // same time, respect the user's decision. Don't link to system
+                        // settings in an effort to convince the user to change their
+                        // decision.
+                        view?.let { it1 -> Navigation.findNavController(it1).popBackStack() }
+
+                    }
+                }
+            }
+
         }
         // Set up the listeners for take photo and video capture buttons
         viewBinding.imageCaptureButton.setOnClickListener {
-                takePhoto()
-                camera = true
-                image = false
+            takePhoto()
+            camera = true
+            image = false
 
         }
 
@@ -113,7 +134,28 @@ class CameraFragment : Fragment() {
         viewBinding.goToTheProcessing.setOnClickListener {
 
             if (camera) {
-                saveImage()
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                    val fragmentPermissionHelper = FragmentPermissionHelper()
+                    fragmentPermissionHelper.startPermissionRequest(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        FragmentPermissionInterface {
+                            run {
+                                if (it) {
+                                    saveImage()
+                                } else {
+                                    // Explain to the user that the feature is unavailable because the
+                                    // features requires a permission that the user has denied. At the
+                                    // same time, respect the user's decision. Don't link to system
+                                    // settings in an effort to convince the user to change their
+                                    // decision.
+                                    view?.let { it1 ->
+                                    }
+
+                                }
+                            }
+                        })
+                } else
+                    saveImage()
 //                finalBitmap?.let { imageProcessing(it) }
             } else if (image) {
                 img_gallery?.let { it1 -> imageProcessing(it1) }
@@ -468,23 +510,6 @@ class CameraFragment : Fragment() {
         return false
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults:
-        IntArray
-    ) {
-
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            Toast.makeText(requireContext(),"$requestCode",Toast.LENGTH_SHORT).show()
-            if (allPermissionsGranted()) {
-
-                startCamera()
-            } else {
-                Toast.makeText(context, "Camera Permission Denied", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

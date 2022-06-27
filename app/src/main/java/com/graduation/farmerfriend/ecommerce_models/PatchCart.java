@@ -4,6 +4,4 @@ public class PatchCart {
         public String path = "/Quantity";
         public String op = "replace";
         public int value;
-
-
 }
