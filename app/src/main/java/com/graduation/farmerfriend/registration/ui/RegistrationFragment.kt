@@ -57,7 +57,7 @@ class RegistrationFragment : Fragment() {
 
             Log.i("info", "Success")
             viewBinding.loadingRegister.visibility = View.GONE
-            findNavController().navigate(R.id.action_registrationFragment_to_iotIntroFragment)
+            findNavController().popBackStack()
         }
 
         registrationViewModel.errorMessage.observe(

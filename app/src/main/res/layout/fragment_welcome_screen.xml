@@ -10,12 +10,13 @@ tools:context=".ui.WelcomeScreenFragment">
         android:id="@+id/skip_now_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/welcome_layout"
         android:layout_alignParentEnd="true"
         android:layout_gravity="end"
         android:background="@android:color/transparent"
         android:text="@string/skip_now"
         android:textColor="#757575"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,6 +24,7 @@ tools:context=".ui.WelcomeScreenFragment">
         android:layout_centerInParent="true">
 
         <LinearLayout
+            android:id="@+id/welcome_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -86,7 +88,6 @@ tools:context=".ui.WelcomeScreenFragment">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp">
 
                 <TextView
@@ -94,6 +95,7 @@ tools:context=".ui.WelcomeScreenFragment">
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center"
+                    android:paddingTop="16dp"
                     android:paddingBottom="16dp"
                     android:text="@string/sign_up"
                     android:textAllCaps="true"
