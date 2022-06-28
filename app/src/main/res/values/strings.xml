@@ -73,6 +73,7 @@
     <string name="automatic">Automatic</string>
     <string name="manual">Manual</string>
     <string name="humidity">Humidity</string>
+    <string name="altitude">Altitude</string>
     <string name="pressure">Pressure</string>
     <string name="luminous_intensity">Luminous Intensity</string>
     <string name="temperature">Temperature</string>
@@ -116,6 +117,7 @@
     <string name="all_products">All Products</string>
     <string name="add_item">Add Item</string>
     <string name="upload_image">Upload Image</string>
+
     <string name="log_in_to_your_account">Log in to your account</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -123,4 +125,5 @@
     <string name="log_in">log in</string>
     <string name="skip_now">skip now</string>
     <string name="welcome">Welcome</string>
+
 </resources>
