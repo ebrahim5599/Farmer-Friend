@@ -24,9 +24,9 @@ import com.graduation.farmerfriend.sharedPreferences.SharedPref;
 
 public class ItemDescriptionFragment extends Fragment {
     FragmentItemDescriptionBinding binding;
-    private ItemDescViewModel viewModel;
+    ItemDescViewModel viewModel;
     private static final String TAG = "ItemDescriptionFragment";
-    private SharedPref sharedPref;
+    SharedPref sharedPref;
 
 //    @Override
 //    public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class ItemDescriptionFragment extends Fragment {
             public void onChanged(Product product) {
                 binding.itemDescriptionTextviewDescription.setText(String.valueOf(product.description));
                 binding.itemDescriptionTextviewName.setText(String.valueOf(product.productName));
-//                binding.itemDescriptionTextviewPrice.setText(String.valueOf(product.price));
+                binding.itemDescriptionTextviewPrice.setText(String.valueOf(product.price));
 
 
                 if (product.productImage != null) {
@@ -83,9 +83,9 @@ public class ItemDescriptionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
-                    PostCart postCart = new PostCart(product.productId,sharedPref.getStringPref(Constants.USER_ID,""));
+                    PostCart postCart = new PostCart(product.productId,sharedPref.getStringPref(Constants.USER_ID,""),1);
                     viewModel.addToCart(postCart);
-                    Toast.makeText(requireContext(),"تمت اضافة "+product.productName +" لشنطة التسوق",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(),"تمت اضافة "+ product.productName +" لشنطة التسوق",Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(requireContext(), "يرجى تسجيل الدخول حتى تستطيع الاضافة الى العربة ",Toast.LENGTH_SHORT).show();
                     //TODO navigate to sign in fragment

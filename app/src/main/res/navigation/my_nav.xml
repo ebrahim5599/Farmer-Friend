@@ -18,6 +18,12 @@
         <action
             android:id="@+id/action_homeFragment_to_itemDescriptionFragment"
             app:destination="@id/itemDescriptionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_welcomeScreenFragment"
+            app:destination="@id/welcomeScreenFragment"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"/>
+
     </fragment>
     <fragment
         android:id="@+id/controlFragment"
@@ -62,7 +68,15 @@
         android:id="@+id/moreFragment"
         android:name="com.graduation.farmerfriend.more.MoreFragment"
         android:label="@string/more"
-        tools:layout="@layout/fragment_more" />
+        tools:layout="@layout/fragment_more" >
+        <action
+            android:id="@+id/action_moreFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 
 
     <!--    fragment of e_commerce categories -->
@@ -145,6 +159,21 @@
             android:name="fromWhichFragment"
             android:defaultValue="E_COMMERCE"
             app:argType="string" />
+        <action
+            android:id="@+id/action_cartFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_cartFragment_to_userDataFragment"
+            app:destination="@id/userDataFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
     </fragment>
 
     <fragment
@@ -176,7 +205,7 @@
     <fragment
         android:id="@+id/userDataFragment"
         android:name="com.graduation.farmerfriend.e_commerce.ui.cart.UserDataFragment"
-        android:label="fragment_user_data"
+        android:label="@string/additional_data_required"
         tools:layout="@layout/fragment_user_data" />
 
 
@@ -230,15 +259,17 @@
         android:id="@+id/registrationFragment"
         android:name="com.graduation.farmerfriend.registration.ui.RegistrationFragment"
         android:label="@string/fragment_registration"
-        tools:layout="@layout/fragment_registration2" >
+        tools:layout="@layout/fragment_registration" >
+
         <action
-            android:id="@+id/next_action"
+            android:id="@+id/action_registrationFragment_to_iotIntroFragment"
             app:destination="@id/iotIntroFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/controlContainerFragment"/>
+
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -269,6 +300,15 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/controlContainerFragment"/>
+        <action
+            android:id="@+id/action_loginFragment_to_userDataFragment"
+            app:destination="@id/userDataFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/cartFragment"/>
+
     </fragment>
     <fragment
         android:id="@+id/iotIntroFragment"
@@ -320,6 +360,35 @@
         android:id="@+id/searchFragment"
         android:name="com.graduation.farmerfriend.e_commerce.search.ui.SearchFragment"
         android:label="@string/title_activity_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_itemDescriptionFragment"
+            app:destination="@id/itemDescriptionFragment"/>
+<!--            app:enterAnim="@anim/slide_in_right"-->
+<!--            app:exitAnim="@anim/slide_out_left"-->
+<!--            app:popEnterAnim="@anim/slide_in_left"-->
+<!--            app:popExitAnim="@anim/slide_out_right"/>-->
+
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeScreenFragment"
+        android:name="com.graduation.farmerfriend.ui.WelcomeScreenFragment"
+        android:label="@string/welcome"
+        tools:layout="@layout/fragment_welcome_screen" >
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
 
 </navigation>

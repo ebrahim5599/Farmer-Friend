@@ -6,9 +6,9 @@ public class StoreItems {
     private String itemName;
     private String itemDetails;
     private int numberOfItems;
-    private int imageResource;
+    private byte[] imageResource;
 
-    public StoreItems(String itemName, String itemDetails, int numberOfItems, int imageResource) {
+    public StoreItems(String itemName, String itemDetails, int numberOfItems, byte[] imageResource) {
         this.itemName = itemName;
         this.itemDetails = itemDetails;
         this.numberOfItems = numberOfItems;
@@ -20,6 +20,14 @@ public class StoreItems {
         this.itemName = itemName;
         this.itemDetails = itemDetails;
         this.numberOfItems = numberOfItems;
+    }
+
+    public StoreItems(int itemID, String itemName, String itemDetails, int numberOfItems, byte[] imageResource) {
+        this.itemID = itemID;
+        this.itemName = itemName;
+        this.itemDetails = itemDetails;
+        this.numberOfItems = numberOfItems;
+        this.imageResource = imageResource;
     }
 
     public StoreItems(String itemName, String itemDetails, int numberOfItems) {
@@ -52,11 +60,11 @@ public class StoreItems {
         this.numberOfItems = numberOfItems;
     }
 
-    public int getImageResource() {
+    public byte[] getImageResource() {
         return imageResource;
     }
 
-    public void setImageResource(int imageResource) {
+    public void setImageResource(byte[] imageResource) {
         this.imageResource = imageResource;
     }
 

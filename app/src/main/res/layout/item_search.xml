@@ -25,7 +25,7 @@
 
 
     <TextView
-        android:id="@+id/wishlist_button_add_to_cart"
+        android:id="@+id/search_button_add_to_cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/button_delete_cart_shape"
@@ -36,11 +36,11 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:drawableStartCompat="@drawable/ic_baseline_shopping_cart_24"
-        app:layout_constraintBottom_toBottomOf="@+id/wishlist_button_wishlist"
+        app:layout_constraintBottom_toBottomOf="@+id/search_button_wishlist"
         app:layout_constraintEnd_toEndOf="@+id/search_result_product_price_total_currency_text_view" />
 
     <TextView
-        android:id="@+id/wishlist_button_wishlist"
+        android:id="@+id/search_button_wishlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -54,7 +54,7 @@
         android:textSize="18sp"
         app:drawableStartCompat="@drawable/ic_baseline_heart_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/wishlist_button_add_to_cart" />
+        app:layout_constraintEnd_toStartOf="@+id/search_button_add_to_cart" />
 
     <TextView
         android:id="@+id/search_result_product_name_text_view"

@@ -9,7 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SearchClient {
-    private static final String BASE_URL = "http://teamweb992022-001-site1.htempurl.com/";
+    private static final String BASE_URL = "http://newweb19992022-001-site1.ftempurl.com/";
     private static SearchClient INSTANCE;
     private SearchApiInterface searchApiInterface;
 

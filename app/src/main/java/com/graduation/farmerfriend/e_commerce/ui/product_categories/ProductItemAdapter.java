@@ -48,13 +48,14 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
     public ProductItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ProductItemViewHolder(LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.product_container, parent, false));
+                .inflate(R.layout.item_container, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductItemViewHolder holder, int position) {
         holder.textViewProductName.setText(productArrayList.get(position).productName);
-        holder.textViewProductPrice.setText(String.format(Locale.US, "%.2feg", productArrayList.get(position).price));
+        holder.textViewProductPrice.setText(String.format(Locale.US, "%5.2feg", productArrayList.get(position).price));
+
         if (productArrayList.get(position).productImage != null) {
             String[] imageName = productArrayList.get(position).productImage.split("s/");
             Glide.with(context).load("http://teamweb992022-001-site1.htempurl.com/productImages/" + imageName[1]).into(holder.imageView);
@@ -94,11 +95,11 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
             public void onClick(View view) {
 
                 if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
-                    PostCart postCart = new PostCart(productArrayList.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""));
+                    PostCart postCart = new PostCart(productArrayList.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""),1);
                     ecommerceRepo.addToCart(postCart);
                     Toast.makeText(context, "تمت اضافة " + productArrayList.get(holder.getAbsoluteAdapterPosition()).productName + " لشنطة التسوق", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(context, "يرجى تسجيل الدخول حتى تستطيع الاضافة الى العربة ",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "يرجى تسجيل الدخول حتى تستطيع الاضافة الى العربة ", Toast.LENGTH_SHORT).show();
                     //TODO navigate to sign in fragment
                 }
             }
@@ -110,7 +111,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
         return productArrayList.size();
     }
 
-    public class ProductItemViewHolder extends RecyclerView.ViewHolder {
+    public static class ProductItemViewHolder extends RecyclerView.ViewHolder {
         TextView textViewProductName;
         TextView textViewProductPrice;
         ImageView imageView;
