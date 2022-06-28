@@ -1,5 +1,6 @@
 package com.graduation.farmerfriend.e_commerce.ui.cart;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +19,7 @@ import android.view.ViewGroup;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentCartBinding;
-import com.graduation.farmerfriend.ecommerce_models.Cart;
+import com.graduation.farmerfriend.ecommerce_models.CartRoot;
 import com.graduation.farmerfriend.home.HomeViewModel;
 import com.graduation.farmerfriend.sharedPreferences.SharedPref;
 
@@ -64,9 +65,10 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        cartViewModel.getCartLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Cart>>() {
+        cartViewModel.getCartLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<CartRoot>>() {
+
                     @Override
-                    public void onChanged(ArrayList<Cart> carts) {
+                    public void onChanged(ArrayList<CartRoot> carts) {
                         CartItemsAdapter adapter = new CartItemsAdapter(CartFragment.this,requireContext(),carts,sharedPref.getStringPref(Constants.USER_ID,""));
                         binding.cartRecyclerView.setAdapter(adapter);
                         binding.cartRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -81,7 +83,10 @@ public class CartFragment extends Fragment {
         binding.cartButtonCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(requireView()).navigate(R.id.userDataFragment);
+                if (sharedPref.getBoolPref(Constants.LOGGED_IN))
+                    Navigation.findNavController(requireView()).navigate(R.id.action_cartFragment_to_userDataFragment);
+                else
+                    Navigation.findNavController(requireView()).navigate(R.id.action_cartFragment_to_loginFragment);
             }
         });
         // Inflate the layout for this fragment

@@ -19,12 +19,12 @@ import com.graduation.farmerfriend.sharedPreferences.SharedPref
 
 class LoginFragment : Fragment() {
 
-    private lateinit var viewBinding : FragmentLoginBinding
-    private var hasIotSystem : Boolean = false
+    private lateinit var viewBinding: FragmentLoginBinding
+    private var hasIotSystem: Boolean = false
     private lateinit var registrationViewModel: RegistrationViewModel
-    private var emailPattern : String = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
-    private lateinit var sharedPreferences : SharedPreferences
-    private lateinit var sharedPref : SharedPref
+    private var emailPattern: String = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var sharedPref: SharedPref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,32 +40,16 @@ class LoginFragment : Fragment() {
                 popExit = R.anim.slide_out_right
             }
         }
-        sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE)
-        sharedPref = SharedPref(requireContext(),Constants.MAIN_SHARED_PREFERENCES)
+        sharedPreferences = requireActivity().getSharedPreferences(
+            Constants.MAIN_SHARED_PREFERENCES,
+            Context.MODE_PRIVATE
+        )
+        sharedPref = SharedPref(requireContext(), Constants.MAIN_SHARED_PREFERENCES)
 
         registrationViewModel = ViewModelProvider(this)[RegistrationViewModel::class.java]
-/* 1 */
-//        viewBinding.loginButton.setOnClickListener (
-//            if (hasIotSystem){
-//                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_controlFragment, null)
-//            }else{
-//                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_iotIntroFragment, null)
-//            }
-//        )
-
-/* 2 */
-//        viewBinding.loginButton.setOnClickListener (
-//            if (hasIotSystem){
-//                registrationViewModel.getUserDataFromLogin()
-//                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_controlFragment, null)
-//            }else{
-//                registrationViewModel.getUserDataFromLogin()
-//                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_iotIntroFragment, null)
-//            }
-//        )
 
         viewBinding.loginButton.setOnClickListener {
-                performLogin()
+            performLogin()
         }
 
         registrationViewModel.userDataMutableLiveData.observe(
@@ -73,21 +57,50 @@ class LoginFragment : Fragment() {
         ) { userData ->
 
             sharedPreferences.edit().putBoolean(Constants.LOGGED_IN, true).apply()
-            sharedPreferences.edit().putString(Constants.FIRST_AND_LAST_NAME,
-                userData.firstName+" " +userData.lastName).apply()
-            sharedPref.putStringPref(Constants.USER_ID,userData.id)
-            sharedPref.putStringPref(Constants.USER_NAME,userData.username)
-            sharedPref.putBoolPref(Constants.ENABLE,true)
-            sharedPref.putIntPref(Constants.COUNTER,2)
-            sharedPref.putStringPref(Constants.NAME_BUTTON_MAIL,"send request")
-            Log.d("TAG", "onCreateView: "+userData.id)
-            sharedPref.putBoolPref(Constants.HAS_IOT_SYSTEM,userData.hasIotSystem)
+            sharedPreferences.edit().putString(
+                Constants.FIRST_AND_LAST_NAME,
+                userData.firstName + " " + userData.lastName
+            ).apply()
+            sharedPref.putStringPref(Constants.USER_ID, userData.id)
+            sharedPref.putStringPref(Constants.USER_NAME, userData.username)
+            sharedPref.putBoolPref(Constants.ENABLE, true)
+            sharedPref.putIntPref(Constants.COUNTER, 2)
+            sharedPref.putStringPref(Constants.NAME_BUTTON_MAIL, "send request")
+            Log.d("TAG", "onCreateView: " + userData.id)
+            sharedPref.putBoolPref(Constants.HAS_IOT_SYSTEM, userData.hasIotSystem)
             Toast.makeText(context, userData.firstName, Toast.LENGTH_SHORT).show()
             viewBinding.loadingLogin.visibility = View.GONE
-            if (userData.hasIotSystem)
-                findNavController().navigate(R.id.action_loginFragment_to_controlFragment)
-            else
-                findNavController().navigate(R.id.action_loginFragment_to_iotIntroFragment)
+
+            //TODO:00000000000000000000000000000000000000000000000000000000000000000
+            val previousFragment = findNavController().previousBackStackEntry?.destination?.id
+
+            previousFragment?.let {
+                when (previousFragment) {
+                    R.id.moreFragment ->
+                        // The previous fragment is moreFragment
+                        findNavController().popBackStack()
+
+                    R.id.controlContainerFragment -> {
+                        // The previous fragment is controlContainerFragment
+                        if (userData.hasIotSystem)
+                            findNavController().navigate(R.id.action_loginFragment_to_controlFragment)
+                        else
+                            findNavController().navigate(R.id.action_loginFragment_to_iotIntroFragment)
+                    }
+
+                    R.id.cartFragment -> {
+                        // The previous fragment is cartFragment
+                        findNavController().navigate(R.id.action_loginFragment_to_userDataFragment)
+                    }
+                    else ->
+                        findNavController().popBackStack(R.id.homeFragment, false)
+                }
+            }
+            /* */
+//            if (userData.hasIotSystem)
+//                findNavController().navigate(R.id.action_loginFragment_to_controlFragment)
+//            else
+//                findNavController().navigate(R.id.action_loginFragment_to_iotIntroFragment)
         }
 
         registrationViewModel.errorMessage.observe(
@@ -104,15 +117,15 @@ class LoginFragment : Fragment() {
         return viewBinding.root
     }
 
-    private fun performLogin(){
-        var email : String = viewBinding.loginEmailEditText.text.toString()
-        var password : String = viewBinding.loginPasswordEditText.text.toString()
+    private fun performLogin() {
+        var email: String = viewBinding.loginEmailEditText.text.toString()
+        var password: String = viewBinding.loginPasswordEditText.text.toString()
 
-        if(!email.matches(emailPattern.toRegex()))
+        if (!email.matches(emailPattern.toRegex()))
             viewBinding.loginEmailEditText.error = "Enter Correct Email"
-        else if(password.isEmpty())
+        else if (password.isEmpty())
             viewBinding.loginPasswordEditText.error = "Enter the correct password"
-        else{
+        else {
             registrationViewModel.getUserDataFromLogin(email, password)
             viewBinding.loadingLogin.visibility = View.VISIBLE
         }

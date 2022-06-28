@@ -5,35 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".registration.ui.RegistrationFragment">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/splash_screen" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/grey_Fragment_Registration" />
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:fontFamily="@font/hacen_saudi_arabia"
-                android:gravity="center"
-                android:text="Register"
-                android:textColor="@color/white"
-                android:textSize="44sp"
-                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,26 +30,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:layout_weight="1"
-                    android:background="@drawable/border"
-                    android:drawablePadding="10dp"
                     android:hint="First Name"
                     android:inputType="text"
-                    android:padding="16dp"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white" />
+                    android:padding="16dp" />
+
                 <EditText
                     android:id="@+id/register_last_name_edit_text"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/border"
-                    android:drawablePadding="10dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
                     android:hint="Last Name"
                     android:inputType="text"
-                    android:padding="16dp"
-                    android:layout_marginStart="4dp"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white" />
+                    android:padding="16dp" />
             </LinearLayout>
 
             <EditText
@@ -79,14 +52,12 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/border"
-                android:drawableLeft="@drawable/account"
+                android:drawableStart="@drawable/ic_baseline_account_circle_24"
                 android:drawablePadding="10dp"
                 android:hint="Username"
                 android:inputType="text"
-                android:padding="16dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:padding="16dp" />
+
             <EditText
                 android:id="@+id/register_email_edit_text"
                 android:layout_width="match_parent"
@@ -94,14 +65,12 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/border"
-                android:drawableLeft="@drawable/ic_email"
+                android:drawableStart="@drawable/ic_round_email_24"
                 android:drawablePadding="10dp"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:padding="16dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:padding="16dp" />
+
             <EditText
                 android:id="@+id/register_password_edit_text"
                 android:layout_width="match_parent"
@@ -109,14 +78,12 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/border"
-                android:drawableLeft="@drawable/ic_password"
+                android:drawableStart="@drawable/ic_round_lock_24"
                 android:drawablePadding="10dp"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:padding="16dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:padding="16dp" />
+
             <EditText
                 android:id="@+id/register_confirm_password_edit_text"
                 android:layout_width="match_parent"
@@ -124,27 +91,53 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
-                android:background="@drawable/border"
-                android:drawableLeft="@drawable/ic_password"
+                android:drawableStart="@drawable/ic_round_verified_user_24"
                 android:drawablePadding="10dp"
                 android:hint="Confirm Password"
                 android:inputType="textPassword"
-                android:padding="16dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:padding="16dp" />
 
-            <Button
+            <FrameLayout
                 android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="24dp"
-                android:backgroundTint="#21735C"
-                android:padding="16dp"
-                android:text="Register"
-                android:textColor="@color/white" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/new_welcome_button_background">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:text="Sign Up"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Already have an account?" />
+
+                <Button
+                    android:id="@+id/back_to_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:text="Log in"
+                    android:textColor="@color/black" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
     <ProgressBar
@@ -152,5 +145,5 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 </RelativeLayout>

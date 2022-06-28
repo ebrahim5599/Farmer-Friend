@@ -1,6 +1,9 @@
 package com.graduation.farmerfriend.store.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,19 +15,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.store.data.StoreDatabase;
 import com.graduation.farmerfriend.store.pojo.StoreItems;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 
 public class StoreItemsAdapter extends RecyclerView.Adapter<StoreItemsAdapter.ViewHolder>{
 
-    private ArrayList<StoreItems> storeItemsArrayList;
+    ArrayList<StoreItems> storeItemsArrayList;
     private Context context;
+    StoreDatabase myDatabase;
 
-    public StoreItemsAdapter(Context context, ArrayList<StoreItems> storeItemsArrayList) {
+    public StoreItemsAdapter(@NonNull Context context, @NonNull ArrayList<StoreItems> storeItemsArrayList) {
         this.storeItemsArrayList = storeItemsArrayList;
         this.context = context;
+        myDatabase = new StoreDatabase(context);
     }
 
     @NonNull
@@ -35,16 +42,22 @@ public class StoreItemsAdapter extends RecyclerView.Adapter<StoreItemsAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.item_image.setImageResource(storeItemsArrayList.get(position).getImageResource());
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.item_name.setText(storeItemsArrayList.get(position).getItemName());
         holder.item_details.setText(storeItemsArrayList.get(position).getItemDetails());
         holder.item_numbers.setText(String.valueOf(storeItemsArrayList.get(position).getNumberOfItems()));
+
+        if(storeItemsArrayList.get(position).getImageResource() != null){
+            Bitmap bitmap = BitmapFactory.decodeByteArray(storeItemsArrayList.get(position).getImageResource(),
+                    0, storeItemsArrayList.get(position).getImageResource().length);
+            holder.item_image.setImageBitmap(bitmap);
+        }
 
         holder.buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int numOfItems = Integer.parseInt((String) holder.item_numbers.getText());
+                myDatabase.updateItemAmount(storeItemsArrayList.get(holder.getAbsoluteAdapterPosition()), numOfItems+1);
                 holder.item_numbers.setText(String.valueOf(numOfItems + 1));
             }
         });
@@ -53,8 +66,15 @@ public class StoreItemsAdapter extends RecyclerView.Adapter<StoreItemsAdapter.Vi
             @Override
             public void onClick(View view) {
                 int numOfItems = Integer.parseInt((String) holder.item_numbers.getText());
-                if (numOfItems > 0) {
+                if (numOfItems > 1) {
+                    myDatabase.updateItemAmount(storeItemsArrayList.get(holder.getAbsoluteAdapterPosition()), numOfItems-1);
                     holder.item_numbers.setText(String.valueOf(numOfItems - 1));
+                }
+                if(numOfItems == 1){
+                    myDatabase.deleteItem(storeItemsArrayList.get(holder.getAbsoluteAdapterPosition()).getItemID()+"");
+                    holder.item_numbers.setText(String.valueOf(0));
+                    storeItemsArrayList.remove(holder.getAbsoluteAdapterPosition());
+                    notifyItemRemoved(holder.getAbsoluteAdapterPosition());
                 }
             }
         });
@@ -65,7 +85,7 @@ public class StoreItemsAdapter extends RecyclerView.Adapter<StoreItemsAdapter.Vi
         return storeItemsArrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView item_image;
         TextView item_name, item_details, item_numbers;
@@ -83,4 +103,6 @@ public class StoreItemsAdapter extends RecyclerView.Adapter<StoreItemsAdapter.Vi
             buttonMinus= itemView.findViewById(R.id.activity_store_imageButton_minus);
         }
     }
+
+
 }

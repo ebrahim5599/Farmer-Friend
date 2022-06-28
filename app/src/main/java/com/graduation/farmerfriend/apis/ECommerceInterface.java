@@ -2,7 +2,8 @@ package com.graduation.farmerfriend.apis;
 
 import androidx.annotation.NonNull;
 
-import com.graduation.farmerfriend.ecommerce_models.Cart;
+import com.graduation.farmerfriend.ecommerce_models.CartRoot;
+import com.graduation.farmerfriend.ecommerce_models.IOTStatus;
 import com.graduation.farmerfriend.ecommerce_models.PatchCart;
 import com.graduation.farmerfriend.ecommerce_models.PostCart;
 import com.graduation.farmerfriend.ecommerce_models.Product;
@@ -19,23 +20,40 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ECommerceInterface {
+
+    // get Products APIS
     @NonNull
     @GET("/api/Products")
     Single<ArrayList<Product>> getAllProducts();
+
+    @NonNull
     @GET("/api/Products/GetSeedProduct")
     Single<ArrayList<Product>> getSeedProducts();
+
+    @NonNull
     @GET("/api/Products/GetToolProduct")
     Single<ArrayList<Product>> getToolProducts();
+
+    @NonNull
     @GET("/api/Products/GetFerProduct")
     Single<ArrayList<Product>> getFerProducts();
+
+    @NonNull
     @GET("/api/Products/{id}")
     Single<Product> getProduct(@Path("id") int productId);
+
+
+    //Cart APIS
     @GET("/api/Cart/{id}")
-    Single<ArrayList<Cart>> getCartItems(@Path("id") String userId);
+    Single<ArrayList<CartRoot>> getCartProducts(@Path("id") String userId);
     @PATCH("/api/Cart/{id}")
-    Single<Object> changeQuantity(@Path("id") int id, @Body ArrayList<PatchCart> patchCarts);
-    @DELETE("/api/Cart/{productId}/{userId}")
-    Single<Object> deleteProductFromCart(@Path("productId") int productID,@Path("userId") String userId);
+    Single<Object> patchCartProductQuantity(@Path("id") int cartItemsId, @Body @NonNull ArrayList<PatchCart> patchCarts);
+    @DELETE("/api/Cart/{cartItemsId}")
+    Single<Object> deleteProductFromCart(@Path("cartItemsId") int cartItemsId);
     @POST("/api/Cart")
-    Single<PostCart> addToCart(@Body PostCart postCart);
+    Single<PostCart> postProductToCart(@NonNull @Body  PostCart postCart);
+
+    // get IOT Status
+    @GET("/api/Auth/GetHasIotVal/{username}")
+    Single<IOTStatus>getIotStatus(@Path("username") @NonNull String userName);
 }

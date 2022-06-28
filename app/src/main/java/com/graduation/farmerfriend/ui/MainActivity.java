@@ -43,19 +43,21 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     private static final String TAG = "MainActivity";
     private static final String DEBUG_TAG = "NetworkStatusExample";
     private NavController navCo;
+    public static boolean skipped = false;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Handle the splash screen transition.
         SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
-
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
         setTheme(R.style.Theme_FarmerFriend);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, MODE_PRIVATE);
-        editor = sharedPreferences.edit();
 
         MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         viewModel.init(this);
@@ -143,10 +145,18 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         NavController navCo = navHostFragment.getNavController();
         NavigationUI.setupActionBarWithNavController(this, navCo, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, navCo);
+
+//        if (!sharedPreferences.getBoolean(Constants.LOGGED_IN, false) && !skipped){
+//            navCo.navigate(R.id.welcomeScreenFragment);
+//        }
+
         navCo.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                if (destination.getId() == R.id.wishlistFragment) {
+                if (destination.getId() == R.id.welcomeScreenFragment) {
+                    toolbar.setVisibility(View.GONE);
+                    bottomNavigationView.setVisibility(View.GONE);
+                }else if (destination.getId() == R.id.wishlistFragment) {
 //                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.cartFragment) {
@@ -177,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                     toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.userDataFragment) {
-                    toolbar.setVisibility(View.GONE);
+//                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
 
                 }else if (destination.getId() == R.id.searchFragment) {

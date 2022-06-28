@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.IOT.ui.main.IOTViewModel;
@@ -32,12 +33,14 @@ import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 import com.graduation.farmerfriend.forecast_models.RootForeCast;
 import com.graduation.farmerfriend.repos.TipsRepo;
+import com.graduation.farmerfriend.ui.MainActivity;
 
 import java.util.ArrayList;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -49,14 +52,16 @@ public class HomeFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     ArrayList<Product> productArrayList;
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = fragmentHomeBinding.getRoot();
+        sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
+
         setHasOptionsMenu(true);
         productArrayList = new ArrayList<>();
-        sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
         if (sharedPreferences.getBoolean(Constants.HAS_IOT_SYSTEM, false)) {
             mViewModel = new ViewModelProvider(requireActivity()).get(IOTViewModel.class);
             mViewModel.init(requireContext());
@@ -120,6 +125,11 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+
+        final NavController navController = Navigation.findNavController(view);
+        if (!sharedPreferences.getBoolean(Constants.LOGGED_IN, false) && !MainActivity.skipped)
+            navController.navigate(R.id.action_homeFragment_to_welcomeScreenFragment);
+
         viewModel.getForecastModelLiveData().observe(getViewLifecycleOwner(), new Observer<RootForeCast>() {
             @Override
             public void onChanged(RootForeCast forecastModel) {
@@ -164,7 +174,7 @@ public class HomeFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.community) {
-            PackageManager packageManager = getActivity().getPackageManager();
+            PackageManager packageManager = requireActivity().getPackageManager();
             Intent intent = packageManager.getLaunchIntentForPackage("com.example.farmer_club");
             if (intent != null) {
                 startActivity(intent);

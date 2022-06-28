@@ -1,11 +1,14 @@
 package com.graduation.farmerfriend.ecommerce_models;
 
+import androidx.annotation.NonNull;
+
 public class PostCart {
     int productId ;
-    String memberId;
-
-    public PostCart(int productId, String memberId) {
+    String userId;
+    int quantity;
+    public PostCart(int productId, @NonNull String userId,int quantity) {
         this.productId = productId;
-        this.memberId = memberId;
+        this.userId = userId;
+        this.quantity = quantity;
     }
 }
