@@ -68,13 +68,13 @@ public class HomeFragment extends Fragment {
             mViewModel.getIOTSensorsLiveData().observe(getViewLifecycleOwner(), sensors -> {
                 Log.d("TAG", "onChanged: " + sensors.soilTemp);
                 fragmentHomeBinding.fragmentIOTSoilTextViewTemp.setText(MessageFormat.format("{0} C", sensors.soilTemp));
-                fragmentHomeBinding.fragmentIOTSoilTextViewMoisture.setText(MessageFormat.format("{0} %", sensors.moisture));
+                fragmentHomeBinding.fragmentIOTSoilTextViewHumidity.setText(MessageFormat.format("{0} %", sensors.humidity));
+                fragmentHomeBinding.fragmentIOTSoilTextViewAltitude.setText(MessageFormat.format("{0} M", sensors.altitude));
 
                 fragmentHomeBinding.fragmentWeatherProgressBar.setProgress(sensors.airTemp);
-                fragmentHomeBinding.fragmentIotWeatherTextViewHumidity.setText(MessageFormat.format("{0} %", sensors.humidity));
                 fragmentHomeBinding.fragmentIotWeatherTextViewTemp.setText(MessageFormat.format("{0} C", sensors.airTemp));
-                fragmentHomeBinding.fragmentIotWeatherTextViewLuminousIntensity.setText(MessageFormat.format("{0} lx", sensors.luminous));
-                fragmentHomeBinding.fragmentIotWeatherTextViewPressure.setText(MessageFormat.format("{0} mb", sensors.pressure));
+                fragmentHomeBinding.fragmentIotWeatherTextViewLuminousIntensity.setText(MessageFormat.format("{0} lux", sensors.luminous));
+                fragmentHomeBinding.fragmentIotWeatherTextViewPressure.setText(MessageFormat.format("{0} P", sensors.pressure));
             });
 
             mViewModel.getIOTControlLiveData().observe(getViewLifecycleOwner(), new Observer<Control>() {
