@@ -2,7 +2,6 @@ package com.graduation.farmerfriend.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -153,7 +152,13 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         navCo.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                if (destination.getId() == R.id.welcomeScreenFragment) {
+                if (destination.getId() == R.id.resetFragment) {
+                    toolbar.setVisibility(View.GONE);
+                    bottomNavigationView.setVisibility(View.GONE);
+                }else if (destination.getId() == R.id.forgotFragment) {
+                    toolbar.setVisibility(View.GONE);
+                    bottomNavigationView.setVisibility(View.GONE);
+                }else if (destination.getId() == R.id.welcomeScreenFragment) {
                     toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 }else if (destination.getId() == R.id.wishlistFragment) {

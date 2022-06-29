@@ -1,9 +1,15 @@
 package com.graduation.farmerfriend.registration.data;
+import android.util.Log;
+
+import com.graduation.farmerfriend.registration.pojo.ForgotPassword;
+import com.graduation.farmerfriend.registration.pojo.NullClass;
 import com.graduation.farmerfriend.registration.pojo.UserData;
 
 import java.util.HashMap;
 
 import retrofit2.Call;
+import retrofit2.CallAdapter;
+import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -13,6 +19,7 @@ public class RegisterClient {
     private static RegisterClient INSTANCE;
     private RegistrationApiInterface registrationApiInterface;
     private HashMap<Object, Object> loginMap, RegistrationMap;
+    private HashMap<String, Object> forgotPasswordMap;
 
     private String email, password;
 
@@ -21,6 +28,7 @@ public class RegisterClient {
 
         loginMap = new HashMap<>();
         RegistrationMap = new HashMap<>();
+        forgotPasswordMap = new HashMap<>();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -50,5 +58,18 @@ public class RegisterClient {
         RegistrationMap.put("email",email);
         RegistrationMap.put("password",password);
         return registrationApiInterface.userRegistration(RegistrationMap);
+    }
+
+    public Call<ForgotPassword> resetPassword(String email, String otp, String newPassword){
+        return registrationApiInterface.resetPassword(email, otp, newPassword);
+    }
+
+//    public Call<ForgotPassword> sendCode(String email){
+//        Log.i("sendCode", "RegisterClient "+ email);
+//        return registrationApiInterface.sendCode(email);
+//    }
+
+    public Call<ForgotPassword> sendCode(String email){
+        return registrationApiInterface.sendCode(email);
     }
 }

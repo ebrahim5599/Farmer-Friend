@@ -1,6 +1,7 @@
 package com.graduation.farmerfriend.registration.ui;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -8,12 +9,15 @@ import androidx.lifecycle.ViewModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.graduation.farmerfriend.registration.data.RegisterClient;
+import com.graduation.farmerfriend.registration.pojo.ForgotPassword;
+import com.graduation.farmerfriend.registration.pojo.NullClass;
 import com.graduation.farmerfriend.registration.pojo.UserData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,6 +26,61 @@ import retrofit2.Response;
 public class RegistrationViewModel extends ViewModel {
     MutableLiveData<UserData> userDataMutableLiveData = new MutableLiveData<>();
     MutableLiveData<String> errorMessage = new MutableLiveData<>();
+    MutableLiveData<ForgotPassword> codeMessage = new MutableLiveData<>();
+    MutableLiveData<String> codeMessageString = new MutableLiveData<>();
+
+    public void sendCode(String email) {
+        RegisterClient.getINSTANCE().sendCode(email).enqueue(new Callback<ForgotPassword>() {
+            @Override
+            public void onResponse(Call<ForgotPassword> call, Response<ForgotPassword> response) {
+                if (response.body() != null)
+                    codeMessage.setValue(response.body());
+                else if (response.code() == 400) {
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(response.errorBody().string());
+                        String userCode = jsonObject.getString("message");
+                        codeMessageString.setValue(userCode);
+                        Log.i("sendCode", userCode);
+                    } catch (JSONException | IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ForgotPassword> call, Throwable t) {
+                codeMessageString.setValue(t.getMessage());
+            }
+        });
+    }
+
+    public void resetPassword(String email, String otp, String password){
+        RegisterClient.getINSTANCE().resetPassword(email, otp, password).enqueue(new Callback<ForgotPassword>() {
+            @Override
+            public void onResponse(Call<ForgotPassword> call, Response<ForgotPassword> response) {
+                if (response.body() != null)
+                    codeMessage.setValue(response.body());
+                else if (response.code() == 400) {
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(response.errorBody().string());
+                        String userCode = jsonObject.getString("message");
+                        codeMessageString.setValue(userCode);
+                        Log.i("sendCode", userCode);
+                    } catch (JSONException | IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ForgotPassword> call, Throwable t) {
+                codeMessageString.setValue(t.getMessage());
+
+            }
+        });
+    }
 
     public void getUserDataFromLogin(String email, String password) {
         RegisterClient.getINSTANCE().getUserData_login(email, password).enqueue(new Callback<UserData>() {
