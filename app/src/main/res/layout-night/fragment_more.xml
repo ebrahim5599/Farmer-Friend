@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     tools:context=".more.MoreFragment">
 
     <RelativeLayout
@@ -14,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/setting_background"/>
+            android:src="@drawable/setting_background" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="160dp"
@@ -39,7 +40,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/will_smith" />
+                tools:src="@mipmap/ic_launcher" />
         </androidx.cardview.widget.CardView>
 
         <ImageView
@@ -52,42 +53,55 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/fragment_more_cardview"
-            android:background="@color/black">
+            android:layout_below="@id/fragment_more_cardview">
 
             <TextView
                 android:id="@+id/fragment_more_textview_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif-medium"
                 android:gravity="center"
-                android:text="Will Smith"
+                android:fontFamily="sans-serif-medium"
+                android:text="Anonymous User"
                 android:textColor="@color/black_More_Text"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/fragment_more_textview_Login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="@string/log_in_to_your_account"
+                android:textColor="@color/black_More_Text"
+                android:textSize="24sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_name" />
+            <!--            style="?android:listSeparatorTextViewStyle"-->
 
             <TextView
                 android:id="@+id/fragment_more_textview_community"
                 android:layout_width="335dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/fragment_more_item_background"
-                android:drawableStart="@drawable/ic_baseline_family_restroom_24"
                 android:drawablePadding="10dp"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center_vertical"
                 android:padding="8dp"
-                android:paddingStart="20dp"
                 android:text="@string/community"
                 android:textColor="@color/black_More_Text2"
                 android:textSize="24sp"
+                app:drawableStartCompat="@drawable/ic_baseline_family_restroom_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_name" />
+                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_Login" />
 
             <TextView
                 android:id="@+id/fragment_more_textview_store"
@@ -95,7 +109,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/fragment_more_item_background"
-                android:drawableStart="@drawable/ic_baseline_store_24"
                 android:drawablePadding="10dp"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center_vertical"
@@ -105,7 +118,8 @@
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_community" />
+                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_community"
+                app:drawableStartCompat="@drawable/ic_baseline_store_24" />
 
             <TextView
                 android:id="@+id/fragment_more_textview_about"
@@ -113,7 +127,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/fragment_more_item_background"
-                android:drawableStart="@drawable/ic_baseline_error_24"
                 android:drawablePadding="10dp"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center_vertical"
@@ -123,7 +136,8 @@
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_store" />
+                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_store"
+                app:drawableStartCompat="@drawable/ic_baseline_error_24" />
 
             <TextView
                 android:id="@+id/fragment_more_textview_logout"
@@ -132,7 +146,6 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/fragment_more_item_background"
-                android:drawableStart="@drawable/ic_baseline_login_24"
                 android:drawablePadding="10dp"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center_vertical"
@@ -145,7 +158,8 @@
                 app:layout_constraintHorizontal_bias="0.508"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_about"
-                app:layout_constraintVertical_bias="0.037" />
+                app:layout_constraintVertical_bias="0.037"
+                app:drawableStartCompat="@drawable/ic_baseline_login_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>

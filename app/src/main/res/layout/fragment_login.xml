@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/mainBackground"
     tools:context=".registration.ui.LoginFragment">
 
     <ScrollView
@@ -124,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:text="sign up"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/mainText" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

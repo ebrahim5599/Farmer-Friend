@@ -4,4 +4,9 @@
     <color name="grey_Ecommerce_RelativeLayout" tools:ignore="MissingDefaultResource">#ECE4E4</color>
     <color name="grey_Ecommerce_Container" tools:ignore="MissingDefaultResource">#CDC8C8</color>
     <color name="grey_Item_Container" tools:ignore="MissingDefaultResource">#F3F2F2</color>
+
+    <!--    New Edit by Ebrahim 30/06/22-->
+    <color name="mainText">#FFFFFF</color>
+    <color name="normalText">#8D8F97</color>
+    <color name="mainBackground">#2D313D</color>
 </resources>
