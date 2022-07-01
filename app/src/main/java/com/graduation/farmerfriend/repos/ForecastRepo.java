@@ -15,6 +15,7 @@ import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -48,6 +49,7 @@ public class ForecastRepo {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(ForecastInterface.class);
+
     }
 
     public void setForecastData(String location) {
