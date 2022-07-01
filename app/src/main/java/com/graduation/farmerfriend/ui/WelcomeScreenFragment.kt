@@ -36,6 +36,7 @@ class WelcomeScreenFragment : Fragment() {
             findNavController().navigate(R.id.action_welcomeScreenFragment_to_registrationFragment)
         }
 
+
         return viewBinding.root
     }
 

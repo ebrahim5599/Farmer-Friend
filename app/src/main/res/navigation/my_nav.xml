@@ -391,4 +391,16 @@
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/forgotFragment"
+        android:name="com.graduation.farmerfriend.registration.ui.ForgotFragment"
+        android:label="@string/send_code"
+        tools:layout="@layout/fragment_forgot" />
+
+    <fragment
+        android:id="@+id/resetFragment"
+        android:name="com.graduation.farmerfriend.registration.ui.ResetFragment"
+        android:label="fragment_reset"
+        tools:layout="@layout/fragment_reset" />
+
 </navigation>
