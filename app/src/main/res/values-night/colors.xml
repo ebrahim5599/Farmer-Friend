@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="white_dark">#FFFFFF</color>
     <color name="grey_Ecommerce_RelativeLayout" tools:ignore="MissingDefaultResource">#ECE4E4</color>
     <color name="grey_Ecommerce_Container" tools:ignore="MissingDefaultResource">#CDC8C8</color>
-    <color name="grey_Item_Container" tools:ignore="MissingDefaultResource">#F3F2F2</color>
 
     <!--    New Edit by Ebrahim 30/06/22-->
     <color name="mainText">#FFFFFF</color>
@@ -13,6 +11,5 @@
     <color name="cardBackground">#3A3F4E</color>
     <color name="cardBackground2">#4C4D50</color>
     <color name="cardBackground3">#2D313D</color>
-    <color name="moreFragmentBackground">#3A3F4E</color>
 
 </resources>
