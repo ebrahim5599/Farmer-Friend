@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     private Toolbar toolbar;
     private static final String TAG = "MainActivity";
     private static final String DEBUG_TAG = "NetworkStatusExample";
+    private NavController navCo;
+    public static boolean skipped = false;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -54,9 +56,6 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
 
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, MODE_PRIVATE);
         editor = sharedPreferences.edit();
-
-//        if (!sharedPreferences.getBoolean(Constants.LOGGED_IN, false))
-//            Navigation.findNavController(binding.getRoot()).navigate(R.id.welcomeScreenFragment);
 
         setTheme(R.style.Theme_FarmerFriend);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -158,10 +157,24 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         NavController navCo = navHostFragment.getNavController();
         NavigationUI.setupActionBarWithNavController(this, navCo, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, navCo);
+
+//        if (!sharedPreferences.getBoolean(Constants.LOGGED_IN, false) && !skipped){
+//            navCo.navigate(R.id.welcomeScreenFragment);
+//        }
+
         navCo.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                if (destination.getId() == R.id.wishlistFragment) {
+                if (destination.getId() == R.id.resetFragment) {
+                    toolbar.setVisibility(View.GONE);
+                    bottomNavigationView.setVisibility(View.GONE);
+                }else if (destination.getId() == R.id.forgotFragment) {
+                    toolbar.setVisibility(View.GONE);
+                    bottomNavigationView.setVisibility(View.GONE);
+                }else if (destination.getId() == R.id.welcomeScreenFragment) {
+                    toolbar.setVisibility(View.GONE);
+                    bottomNavigationView.setVisibility(View.GONE);
+                }else if (destination.getId() == R.id.wishlistFragment) {
 //                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
                 } else if (destination.getId() == R.id.cartFragment) {

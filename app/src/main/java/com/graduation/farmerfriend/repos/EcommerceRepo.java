@@ -39,10 +39,12 @@ public class EcommerceRepo {
     private final MutableLiveData<ArrayList<Product>> toolProductsLiveData;
     private final MutableLiveData<ArrayList<Product>> ferProductsLiveData;
     private final MutableLiveData<Product> singleProductLiveData;
+
     private final MutableLiveData<ArrayList<CartRoot>> cartLiveData;
     final MutableLiveData<IOTStatus> iotStatusMutableLiveData;
     public static final String HEADER_CACHE_CONTROL = "Cache-Control";
     public static final String HEADER_PRAGMA = "Pragma";
+
     Context context;
 
     public static EcommerceRepo getInstance() {
@@ -53,9 +55,8 @@ public class EcommerceRepo {
     }
 
 
-    public void init(Context context) {
-
-        this.context = context;
+    public void init(Context context){
+        this.context = context ;
 
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

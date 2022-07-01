@@ -96,8 +96,7 @@ class LoginFragment : Fragment() {
                         findNavController().navigate(R.id.action_loginFragment_to_userDataFragment)
                     }
                     else ->
-                        // The previous fragment is neither Fragment 2 nor 4
-                        Log.i("TAG", "onCreateView: ElseFragment")
+                        findNavController().popBackStack(R.id.homeFragment, false)
                 }
             }
             /* */
@@ -116,6 +115,10 @@ class LoginFragment : Fragment() {
 
         viewBinding.createNewAccount.setOnClickListener {
             findNavController().navigate(R.id.registrationFragment, null, options)
+        }
+
+        viewBinding.forgotPassword.setOnClickListener {
+            findNavController().navigate(R.id.forgotFragment, null, options)
         }
 
         return viewBinding.root
