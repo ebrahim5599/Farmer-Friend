@@ -48,6 +48,7 @@
     <string name="manual">Manual</string>
     <string name="humidity">Humidity</string>
     <string name="pressure">Pressure</string>
+    <string name="altitude">Altitude</string>
     <string name="luminous_intensity">Luminous Intensity</string>
     <string name="temperature">Temperature</string>
     <string name="moisture">Moisture</string>
