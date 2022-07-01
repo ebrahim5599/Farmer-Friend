@@ -87,6 +87,7 @@ public class MoreFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Logout", Toast.LENGTH_SHORT).show();
                 sharedPreferences.edit().putBoolean(Constants.LOGGED_IN, false).apply();
+
                 sharedPreferences.edit().putString(Constants.FIRST_AND_LAST_NAME, "Anonymous User").apply();
                 sharedPreferences.edit().putString(Constants.USER_ID, "").apply();
 

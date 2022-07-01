@@ -6,6 +6,12 @@ public class Constants {
     public static String MAIN_SHARED_PREFERENCES = "MAIN";
     public static String LOCATION = "LOCATION";
     public static String USER_ID = "USER_ID";
+
+    public static String PHONE = " ";
+    public static String EMAIL = " ";
+    public static String AREA = " ";
+    public static String LOCATION_USER = " ";
+
     public static String ENABLE = "true";
     public static String COUNTER = "2";
     public static String NAME_BUTTON_MAIL = "SEND";
