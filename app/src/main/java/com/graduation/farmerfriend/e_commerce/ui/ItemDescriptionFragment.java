@@ -6,6 +6,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +31,7 @@ public class ItemDescriptionFragment extends Fragment {
     ItemDescViewModel viewModel;
     private static final String TAG = "ItemDescriptionFragment";
     SharedPref sharedPref;
+    private Boolean internet ;
 
 //    @Override
 //    public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,7 +81,30 @@ public class ItemDescriptionFragment extends Fragment {
                 onclick(product);
             }
         });
+
+        if(getConnectivityStatus(getContext())){
+
+            binding.description.setVisibility(View.VISIBLE);
+            binding.itemDescriptionButtonAddToCart.setVisibility(View.VISIBLE);
+            binding.mainActivityNoInternetConnection.setVisibility(View.GONE);
+        }else {
+            binding.description.setVisibility(View.GONE);
+            binding.itemDescriptionButtonAddToCart.setVisibility(View.GONE);
+            binding.mainActivityNoInternetConnection.setVisibility(View.VISIBLE);
+        }
+
     }
+
+
+
+
+
+
+
+
+
+
+
 
     private void onclick(Product product) {
         binding.itemDescriptionButtonAddToCart.setOnClickListener(new View.OnClickListener() {
@@ -92,5 +120,22 @@ public class ItemDescriptionFragment extends Fragment {
                 }
             }
         });
+    }
+    public Boolean getConnectivityStatus(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null) {
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                internet = true ;
+                return internet;
+            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                internet = true ;
+                return internet;
+            }
+        } else {
+            internet = false ;
+            return internet;
+        }
+        return internet;
     }
 }

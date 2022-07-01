@@ -41,6 +41,7 @@
     <string name="store">Store</string>
     <string name="about_us">About Us</string>
     <string name="log_out">Log Out</string>
+    <string name="title_activity_iot">IOT_Activity</string>
     <string name="water_pump">Water Pump</string>
     <string name="fertilizer_pump">Fertilizer Pump</string>
     <string name="automatic_or_manual">Automatic or Manual</string>
@@ -51,6 +52,11 @@
     <string name="pressure">Pressure</string>
     <string name="luminous_intensity">Luminous Intensity</string>
     <string name="temperature">Temperature</string>
+    <string name="control_panel">Control Panel</string>
+    <string-array name="area_num">
+        <item>Area 1</item>
+        <item>Area 2</item>
+    </string-array>
     <string name="moisture">Moisture</string>
     <string name="more">More</string>
     <string name="shop">Shop</string>
@@ -89,6 +95,11 @@
     <string name="log_in">log in</string>
     <string name="skip_now">skip now</string>
     <string name="welcome">Welcome</string>
+
+    //Profile picture
+    <string name="upload_photo">Upload Photo</string>
+    <string name="delete_photo">Delete Photo</string>
+
 
     <string name="forgot_password">Forgot Password?</string>
     <string name="please_enter_your_email_address">Please enter your email address.</string>

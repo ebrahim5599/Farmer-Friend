@@ -2,6 +2,8 @@ package com.graduation.farmerfriend.e_commerce.ui.product_categories;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,8 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.caching_room.Fert.Fert;
+import com.graduation.farmerfriend.caching_room.Fert.ProductItemFAdapter;
 import com.graduation.farmerfriend.databinding.FragmentFertilizerProductsBinding;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
@@ -32,7 +36,8 @@ public class FertilizerProductsFragment extends Fragment {
 
     FragmentFertilizerProductsBinding binding;
     FertilizersViewModel fertilizersViewModel;
-    ArrayList<Product> fertilizersArrayList;
+    ArrayList<Fert> fertilizersArrayList;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,11 +55,11 @@ public class FertilizerProductsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         fertilizersViewModel.init();
         fertilizersViewModel.getFerProductsLiveData()
-                .observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
+                .observe(getViewLifecycleOwner(), new Observer<ArrayList<Fert>>() {
                     @Override
-                    public void onChanged(ArrayList<Product> productArrayList) {
+                    public void onChanged(ArrayList<Fert> productArrayList) {
                         fertilizersArrayList = productArrayList;
-                        ProductItemAdapter adapter = new ProductItemAdapter(fertilizersArrayList, requireContext(), "fer");
+                        ProductItemFAdapter adapter = new ProductItemFAdapter(fertilizersArrayList,requireContext(),"fer");
                         binding.fragmentFertilizerProductsRecyclerView.setAdapter(adapter);
                         binding.fragmentFertilizerProductsRecyclerView.setLayoutManager(
                                 new GridLayoutManager(requireContext(), 3));
@@ -80,13 +85,16 @@ public class FertilizerProductsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.cartFragment) {
+
             Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
+
         } else if (item.getItemId() == R.id.wishlistFragment) {
             Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment);
         } else if (item.getItemId() == R.id.search)
             Navigation.findNavController(requireView()).navigate(R.id.searchFragment);
         return super.onOptionsItemSelected(item);
     }
+
 
 //    @Override
 //    public void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,4 +1,4 @@
-package com.graduation.farmerfriend.e_commerce.ui.product_categories;
+package com.graduation.farmerfriend.caching_room.Seed;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -12,32 +12,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModel;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.caching_room.Fert.Fert;
+import com.graduation.farmerfriend.caching_room.Fert.ProductItemFAdapter;
 import com.graduation.farmerfriend.constants.Constants;
+import com.graduation.farmerfriend.e_commerce.ui.product_categories.FertilizerProductsFragmentDirections;
+import com.graduation.farmerfriend.e_commerce.ui.product_categories.SeedProductsFragmentDirections;
+import com.graduation.farmerfriend.e_commerce.ui.product_categories.ToolProductsFragmentDirections;
 import com.graduation.farmerfriend.ecommerce_models.PostCart;
-import com.graduation.farmerfriend.ecommerce_models.Product;
-import com.graduation.farmerfriend.home.HomeFragmentDirections;
 import com.graduation.farmerfriend.repos.EcommerceRepo;
 import com.graduation.farmerfriend.sharedPreferences.SharedPref;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.ProductItemViewHolder> {
+public class ProductItemSAdapter extends RecyclerView.Adapter<ProductItemSAdapter.ProductItemViewHolder> {
     private static final String TAG = "ProductItemAdapter";
-    private final ArrayList<Product> productArrayList;
+    private final ArrayList<Seed> productArrayList;
     Context context;
     private final String fragment_Name;
     private final EcommerceRepo ecommerceRepo;
     private final SharedPref sharedPref;
     private Boolean internet ;
 
-    ProductItemAdapter(ArrayList<Product> productArrayList, Context context, String fragment_Name) {
+    public ProductItemSAdapter(ArrayList<Seed> productArrayList, Context context, String fragment_Name) {
         this.productArrayList = productArrayList;
         this.context = context;
         this.fragment_Name = fragment_Name;
@@ -48,14 +50,14 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
 
     @NonNull
     @Override
-    public ProductItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ProductItemViewHolder(LayoutInflater
+    public ProductItemSAdapter.ProductItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ProductItemSAdapter.ProductItemViewHolder(LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.item_container, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductItemSAdapter.ProductItemViewHolder holder, int position) {
         holder.textViewProductName.setText(productArrayList.get(position).productName);
         holder.textViewProductPrice.setText(String.format(Locale.US, "%5.2feg", productArrayList.get(position).price));
 
@@ -97,6 +99,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
             @Override
             public void onClick(View view) {
                 if (getConnectivityStatus(context)) {
+
                     if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
                         PostCart postCart = new PostCart(productArrayList.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""), 1);
                         ecommerceRepo.addToCart(postCart);

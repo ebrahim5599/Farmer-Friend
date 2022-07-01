@@ -1,12 +1,23 @@
 package com.graduation.farmerfriend.repos;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
+import android.database.Observable;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.graduation.farmerfriend.apis.ECommerceInterface;
+import com.graduation.farmerfriend.caching_room.Fert.Fert;
+import com.graduation.farmerfriend.caching_room.Fert.FertDatabase;
+import com.graduation.farmerfriend.caching_room.Product.ProductDatabase;
+import com.graduation.farmerfriend.caching_room.Seed.Seed;
+import com.graduation.farmerfriend.caching_room.Seed.SeedDatabase;
+import com.graduation.farmerfriend.caching_room.Tool.Tool;
+import com.graduation.farmerfriend.caching_room.Tool.ToolDatabase;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.control.iot_fragments.hasIoTSystem.Data_HasIoT;
 import com.graduation.farmerfriend.ecommerce_models.CartRoot;
@@ -16,14 +27,21 @@ import com.graduation.farmerfriend.ecommerce_models.PostCart;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.CompletableObserver;
 import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+
+
+import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -35,17 +53,21 @@ public class EcommerceRepo {
     private CompositeDisposable compositeDisposable;
     private static final String TAG = "EcommerceRepo";
     private final MutableLiveData<ArrayList<Product>> allProductsLiveData;
-    private final MutableLiveData<ArrayList<Product>> seedProductsLiveData;
-    private final MutableLiveData<ArrayList<Product>> toolProductsLiveData;
-    private final MutableLiveData<ArrayList<Product>> ferProductsLiveData;
+    private final MutableLiveData<ArrayList<Seed>> seedProductsLiveData;
+    private final MutableLiveData<ArrayList<Tool>> toolProductsLiveData;
+    private final MutableLiveData<ArrayList<Fert>> ferProductsLiveData;
     private final MutableLiveData<Product> singleProductLiveData;
+
+    private Boolean internet ;
 
     private final MutableLiveData<ArrayList<CartRoot>> cartLiveData;
     final MutableLiveData<IOTStatus> iotStatusMutableLiveData;
-    public static final String HEADER_CACHE_CONTROL = "Cache-Control";
-    public static final String HEADER_PRAGMA = "Pragma";
+    private Context context;
+    ProductDatabase productDatabase;
+    SeedDatabase seedDatabase;
+    FertDatabase ferDatabase ;
+    ToolDatabase toolDatabase ;
 
-    Context context;
 
     public static EcommerceRepo getInstance() {
         if (Instance == null) {
@@ -57,6 +79,10 @@ public class EcommerceRepo {
 
     public void init(Context context){
         this.context = context ;
+         productDatabase = ProductDatabase.getInstance(context) ;
+         seedDatabase= SeedDatabase.getInstance(context) ;
+         ferDatabase=  FertDatabase.getInstance(context) ;
+         toolDatabase= ToolDatabase.getInstance(context) ;
 
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -72,6 +98,7 @@ public class EcommerceRepo {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(ECommerceInterface.class);
+
     }
 
     EcommerceRepo() {
@@ -88,104 +115,217 @@ public class EcommerceRepo {
     }
 
     public void getEcommerceAllProducts() {
-        Single<ArrayList<Product>> allProductsObservable = eCommerceInterface.getAllProducts()
-                .subscribeOn(Schedulers.io());
-        compositeDisposable = new CompositeDisposable();
+
+        if (getConnectivityStatus(context)) {
+            Single<ArrayList<Product>> allProductsObservable = eCommerceInterface.getAllProducts()
+                    .subscribeOn(Schedulers.io());
+            compositeDisposable = new CompositeDisposable();
+
+            SingleObserver<ArrayList<Product>> allProductsObserver = new SingleObserver<ArrayList<Product>>() {
+                @Override
+                public void onSubscribe(@NonNull Disposable d) {
+                    compositeDisposable.add(d);
+                }
+
+                @Override
+                public void onSuccess(@NonNull ArrayList<Product> product) {
+                    allProductsLiveData.postValue(product);
+                    productDatabase.productDao().insertProduct(product)
+                            .subscribeOn(Schedulers.io())
+                            .subscribe(new CompletableObserver() {
+                                @Override
+                                public void onSubscribe(@NonNull Disposable d) {
+
+                                }
+
+                                @Override
+                                public void onComplete() {
+                                    Log.d(TAG, "yes");
+                                }
+
+                                @Override
+                                public void onError(@NonNull Throwable e) {
+
+                                }
+                            });
+                }
+
+                @Override
+                public void onError(@NonNull Throwable e) {
+                    Log.d(TAG, "onError: " + e.getMessage());
+                }
+            };
+            allProductsObservable.subscribe(allProductsObserver);
 
 
-        SingleObserver<ArrayList<Product>> allProductsObserver = new SingleObserver<ArrayList<Product>>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                compositeDisposable.add(d);
-            }
+        }else{
 
-            @Override
-            public void onSuccess(@NonNull ArrayList<Product> product) {
-                allProductsLiveData.postValue(product);
-            }
+            Log.d(TAG, "yes");
 
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Log.d(TAG, "onError: " + e.getMessage());
-            }
-        };
-        allProductsObservable.subscribe(allProductsObserver);
+            productDatabase.productDao().getProducts()
+                    .subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(products -> { allProductsLiveData.postValue((ArrayList<Product>) products) ;}, throwable -> {});
+
+
+        }
     }
 
     public void getEcommerceSeedProducts() {
-        Single<ArrayList<Product>> seedProductsObservable = eCommerceInterface.getSeedProducts()
-                .subscribeOn(Schedulers.io());
-        compositeDisposable = new CompositeDisposable();
 
+        if (getConnectivityStatus(context)) {
+            @NonNull Single<ArrayList<Seed>> seedProductsObservable = eCommerceInterface.getSeedProducts()
+                    .subscribeOn(Schedulers.io());
+            compositeDisposable = new CompositeDisposable();
 
-        SingleObserver<ArrayList<Product>> seedProductsObserver = new SingleObserver<ArrayList<Product>>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                compositeDisposable.add(d);
-            }
+            SingleObserver<ArrayList<Seed>> seedProductsObserver = new SingleObserver<ArrayList<Seed>>() {
+                @Override
+                public void onSubscribe(@NonNull Disposable d) {
+                    compositeDisposable.add(d);
+                }
 
-            @Override
-            public void onSuccess(@NonNull ArrayList<Product> product) {
-                seedProductsLiveData.postValue(product);
-                Log.d(TAG, String.valueOf(product.get(0).productName));
-            }
+                @Override
+                public void onSuccess(@NonNull ArrayList<Seed> product) {
+                    seedProductsLiveData.postValue(product);
+                    Log.d(TAG, String.valueOf(product.get(0).productName));
 
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Log.d(TAG, "onError:" + e.getMessage());
-            }
-        };
-        seedProductsObservable.subscribe(seedProductsObserver);
+                    seedDatabase.seedDao().insertSeed(product).subscribeOn(Schedulers.computation())
+                            .subscribe(new CompletableObserver() {
+                                @Override
+                                public void onSubscribe(@NonNull Disposable d) {
+
+                                }
+
+                                @Override
+                                public void onComplete() {
+                                    Log.d(TAG, "yes");
+                                }
+
+                                @Override
+                                public void onError(@NonNull Throwable e) {
+
+                                }
+                            });
+                }
+
+                @Override
+                public void onError(@NonNull Throwable e) {
+                    Log.d(TAG, "onError:" + e.getMessage());
+                }
+            };
+            seedProductsObservable.subscribe(seedProductsObserver);
+        }
+
+        else{
+            seedDatabase.seedDao().getSeeds()
+                    .subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(products -> { seedProductsLiveData.postValue((ArrayList<Seed>) products) ;}, throwable -> {});
+        }
     }
 
     public void getEcommerceFerProducts() {
-        Single<ArrayList<Product>> ferProductsObservable = eCommerceInterface.getFerProducts()
-                .subscribeOn(Schedulers.io());
-        compositeDisposable = new CompositeDisposable();
+        if (getConnectivityStatus(context)) {
+            Single<ArrayList<Fert>> ferProductsObservable = eCommerceInterface.getFerProducts()
+                    .subscribeOn(Schedulers.io());
+            compositeDisposable = new CompositeDisposable();
 
 
-        SingleObserver<ArrayList<Product>> ferProductsObserver = new SingleObserver<ArrayList<Product>>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                compositeDisposable.add(d);
-            }
+            SingleObserver<ArrayList<Fert>> ferProductsObserver = new SingleObserver<ArrayList<Fert>>() {
+                @Override
+                public void onSubscribe(@NonNull Disposable d) {
+                    compositeDisposable.add(d);
+                }
 
-            @Override
-            public void onSuccess(@NonNull ArrayList<Product> product) {
-                ferProductsLiveData.postValue(product);
-            }
+                @Override
+                public void onSuccess(@NonNull ArrayList<Fert> product) {
+                    ferProductsLiveData.postValue(product);
 
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Log.d(TAG, "onError: " + e.getMessage());
-            }
-        };
-        ferProductsObservable.subscribe(ferProductsObserver);
+                    ferDatabase.fertDao().insertFert(product).subscribeOn(Schedulers.computation())
+                            .subscribe(new CompletableObserver() {
+                                @Override
+                                public void onSubscribe(@NonNull Disposable d) {
+
+                                }
+
+                                @Override
+                                public void onComplete() {
+                                    Log.d(TAG, "yes");
+                                }
+
+                                @Override
+                                public void onError(@NonNull Throwable e) {
+
+                                }
+                            });
+                }
+
+                @Override
+                public void onError(@NonNull Throwable e) {
+                    Log.d(TAG, "onError: " + e.getMessage());
+                }
+            };
+            ferProductsObservable.subscribe(ferProductsObserver);
+        }
+        else {
+            ferDatabase.fertDao().getFerts()
+                    .subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(products -> { ferProductsLiveData.postValue((ArrayList<Fert>) products) ;}, throwable -> {});
+        }
     }
 
     public void getEcommerceToolProducts() {
-        Single<ArrayList<Product>> toolProductsObservable = eCommerceInterface.getToolProducts()
-                .subscribeOn(Schedulers.io());
-        compositeDisposable = new CompositeDisposable();
+
+        if (getConnectivityStatus(context)) {
+            Single<ArrayList<Tool>> toolProductsObservable = eCommerceInterface.getToolProducts()
+                    .subscribeOn(Schedulers.io());
+            compositeDisposable = new CompositeDisposable();
 
 
-        SingleObserver<ArrayList<Product>> toolProductsObserver = new SingleObserver<ArrayList<Product>>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-                compositeDisposable.add(d);
-            }
+            SingleObserver<ArrayList<Tool>> toolProductsObserver = new SingleObserver<ArrayList<Tool>>() {
+                @Override
+                public void onSubscribe(@NonNull Disposable d) {
+                    compositeDisposable.add(d);
+                }
 
-            @Override
-            public void onSuccess(@NonNull ArrayList<Product> product) {
-                toolProductsLiveData.postValue(product);
-            }
+                @Override
+                public void onSuccess(@NonNull ArrayList<Tool> product) {
+                    toolProductsLiveData.postValue(product);
 
-            @Override
-            public void onError(@NonNull Throwable e) {
-                Log.d(TAG, "onError: " + e.getMessage());
-            }
-        };
-        toolProductsObservable.subscribe(toolProductsObserver);
+                    toolDatabase.toolDao().insertTool(product).subscribeOn(Schedulers.computation())
+                            .subscribe(new CompletableObserver() {
+                                @Override
+                                public void onSubscribe(@NonNull Disposable d) {
+
+                                }
+
+                                @Override
+                                public void onComplete() {
+                                    Log.d(TAG, "yes");
+                                }
+
+                                @Override
+                                public void onError(@NonNull Throwable e) {
+
+                                }
+                            });
+                }
+
+                @Override
+                public void onError(@NonNull Throwable e) {
+                    Log.d(TAG, "onError: " + e.getMessage());
+                }
+            };
+            toolProductsObservable.subscribe(toolProductsObserver);
+        }
+        else{
+            toolDatabase.toolDao().getTool()
+                    .subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(products -> { toolProductsLiveData.postValue((ArrayList<Tool>) products) ;}, throwable -> {});
+        }
+
     }
 
     public void getProductByID(int id) {
@@ -333,15 +473,15 @@ public class EcommerceRepo {
         return allProductsLiveData;
     }
 
-    public LiveData<ArrayList<Product>> getSeedLiveDataProducts() {
+    public LiveData<ArrayList<Seed>> getSeedLiveDataProducts() {
         return seedProductsLiveData;
     }
 
-    public LiveData<ArrayList<Product>> getToolLiveDataProducts() {
+    public LiveData<ArrayList<Tool>> getToolLiveDataProducts() {
         return toolProductsLiveData;
     }
 
-    public LiveData<ArrayList<Product>> getFerLiveDataProducts() {
+    public LiveData<ArrayList<Fert>> getFerLiveDataProducts() {
         return ferProductsLiveData;
     }
 
@@ -351,6 +491,24 @@ public class EcommerceRepo {
 
     public LiveData<ArrayList<CartRoot>> getCartLiveData() {
         return cartLiveData;
+    }
+
+    public Boolean getConnectivityStatus(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null) {
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                internet = true ;
+                return internet;
+            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                internet = true ;
+                return internet;
+            }
+        } else {
+            internet = false ;
+            return internet;
+        }
+        return internet;
     }
 
     public LiveData<IOTStatus> getIotStatusLiveData() {

@@ -24,19 +24,14 @@ import java.util.List;
 import java.util.Locale;
 
 public class Location {
-    private final int LOCATION_REQUEST_CODE;
 
-    private double wayLatitude;
-    private double wayLongitude;
+    private final int LOCATION_REQUEST_CODE;
     private final Activity activity;
     private final LocationCallback locationCallback;
     private final LocationRequest locationRequest;
-    private String[] permissions;
     private final FusedLocationProviderClient mFusedLocationClient;
-    private String addressText = "";
-    private String governorate;
-    private String city;
-    private String country;
+
+    LocationPojo locationPojo = new LocationPojo();
 
     public Location(Activity activity, int locationRequestCode) {
         this.activity = activity;
@@ -48,8 +43,8 @@ public class Location {
             public void onLocationResult(@NonNull LocationResult locationResult) {
                 for (android.location.Location location : locationResult.getLocations()) {
                     if (location != null) {
-                        wayLatitude = location.getLatitude();
-                        wayLongitude = location.getLongitude();
+                        locationPojo.wayLatitude = location.getLatitude();
+                        locationPojo.wayLongitude = location.getLongitude();
                         getAddress();
                     }
                 }
@@ -72,8 +67,8 @@ public class Location {
             public void onLocationResult(@NonNull LocationResult locationResult) {
                 for (android.location.Location location : locationResult.getLocations()) {
                     if (location != null) {
-                        wayLatitude = location.getLatitude();
-                        wayLongitude = location.getLongitude();
+                        locationPojo.wayLatitude = location.getLatitude();
+                        locationPojo.wayLongitude = location.getLongitude();
                         getAddress();
                         addressCallBack.getAddress(getAddressText());
                     }
@@ -88,11 +83,11 @@ public class Location {
     }
 
     public double getWayLatitude() {
-        return wayLatitude;
+        return locationPojo.wayLatitude;
     }
 
     public double getWayLongitude() {
-        return wayLongitude;
+        return locationPojo.wayLongitude;
     }
 
 
@@ -106,8 +101,8 @@ public class Location {
             if (ActivityCompat.checkSelfPermission(activity,
                     Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED) {
-                permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-                ActivityCompat.requestPermissions(activity, permissions, LOCATION_REQUEST_CODE);
+                locationPojo.permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+                ActivityCompat.requestPermissions(activity, locationPojo.permissions, LOCATION_REQUEST_CODE);
 
             } else {
                 mFusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, activity.getMainLooper());
@@ -138,15 +133,15 @@ public class Location {
     public void getAddress() {
         try {
             Geocoder geocoder = new Geocoder(activity, Locale.US);
-            List<Address> listAddress = geocoder.getFromLocation(wayLatitude, wayLongitude, 1);
+            List<Address> listAddress = geocoder.getFromLocation(locationPojo.wayLatitude, locationPojo.wayLongitude, 1);
 
             if (listAddress.size() > 0) {
                 Address address = listAddress.get(0);
-                governorate = address.getAdminArea();
-                city = address.getSubAdminArea();
-                country = address.getCountryName();
+                locationPojo.governorate = address.getAdminArea();
+                locationPojo.city = address.getSubAdminArea();
+                locationPojo.country = address.getCountryName();
 
-                addressText = " your address is :\n" + address.getAddressLine(0);
+                locationPojo.addressText = " your address is :\n" + address.getAddressLine(0);
 
             }
 
@@ -157,19 +152,19 @@ public class Location {
 
 
     public String getAddressText() {
-        return addressText;
+        return locationPojo.addressText;
     }
 
     public String getGovernorate() {
-        return governorate;
+        return locationPojo.governorate;
     }
 
     public String getCity() {
-        return city;
+        return locationPojo.city;
     }
 
     public String getCountry() {
-        return country;
+        return locationPojo.country;
     }
 
     public void destroy() {

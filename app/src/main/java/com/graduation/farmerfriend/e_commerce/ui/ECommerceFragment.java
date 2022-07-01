@@ -1,5 +1,8 @@
 package com.graduation.farmerfriend.e_commerce.ui;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,16 +21,33 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.caching_room.Fert.Fert;
+import com.graduation.farmerfriend.caching_room.Fert.ViewRecycleFertsAdapter;
+import com.graduation.farmerfriend.caching_room.Product.ProductDatabase;
+import com.graduation.farmerfriend.caching_room.Seed.Seed;
+import com.graduation.farmerfriend.caching_room.Seed.ViewRecycleSeedsAdapter;
+import com.graduation.farmerfriend.caching_room.Tool.Tool;
+import com.graduation.farmerfriend.caching_room.Tool.ViewRecycleToolsAdapter;
 import com.graduation.farmerfriend.databinding.FragmentECommerceBinding;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class ECommerceFragment extends Fragment {
     FragmentECommerceBinding binding;
     private EcommerceViewModel viewModel;
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +56,7 @@ public class ECommerceFragment extends Fragment {
         setHasOptionsMenu(true);
 
 
+        viewModel = new ViewModelProvider(requireActivity()).get(EcommerceFragmentViewModel.class);
         viewModel = new ViewModelProvider(requireActivity()).get(EcommerceViewModel.class);
         viewModel.init();
 
@@ -115,33 +136,41 @@ public class ECommerceFragment extends Fragment {
                         ViewRecycleProductsAdapter recycleViewAdapterHot = new ViewRecycleProductsAdapter(getContext(), productArrayList, "Ecommerce");
                         binding.fragmentECommerceRecycleViewBestSeller.setAdapter(recycleViewAdapterHot);
                     }
-                }
-        );
+        });
 
-        viewModel.getSeedProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
+        viewModel.getSeedProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Seed>>() {
             @Override
-            public void onChanged(ArrayList<Product> productArrayList) {
-                binding.fragmentECommerceRecycleviewSeeds.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                ViewRecycleProductsAdapter recycleViewAdapters = new ViewRecycleProductsAdapter(getContext(), productArrayList, "Ecommerce");
-                binding.fragmentECommerceRecycleviewSeeds.setAdapter(recycleViewAdapters);
+            public void onChanged(ArrayList<Seed> productArrayList) {
+
+                    binding.fragmentECommerceRecycleviewSeeds.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
+                    ViewRecycleSeedsAdapter recycleViewAdapters = new ViewRecycleSeedsAdapter(getContext(), productArrayList, "Ecommerce");
+                    binding.fragmentECommerceRecycleviewSeeds.setAdapter(recycleViewAdapters);
+
+
             }
         });
 
-        viewModel.getFerProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
+        viewModel.getFerProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Fert>>() {
             @Override
-            public void onChanged(ArrayList<Product> productArrayList) {
-                binding.fragmentECommerceRecycleviewFertilizers.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                ViewRecycleProductsAdapter recycleViewAdapterFer = new ViewRecycleProductsAdapter(getContext(), productArrayList, "Ecommerce");
-                binding.fragmentECommerceRecycleviewFertilizers.setAdapter(recycleViewAdapterFer);
+            public void onChanged(ArrayList<Fert> productArrayList) {
+
+                    binding.fragmentECommerceRecycleviewFertilizers.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
+                    ViewRecycleFertsAdapter recycleViewAdapterFer = new ViewRecycleFertsAdapter(getContext(), productArrayList, "Ecommerce");
+                    binding.fragmentECommerceRecycleviewFertilizers.setAdapter(recycleViewAdapterFer);
+
+
             }
         });
 
-        viewModel.getToolProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
+        viewModel.getToolProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Tool>>() {
             @Override
-            public void onChanged(ArrayList<Product> productArrayList) {
-                binding.fragmentECommerceRecycleviewTools.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                ViewRecycleProductsAdapter recycleViewAdaptert = new ViewRecycleProductsAdapter(getContext(), productArrayList, "Ecommerce");
-                binding.fragmentECommerceRecycleviewTools.setAdapter(recycleViewAdaptert);
+            public void onChanged(ArrayList<Tool> productArrayList) {
+
+                    binding.fragmentECommerceRecycleviewTools.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
+                    ViewRecycleToolsAdapter recycleViewAdaptert = new ViewRecycleToolsAdapter(getContext(), productArrayList, "Ecommerce");
+                    binding.fragmentECommerceRecycleviewTools.setAdapter(recycleViewAdaptert);
+
+
             }
         });
 
@@ -162,10 +191,13 @@ public class ECommerceFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.cartFragment) {
+
+                Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
+
 //            ECommerceFragmentDirections.ActionToCart action =
 //                    ECommerceFragmentDirections.actionToCart();
 //            action.setFromWhichFragment(Constants.FROM_E_COMMERCE_FRAGMENT);
-            Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
+
         } else if (item.getItemId() == R.id.wishlistFragment) {
 //            ECommerceFragmentDirections.ActionToWishlist action =
 //                    ECommerceFragmentDirections.actionToWishlist();
@@ -176,5 +208,6 @@ public class ECommerceFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }

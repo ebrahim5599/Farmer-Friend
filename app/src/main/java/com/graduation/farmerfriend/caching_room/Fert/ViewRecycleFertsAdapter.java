@@ -1,17 +1,4 @@
-package com.graduation.farmerfriend.e_commerce;
-
-import com.bumptech.glide.Glide;
-import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.caching_room.Fert.Fert;
-import com.graduation.farmerfriend.caching_room.Seed.Seed;
-import com.graduation.farmerfriend.caching_room.Tool.Tool;
-import com.graduation.farmerfriend.constants.Constants;
-import com.graduation.farmerfriend.e_commerce.ui.ECommerceFragmentDirections;
-import com.graduation.farmerfriend.ecommerce_models.PostCart;
-import com.graduation.farmerfriend.ecommerce_models.Product;
-import com.graduation.farmerfriend.home.HomeFragmentDirections;
-import com.graduation.farmerfriend.repos.EcommerceRepo;
-import com.graduation.farmerfriend.sharedPreferences.SharedPref;
+package com.graduation.farmerfriend.caching_room.Fert;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -26,12 +13,22 @@ import android.widget.Toast;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.constants.Constants;
+import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
+import com.graduation.farmerfriend.e_commerce.ui.ECommerceFragmentDirections;
+import com.graduation.farmerfriend.ecommerce_models.PostCart;
+import com.graduation.farmerfriend.ecommerce_models.Product;
+import com.graduation.farmerfriend.home.HomeFragmentDirections;
+import com.graduation.farmerfriend.repos.EcommerceRepo;
+import com.graduation.farmerfriend.sharedPreferences.SharedPref;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycleProductsAdapter.ViewHolder> {
-
-    private ArrayList<Product> data;
+public class ViewRecycleFertsAdapter extends RecyclerView.Adapter<ViewRecycleFertsAdapter.ViewHolder> {
+    private ArrayList<Fert> data;
 
     private final Context context;
     private final EcommerceRepo ecommerceRepo;
@@ -39,7 +36,7 @@ public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycle
     private final String fragment_Name;
     private Boolean internet ;
 
-    public ViewRecycleProductsAdapter(Context con, ArrayList<Product> data, String fragment_Name) {
+    public ViewRecycleFertsAdapter(Context con, ArrayList<Fert> data, String fragment_Name) {
         this.context = con;
         this.data = data;
         this.fragment_Name = fragment_Name;
@@ -49,12 +46,12 @@ public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycle
 
 
 
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewRecycleFertsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.product_container, parent, false);
-        return new ViewHolder(view);
+        return new ViewRecycleFertsAdapter.ViewHolder(view);
     }
 
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewRecycleFertsAdapter.ViewHolder holder, int position) {
 //        holder.image.setImageResource(data[position].getImage());
         holder.text_name.setText(data.get(position).productName);
         holder.text_price.setText(String.format(Locale.US, "%.2feg", data.get(position).price));
@@ -97,9 +94,9 @@ public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycle
                     // Navigation.findNavController(view).navigate(R.id.loginFragment);
                 }
             }else {
-                Toast.makeText(context, "لا يوجد اتصال بالانترنت ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "لا يوجد اتصال بالانترنت ", Toast.LENGTH_SHORT).show();
+                }
 
-            }
         });
     }
 
@@ -142,5 +139,6 @@ public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycle
         }
         return internet;
     }
+
 
 }

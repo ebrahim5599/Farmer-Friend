@@ -2,6 +2,8 @@ package com.graduation.farmerfriend.e_commerce.ui.product_categories;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,8 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.caching_room.Seed.ProductItemSAdapter;
+import com.graduation.farmerfriend.caching_room.Seed.Seed;
 import com.graduation.farmerfriend.databinding.FragmentSeedProductsBinding;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
@@ -32,8 +36,9 @@ public class SeedProductsFragment extends Fragment {
 
     FragmentSeedProductsBinding binding;
     SeedViewModel seedViewModel;
-    private ArrayList<Product> seedArrayList;
+    private ArrayList<Seed> seedArrayList;
     private String TAG = "SeedProductsFragment";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,12 +54,12 @@ public class SeedProductsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         seedViewModel.init();
         seedViewModel.getSeedProductsLiveData()
-                .observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
+                .observe(getViewLifecycleOwner(), new Observer<ArrayList<Seed>>() {
                     @Override
-                    public void onChanged(ArrayList<Product> productArrayList) {
+                    public void onChanged(ArrayList<Seed> productArrayList) {
                         seedArrayList = productArrayList;
                         Log.d(TAG, "onChanged: " + productArrayList.get(0).productName);
-                        ProductItemAdapter adapter = new ProductItemAdapter(seedArrayList, requireContext(), "seed");
+                        ProductItemSAdapter adapter = new ProductItemSAdapter(seedArrayList, requireContext(), "seed");
                         binding.fragmentSeedsProductsRecyclerView.setAdapter(adapter);
                         binding.fragmentSeedsProductsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
                         binding.seedsPullToRefresh.setRefreshing(false);
@@ -93,7 +98,9 @@ public class SeedProductsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.cartFragment) {
+
             Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
+
         } else if (item.getItemId() == R.id.wishlistFragment) {
             Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment);
         } else if (item.getItemId() == R.id.search)
@@ -101,4 +108,5 @@ public class SeedProductsFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

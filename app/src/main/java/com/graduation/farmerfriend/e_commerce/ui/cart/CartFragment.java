@@ -1,6 +1,8 @@
 package com.graduation.farmerfriend.e_commerce.ui.cart;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -31,6 +33,7 @@ public class CartFragment extends Fragment {
     private FragmentCartBinding binding;
     private CartViewModel cartViewModel;
     private SharedPref sharedPref;
+    private Boolean internet ;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,8 @@ public class CartFragment extends Fragment {
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
         cartViewModel.init();
         cartViewModel.getCartData(sharedPref.getStringPref(Constants.USER_ID,null));
+
+
 
         // This callback will only be called when MyFragment is at least Started.
 //        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
@@ -75,6 +80,15 @@ public class CartFragment extends Fragment {
                     }
                 });
 
+        if (getConnectivityStatus(getContext())){
+            binding.cart.setVisibility(View.VISIBLE);
+            binding.mainActivityNoInternetConnection.setVisibility(View.GONE);
+        }
+        else{
+            binding.cart.setVisibility(View.GONE);
+            binding.mainActivityNoInternetConnection.setVisibility(View.VISIBLE);
+        }
+
 //        Drawable mDivider = ContextCompat.getDrawable(requireContext(), R.drawable.ic_divider);
         DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
 //        itemDecoration.setDrawable();
@@ -91,6 +105,23 @@ public class CartFragment extends Fragment {
         });
         // Inflate the layout for this fragment
         return view;
+    }
+    public Boolean getConnectivityStatus(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null) {
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                internet = true ;
+                return internet;
+            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                internet = true ;
+                return internet;
+            }
+        } else {
+            internet = false ;
+            return internet;
+        }
+        return internet;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.graduation.farmerfriend.e_commerce.ui.product_categories;
+package com.graduation.farmerfriend.caching_room.Fert;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -12,32 +12,34 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModel;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
+import com.graduation.farmerfriend.e_commerce.ui.product_categories.FertilizerProductsFragmentDirections;
+import com.graduation.farmerfriend.e_commerce.ui.product_categories.ProductItemAdapter;
+import com.graduation.farmerfriend.e_commerce.ui.product_categories.SeedProductsFragmentDirections;
+import com.graduation.farmerfriend.e_commerce.ui.product_categories.ToolProductsFragmentDirections;
 import com.graduation.farmerfriend.ecommerce_models.PostCart;
 import com.graduation.farmerfriend.ecommerce_models.Product;
-import com.graduation.farmerfriend.home.HomeFragmentDirections;
 import com.graduation.farmerfriend.repos.EcommerceRepo;
 import com.graduation.farmerfriend.sharedPreferences.SharedPref;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.ProductItemViewHolder> {
+public class ProductItemFAdapter extends RecyclerView.Adapter<ProductItemFAdapter.ProductItemViewHolder> {
     private static final String TAG = "ProductItemAdapter";
-    private final ArrayList<Product> productArrayList;
+    private final ArrayList<Fert> productArrayList;
     Context context;
     private final String fragment_Name;
     private final EcommerceRepo ecommerceRepo;
     private final SharedPref sharedPref;
     private Boolean internet ;
 
-    ProductItemAdapter(ArrayList<Product> productArrayList, Context context, String fragment_Name) {
+    public ProductItemFAdapter(ArrayList<Fert> productArrayList, Context context, String fragment_Name) {
         this.productArrayList = productArrayList;
         this.context = context;
         this.fragment_Name = fragment_Name;
@@ -48,14 +50,14 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
 
     @NonNull
     @Override
-    public ProductItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ProductItemViewHolder(LayoutInflater
+    public ProductItemFAdapter.ProductItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ProductItemFAdapter.ProductItemViewHolder(LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.item_container, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductItemFAdapter.ProductItemViewHolder holder, int position) {
         holder.textViewProductName.setText(productArrayList.get(position).productName);
         holder.textViewProductPrice.setText(String.format(Locale.US, "%5.2feg", productArrayList.get(position).price));
 
@@ -105,7 +107,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
                         Toast.makeText(context, "يرجى تسجيل الدخول حتى تستطيع الاضافة الى العربة ", Toast.LENGTH_SHORT).show();
                         //TODO navigate to sign in fragment
                     }
-                }else {
+                } else {
                     Toast.makeText(context, "لا يوجد اتصال بالانترنت ", Toast.LENGTH_SHORT).show();
 
                 }
@@ -132,7 +134,6 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
             btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
         }
     }
-
     public Boolean getConnectivityStatus(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();

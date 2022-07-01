@@ -2,6 +2,8 @@ package com.graduation.farmerfriend.e_commerce.ui.deals;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -32,6 +34,7 @@ import java.util.ArrayList;
 public class BestSellerFragment extends Fragment {
     FragmentBestSelersBinding fragmentBestSelersBinding;
     BestSellerViewModel viewModel;
+
 
 
     @Override
@@ -71,8 +74,12 @@ public class BestSellerFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.cartFragment)
+
+        if (item.getItemId() == R.id.cartFragment) {
+
             Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
+
+        }
         else if (item.getItemId() == R.id.wishlistFragment)
             Navigation.findNavController(requireView()).navigate(R.id.wishlistFragment);
         else if (item.getItemId() == R.id.search)
