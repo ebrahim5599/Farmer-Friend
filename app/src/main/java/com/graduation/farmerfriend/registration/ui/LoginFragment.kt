@@ -114,6 +114,10 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.registrationFragment, null, options)
         }
 
+        viewBinding.forgotPassword.setOnClickListener {
+            findNavController().navigate(R.id.forgotFragment, null, options)
+        }
+
         return viewBinding.root
     }
 
