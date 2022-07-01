@@ -16,4 +16,7 @@ public class BestSellerViewModel extends ViewModel {
     public LiveData<ArrayList<Product>> allProductLiveData(){
         return ecommerceRepo.getAllLiveDataProducts();
     }
+    public void getEcommerceAllProducts() {
+        ecommerceRepo.getEcommerceAllProducts();
+    }
 }

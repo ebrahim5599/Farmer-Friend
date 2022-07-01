@@ -14,9 +14,10 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/account_image"
             android:src="@drawable/ic_baseline_account_circle_24"
             android:layout_gravity="center"/>
+
+<!--        android:background="@drawable/account_image"-->
 
         <TextView
 
@@ -40,8 +41,9 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:background="@drawable/account_image"
             android:src="@drawable/ic_baseline_delete_24" />
+
+<!--        android:background="@drawable/account_image"-->
 
         <TextView
             android:layout_marginStart="15dp"

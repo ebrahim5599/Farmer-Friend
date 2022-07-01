@@ -65,7 +65,7 @@ public class ForecastRepo {
 //
 //            }
 //        });
-        Single<RootForeCast> forecastObservable = forecastInterface.getCurrentForecast("ac1763cd50fd42cd9fe131850210912", location, "en", 3)
+        Single<RootForeCast> forecastObservable = forecastInterface.getCurrentForecast("ac1763cd50fd42cd9fe131850210912", location, "ar", 3)
                 .subscribeOn(Schedulers.io());
         compositeDisposable = new CompositeDisposable();
 

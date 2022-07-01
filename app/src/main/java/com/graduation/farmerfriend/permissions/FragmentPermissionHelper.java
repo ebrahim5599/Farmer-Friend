@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import com.graduation.farmerfriend.camera.CameraFragment;
 
 
 public class FragmentPermissionHelper {
@@ -20,4 +21,5 @@ public class FragmentPermissionHelper {
                 });
         requestPermissionLauncher.launch(requestPermissionType);
     }
+
 }

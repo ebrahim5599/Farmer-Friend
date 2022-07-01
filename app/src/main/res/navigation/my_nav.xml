@@ -20,9 +20,10 @@
             app:destination="@id/itemDescriptionFragment" />
         <action
             android:id="@+id/action_homeFragment_to_welcomeScreenFragment"
-            app:destination="@id/welcomeScreenFragment"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"/>
+            app:destination="@id/welcomeScreenFragment"/>
+
+<!--        app:exitAnim="@anim/fade_out"-->
+<!--        app:popEnterAnim="@anim/fade_in"-->
 
     </fragment>
     <fragment

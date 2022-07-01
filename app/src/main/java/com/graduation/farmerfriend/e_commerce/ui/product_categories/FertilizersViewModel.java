@@ -1,5 +1,6 @@
 package com.graduation.farmerfriend.e_commerce.ui.product_categories;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -19,4 +20,10 @@ public class FertilizersViewModel extends ViewModel {
     public LiveData<ArrayList<Fert>> getFerProductsLiveData() {
         return ecommerceRepo.getFerLiveDataProducts();
     }
+
+
+    public void getEcommerceFerProducts() {
+        ecommerceRepo.getEcommerceFerProducts();
+    }
+
 }

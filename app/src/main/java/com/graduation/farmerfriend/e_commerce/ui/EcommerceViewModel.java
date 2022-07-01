@@ -24,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EcommerceFragmentViewModel extends ViewModel {
+public class EcommerceViewModel extends ViewModel {
     private EcommerceRepo ecommerceRepo;
 
 
@@ -45,6 +45,21 @@ public class EcommerceFragmentViewModel extends ViewModel {
     }
     public LiveData<ArrayList<Product>> getAllProductsLiveData(){
         return  ecommerceRepo.getAllLiveDataProducts();
+    }
+    public void getEcommerceAllProducts() {
+        ecommerceRepo.getEcommerceAllProducts();
+    }
+
+    public void getEcommerceSeedProducts() {
+        ecommerceRepo.getEcommerceSeedProducts();
+    }
+
+    public void getEcommerceFerProducts() {
+        ecommerceRepo.getEcommerceFerProducts();
+    }
+
+    public void getEcommerceToolProducts(){
+        ecommerceRepo.getEcommerceToolProducts();
     }
 
 }

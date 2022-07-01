@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.splashscreen.SplashScreen;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -13,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +29,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.ActivityMainBinding;
+import com.graduation.farmerfriend.ecommerce_models.IOTStatus;
 import com.graduation.farmerfriend.location.AddressCallBack;
 import com.graduation.farmerfriend.location.Location;
 
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         MainActivityViewModel viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         viewModel.init(this);
         viewModel.setForecastData(sharedPreferences.getString(Constants.LOCATION, "Cairo"));
@@ -69,6 +73,15 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         viewModel.getEcommerceSeedProducts();
         viewModel.getEcommerceFerProducts();
         viewModel.getEcommerceToolProducts();
+        viewModel.checkIotStatus(sharedPreferences.getString(Constants.USER_NAME, ""));
+        viewModel.getIotStatusLiveData().observe(this, new Observer<IOTStatus>() {
+            @Override
+            public void onChanged(IOTStatus iotStatus) {
+                if (iotStatus != null)
+                    sharedPreferences.edit().putBoolean(Constants.HAS_IOT_SYSTEM, iotStatus.hasIotSystem).apply();
+            }
+        });
+
 
 //        try {
 //            Thread.sleep(1000);
@@ -195,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
 //                    toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
 
-                }else if (destination.getId() == R.id.searchFragment) {
+                } else if (destination.getId() == R.id.searchFragment) {
                     bottomNavigationView.setVisibility(View.GONE);
 
                 } else if (destination.getId() == R.id.loginFragment) {
@@ -254,11 +267,8 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
                 // Permission is granted. Continue the action or workflow
                 // in your app.
                 location.getLocation();
-//                Toast.makeText(this, String.valueOf(requestCode), Toast.LENGTH_SHORT).show();
             }
-//            Toast.makeText(this, String.valueOf(requestCode), Toast.LENGTH_SHORT).show();
 //            if (requestCode == 10) {
-//                Toast.makeText(this,"afds",Toast.LENGTH_SHORT).show();
 //            }
             // If request is cancelled, the result arrays are empty.
 //                if (grantResults.length > 0 &&

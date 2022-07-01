@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.graduation.farmerfriend.Tips;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class TipsRepo {
@@ -46,6 +47,7 @@ public class TipsRepo {
                     tips.add(0,tip);
 //                    Log.d(TAG, "onDataChanged: " + datasnapshot.getValue(Tips.class).getContent());
                 }
+                Collections.shuffle(tips);
                 tipsLiveData.postValue(tips);
             }
 

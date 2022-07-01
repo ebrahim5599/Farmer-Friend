@@ -161,6 +161,7 @@ class CameraFragment : Fragment() {
                 img_gallery?.let { it1 -> imageProcessing(it1) }
             }
 
+
         }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -181,6 +182,7 @@ class CameraFragment : Fragment() {
                 }
             }.toTypedArray()
     }
+
 
 
     override fun onDestroyView() {

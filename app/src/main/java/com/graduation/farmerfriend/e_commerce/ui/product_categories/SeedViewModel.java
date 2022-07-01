@@ -21,4 +21,9 @@ public class SeedViewModel extends ViewModel {
     public LiveData<ArrayList<Seed>> getSeedProductsLiveData(){
         return ecommerceRepo.getSeedLiveDataProducts();
     }
+
+    public void getEcommerceSeedProducts() {
+        ecommerceRepo.getEcommerceSeedProducts();
+    }
+
 }

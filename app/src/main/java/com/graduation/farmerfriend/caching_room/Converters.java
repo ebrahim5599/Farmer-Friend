@@ -6,19 +6,18 @@ import androidx.room.TypeConverter;
 import com.google.gson.Gson;
 import com.graduation.farmerfriend.forecast_models.Current;
 import com.graduation.farmerfriend.forecast_models.Forecast;
-import com.graduation.farmerfriend.location.Location;
-import com.graduation.farmerfriend.location.LocationPojo;
+import com.graduation.farmerfriend.forecast_models.Location;
 
 public class Converters {
 
     @TypeConverter
-    public String fromLocationPojoToGson(LocationPojo location){
+    public String fromLocationPojoToGson(Location location){
         return new Gson().toJson(location);
     }
 
     @TypeConverter
-    public LocationPojo fromGsonToLocationPojo(String string){
-        return new Gson().fromJson(string,LocationPojo.class);
+    public Location fromGsonToLocationPojo(String string){
+        return new Gson().fromJson(string,Location.class);
     }
 
     @TypeConverter

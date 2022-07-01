@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.graduation.farmerfriend.caching_room.Fert.Fert;
 import com.graduation.farmerfriend.caching_room.Seed.Seed;
 import com.graduation.farmerfriend.caching_room.Tool.Tool;
+import com.graduation.farmerfriend.control.iot_fragments.hasIoTSystem.Data_HasIoT;
 import com.graduation.farmerfriend.ecommerce_models.CartRoot;
 import com.graduation.farmerfriend.ecommerce_models.IOTStatus;
 import com.graduation.farmerfriend.ecommerce_models.PatchCart;
@@ -59,4 +60,6 @@ public interface ECommerceInterface {
     // get IOT Status
     @GET("/api/Auth/GetHasIotVal/{username}")
     Single<IOTStatus>getIotStatus(@Path("username") @NonNull String userName);
+    @PATCH("/api/Auth/{username}")
+    Single<Object>changeIotStatus(@Path("username") String userName, @Body ArrayList<Data_HasIoT> data_hasIoT);
 }
