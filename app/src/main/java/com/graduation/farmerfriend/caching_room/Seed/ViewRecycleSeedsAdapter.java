@@ -34,7 +34,7 @@ public class ViewRecycleSeedsAdapter extends RecyclerView.Adapter<ViewRecycleSee
     private final EcommerceRepo ecommerceRepo;
     private final SharedPref sharedPref;
     private final String fragment_Name;
-    private Boolean internet ;
+    private Boolean internet;
 
     public ViewRecycleSeedsAdapter(Context con, ArrayList<Seed> data, String fragment_Name) {
         this.context = con;
@@ -43,7 +43,6 @@ public class ViewRecycleSeedsAdapter extends RecyclerView.Adapter<ViewRecycleSee
         ecommerceRepo = EcommerceRepo.getInstance();
         sharedPref = new SharedPref(con, Constants.MAIN_SHARED_PREFERENCES);
     }
-
 
 
     public ViewRecycleSeedsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -93,7 +92,7 @@ public class ViewRecycleSeedsAdapter extends RecyclerView.Adapter<ViewRecycleSee
                     Toast.makeText(context, "يرجى تسجيل الدخول حتى تستطيع الاضافة الى العربة ", Toast.LENGTH_SHORT).show();
                     // Navigation.findNavController(view).navigate(R.id.loginFragment);
                 }
-            }else {
+            } else {
                 Toast.makeText(context, "لا يوجد اتصال بالانترنت ", Toast.LENGTH_SHORT).show();
 
             }
@@ -128,15 +127,12 @@ public class ViewRecycleSeedsAdapter extends RecyclerView.Adapter<ViewRecycleSee
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         if (activeNetwork != null) {
             if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                internet = true ;
-                return internet;
+                internet = true;
             } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                internet = true ;
-                return internet;
+                internet = true;
             }
         } else {
-            internet = false ;
-            return internet;
+            internet = false;
         }
         return internet;
     }

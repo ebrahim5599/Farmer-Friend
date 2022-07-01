@@ -33,13 +33,6 @@ import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import io.reactivex.Single;
-import io.reactivex.SingleObserver;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 
 public class ECommerceFragment extends Fragment {
@@ -56,7 +49,6 @@ public class ECommerceFragment extends Fragment {
         setHasOptionsMenu(true);
 
 
-        viewModel = new ViewModelProvider(requireActivity()).get(EcommerceFragmentViewModel.class);
         viewModel = new ViewModelProvider(requireActivity()).get(EcommerceViewModel.class);
         viewModel.init();
 
