@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.graduation.farmerfriend.Tips;
+import com.graduation.farmerfriend.ecommerce_models.IOTStatus;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 import com.graduation.farmerfriend.forecast_models.RootForeCast;
 import com.graduation.farmerfriend.repos.EcommerceRepo;
@@ -43,5 +44,14 @@ public class HomeViewModel extends ViewModel {
     protected void onCleared() {
         super.onCleared();
         forecastRepo.onClear();
+    }
+    public LiveData<IOTStatus> getIOTStatusLiveData(){
+        return ecommerceRepo.getIotStatusLiveData();
+    }
+    public void getEcommerceAllProducts() {
+        ecommerceRepo.getEcommerceAllProducts();
+    }
+    public void checkIotStatus(String userName){
+        ecommerceRepo.checkIotStatus(userName);
     }
 }

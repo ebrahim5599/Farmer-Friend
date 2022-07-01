@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,6 +49,13 @@ public class BestSellerFragment extends Fragment {
                 BestSellerAdapter adapter = new BestSellerAdapter(productArrayList, requireContext());
                 fragmentBestSelersBinding.fragmentBestSellersRecyclerView.setAdapter(adapter);
                 fragmentBestSelersBinding.fragmentBestSellersRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+                fragmentBestSelersBinding.allProductPullToRefresh.setRefreshing(false);
+            }
+        });
+        fragmentBestSelersBinding.allProductPullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                viewModel.getEcommerceAllProducts();
             }
         });
 

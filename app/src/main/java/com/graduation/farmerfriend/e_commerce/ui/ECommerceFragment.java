@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.databinding.FragmentECommerceBinding;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
-import com.graduation.farmerfriend.e_commerce.search.ui.SearchViewModel;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
 import java.util.ArrayList;
@@ -28,8 +27,7 @@ import java.util.ArrayList;
 
 public class ECommerceFragment extends Fragment {
     FragmentECommerceBinding binding;
-    private SearchViewModel searchViewModel;
-    private EcommerceFragmentViewModel viewModel;
+    private EcommerceViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,13 +36,16 @@ public class ECommerceFragment extends Fragment {
         setHasOptionsMenu(true);
 
 
-
-        EcommerceFragmentViewModel viewModel = new ViewModelProvider(requireActivity()).get(EcommerceFragmentViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(EcommerceViewModel.class);
         viewModel.init();
-        searchViewModel = new SearchViewModel();
 
-
-        binding.fragmentECommerceSeedsView.setOnClickListener(new View.OnClickListener() {
+        binding.ecommercePullToRefresh.setOnRefreshListener(() -> {
+            viewModel.getEcommerceAllProducts();
+            viewModel.getEcommerceSeedProducts();
+            viewModel.getEcommerceFerProducts();
+            viewModel.getEcommerceToolProducts();
+        });
+        binding.fragmentECommerceSeedsView.setOnClickListener(new View .OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.seedProductsFragment);
@@ -101,8 +102,9 @@ public class ECommerceFragment extends Fragment {
             public void onChanged(ArrayList<Product> productArrayList) {
 
                 binding.fragmentECommerceRecycleViewBestSeller.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                ViewRecycleProductsAdapter recycleViewAdapterBest = new ViewRecycleProductsAdapter(getContext(), productArrayList,"Ecommerce");
+                ViewRecycleProductsAdapter recycleViewAdapterBest = new ViewRecycleProductsAdapter(getContext(), productArrayList, "Ecommerce");
                 binding.fragmentECommerceRecycleViewBestSeller.setAdapter(recycleViewAdapterBest);
+                binding.ecommercePullToRefresh.setRefreshing(false);
             }
         });
 
@@ -110,7 +112,7 @@ public class ECommerceFragment extends Fragment {
                     @Override
                     public void onChanged(ArrayList<Product> productArrayList) {
                         binding.fragmentECommerceRecycleViewBestSeller.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                        ViewRecycleProductsAdapter recycleViewAdapterHot = new ViewRecycleProductsAdapter(getContext(), productArrayList,"Ecommerce");
+                        ViewRecycleProductsAdapter recycleViewAdapterHot = new ViewRecycleProductsAdapter(getContext(), productArrayList, "Ecommerce");
                         binding.fragmentECommerceRecycleViewBestSeller.setAdapter(recycleViewAdapterHot);
                     }
                 }
@@ -120,7 +122,7 @@ public class ECommerceFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<Product> productArrayList) {
                 binding.fragmentECommerceRecycleviewSeeds.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                ViewRecycleProductsAdapter recycleViewAdapters = new ViewRecycleProductsAdapter(getContext(), productArrayList,"Ecommerce");
+                ViewRecycleProductsAdapter recycleViewAdapters = new ViewRecycleProductsAdapter(getContext(), productArrayList, "Ecommerce");
                 binding.fragmentECommerceRecycleviewSeeds.setAdapter(recycleViewAdapters);
             }
         });
@@ -129,7 +131,7 @@ public class ECommerceFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<Product> productArrayList) {
                 binding.fragmentECommerceRecycleviewFertilizers.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                ViewRecycleProductsAdapter recycleViewAdapterFer = new ViewRecycleProductsAdapter(getContext(), productArrayList,"Ecommerce");
+                ViewRecycleProductsAdapter recycleViewAdapterFer = new ViewRecycleProductsAdapter(getContext(), productArrayList, "Ecommerce");
                 binding.fragmentECommerceRecycleviewFertilizers.setAdapter(recycleViewAdapterFer);
             }
         });
@@ -138,7 +140,7 @@ public class ECommerceFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<Product> productArrayList) {
                 binding.fragmentECommerceRecycleviewTools.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                ViewRecycleProductsAdapter recycleViewAdaptert = new ViewRecycleProductsAdapter(getContext(), productArrayList,"Ecommerce");
+                ViewRecycleProductsAdapter recycleViewAdaptert = new ViewRecycleProductsAdapter(getContext(), productArrayList, "Ecommerce");
                 binding.fragmentECommerceRecycleviewTools.setAdapter(recycleViewAdaptert);
             }
         });

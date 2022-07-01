@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -55,8 +56,15 @@ public class ToolProductsFragment extends Fragment {
                         ProductItemAdapter adapter = new ProductItemAdapter(toolArrayList, requireContext(), "tool");
                         binding.fragmentToolProductsRecyclerView.setAdapter(adapter);
                         binding.fragmentToolProductsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+                        binding.toolPullToRefresh.setRefreshing(false);
                     }
                 });
+        binding.toolPullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                toolsViewModel.getEcommerceToolProducts();
+            }
+        });
     }
 
 //    @Override

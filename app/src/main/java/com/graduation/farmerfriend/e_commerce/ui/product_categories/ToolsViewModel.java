@@ -18,4 +18,8 @@ public class ToolsViewModel extends ViewModel {
     public LiveData<ArrayList<Product>> getToolProductsLiveData() {
         return ecommerceRepo.getToolLiveDataProducts();
     }
+
+    public void getEcommerceToolProducts(){
+        ecommerceRepo.getEcommerceToolProducts();
+    }
 }

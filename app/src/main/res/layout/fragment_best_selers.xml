@@ -4,12 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".e_commerce.ui.deals.BestSellersFragment">
+    tools:context=".e_commerce.ui.deals.BestSellerFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragment_bestSellers_RecyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:id="@+id/allProductPullToRefresh">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_bestSellers_RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

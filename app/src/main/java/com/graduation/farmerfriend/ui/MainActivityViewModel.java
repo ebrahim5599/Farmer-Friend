@@ -2,8 +2,11 @@ package com.graduation.farmerfriend.ui;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.graduation.farmerfriend.ecommerce_models.IOTStatus;
 import com.graduation.farmerfriend.repos.EcommerceRepo;
 import com.graduation.farmerfriend.repos.ForecastRepo;
 
@@ -38,5 +41,14 @@ public class MainActivityViewModel extends ViewModel {
     public void getEcommerceToolProducts(){
         ecommerceRepo.getEcommerceToolProducts();
     }
+    public void checkIotStatus(String userName){
+        ecommerceRepo.checkIotStatus(userName);
+    }
+
+    @NonNull
+    public LiveData<IOTStatus> getIotStatusLiveData(){
+        return ecommerceRepo.getIotStatusLiveData();
+    }
+
 
 }

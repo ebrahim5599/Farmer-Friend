@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.graduation.farmerfriend.apis.ECommerceInterface;
+import com.graduation.farmerfriend.constants.Constants;
+import com.graduation.farmerfriend.control.iot_fragments.hasIoTSystem.Data_HasIoT;
 import com.graduation.farmerfriend.ecommerce_models.CartRoot;
 import com.graduation.farmerfriend.ecommerce_models.IOTStatus;
 import com.graduation.farmerfriend.ecommerce_models.PatchCart;
@@ -29,7 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class EcommerceRepo {
     private static EcommerceRepo Instance;
     private static final String ECOMMERCE_SERVICE_BASE_URL = "http://newweb19992022-001-site1.ftempurl.com/";
-    private  ECommerceInterface eCommerceInterface;
+    private ECommerceInterface eCommerceInterface;
     private CompositeDisposable compositeDisposable;
     private static final String TAG = "EcommerceRepo";
     private final MutableLiveData<ArrayList<Product>> allProductsLiveData;
@@ -51,9 +53,9 @@ public class EcommerceRepo {
     }
 
 
-    public void init(Context context){
+    public void init(Context context) {
 
-        this.context = context ;
+        this.context = context;
 
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -70,6 +72,7 @@ public class EcommerceRepo {
                 .build()
                 .create(ECommerceInterface.class);
     }
+
     EcommerceRepo() {
 
 
@@ -289,14 +292,15 @@ public class EcommerceRepo {
 
             @Override
             public void onError(@NonNull Throwable e) {
-                Log.d(TAG, "onError: "+e);
+                Log.d(TAG, "onError: " + e);
             }
         };
         cartSingle.subscribe(cartSingleObserver);
     }
 
-    public void checkIotStatus(String userName){
-        Single<IOTStatus> iotStatusSingle = eCommerceInterface.getIotStatus(userName);
+    @NonNull
+    public Single<IOTStatus> checkIotStatus(String userName) {
+        Single<IOTStatus> iotStatusSingle = eCommerceInterface.getIotStatus(userName).subscribeOn(Schedulers.io());
         SingleObserver<IOTStatus> iotStatusSingleObserver = new SingleObserver<IOTStatus>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
@@ -305,14 +309,23 @@ public class EcommerceRepo {
 
             @Override
             public void onSuccess(@NonNull IOTStatus iotStatus) {
-                    iotStatusMutableLiveData.postValue(iotStatus);
+                iotStatusMutableLiveData.postValue(iotStatus);
+                Log.d(TAG, "onSuccess: iotstatus "+iotStatus.hasIotSystem);
             }
 
             @Override
             public void onError(@NonNull Throwable e) {
-
+                iotStatusMutableLiveData.postValue(null);
+                Log.d(TAG,"Iot"+e.toString());
             }
         };
+        iotStatusSingle.subscribe(iotStatusSingleObserver);
+        return iotStatusSingle;
+    }
+
+    public Single<Object> editIotStatus(String userName, ArrayList<Data_HasIoT> data_hasIoT) {
+        Single<Object> objectSingle = eCommerceInterface.changeIotStatus(userName, data_hasIoT).subscribeOn(Schedulers.io());
+        return objectSingle;
     }
 
     public LiveData<ArrayList<Product>> getAllLiveDataProducts() {
@@ -337,6 +350,10 @@ public class EcommerceRepo {
 
     public LiveData<ArrayList<CartRoot>> getCartLiveData() {
         return cartLiveData;
+    }
+
+    public LiveData<IOTStatus> getIotStatusLiveData() {
+        return iotStatusMutableLiveData;
     }
 
 

@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -56,9 +57,16 @@ public class SeedProductsFragment extends Fragment {
                         ProductItemAdapter adapter = new ProductItemAdapter(seedArrayList, requireContext(), "seed");
                         binding.fragmentSeedsProductsRecyclerView.setAdapter(adapter);
                         binding.fragmentSeedsProductsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+                        binding.seedsPullToRefresh.setRefreshing(false);
                     }
                 });
         Log.i("Fragment", "seeds fragment oncreateview");
+        binding.seedsPullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                seedViewModel.getEcommerceSeedProducts();
+            }
+        });
     }
 
 //    @Override

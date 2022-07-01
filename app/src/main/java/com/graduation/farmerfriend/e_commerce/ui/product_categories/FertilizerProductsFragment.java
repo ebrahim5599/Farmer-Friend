@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,12 +54,21 @@ public class FertilizerProductsFragment extends Fragment {
                     @Override
                     public void onChanged(ArrayList<Product> productArrayList) {
                         fertilizersArrayList = productArrayList;
-                        ProductItemAdapter adapter = new ProductItemAdapter(fertilizersArrayList,requireContext(),"fer");
+                        ProductItemAdapter adapter = new ProductItemAdapter(fertilizersArrayList, requireContext(), "fer");
                         binding.fragmentFertilizerProductsRecyclerView.setAdapter(adapter);
-                        binding.fragmentFertilizerProductsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+                        binding.fragmentFertilizerProductsRecyclerView.setLayoutManager(
+                                new GridLayoutManager(requireContext(), 3));
+
+                        binding.fertilizerPullToRefresh.setRefreshing(false);
                     }
                 });
         Log.i("Fragment", "fertilizers fragment oncreateview");
+        binding.fertilizerPullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fertilizersViewModel.getEcommerceFerProducts();
+            }
+        });
     }
 
     @Override

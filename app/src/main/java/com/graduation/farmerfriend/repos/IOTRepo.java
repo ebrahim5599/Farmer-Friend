@@ -25,7 +25,7 @@ public class IOTRepo {
     private DatabaseReference referenceControl;
     private final DatabaseReference referenceSensors;
     private final MutableLiveData<Control> iOTControlLiveData;
-    private final MutableLiveData<Sensors> iOTSensorsLiveData;
+    final MutableLiveData<Sensors> iOTSensorsLiveData;
     private static IOTRepo Instance;
     private static final String TAG = "IOTRepo";
 
@@ -58,7 +58,6 @@ public class IOTRepo {
     }
 
 
-
     public void WriteDataAuto(Boolean value) {
         referenceControl.child("isAuto").setValue(value);
     }
@@ -76,8 +75,8 @@ public class IOTRepo {
         referenceControl.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                iOTControlLiveData.setValue(snapshot.getValue(Control.class));
-                Log.i("onchanged", snapshot.getValue(Control.class).fertSwitch + "");
+                if (snapshot.getValue(Control.class) != null)
+                    iOTControlLiveData.setValue(snapshot.getValue(Control.class));
             }
 
             @Override
@@ -89,8 +88,8 @@ public class IOTRepo {
         referenceSensors.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                iOTSensorsLiveData.setValue(snapshot.getValue(Sensors.class));
-                Log.i("onchanged", snapshot.getValue(Sensors.class).airTemp + "");
+                if (snapshot.getValue(Control.class) != null)
+                    iOTSensorsLiveData.setValue(snapshot.getValue(Sensors.class));
             }
 
             @Override

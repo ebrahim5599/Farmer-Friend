@@ -69,6 +69,9 @@ class LoginFragment : Fragment() {
             Log.d("TAG", "onCreateView: " + userData.id)
             sharedPref.putBoolPref(Constants.HAS_IOT_SYSTEM, userData.hasIotSystem)
             Toast.makeText(context, userData.firstName, Toast.LENGTH_SHORT).show()
+            Log.d("TAG", "onCreateView: " + userData.hasIotSystem)
+
+            Log.d("TAG", "onCreateView: " + userData.username)
             viewBinding.loadingLogin.visibility = View.GONE
 
             //TODO:00000000000000000000000000000000000000000000000000000000000000000
