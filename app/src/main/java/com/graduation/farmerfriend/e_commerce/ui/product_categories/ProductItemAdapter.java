@@ -1,6 +1,8 @@
 package com.graduation.farmerfriend.e_commerce.ui.product_categories;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +35,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
     private final String fragment_Name;
     private final EcommerceRepo ecommerceRepo;
     private final SharedPref sharedPref;
+    private Boolean internet ;
 
     ProductItemAdapter(ArrayList<Product> productArrayList, Context context, String fragment_Name) {
         this.productArrayList = productArrayList;
@@ -93,14 +96,18 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
         holder.btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (getConnectivityStatus(context)) {
+                    if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
+                        PostCart postCart = new PostCart(productArrayList.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""), 1);
+                        ecommerceRepo.addToCart(postCart);
+                        Toast.makeText(context, "تمت اضافة " + productArrayList.get(holder.getAbsoluteAdapterPosition()).productName + " لشنطة التسوق", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "يرجى تسجيل الدخول حتى تستطيع الاضافة الى العربة ", Toast.LENGTH_SHORT).show();
+                        //TODO navigate to sign in fragment
+                    }
+                }else {
+                    Toast.makeText(context, "لا يوجد اتصال بالانترنت ", Toast.LENGTH_SHORT).show();
 
-                if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
-                    PostCart postCart = new PostCart(productArrayList.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""),1);
-                    ecommerceRepo.addToCart(postCart);
-                    Toast.makeText(context, "تمت اضافة " + productArrayList.get(holder.getAbsoluteAdapterPosition()).productName + " لشنطة التسوق", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "يرجى تسجيل الدخول حتى تستطيع الاضافة الى العربة ", Toast.LENGTH_SHORT).show();
-                    //TODO navigate to sign in fragment
                 }
             }
         });
@@ -124,5 +131,23 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
             imageView = itemView.findViewById(R.id.product_image);
             btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
         }
+    }
+
+    public Boolean getConnectivityStatus(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null) {
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                internet = true ;
+                return internet;
+            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                internet = true ;
+                return internet;
+            }
+        } else {
+            internet = false ;
+            return internet;
+        }
+        return internet;
     }
 }

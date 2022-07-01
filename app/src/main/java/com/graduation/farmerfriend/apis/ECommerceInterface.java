@@ -2,6 +2,9 @@ package com.graduation.farmerfriend.apis;
 
 import androidx.annotation.NonNull;
 
+import com.graduation.farmerfriend.caching_room.Fert.Fert;
+import com.graduation.farmerfriend.caching_room.Seed.Seed;
+import com.graduation.farmerfriend.caching_room.Tool.Tool;
 import com.graduation.farmerfriend.ecommerce_models.CartRoot;
 import com.graduation.farmerfriend.ecommerce_models.IOTStatus;
 import com.graduation.farmerfriend.ecommerce_models.PatchCart;
@@ -28,15 +31,15 @@ public interface ECommerceInterface {
 
     @NonNull
     @GET("/api/Products/GetSeedProduct")
-    Single<ArrayList<Product>> getSeedProducts();
+    Single<ArrayList<Seed>> getSeedProducts();
 
     @NonNull
     @GET("/api/Products/GetToolProduct")
-    Single<ArrayList<Product>> getToolProducts();
+    Single<ArrayList<Tool>> getToolProducts();
 
     @NonNull
     @GET("/api/Products/GetFerProduct")
-    Single<ArrayList<Product>> getFerProducts();
+    Single<ArrayList<Fert>> getFerProducts();
 
     @NonNull
     @GET("/api/Products/{id}")

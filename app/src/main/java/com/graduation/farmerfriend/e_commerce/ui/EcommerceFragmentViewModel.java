@@ -9,6 +9,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.graduation.farmerfriend.caching_room.Fert.Fert;
+import com.graduation.farmerfriend.caching_room.Seed.Seed;
+import com.graduation.farmerfriend.caching_room.Tool.Tool;
 import com.graduation.farmerfriend.e_commerce.search.data.SearchClient;
 import com.graduation.farmerfriend.e_commerce.search.pojo.SearchResultPojo;
 import com.graduation.farmerfriend.ecommerce_models.Product;
@@ -29,15 +32,15 @@ public class EcommerceFragmentViewModel extends ViewModel {
         ecommerceRepo = EcommerceRepo.getInstance();
     }
 
-    public LiveData<ArrayList<Product>> getFerProductsLiveData() {
+    public LiveData<ArrayList<Fert>> getFerProductsLiveData() {
         return ecommerceRepo.getFerLiveDataProducts();
     }
 
-    public LiveData<ArrayList<Product>> getSeedProductsLiveData(){
+    public LiveData<ArrayList<Seed>> getSeedProductsLiveData(){
         return ecommerceRepo.getSeedLiveDataProducts();
     }
 
-    public LiveData<ArrayList<Product>> getToolProductsLiveData() {
+    public LiveData<ArrayList<Tool>> getToolProductsLiveData() {
         return ecommerceRepo.getToolLiveDataProducts();
     }
     public LiveData<ArrayList<Product>> getAllProductsLiveData(){

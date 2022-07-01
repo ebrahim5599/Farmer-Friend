@@ -2,6 +2,9 @@ package com.graduation.farmerfriend.e_commerce;
 
 import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.caching_room.Fert.Fert;
+import com.graduation.farmerfriend.caching_room.Seed.Seed;
+import com.graduation.farmerfriend.caching_room.Tool.Tool;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.e_commerce.ui.ECommerceFragmentDirections;
 import com.graduation.farmerfriend.ecommerce_models.PostCart;
@@ -11,6 +14,8 @@ import com.graduation.farmerfriend.repos.EcommerceRepo;
 import com.graduation.farmerfriend.sharedPreferences.SharedPref;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,11 +31,13 @@ import java.util.Locale;
 
 public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycleProductsAdapter.ViewHolder> {
 
-    private final ArrayList<Product> data;
+    private ArrayList<Product> data;
+
     private final Context context;
     private final EcommerceRepo ecommerceRepo;
     private final SharedPref sharedPref;
     private final String fragment_Name;
+    private Boolean internet ;
 
     public ViewRecycleProductsAdapter(Context con, ArrayList<Product> data, String fragment_Name) {
         this.context = con;
@@ -39,6 +46,8 @@ public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycle
         ecommerceRepo = EcommerceRepo.getInstance();
         sharedPref = new SharedPref(con, Constants.MAIN_SHARED_PREFERENCES);
     }
+
+
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.product_container, parent, false);
@@ -78,13 +87,18 @@ public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycle
             }
         });
         holder.addToCart.setOnClickListener(view -> {
-            if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
-                PostCart postCart = new PostCart(data.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""),1);
-                ecommerceRepo.addToCart(postCart);
-                Toast.makeText(context, "تمت اضافة " + data.get(holder.getAbsoluteAdapterPosition()).productName + " لشنطة التسوق", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(context, "يرجى تسجيل الدخول حتى تستطيع الاضافة الى العربة ", Toast.LENGTH_SHORT).show();
-                // Navigation.findNavController(view).navigate(R.id.loginFragment);
+            if (getConnectivityStatus(context)) {
+                if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
+                    PostCart postCart = new PostCart(data.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""), 1);
+                    ecommerceRepo.addToCart(postCart);
+                    Toast.makeText(context, "تمت اضافة " + data.get(holder.getAbsoluteAdapterPosition()).productName + " لشنطة التسوق", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "يرجى تسجيل الدخول حتى تستطيع الاضافة الى العربة ", Toast.LENGTH_SHORT).show();
+                    // Navigation.findNavController(view).navigate(R.id.loginFragment);
+                }
+            }else {
+                Toast.makeText(context, "لا يوجد اتصال بالانترنت ", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -111,6 +125,22 @@ public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycle
             addToCart = itemView.findViewById(R.id.btnAddToCart);
         }
     }
-
+    public Boolean getConnectivityStatus(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null) {
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                internet = true ;
+                return internet;
+            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                internet = true ;
+                return internet;
+            }
+        } else {
+            internet = false ;
+            return internet;
+        }
+        return internet;
+    }
 
 }

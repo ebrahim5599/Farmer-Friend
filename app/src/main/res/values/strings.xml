@@ -5,40 +5,22 @@
     <string name="fertilizers">Fertilizers</string>
     <string name="tools">Tools</string>
     <string name="seeds">Seeds</string>
-    <string name="machine_shops">Machine Shops</string>
     <string name="add">Add to Cart</string>
-    <string name="my_products">My Products</string>
     <string name="buy">Buy</string>
     <string name="Cart">Cart</string>
-    <string name="total">"Total   ="</string>
-    <string name="delete">Delete</string>
-    <string name="title_activity_deals">dealsActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="item_name">Corn Seeds</string>
     <string name="description">Description</string>
-    <string name="results">Results</string>
     <string name="full_name">Full Name</string>
     <string name="phone">Phone</string>
     <string name="governorate">Governorate</string>
     <string name="district">District</string>
-    <string name="region">Region</string>
     <string name="street">Street</string>
-    <string name="enter_the_street">Enter Your Street</string>
     <string name="Property_number_and_apartment_number">Property Number</string>
-    <string name="Block">Block 0 and Apartment 0</string>
     <string name="special_marque">Special Marque</string>
-    <string name="mosque_school">Mosque / School</string>
-    <string name="Address_type">Address Type</string>
     <string name="location"> ADD YOUR LOCATION</string>
-    <string name="save">SAVE</string>
 
     <!--    <string-array name="gov_array">-->
     <!--        <item>Sharqia</item>-->
@@ -47,26 +29,19 @@
 
     <string name="title_activity_search">Search</string>
     <string name="wishlist">Wishlist</string>
-    <string name="hot_deals">Hot deals</string>
-    <string name="best_sellers">Best Sellers</string>
     <string name="city">City</string>
     <string name="result">Result</string>
 
     <string name="news">News</string>
     <string name="products">Products</string>
-    <string name="e_commerce">E-Commerce</string>
     <string name="iot">IOT</string>
     <string name="tips">Tips</string>
     <string name="camera">Camera</string>
     <string name="community">Community</string>
     <string name="store">Store</string>
-    <string name="help">Help</string>
-    <string name="setting">Setting</string>
     <string name="about_us">About Us</string>
     <string name="log_out">Log Out</string>
     <string name="title_activity_iot">IOT_Activity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
     <string name="water_pump">Water Pump</string>
     <string name="fertilizer_pump">Fertilizer Pump</string>
     <string name="automatic_or_manual">Automatic or Manual</string>
@@ -77,20 +52,15 @@
     <string name="pressure">Pressure</string>
     <string name="luminous_intensity">Luminous Intensity</string>
     <string name="temperature">Temperature</string>
-    <string name="moisture">Moisture</string>
-    <string name="user_data">User Data</string>
     <string name="control_panel">Control Panel</string>
     <string-array name="area_num">
         <item>Area 1</item>
         <item>Area 2</item>
     </string-array>
-    <string name="title_activity_shop">ShopActivity</string>
     <string name="more">More</string>
     <string name="shop">Shop</string>
     <string name="control">Control</string>
     <string name="home">Home</string>
-    <string name="Add_tem_Image">Add Item Image</string>
-    <string name="plant_details">Details</string>
     <string name="apply_now">Apply now</string>
     <string name="iot_intro_message">Control your farm remotely, subscribe now to our system to follow your farm through the farmer\'s friend application</string>
     <string name="additional_data_required">Additional Data</string>
@@ -120,11 +90,15 @@
 
     <string name="log_in_to_your_account">Log in to your account</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_up">sign up</string>
     <string name="log_in">log in</string>
     <string name="skip_now">skip now</string>
     <string name="welcome">Welcome</string>
+
+    //Profile picture
+    <string name="upload_photo">Upload Photo</string>
+    <string name="delete_photo">Delete Photo</string>
+
 
     <string name="forgot_password">Forgot Password?</string>
     <string name="please_enter_your_email_address">Please enter your email address.</string>

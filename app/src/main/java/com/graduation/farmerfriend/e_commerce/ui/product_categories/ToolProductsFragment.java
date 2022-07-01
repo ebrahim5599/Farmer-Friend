@@ -2,6 +2,8 @@ package com.graduation.farmerfriend.e_commerce.ui.product_categories;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,8 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import com.graduation.farmerfriend.R;
+import com.graduation.farmerfriend.caching_room.Tool.ProductItemTAdapter;
+import com.graduation.farmerfriend.caching_room.Tool.Tool;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentToolProductsBinding;
 import com.graduation.farmerfriend.ecommerce_models.Product;
@@ -31,7 +35,7 @@ public class ToolProductsFragment extends Fragment {
 
     FragmentToolProductsBinding binding;
     ToolsViewModel toolsViewModel;
-    private ArrayList<Product> toolArrayList;
+    private ArrayList<Tool> toolArrayList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,11 +52,11 @@ public class ToolProductsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         toolsViewModel.init();
         toolsViewModel.getToolProductsLiveData()
-                .observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
+                .observe(getViewLifecycleOwner(), new Observer<ArrayList<Tool>>() {
                     @Override
-                    public void onChanged(ArrayList<Product> productArrayList) {
+                    public void onChanged(ArrayList<Tool> productArrayList) {
                         toolArrayList = productArrayList;
-                        ProductItemAdapter adapter = new ProductItemAdapter(toolArrayList, requireContext(), "tool");
+                        ProductItemTAdapter adapter = new ProductItemTAdapter(toolArrayList, requireContext(), "tool");
                         binding.fragmentToolProductsRecyclerView.setAdapter(adapter);
                         binding.fragmentToolProductsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
                     }
@@ -83,10 +87,14 @@ public class ToolProductsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.cartFragment) {
-            ToolProductsFragmentDirections.ActionToCart action =
-                    ToolProductsFragmentDirections.actionToCart();
-            action.setFromWhichFragment(Constants.FROM_TOOLS_FRAGMENT);
-            Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
+
+                ToolProductsFragmentDirections.ActionToCart action =
+                        ToolProductsFragmentDirections.actionToCart();
+                action.setFromWhichFragment(Constants.FROM_TOOLS_FRAGMENT);
+                Navigation.findNavController(requireView()).navigate(R.id.cartFragment);
+
+
+
         } else if (item.getItemId() == R.id.wishlistFragment) {
             ToolProductsFragmentDirections.ActionToWishlist action =
                     ToolProductsFragmentDirections.actionToWishlist();
@@ -97,4 +105,5 @@ public class ToolProductsFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

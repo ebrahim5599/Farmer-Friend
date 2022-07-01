@@ -3,6 +3,7 @@ package com.graduation.farmerfriend.e_commerce.ui.product_categories;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.graduation.farmerfriend.caching_room.Fert.Fert;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 import com.graduation.farmerfriend.repos.EcommerceRepo;
 
@@ -15,7 +16,7 @@ public class FertilizersViewModel extends ViewModel {
         ecommerceRepo = EcommerceRepo.getInstance();
     }
 
-    public LiveData<ArrayList<Product>> getFerProductsLiveData() {
+    public LiveData<ArrayList<Fert>> getFerProductsLiveData() {
         return ecommerceRepo.getFerLiveDataProducts();
     }
 }

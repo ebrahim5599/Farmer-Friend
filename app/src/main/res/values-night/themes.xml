@@ -14,15 +14,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.Farmer" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <item name="android:fontFamily">@font/kitten_swash</item>
-    </style>
-
-    <style name="Theme.FarmerFriend.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
     <style name="Theme.FarmerFriend.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="background">
             @drawable/relative_layout_background
@@ -31,11 +22,6 @@
 
     <style name="Theme.FarmerFriend.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-
-    <style name="Splash_Screen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_image</item>
-        <item name="android:statusBarColor">@color/dark_mode</item>
-    </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         // Set the splash screen background, animated icon, and animation duration.

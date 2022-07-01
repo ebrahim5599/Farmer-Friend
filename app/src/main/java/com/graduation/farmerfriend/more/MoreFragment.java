@@ -1,6 +1,10 @@
+
+
 package com.graduation.farmerfriend.more;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -25,10 +29,16 @@ import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentMoreBinding;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MoreFragment extends Fragment {
     FragmentMoreBinding binding;
     SharedPreferences sharedPreferences;
     MutableLiveData<String> mutableLiveDataForName;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
@@ -43,6 +53,17 @@ public class MoreFragment extends Fragment {
         binding.fragmentMoreTextviewLogin.setPaintFlags(binding.fragmentMoreTextviewLogin.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         binding.fragmentMoreImageviewUserimage.setImageResource(R.mipmap.ic_launcher);
+
+        binding.fragmentMoreImageviewUserimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setView(R.layout.dialog_profile_picture);
+                builder.create();
+                builder.show();
+            }
+        });
+
         binding.fragmentMoreTextviewName.setText(sharedPreferences.getString(
                 Constants.FIRST_AND_LAST_NAME, "Anonymous User"));
 
