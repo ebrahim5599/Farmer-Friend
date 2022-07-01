@@ -180,7 +180,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/tips"
-                android:textColor="@color/greenCartText"
+                android:textColor="@color/mainText"
+                android:fontFamily="@font/maiandra_gd_regular"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -196,7 +197,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/shop"
-                android:textColor="@color/greenCartText"
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:textColor="@color/mainText"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -207,6 +209,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
+                android:padding="8dp"
                 android:background="@drawable/home_news_and_ecommerce_container_shape"
                 android:orientation="vertical">
 
@@ -227,17 +230,17 @@
 <!--                        app:layout_constraintEnd_toEndOf="parent"-->
 <!--                        app:layout_constraintTop_toTopOf="parent" />-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:layout_margin="8dp"
-                        android:fontFamily="@font/hacen_saudi_arabia"
-                        android:text="@string/products"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="end"-->
+<!--                        android:layout_margin="8dp"-->
+<!--                        android:fontFamily="@font/hacen_saudi_arabia"-->
+<!--                        android:text="@string/products"-->
+<!--                        android:textColor="@color/mainText"-->
+<!--                        android:textSize="20sp"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -256,14 +259,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/iot"
-                android:textColor="@color/greenCartText"
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:textColor="@color/mainText"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
                 <HorizontalScrollView
                     android:id="@+id/IOT_display"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:padding="10dp"
+                    android:background="@drawable/home_news_and_ecommerce_container_shape">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -273,12 +283,9 @@
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="16dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="4dp"
-                            android:layout_marginEnd="16dp"
-                            app:cardCornerRadius="16dp"
-                            app:cardElevation="20dp">
+                            app:cardCornerRadius="16dp">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -291,7 +298,9 @@
                                     android:layout_marginStart="8dp"
                                     android:layout_marginTop="8dp"
                                     android:text="@string/weather"
-                                    android:textColor="@color/greenCartText"
+                                    android:fontFamily="@font/maiandra_gd_regular"
+                                    android:textColor="@color/mainText"
+                                    android:layout_gravity="center"
                                     android:textSize="18sp"
                                     android:textStyle="bold" />
 
@@ -311,6 +320,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center"
                                             android:layout_marginTop="8dp"
+                                            android:fontFamily="@font/maiandra_gd_regular"
                                             android:text="@string/temperature"
                                             android:textSize="16sp" />
 
@@ -339,9 +349,10 @@
                                                 android:layout_alignParentStart="true"
                                                 android:layout_alignParentEnd="true"
                                                 android:layout_centerVertical="true"
+                                                android:fontFamily="@font/maiandra_gd_regular"
                                                 android:gravity="center"
                                                 android:text="24°"
-                                                android:textColor="@color/black"
+                                                android:textColor="@color/mainText"
                                                 android:textSize="24sp"
                                                 android:textStyle="bold" />
                                         </RelativeLayout>
@@ -361,6 +372,7 @@
                                             android:layout_marginTop="8dp"
                                             android:gravity="center"
                                             android:text="@string/humidity"
+                                            android:fontFamily="@font/maiandra_gd_regular"
                                             android:textSize="16sp" />
 
                                         <androidx.cardview.widget.CardView
@@ -375,6 +387,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:gravity="center"
+                                                android:background="@color/cardBackground2"
                                                 android:orientation="vertical">
 
                                                 <ImageView
@@ -391,7 +404,8 @@
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="4dp"
                                                     android:text="65%"
-                                                    android:textColor="@color/black"
+                                                    android:fontFamily="@font/maiandra_gd_regular"
+                                                    android:textColor="@color/mainText"
                                                     android:textSize="16sp" />
                                             </LinearLayout>
                                         </androidx.cardview.widget.CardView>
@@ -412,6 +426,7 @@
                                             android:layout_marginTop="8dp"
                                             android:gravity="center"
                                             android:text="@string/pressure"
+                                            android:fontFamily="@font/maiandra_gd_regular"
                                             android:textSize="16sp" />
 
                                         <androidx.cardview.widget.CardView
@@ -426,6 +441,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:gravity="center"
+                                                android:background="@color/cardBackground2"
                                                 android:orientation="vertical">
 
                                                 <ImageView
@@ -442,7 +458,8 @@
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="4dp"
                                                     android:text="1000 mb"
-                                                    android:textColor="@color/black"
+                                                    android:fontFamily="@font/maiandra_gd_regular"
+                                                    android:textColor="@color/mainText"
                                                     android:textSize="16sp" />
                                             </LinearLayout>
 
@@ -462,6 +479,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center"
                                             android:layout_marginTop="8dp"
+                                            android:fontFamily="@font/maiandra_gd_regular"
                                             android:text="@string/luminous_intensity"
                                             android:textSize="16sp" />
 
@@ -477,6 +495,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:gravity="center"
+                                                android:background="@color/cardBackground2"
                                                 android:orientation="vertical">
 
                                                 <ImageView
@@ -493,7 +512,8 @@
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="4dp"
                                                     android:text="33.2263 lx"
-                                                    android:textColor="@color/black"
+                                                    android:fontFamily="@font/maiandra_gd_regular"
+                                                    android:textColor="@color/mainText"
                                                     android:textSize="16sp" />
                                             </LinearLayout>
                                         </androidx.cardview.widget.CardView>
@@ -523,8 +543,9 @@
                                     android:layout_marginStart="8dp"
                                     android:layout_marginTop="8dp"
                                     android:text="@string/soil"
-                                    android:textColor="@color/greenCartText"
-                                    android:textSize="18sp"
+                                    android:fontFamily="@font/maiandra_gd_regular"
+                                    android:textColor="@color/mainText"
+                                    android:layout_gravity="center"                                    android:textSize="18sp"
                                     android:textStyle="bold" />
 
                                 <LinearLayout
@@ -544,6 +565,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center"
                                             android:layout_marginTop="8dp"
+                                            android:fontFamily="@font/maiandra_gd_regular"
                                             android:text="@string/temperature"
                                             android:textSize="16sp" />
 
@@ -559,6 +581,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:gravity="center"
+                                                android:background="@color/cardBackground2"
                                                 android:orientation="vertical">
 
                                                 <ImageView
@@ -575,7 +598,8 @@
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="4dp"
                                                     android:text="12 C"
-                                                    android:textColor="@color/black"
+                                                    android:fontFamily="@font/maiandra_gd_regular"
+                                                    android:textColor="@color/mainText"
                                                     android:textSize="16sp" />
                                             </LinearLayout>
                                         </androidx.cardview.widget.CardView>
@@ -595,6 +619,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center"
                                             android:layout_marginTop="8dp"
+                                            android:fontFamily="@font/maiandra_gd_regular"
                                             android:text="@string/moisture"
                                             android:textSize="16sp" />
 
@@ -610,6 +635,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:gravity="center"
+                                                android:background="@color/cardBackground2"
                                                 android:orientation="vertical">
 
                                                 <ImageView
@@ -626,7 +652,8 @@
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginBottom="4dp"
                                                     android:text="85%"
-                                                    android:textColor="@color/black"
+                                                    android:fontFamily="@font/maiandra_gd_regular"
+                                                    android:textColor="@color/mainText"
                                                     android:textSize="16sp" />
                                             </LinearLayout>
                                         </androidx.cardview.widget.CardView>
@@ -656,7 +683,9 @@
                                     android:layout_marginStart="8dp"
                                     android:layout_marginTop="8dp"
                                     android:text="@string/control"
-                                    android:textColor="@color/greenCartText"
+                                    android:textColor="@color/mainText"
+                                    android:fontFamily="@font/maiandra_gd_regular"
+                                    android:layout_gravity="center"
                                     android:textSize="18sp"
                                     android:textStyle="bold" />
 
@@ -676,6 +705,7 @@
                                         <LinearLayout
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
+                                            android:background="@color/cardBackground2"
                                             android:orientation="horizontal">
 
                                             <LinearLayout
@@ -695,7 +725,8 @@
                                                     android:layout_weight="1"
                                                     android:gravity="center_vertical"
                                                     android:text="@string/automatic"
-                                                    android:textColor="@color/black_Iot_control_text2"
+                                                    android:fontFamily="@font/maiandra_gd_regular"
+                                                    android:textColor="@color/mainText"
                                                     android:textSize="12sp" />
 
                                                 <TextView
@@ -705,7 +736,8 @@
                                                     android:layout_weight="1"
                                                     android:gravity="center_vertical"
                                                     android:text="@string/manual"
-                                                    android:textColor="@color/black_Iot_control_text2"
+                                                    android:fontFamily="@font/maiandra_gd_regular"
+                                                    android:textColor="@color/mainText"
                                                     android:textSize="12sp" />
 
                                                 <TextView
@@ -715,7 +747,8 @@
                                                     android:layout_weight="1"
                                                     android:gravity="center_vertical"
                                                     android:text="@string/water_pump"
-                                                    android:textColor="@color/black_Iot_control_text2"
+                                                    android:fontFamily="@font/maiandra_gd_regular"
+                                                    android:textColor="@color/mainText"
                                                     android:textSize="12sp" />
 
                                                 <TextView
@@ -726,7 +759,8 @@
                                                     android:gravity="center_vertical"
                                                     android:singleLine="false"
                                                     android:text="@string/fertilizer_pump"
-                                                    android:textColor="@color/black_Iot_control_text2"
+                                                    android:fontFamily="@font/maiandra_gd_regular"
+                                                    android:textColor="@color/mainText"
                                                     android:textSize="11sp" />
 
                                             </LinearLayout>
@@ -771,11 +805,8 @@
                                 </LinearLayout>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
-
                     </LinearLayout>
-
                 </HorizontalScrollView>
-
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

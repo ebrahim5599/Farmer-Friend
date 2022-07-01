@@ -86,6 +86,7 @@ public class HomeFragment extends Fragment {
         }
         else
         {
+            // TODO: return visibility to GONE again.
                fragmentHomeBinding.homeIOTTextView.setVisibility(View.GONE);
                fragmentHomeBinding.IOTDisplay.setVisibility(View.GONE);
         }

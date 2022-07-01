@@ -8,5 +8,11 @@
     <!--    New Edit by Ebrahim 30/06/22-->
     <color name="mainText">#FFFFFF</color>
     <color name="normalText">#8D8F97</color>
+    <color name="greenText">#D3D6E1</color>
     <color name="mainBackground">#2D313D</color>
+    <color name="cardBackground">#3A3F4E</color>
+    <color name="cardBackground2">#4C4D50</color>
+    <color name="cardBackground3">#2D313D</color>
+    <color name="moreFragmentBackground">#3A3F4E</color>
+
 </resources>

@@ -62,8 +62,8 @@
     <string name="store">Store</string>
     <string name="help">Help</string>
     <string name="setting">Setting</string>
-    <string name="about_us">About Us</string>
-    <string name="log_out">Log Out</string>
+    <string name="about_us">About us</string>
+    <string name="log_out">Log out</string>
     <string name="title_activity_iot">IOT_Activity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
@@ -128,4 +128,5 @@
     <string name="send_code">Send code</string>
     <string name="reset_password">reset password</string>
     <string name="new_password">New Password</string>
+    <string name="add_new_item">Add New Item</string>
 </resources>
