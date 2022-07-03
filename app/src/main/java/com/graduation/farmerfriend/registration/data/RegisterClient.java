@@ -2,7 +2,6 @@ package com.graduation.farmerfriend.registration.data;
 import android.util.Log;
 
 import com.graduation.farmerfriend.registration.pojo.ForgotPassword;
-import com.graduation.farmerfriend.registration.pojo.NullClass;
 import com.graduation.farmerfriend.registration.pojo.UserData;
 
 import java.util.HashMap;

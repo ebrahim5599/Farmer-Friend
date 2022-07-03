@@ -77,7 +77,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/no_internet"
-            android:textColor="@color/black"
+            android:textColor="@color/mainText"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:textSize="24sp"
             android:layout_margin="8dp"
             android:textStyle="bold" />
@@ -89,7 +90,8 @@
             android:gravity="center"
             android:layout_marginHorizontal="8dp"
             android:text="@string/check_your_conn"
-            android:textColor="@color/black"
+            android:textColor="@color/mainText"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -98,7 +100,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        android:background="@color/mainBackground"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:itemIconTint="@drawable/bottom_action_bar_icons_color"
+        app:itemTextColor="@drawable/bottom_action_bar_icons_color"
         app:menu="@menu/bottom_nav_menu">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>

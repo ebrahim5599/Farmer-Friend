@@ -2,4 +2,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="grey_Ecommerce_RelativeLayout" tools:ignore="MissingDefaultResource">#ECE4E4</color>
     <color name="grey_Ecommerce_Container" tools:ignore="MissingDefaultResource">#CDC8C8</color>
+
+    <!--    New Edit by Ebrahim 30/06/22-->
+    <color name="mainText">#FFFFFF</color>
+    <color name="normalText">#8D8F97</color>
+    <color name="greenText">#D3D6E1</color>
+    <color name="mainBackground">#2D313D</color>
+    <color name="cardBackground">#3A3F4E</color>
+    <color name="cardBackground2">#4C4D50</color>
+    <color name="cardBackground3">#2D313D</color>
+    <color name="cardBackground4">#3A3F4E</color>
+    <color name="cardIconBackground">#2D313D</color>
+    <color name="iotControlCardBackground">#2D313D</color>
+    <color name="deleteButtonBackground">#2D313D</color>
+    <color name="bottomActionBarSelectedColor">#1DE9B6</color>
+    <color name="bottomActionBarUnSelectedColor">#8F8F8F</color>
+
 </resources>

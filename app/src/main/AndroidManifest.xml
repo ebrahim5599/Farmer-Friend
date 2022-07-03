@@ -30,7 +30,6 @@
             android:name=".camera.CameraResultActivity"
             android:exported="false"
             android:theme="@style/Theme.FarmerFriend"/>
-
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">

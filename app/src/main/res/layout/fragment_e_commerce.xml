@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ecommerce_pullToRefresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/mainBackground"
         android:isScrollContainer="true">
 
         <androidx.core.widget.NestedScrollView
@@ -47,7 +47,6 @@
                             android:src="@drawable/setting_background"
                             app:shapeAppearanceOverlay="@style/Shape_shop_top" />
                     </FrameLayout>
-
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
@@ -95,9 +94,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="4dp"
-                            android:fontFamily="@font/hacen_saudi_arabia"
+                            android:fontFamily="@font/maiandra_gd_regular"
                             android:text="Seeds"
-                            android:textColor="@color/green_Product_Activity_Text"
+                            android:textColor="@color/greenText"
                             android:textSize="16sp" />
                     </LinearLayout>
 
@@ -119,10 +118,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:fontFamily="@font/hacen_saudi_arabia"
+                            android:fontFamily="@font/maiandra_gd_regular"
                             android:gravity="center"
                             android:text="Fertilizers"
-                            android:textColor="@color/green_Product_Activity_Text"
+                            android:textColor="@color/greenText"
                             android:textSize="16sp" />
                     </LinearLayout>
 
@@ -145,9 +144,9 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="4dp"
-                            android:fontFamily="@font/hacen_saudi_arabia"
+                            android:fontFamily="@font/maiandra_gd_regular"
                             android:text="Tools"
-                            android:textColor="@color/green_Product_Activity_Text"
+                            android:textColor="@color/greenText"
                             android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -161,13 +160,14 @@
                         android:id="@+id/fragment_e_commerce_textview_best_seller_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/hacen_saudi_arabia"
+                        android:fontFamily="@font/maiandra_gd_regular"
                         android:text="@string/all_products"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:textColor="@color/mainText"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/fragment_e_commerce_textview_bestSellerViewAll"
@@ -175,11 +175,11 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="16dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/hacen_saudi_arabia"
+                        android:fontFamily="@font/maiandra_gd_regular"
                         android:text="view all"
-                        android:textColor="@color/green_Ecommerce_Text"
+                        android:textColor="@color/greenText"
                         android:textSize="16sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -187,38 +187,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/fragment_e_commerce_textview_best_seller_label"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
                         android:orientation="horizontal" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/relative_layout_background3">
 
                     <TextView
                         android:id="@+id/fragment_e_commerce_textview_seeds_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_below="@id/fragment_e_commerce_recycleView_BestSeller"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="32dp"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/hacen_saudi_arabia"
+                        android:fontFamily="@font/maiandra_gd_regular"
                         android:text="Seeds"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:textColor="@color/mainText"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/fragment_e_commerce_textview_seedsViewAll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/fragment_e_commerce_recycleView_BestSeller"
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="32dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/hacen_saudi_arabia"
+                        android:fontFamily="@font/maiandra_gd_regular"
                         android:text="view all"
-                        android:textColor="@color/green_Ecommerce_Text"
+                        android:textColor="@color/greenText"
                         android:textSize="16sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -226,38 +224,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/fragment_e_commerce_textview_seeds_label"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
                         android:orientation="horizontal" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/relative_layout_background3">
 
                     <TextView
                         android:id="@+id/fragment_e_commerce_textview_fertilizer_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_below="@id/fragment_e_commerce_recycleview_seeds"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="32dp"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/hacen_saudi_arabia"
+                        android:fontFamily="@font/maiandra_gd_regular"
                         android:text="Fertilizers"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:textColor="@color/mainText"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/fragment_e_commerce_textview_fertilizersViewAll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/fragment_e_commerce_recycleview_seeds"
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="32dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/hacen_saudi_arabia"
+                        android:fontFamily="@font/maiandra_gd_regular"
                         android:text="view all"
-                        android:textColor="@color/green_Ecommerce_Text"
+                        android:textColor="@color/greenText"
                         android:textSize="16sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -265,38 +261,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/fragment_e_commerce_textview_fertilizer_label"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
                         android:orientation="horizontal" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/relative_layout_background3">
 
                     <TextView
                         android:id="@+id/fragment_e_commerce_textview_tools_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_below="@id/fragment_e_commerce_recycleview_fertilizers"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="32dp"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/hacen_saudi_arabia"
+                        android:fontFamily="@font/maiandra_gd_regular"
                         android:text="Tools"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:textColor="@color/mainText"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/fragment_e_commerce_textview_toolsViewAll"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/fragment_e_commerce_recycleview_fertilizers"
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="32dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/hacen_saudi_arabia"
+                        android:fontFamily="@font/maiandra_gd_regular"
                         android:text="view all"
-                        android:textColor="@color/green_Ecommerce_Text"
+                        android:textColor="@color/greenText"
                         android:textSize="16sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -304,7 +298,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/fragment_e_commerce_textview_tools_label"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
                         android:orientation="horizontal"
                         android:paddingBottom="16dp" />
                 </RelativeLayout>
@@ -313,8 +308,5 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
 

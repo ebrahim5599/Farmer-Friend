@@ -158,10 +158,6 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
         NavigationUI.setupActionBarWithNavController(this, navCo, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, navCo);
 
-//        if (!sharedPreferences.getBoolean(Constants.LOGGED_IN, false) && !skipped){
-//            navCo.navigate(R.id.welcomeScreenFragment);
-//        }
-
         navCo.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {

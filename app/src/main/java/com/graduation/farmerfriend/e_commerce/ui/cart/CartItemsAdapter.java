@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -108,7 +109,7 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.Cart
         ImageButton buttonMinus;
         TextView textViewNumberOfItems;
         TextView buttonWishlist;
-        TextView buttonDelete;
+        ImageButton buttonDelete;
         TextView textViewItemName;
         TextView textViewTotalPrice;
 

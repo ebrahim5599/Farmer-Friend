@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     tools:context=".control.iot_fragments.IotMoreInfoFragment">
 
     <RelativeLayout
@@ -47,7 +48,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/phone"
-                android:textColor="@color/black" />
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:textStyle="bold"
+                android:textColor="@color/mainText" />
 
             <EditText
                 android:id="@+id/fragment_iot_more_info_phone_number"
@@ -62,7 +65,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/email"
-                android:textColor="@color/black" />
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:textStyle="bold"
+                android:textColor="@color/mainText" />
 
             <EditText
 
@@ -78,7 +83,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/what_is_the_approximate_area_of_the_farm"
-                android:textColor="@color/black" />
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:textStyle="bold"
+                android:textColor="@color/mainText"/>
 
             <EditText
 
@@ -94,7 +101,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/farm_location"
-                android:textColor="@color/black" />
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:textStyle="bold"
+                android:textColor="@color/mainText"/>
 
             <EditText
 
@@ -123,6 +132,7 @@
                     android:paddingEnd="24dp"
                     android:paddingBottom="16dp"
                     android:text="@string/sent_request"
+                    android:fontFamily="@font/maiandra_gd_regular"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textStyle="bold" />

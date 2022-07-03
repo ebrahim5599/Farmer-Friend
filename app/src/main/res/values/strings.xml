@@ -39,8 +39,8 @@
     <string name="camera">Camera</string>
     <string name="community">Community</string>
     <string name="store">Store</string>
-    <string name="about_us">About Us</string>
-    <string name="log_out">Log Out</string>
+    <string name="about_us">About us</string>
+    <string name="log_out">Log out</string>
     <string name="title_activity_iot">IOT_Activity</string>
     <string name="water_pump">Water Pump</string>
     <string name="fertilizer_pump">Fertilizer Pump</string>
@@ -52,16 +52,19 @@
     <string name="pressure">Pressure</string>
     <string name="luminous_intensity">Luminous Intensity</string>
     <string name="temperature">Temperature</string>
+    <string name="moisture">Moisture</string>
+    <string name="user_data">User Data</string>
     <string name="control_panel">Control Panel</string>
     <string-array name="area_num">
         <item>Area 1</item>
         <item>Area 2</item>
     </string-array>
-    <string name="moisture">Moisture</string>
     <string name="more">More</string>
     <string name="shop">Shop</string>
     <string name="control">Control</string>
     <string name="home">Home</string>
+    <string name="Add_tem_Image">Add Item Image</string>
+    <string name="plant_details">Details</string>
     <string name="apply_now">Apply now</string>
     <string name="iot_intro_message">Control your farm remotely, subscribe now to our system to follow your farm through the farmer\'s friend application</string>
     <string name="additional_data_required">Additional Data</string>
@@ -88,7 +91,6 @@
     <string name="all_products">All Products</string>
     <string name="add_item">Add Item</string>
     <string name="upload_image">Upload Image</string>
-
     <string name="log_in_to_your_account">Log in to your account</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="sign_up">sign up</string>
@@ -106,5 +108,5 @@
     <string name="send_code">Send code</string>
     <string name="reset_password">reset password</string>
     <string name="new_password">New Password</string>
-
+    <string name="add_new_item">Add New Item</string>
 </resources>
