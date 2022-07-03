@@ -73,6 +73,10 @@ public class ItemDescriptionFragment extends Fragment {
                     Glide.with(ItemDescriptionFragment.this).load("http://teamweb992022-001-site1.htempurl.com/productImages/" + imageName[1]).into((ImageView) binding.itemDescriptionImageviewProduct);
                 }
 
+                if (product.description == null){
+                    binding.itemDescriptionTextviewDescription.setText("There is no description for this product");
+                }
+
                 onclick(product);
             }
         });

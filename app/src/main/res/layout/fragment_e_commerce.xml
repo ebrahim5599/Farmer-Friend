@@ -161,6 +161,7 @@
                     android:fontFamily="@font/maiandra_gd_regular"
                     android:text="@string/all_products"
                     android:textColor="@color/mainText"
+                    android:textStyle="bold"
                     android:textSize="20sp" />
 
                 <TextView
@@ -195,6 +196,7 @@
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/maiandra_gd_regular"
                     android:text="Seeds"
+                    android:textStyle="bold"
                     android:textColor="@color/mainText"
                     android:textSize="20sp" />
 
@@ -223,13 +225,14 @@
 
                 <TextView
                     android:id="@+id/fragment_e_commerce_textview_fertilizer_label"
-                    android:layout_below="@id/fragment_e_commerce_recycleview_seeds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/fragment_e_commerce_recycleview_seeds"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/maiandra_gd_regular"
+                    android:textStyle="bold"
                     android:text="Fertilizers"
                     android:textColor="@color/mainText"
                     android:textSize="20sp" />
@@ -266,6 +269,7 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/maiandra_gd_regular"
+                    android:textStyle="bold"
                     android:text="Tools"
                     android:textColor="@color/mainText"
                     android:textSize="20sp" />

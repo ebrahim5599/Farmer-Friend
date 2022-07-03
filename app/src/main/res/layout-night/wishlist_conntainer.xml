@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="2dp"
-    android:background="@color/grey_Ecommerce_Container">
+    android:background="@color/cardBackground"
+    android:layout_marginVertical="2dp">
 
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -21,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:shapeAppearanceOverlay="@style/roundedImage"
+        app:shapeAppearanceOverlay="@style/cartRoundedImage"
         app:srcCompat="@drawable/no_product" />
 
 
@@ -34,7 +33,6 @@
         android:elevation="1dp"
         android:focusable="true"
         android:stateListAnimator="@null"
-        android:textColor="@color/black"
         android:textSize="18sp"
         app:drawableStartCompat="@drawable/ic_baseline_shopping_cart_24"
         app:layout_constraintBottom_toBottomOf="@+id/wishlist_button_wishlist"
@@ -51,7 +49,6 @@
         android:elevation="1dp"
         android:focusable="true"
         android:stateListAnimator="@null"
-        android:textColor="@color/black"
         android:textSize="18sp"
         app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,7 +63,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="@string/seeds"
-        android:textColor="@color/grey_Cart_Item_Name"
+        android:fontFamily="@font/maiandra_gd_regular"
+        android:textColor="@color/mainText"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/wishlist_imageViewItem"
@@ -76,6 +74,7 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/maiandra_gd_regular"
         android:text="Here, we will add item description "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/wishlist_button_wishlist"
@@ -91,7 +90,8 @@
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="2dp"
         android:text="EGP"
-        android:textColor="@color/greenCartText"
+        android:textColor="@color/greenText"
+        android:fontFamily="@font/maiandra_gd_regular"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/wish_list_Textview_Price"
@@ -103,7 +103,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="100000 "
-        android:textColor="@color/greenCartText"
+        android:textColor="@color/greenText"
+        android:fontFamily="@font/maiandra_gd_regular"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/wish_list_Textview_Name"

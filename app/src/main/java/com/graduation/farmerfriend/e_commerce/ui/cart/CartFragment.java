@@ -25,7 +25,6 @@ import com.graduation.farmerfriend.sharedPreferences.SharedPref;
 
 import java.util.ArrayList;
 
-
 public class CartFragment extends Fragment {
 
     private FragmentCartBinding binding;

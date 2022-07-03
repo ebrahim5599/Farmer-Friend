@@ -36,6 +36,7 @@
                 android:paddingBottom="16dp"
                 android:paddingStart="24dp"
                 android:paddingEnd="24dp"
+                android:fontFamily="@font/maiandra_gd_regular"
                 android:textAllCaps="true"
                 android:textStyle="bold"
                 android:background="?android:attr/selectableItemBackground" />

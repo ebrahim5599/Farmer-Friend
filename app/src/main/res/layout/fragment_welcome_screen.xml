@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_welcome_screen" />
+                android:src="@drawable/ic_character_welcome_screen" />
 
             <FrameLayout
                 android:id="@+id/welcome_login"

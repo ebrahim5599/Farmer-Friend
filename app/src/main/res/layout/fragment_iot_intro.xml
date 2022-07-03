@@ -16,8 +16,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="320dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/smart_farm"/>
+            android:src="@drawable/smart_farm"
+            android:scaleType="centerInside"/>
 
         <TextView
             android:id="@+id/iot_intro_text"
@@ -27,7 +27,8 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:textSize="16sp"
-            android:textColor="#424242"
+            android:textColor="@color/mainText"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:text="@string/iot_intro_message" />
 
         <FrameLayout
@@ -42,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/apply_now"
                 android:textColor="@color/white"
+                android:fontFamily="@font/maiandra_gd_regular"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:paddingStart="24dp"

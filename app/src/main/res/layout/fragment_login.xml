@@ -33,7 +33,7 @@
                 android:layout_height="240dp"
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
-                android:src="@drawable/ic_login_screen" />
+                android:src="@drawable/ic_character_login_screen" />
 
             <TextView
                 android:layout_width="match_parent"

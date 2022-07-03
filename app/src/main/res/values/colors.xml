@@ -26,6 +26,12 @@
     <color name="cardBackground">#F3F2F2</color>
     <color name="cardBackground2">#F3F2F2</color>
     <color name="cardBackground3">#EBEBEB</color>
+    <color name="cardBackground4">#F8F8F8</color>
+    <color name="cardIconBackground">#F3F2F2</color>
+    <color name="deleteButtonBackground">#FFFFFF</color>
+    <color name="iotControlCardBackground">#FFFFFF</color>
     <color name="greenText">#104A00</color>
+    <color name="bottomActionBarSelectedColor">#00897B</color>
+    <color name="bottomActionBarUnSelectedColor">#787878</color>
 
 </resources>

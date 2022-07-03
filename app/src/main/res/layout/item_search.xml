@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/mainBackground"
+    android:background="@color/cardBackground"
     android:layout_marginVertical="2dp">
 
 
@@ -21,7 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:shapeAppearanceOverlay="@style/roundedImage"
+        app:shapeAppearanceOverlay="@style/cartRoundedImage"
         app:srcCompat="@drawable/no_product" />
 
 
@@ -34,7 +34,6 @@
         android:elevation="1dp"
         android:focusable="true"
         android:stateListAnimator="@null"
-        android:textColor="@color/black"
         android:textSize="18sp"
         app:drawableStartCompat="@drawable/ic_baseline_shopping_cart_24"
         app:layout_constraintBottom_toBottomOf="@+id/search_button_wishlist"
@@ -51,7 +50,6 @@
         android:elevation="1dp"
         android:focusable="true"
         android:stateListAnimator="@null"
-        android:textColor="@color/black"
         android:textSize="18sp"
         app:drawableStartCompat="@drawable/ic_baseline_heart_24"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,7 +63,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="10dp"
         android:text="@string/seeds"
-        android:textColor="@color/grey_Cart_Item_Name"
+        android:textColor="@color/mainText"
+        android:fontFamily="@font/maiandra_gd_regular"
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -77,12 +76,14 @@
         android:id="@+id/search_result_product_description_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/maiandra_gd_regular"
         android:text="Here, we will add item description "
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/search_result_product_price_text_view"
+        app:layout_constraintEnd_toStartOf="@+id/search_button_wishlist"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/search_result_product_name_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/search_result_product_price_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/search_result_product_name_text_view"
         app:layout_constraintVertical_bias="0.339" />
 
     <TextView
@@ -92,7 +93,8 @@
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="2dp"
         android:text=" EGP"
-        android:textColor="@color/greenCartText"
+        android:textColor="@color/greenText"
+        android:fontFamily="@font/maiandra_gd_regular"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/search_result_product_price_text_view"
@@ -104,7 +106,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1000000"
-        android:textColor="@color/greenCartText"
+        android:textColor="@color/greenText"
+        android:fontFamily="@font/maiandra_gd_regular"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/search_result_product_price_total_currency_text_view"

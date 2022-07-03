@@ -52,7 +52,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/full_name"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/mainText"
+                    android:fontFamily="@font/maiandra_gd_regular"/>
 
                 <EditText
                     android:id="@+id/User_Data_edittext_name"
@@ -67,7 +68,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/governorate"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/mainText"
+                    android:fontFamily="@font/maiandra_gd_regular" />
 
                 <EditText
 
@@ -83,7 +85,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/street"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/mainText"
+                    android:fontFamily="@font/maiandra_gd_regular" />
 
                 <EditText
 
@@ -99,7 +102,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/special_marque"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/mainText"
+                    android:fontFamily="@font/maiandra_gd_regular" />
 
                 <EditText
 
@@ -122,7 +126,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/phone"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/mainText"
+                    android:fontFamily="@font/maiandra_gd_regular" />
 
                 <EditText
 
@@ -138,7 +143,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/city"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/mainText"
+                    android:fontFamily="@font/maiandra_gd_regular" />
 
                 <EditText
 
@@ -154,7 +160,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/district"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/mainText"
+                    android:fontFamily="@font/maiandra_gd_regular" />
 
                 <EditText
 
@@ -170,10 +177,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/Property_number_and_apartment_number"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/mainText"
+                    android:fontFamily="@font/maiandra_gd_regular" />
 
                 <EditText
-
                     android:id="@+id/User_Data_edittext_Property_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -193,7 +200,8 @@
             android:layout_marginStart="16dp"
             android:gravity="center"
             android:text="@string/result"
-            android:textColor="@color/black"
+            android:textColor="@color/mainText"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/User_Data_button_location"
             app:layout_constraintStart_toStartOf="@+id/User_Data_button_location"
@@ -202,7 +210,7 @@
         <FrameLayout
             android:id="@+id/User_Data_button_save"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -213,20 +221,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/UserDataActivity_textView_location_address">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:background="?android:attr/selectableItemBackground"
                 android:text="@string/next"
+                android:textAllCaps="true"
                 android:textColor="@color/white"
+                android:textStyle="bold"
+                android:fontFamily="@font/maiandra_gd_regular"
                 android:textSize="14sp" />
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/User_Data_button_location"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -235,16 +246,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:background="?android:attr/selectableItemBackground"
                 android:text="@string/location"
                 android:textColor="@color/white"
-                android:textSize="14sp"
-                app:icon="@drawable/ic_baseline_location_on_24" />
-
+                android:textStyle="bold"
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:textSize="14sp"/>
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
