@@ -127,6 +127,12 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        final NavController navController = Navigation.findNavController(view);
+        if (!sharedPreferences.getBoolean(Constants.LOGGED_IN, false) && !MainActivity.skipped)
+            navController.navigate(R.id.action_homeFragment_to_welcomeScreenFragment);
+
+
         viewModel.getForecastModelLiveData().observe(getViewLifecycleOwner(), new Observer<RootForeCast>() {
             @Override
             public void onChanged(RootForeCast forecastModel) {
