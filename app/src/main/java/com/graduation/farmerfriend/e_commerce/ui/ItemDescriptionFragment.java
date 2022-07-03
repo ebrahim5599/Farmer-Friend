@@ -88,11 +88,11 @@ public class ItemDescriptionFragment extends Fragment {
 
         if(getConnectivityStatus(getContext())){
 
-            binding.description.setVisibility(View.VISIBLE);
+//            binding.description.setVisibility(View.VISIBLE);
             binding.itemDescriptionButtonAddToCart.setVisibility(View.VISIBLE);
             binding.mainActivityNoInternetConnection.setVisibility(View.GONE);
         }else {
-            binding.description.setVisibility(View.GONE);
+//            binding.description.setVisibility(View.GONE);
             binding.itemDescriptionButtonAddToCart.setVisibility(View.GONE);
             binding.mainActivityNoInternetConnection.setVisibility(View.VISIBLE);
         }
