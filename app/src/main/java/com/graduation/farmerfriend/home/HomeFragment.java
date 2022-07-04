@@ -49,6 +49,7 @@ public class HomeFragment extends Fragment {
     boolean isWaterPumpON = false;
     boolean isFertilizerPumpON = false;
     private IOTViewModel mViewModel;
+    private boolean logged_in;
     FragmentHomeBinding binding;
     HomeViewModel viewModel;
     SharedPreferences sharedPreferences;
@@ -81,9 +82,10 @@ public class HomeFragment extends Fragment {
         viewModel.getIOTStatusLiveData().observe(getViewLifecycleOwner(), new Observer<IOTStatus>() {
             @Override
             public void onChanged(IOTStatus iotStatus) {
+                logged_in = sharedPreferences.getBoolean(Constants.LOGGED_IN, false);
                 if (iotStatus != null) {
                     controlIotINHomeFragment(iotStatus.hasIotSystem);
-                    if (iotStatus.hasIotSystem) {
+                    if (iotStatus.hasIotSystem && logged_in) {
                         binding.homeIOTTextView.setVisibility(View.VISIBLE);
                         binding.IOTDisplay.setVisibility(View.VISIBLE);
                     }
@@ -195,7 +197,10 @@ public class HomeFragment extends Fragment {
     }
 
     void controlIotINHomeFragment(boolean hasIotStatus) {
-        if (hasIotStatus) {
+
+        Log.d("TAG", "Log in status "+logged_in);
+
+        if (hasIotStatus  && logged_in) {
             mViewModel = new ViewModelProvider(requireActivity()).get(IOTViewModel.class);
             mViewModel.init(requireContext());
 
@@ -218,6 +223,7 @@ public class HomeFragment extends Fragment {
                 }
             });
         } else {
+            Log.d("TAG", "onChanged: GONE");
             binding.homeIOTTextView.setVisibility(View.GONE);
             binding.IOTDisplay.setVisibility(View.GONE);
         }
