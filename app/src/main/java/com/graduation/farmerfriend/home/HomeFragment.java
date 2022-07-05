@@ -145,7 +145,7 @@ public class HomeFragment extends Fragment {
                 binding.textViewLocation.setText(sharedPreferences.getString(Constants.LOCATION_ADDRESS, "Cairo, Egypt"));
                 binding.textViewConditionText.setText(forecastModel.current.condition.text);
                 binding.textViewHumidity.setText(String.format(Locale.US, "%d %%", forecastModel.current.humidity));
-                binding.textViewWind.setText(String.format(Locale.US, "%d km/h", Math.round(forecastModel.current.wind_kph)));
+                binding.textViewWind.setText(String.format(Locale.US, "%d "+getString(R.string.km), Math.round(forecastModel.current.wind_kph)));
                 binding.textViewCurrentTime.setText(forecastModel.location.localtime);
 
                 binding.homePullToRefresh.setRefreshing(false);
@@ -197,6 +197,7 @@ public class HomeFragment extends Fragment {
     }
 
     void controlIotINHomeFragment(boolean hasIotStatus) {
+
 
         Log.d("TAG", "Log in status "+logged_in);
 

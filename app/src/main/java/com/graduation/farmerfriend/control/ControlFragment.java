@@ -106,11 +106,11 @@ public class ControlFragment extends Fragment {
     public String setTabTitle(int pageNumber) {
         switch (pageNumber) {
             case 0:
-                return "Weather";
+                return getString(R.string.weather);
             case 1:
-                return "Soil";
+                return getString(R.string.soil);
             default:
-                return "Control";
+                return getString(R.string.control);
         }
     }
 

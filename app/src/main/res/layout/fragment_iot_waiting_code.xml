@@ -28,7 +28,7 @@
             android:textColor="@color/mainText"
             android:fontFamily="@font/maiandra_gd_regular"
             android:textStyle="bold"
-            android:text="Our team will contact with you soon."/>
+            android:text="@string/our_team_will_contact_with_you_soon"/>
 
         <EditText
             android:id="@+id/iot_waiting_code_text"

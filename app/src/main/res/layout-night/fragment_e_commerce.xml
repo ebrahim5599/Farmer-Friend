@@ -95,7 +95,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="4dp"
                             android:fontFamily="@font/maiandra_gd_regular"
-                            android:text="Seeds"
+                            android:text="@string/seeds"
                             android:textColor="@color/greenText"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -119,8 +119,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:fontFamily="@font/maiandra_gd_regular"
-                            android:gravity="center"
-                            android:text="Fertilizers"
+                            android:layout_gravity="center"
+                            android:text="@string/fertilizers"
                             android:textColor="@color/greenText"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -145,7 +145,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="4dp"
                             android:fontFamily="@font/maiandra_gd_regular"
-                            android:text="Tools"
+                            android:text="@string/tools"
                             android:textColor="@color/greenText"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -178,7 +178,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/maiandra_gd_regular"
-                        android:text="view all"
+                        android:text="@string/view_all"
                         android:textColor="@color/greenText"
                         android:textSize="16sp" />
 
@@ -200,7 +200,7 @@
                         android:layout_marginTop="32dp"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/maiandra_gd_regular"
-                        android:text="Seeds"
+                        android:text="@string/seeds"
                         android:textColor="@color/mainText"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -215,7 +215,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/maiandra_gd_regular"
-                        android:text="view all"
+                        android:text="@string/view_all"
                         android:textColor="@color/greenText"
                         android:textSize="16sp" />
 
@@ -237,7 +237,7 @@
                         android:layout_marginTop="32dp"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/maiandra_gd_regular"
-                        android:text="Fertilizers"
+                        android:text="@string/fertilizers"
                         android:textColor="@color/mainText"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -252,7 +252,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/maiandra_gd_regular"
-                        android:text="view all"
+                        android:text="@string/view_all"
                         android:textColor="@color/greenText"
                         android:textSize="16sp" />
 
@@ -274,7 +274,7 @@
                         android:layout_marginTop="32dp"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/maiandra_gd_regular"
-                        android:text="Tools"
+                        android:text="@string/tools"
                         android:textColor="@color/mainText"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -289,7 +289,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/maiandra_gd_regular"
-                        android:text="view all"
+                        android:text="@string/view_all"
                         android:textColor="@color/greenText"
                         android:textSize="16sp" />
 
