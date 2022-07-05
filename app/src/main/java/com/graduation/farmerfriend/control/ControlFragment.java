@@ -97,8 +97,8 @@ public class ControlFragment extends Fragment {
         new TabLayoutMediator(binding.tabs, viewPager2,
                 (tab, position) -> tab.setText(setTabTitle(position))
         ).attach();
-        binding.tabs.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#00796B"));
-        binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#00796B"));
+//        binding.tabs.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#00796B"));
+//        binding.tabs.setSelectedTabIndicatorColor(Color.parseColor("#00796B"));
 
     }
 
