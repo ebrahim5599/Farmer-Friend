@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/mainBackground"
     tools:context=".control.ControlFragment">
@@ -22,6 +23,9 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabTextColor="@color/bottomActionBarUnSelectedColor"
+            app:tabSelectedTextColor="@color/bottomActionBarSelectedColor"
+            app:tabIndicatorColor="@color/bottomActionBarSelectedColor"
             android:background="@color/mainBackground"/>
 
         <androidx.viewpager2.widget.ViewPager2
