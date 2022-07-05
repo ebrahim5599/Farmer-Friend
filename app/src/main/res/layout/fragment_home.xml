@@ -182,7 +182,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="@string/news"
-                        android:textColor="@color/greenCartText"
+                        android:textColor="@color/greenText"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -347,6 +347,7 @@
                                         android:id="@+id/progressBar_cyclic"
                                         android:layout_width="150dp"
                                         android:layout_height="150dp"
+                                        android:layoutDirection="ltr"
                                         android:layout_gravity="center">
 
                                         <!--progress bar implementation-->
@@ -406,6 +407,7 @@
                                             android:layout_height="match_parent"
                                             android:background="@color/cardBackground4"
                                             android:gravity="center"
+                                            android:layoutDirection="ltr"
                                             android:orientation="vertical">
 
                                             <ImageView
@@ -461,6 +463,7 @@
                                             android:layout_height="match_parent"
                                             android:background="@color/cardBackground4"
                                             android:gravity="center"
+                                            android:layoutDirection="ltr"
                                             android:orientation="vertical">
 
                                             <ImageView
@@ -516,6 +519,7 @@
                                             android:layout_height="match_parent"
                                             android:background="@color/cardBackground4"
                                             android:gravity="center"
+                                            android:layoutDirection="ltr"
                                             android:orientation="vertical">
 
                                             <ImageView
@@ -600,6 +604,7 @@
                                             android:layout_height="match_parent"
                                             android:background="@color/cardBackground4"
                                             android:gravity="center"
+                                            android:layoutDirection="ltr"
                                             android:orientation="vertical">
 
                                             <ImageView
@@ -652,6 +657,7 @@
                                             android:layout_height="match_parent"
                                             android:background="@color/cardBackground4"
                                             android:gravity="center"
+                                            android:layoutDirection="ltr"
                                             android:orientation="vertical">
 
                                             <ImageView
@@ -704,6 +710,7 @@
                                             android:layout_height="match_parent"
                                             android:background="@color/cardBackground4"
                                             android:gravity="center"
+                                            android:layoutDirection="ltr"
                                             android:orientation="vertical">
 
                                             <ImageView

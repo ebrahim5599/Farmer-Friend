@@ -6,16 +6,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="greenCartText">#044600</color>
-    <color name="grey_Cart_Item_Name">#3b3b3b</color>
+
     <color name="grey_card_Container_text">#5D5D5D</color>
     <color name="green_Cart_Activity_Button">#00695C</color>
     <color name="grey_Login_View">#6D000000</color>
     <color name="green_Store_Activity_Button">#00796B</color>
-    <color name="grey_Iot_Control_cardview">#ECEAEA</color>
-    <color name="black_Iot_Control_Text">#131313</color>
+
     <color name="green_Iot_Control_Button">#00695C</color>
-    <color name="black_Iot_control_text2">#0C0C0C</color>
     <color name="grey_Iot_Control_OFF">#4C5564</color>
     <color name="grey_Iot_Soil_Cardview">#F0F0F0</color>
 

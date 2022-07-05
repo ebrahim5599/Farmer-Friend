@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/mainBackground"
+    android:layoutDirection="ltr"
     tools:context=".IOT.ui.main.IOTSoilFragment">
 
     <LinearLayout

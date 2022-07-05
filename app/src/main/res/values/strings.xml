@@ -102,8 +102,12 @@
     <string name="new_password">New Password</string>
     <string name="our_team_will_contact_with_you_soon">Our team will contact with you soon.</string>
 
-    <!--    -->
+    <!--   وحدات قياس -->
     <string name="km">km/h</string>
+    <string name="m">m</string>
+    <string name="c" translatable="false">°C</string>
+
+
     <string name="view_all">view all</string>
     <string name="total">Total</string>
     <string name="type_here_to_search">type here to search</string>

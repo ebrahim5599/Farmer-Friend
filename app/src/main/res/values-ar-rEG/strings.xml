@@ -107,4 +107,5 @@
     <string name="username">اسم المستخدم</string>
     <string name="confirm_password">تأكيد كلمة المرور</string>
     <string name="already_have_an_account">هل لديك حساب</string>
+    <string name="m">م</string>
 </resources>
