@@ -65,7 +65,7 @@ public class MoreFragment extends Fragment {
         });
 
         binding.fragmentMoreTextviewName.setText(sharedPreferences.getString(
-                Constants.FIRST_AND_LAST_NAME, "Anonymous User"));
+                Constants.FIRST_AND_LAST_NAME, getString(R.string.anonymous_user)));
 
         mutableLiveDataForName.observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -109,10 +109,10 @@ public class MoreFragment extends Fragment {
                 Toast.makeText(getContext(), "Logout", Toast.LENGTH_SHORT).show();
                 sharedPreferences.edit().putBoolean(Constants.LOGGED_IN, false).apply();
 
-                sharedPreferences.edit().putString(Constants.FIRST_AND_LAST_NAME, "Anonymous User").apply();
+                sharedPreferences.edit().putString(Constants.FIRST_AND_LAST_NAME, getString(R.string.anonymous_user)).apply();
                 sharedPreferences.edit().putString(Constants.USER_ID, "").apply();
 
-                mutableLiveDataForName.setValue("Anonymous User");
+                mutableLiveDataForName.setValue(getString(R.string.anonymous_user));
                 TransitionManager.beginDelayedTransition(binding.getRoot(), new AutoTransition());
                 binding.fragmentMoreTextviewLogin.setVisibility(View.VISIBLE);
                 sharedPreferences.edit().putBoolean(Constants.HAS_IOT_SYSTEM, false).apply();

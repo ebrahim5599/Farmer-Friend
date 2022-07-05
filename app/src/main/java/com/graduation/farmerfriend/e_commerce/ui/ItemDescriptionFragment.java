@@ -19,6 +19,7 @@ import android.widget.Toast;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentItemDescriptionBinding;
 import com.graduation.farmerfriend.ecommerce_models.PostCart;
@@ -79,7 +80,7 @@ public class ItemDescriptionFragment extends Fragment {
                 }
 
                 if (product.description == null){
-                    binding.itemDescriptionTextviewDescription.setText("There is no description for this product");
+                    binding.itemDescriptionTextviewDescription.setText(R.string.no_description_for_this_product);
                 }
 
                 onclick(product);

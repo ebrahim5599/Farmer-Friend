@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/maiandra_gd_regular"
-                    android:text="Item Name"
+                    android:text="@string/item_name"
                     android:layout_marginBottom="8dp"
                     android:textColor="@color/mainText"
                     android:textSize="20sp" />
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/maiandra_gd_regular"
                 android:background="@drawable/user_data_shape"
-                android:hint="Enter Item Name" />
+                android:hint="@string/enter_item_name" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
                 android:layout_marginBottom="8dp"
                 android:textColor="@color/mainText"
                 android:fontFamily="@font/maiandra_gd_regular"
-                android:text="  Item Details"
+                android:text="@string/item_details"
                 android:textSize="20sp" />
 
             <EditText
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/maiandra_gd_regular"
                 android:background="@drawable/user_data_shape"
-                android:hint="Enter Item Details" />
+                android:hint="@string/enter_item_details" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
                     android:textColor="@color/mainText"
                     android:fontFamily="@font/maiandra_gd_regular"
                     android:layout_marginBottom="8dp"
-                    android:text="Number of items"
+                    android:text="@string/number_of_items"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/user_data_shape"
                 android:fontFamily="@font/maiandra_gd_regular"
-                android:hint="Ex. 10"
+                android:hint="@string/ex_10"
                 android:inputType="number" />
 
             <RelativeLayout

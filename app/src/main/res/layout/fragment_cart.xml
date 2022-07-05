@@ -61,7 +61,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/no_internet"
-            android:textColor="@color/black"
+            android:textColor="@color/mainText"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:textSize="24sp"
             android:layout_margin="8dp"
             android:textStyle="bold" />
@@ -73,7 +74,8 @@
             android:gravity="center"
             android:layout_marginHorizontal="8dp"
             android:text="@string/check_your_conn"
-            android:textColor="@color/black"
+            android:textColor="@color/mainText"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:textSize="16sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

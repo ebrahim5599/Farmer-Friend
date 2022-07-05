@@ -12,7 +12,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="next">Next</string>
 
-    <string name="item_name">Corn Seeds</string>
+    <string name="item_name">Item name</string>
     <string name="description">Description</string>
     <string name="full_name">Full Name</string>
     <string name="phone">Phone</string>
@@ -105,4 +105,22 @@
     <!--    -->
     <string name="km">km/h</string>
     <string name="view_all">view all</string>
+    <string name="total">Total</string>
+    <string name="type_here_to_search">type here to search</string>
+    <string name="no_description_for_this_product">There is no description for this product</string>
+    <string name="anonymous_user">Anonymous User</string>
+    <string name="enter_item_name">Enter item name</string>
+    <string name="item_details">Item details</string>
+    <string name="enter_item_details">Enter item details</string>
+    <string name="number_of_items">Number of items</string>
+    <string name="ex_10">Ex. 10</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="password">Password</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="otp" translatable="false">OTP</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="username">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="already_have_an_account">Already have an account?</string>\
 </resources>

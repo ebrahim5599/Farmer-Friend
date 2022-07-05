@@ -60,15 +60,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/maiandra_gd_regular"
                 android:gravity="center"
-                android:text="Anonymous User"
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:text="@string/anonymous_user"
                 android:textColor="@color/mainText"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/fragment_more_textview_Login"
@@ -115,10 +115,10 @@
                 android:text="@string/store"
                 android:textColor="@color/mainText"
                 android:textSize="24sp"
-                app:drawableStartCompat="@drawable/ic_baseline_store_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_community" />
+                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_community"
+                app:drawableStartCompat="@drawable/ic_baseline_store_24" />
 
             <TextView
                 android:id="@+id/fragment_more_textview_about"
@@ -133,10 +133,10 @@
                 android:text="@string/about_us"
                 android:textColor="@color/mainText"
                 android:textSize="24sp"
-                app:drawableStartCompat="@drawable/ic_baseline_error_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_store" />
+                app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_store"
+                app:drawableStartCompat="@drawable/ic_baseline_error_24" />
 
             <TextView
                 android:id="@+id/fragment_more_textview_logout"
@@ -152,13 +152,13 @@
                 android:text="@string/log_out"
                 android:textColor="@color/mainText"
                 android:textSize="24sp"
-                app:drawableStartCompat="@drawable/ic_baseline_login_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.508"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_more_textview_about"
-                app:layout_constraintVertical_bias="0.037" />
+                app:layout_constraintVertical_bias="0.037"
+                app:drawableStartCompat="@drawable/ic_baseline_login_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>

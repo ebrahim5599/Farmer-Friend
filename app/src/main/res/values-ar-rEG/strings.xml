@@ -9,7 +9,7 @@
     <string name="buy">اشتري</string>
     <string name="Cart">العربة</string>
     <string name="next">التالي</string>
-    <string name="item_name">بذور الذرة</string>
+    <string name="item_name">اسم العنصر</string>
     <string name="description">الوصف</string>
     <string name="full_name">الاسم الكامل</string>
     <string name="phone">رقم الهاتف</string>
@@ -90,4 +90,21 @@
     <string name="our_team_will_contact_with_you_soon">فريقنا سوف يتواصل معك قريبا.</string>
     <string name="km">كم/س</string>
     <string name="view_all">عرض الكل</string>
+    <string name="total">إجمالي</string>
+    <string name="type_here_to_search">ماذا تبحث عن؟</string>
+    <string name="no_description_for_this_product">لا يوجد وصف لهذا المنتج</string>
+    <string name="anonymous_user">مستخدم مجهول</string>
+    <string name="enter_item_name">أدخل اسم العنصر</string>
+    <string name="item_details">تفاصيل العنصر</string>
+    <string name="enter_item_details">أدخل تفاصيل العنصر</string>
+    <string name="number_of_items">عدد العناصر</string>
+    <string name="ex_10">مثال 5 قطع</string>
+    <string name="welcome_to">مرحبا بك في</string>
+    <string name="password">كلمة المرور</string>
+    <string name="don_t_have_an_account">ليس لديك حساب</string>
+    <string name="first_name">الاسم الأول</string>
+    <string name="last_name">الاسم الأخير</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="already_have_an_account">هل لديك حساب</string>
 </resources>
