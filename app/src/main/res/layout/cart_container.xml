@@ -153,7 +153,7 @@
                 android:layout_toEndOf="@id/linearLayout4"
                 android:fontFamily="@font/maiandra_gd_regular"
                 android:gravity="center"
-                android:text="Total"
+                android:text="@string/total"
                 android:textSize="16sp" />
 
         </RelativeLayout>

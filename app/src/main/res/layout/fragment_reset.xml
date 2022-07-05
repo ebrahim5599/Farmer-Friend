@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mainBackground"
+    android:layoutDirection="ltr"
+    android:textDirection="ltr"
     tools:context=".registration.ui.ResetFragment">
 
     <RelativeLayout
@@ -32,7 +34,7 @@
             android:layout_marginBottom="24dp"
             android:drawableStart="@drawable/ic_round_email_24"
             android:drawablePadding="10dp"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:padding="16dp" />
 
@@ -45,7 +47,7 @@
             android:layout_marginBottom="24dp"
             android:drawableStart="@drawable/ic_round_security_24"
             android:drawablePadding="10dp"
-            android:hint="OTP"
+            android:hint="@string/otp"
             android:inputType="number"
             android:padding="16dp" />
 

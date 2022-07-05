@@ -38,7 +38,7 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/maiandra_gd_regular"
                 android:gravity="center"
-                android:text="Welcome to"
+                android:text="@string/welcome_to"
                 android:textColor="@color/mainText"
                 android:textSize="24sp" />
 

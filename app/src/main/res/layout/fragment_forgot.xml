@@ -39,7 +39,9 @@
                 android:layout_marginBottom="24dp"
                 android:drawableStart="@drawable/ic_round_email_24"
                 android:drawablePadding="10dp"
-                android:hint="Email"
+                android:hint="@string/email"
+                android:layoutDirection="ltr"
+                android:textDirection="ltr"
                 android:inputType="textEmailAddress" />
 
             <FrameLayout
