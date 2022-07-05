@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Farmer\nFriend</string>
+    <string name="app_name" translatable="false">Farmer Friend</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="search">Search....</string>
     <string name="fertilizers">Fertilizers</string>
@@ -22,11 +23,6 @@
     <string name="special_marque">Special Marque</string>
     <string name="location"> ADD YOUR LOCATION</string>
 
-    <!--    <string-array name="gov_array">-->
-    <!--        <item>Sharqia</item>-->
-    <!--        <item>cairo</item>-->
-    <!--    </string-array>-->
-
     <string name="title_activity_search">Search</string>
     <string name="wishlist">Wishlist</string>
     <string name="city">City</string>
@@ -41,7 +37,7 @@
     <string name="store">Store</string>
     <string name="about_us">About us</string>
     <string name="log_out">Log out</string>
-    <string name="title_activity_iot">IOT_Activity</string>
+
     <string name="water_pump">Water Pump</string>
     <string name="fertilizer_pump">Fertilizer Pump</string>
     <string name="automatic_or_manual">Automatic or Manual</string>
@@ -52,13 +48,7 @@
     <string name="pressure">Pressure</string>
     <string name="luminous_intensity">Luminous Intensity</string>
     <string name="temperature">Temperature</string>
-    <string name="moisture">Moisture</string>
-    <string name="user_data">User Data</string>
-    <string name="control_panel">Control Panel</string>
-    <string-array name="area_num">
-        <item>Area 1</item>
-        <item>Area 2</item>
-    </string-array>
+
     <string name="more">More</string>
     <string name="shop">Shop</string>
     <string name="control">Control</string>
@@ -80,7 +70,7 @@
     <string name="fragment_iot_more_info">Complete your info</string>
     <string name="fragment_iot_waiting_code">Enter received code</string>
     <string name="control_your_farm">Control your farm</string>
-    <string name="no_internet">NO Internet connection</string>
+    <string name="no_internet">No internet connection</string>
     <string name="check_your_conn">Check your internet connection and the page will reload automatically</string>
     <string name="plant_name">Plant Name</string>
     <string name="the_disease">The Disease</string>
@@ -93,20 +83,26 @@
     <string name="upload_image">Upload Image</string>
     <string name="log_in_to_your_account">Log in to your account</string>
     <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="add_new_item">Add New Item</string>
+
+    <!--    Profile picture-->
+    <string name="upload_photo">Upload Photo</string>
+    <string name="delete_photo">Delete Photo</string>
+
+    <!-- Authentication-->
     <string name="sign_up">sign up</string>
     <string name="log_in">log in</string>
     <string name="skip_now">skip now</string>
     <string name="welcome">Welcome</string>
-
-    //Profile picture
-    <string name="upload_photo">Upload Photo</string>
-    <string name="delete_photo">Delete Photo</string>
-
-
     <string name="forgot_password">Forgot Password?</string>
     <string name="please_enter_your_email_address">Please enter your email address.</string>
     <string name="send_code">Send code</string>
     <string name="reset_password">reset password</string>
     <string name="new_password">New Password</string>
-    <string name="add_new_item">Add New Item</string>
+    <string name="our_team_will_contact_with_you_soon">Our team will contact with you soon.</string>
+
+    <!--    -->
+    <string name="km">km/h</string>
+    <string name="view_all">view all</string>
 </resources>

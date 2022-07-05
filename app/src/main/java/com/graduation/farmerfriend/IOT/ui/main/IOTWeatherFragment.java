@@ -64,7 +64,7 @@ public class IOTWeatherFragment extends Fragment {
             public void onChanged(Sensors sensors) {
 //                Log.d("TAG", "onChanged: "+sensors.soilTemp);
                     progressBar.setProgress(sensors.airTemp);
-                    binding.fragmentIotWeatherTextViewTemp.setText(MessageFormat.format("{0} C", sensors.airTemp));
+                    binding.fragmentIotWeatherTextViewTemp.setText(MessageFormat.format("{0} °C", sensors.airTemp));
                     binding.fragmentIotWeatherTextViewLuminousIntensity.setText(MessageFormat.format("{0} lx", sensors.luminous));
                     binding.fragmentIotWeatherTextViewPressure.setText(MessageFormat.format("{0} mb", sensors.pressure));
                 }

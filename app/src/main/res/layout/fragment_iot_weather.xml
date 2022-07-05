@@ -47,9 +47,9 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:fontFamily="@font/maiandra_gd_regular"
                 android:gravity="center"
                 android:text="24°"
-                android:fontFamily="@font/maiandra_gd_regular"
                 android:textColor="@color/mainText"
                 android:textSize="24sp"
                 android:textStyle="bold" />
