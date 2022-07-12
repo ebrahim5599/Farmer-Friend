@@ -14,16 +14,6 @@ public class Product{
     public String description;
     public String productImage;
     public double price;
+    public int categoryId;
 
-//    public String vendorId;
-//    public int categoryId;
-//    public Object isActive;
-//    public Object isDelete;
-//    public String createdDate;
-//    public String modifiedDate;
-//    public Object isFeatured;
-//    public int quantity;
-//    public Object vendor;
-//    public Object category;
-//    public ArrayList<Object> tblCarts;
 }

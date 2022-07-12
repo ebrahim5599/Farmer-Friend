@@ -13,11 +13,9 @@ import android.media.Image
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.util.Log
-import android.util.Rational
 import android.util.Size
 import android.view.LayoutInflater
 import android.view.View
@@ -25,13 +23,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.graduation.farmerfriend.databinding.FragmentCameraBinding
-import com.graduation.farmerfriend.ml.Model
+import com.graduation.farmerfriend.ml.Tflite1Model
 import com.graduation.farmerfriend.permissions.FragmentPermissionHelper
 import com.graduation.farmerfriend.permissions.FragmentPermissionInterface
 import org.tensorflow.lite.DataType
@@ -59,6 +56,8 @@ class CameraFragment : Fragment() {
     private var image: Boolean = false
     private var max: Float = 0.0f
     private var disease: String? = null
+    private var array: String? = null
+
     private var MY_CAMERA_PERMISSION_CODE = 100
 
 
@@ -128,7 +127,6 @@ class CameraFragment : Fragment() {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
             startActivityForResult(intent, 100)
-
         }
 
         viewBinding.goToTheProcessing.setOnClickListener {
@@ -190,8 +188,8 @@ class CameraFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewBinding.previewImageNow.visibility = View.GONE
-        viewBinding.previewCameraNow.visibility = View.VISIBLE
+//        viewBinding.previewImageNow.visibility = View.GONE
+//        viewBinding.previewCameraNow.visibility = View.VISIBLE
     }
 
 //        private fun savePhoto() {
@@ -248,12 +246,11 @@ class CameraFragment : Fragment() {
 //        )
 //    }
 
-
     private fun imageProcessing(bitmap: Bitmap) {
 
         val bitmap = bitmap.let { it1 -> Bitmap.createScaledBitmap(it1, 224, 224, true) }
 
-        val model = context?.let { it1 -> Model.newInstance(it1) }
+        val model = context?.let { it1 -> Tflite1Model.newInstance(it1) }
 
         val inputFeature0 =
             TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
@@ -280,6 +277,7 @@ class CameraFragment : Fragment() {
             "Grape",
             "Grape",
             "Grape",
+            "Invalid",
             "Orange",
             "Peach",
             "Peach",
@@ -296,9 +294,6 @@ class CameraFragment : Fragment() {
             "Tomato",
             "Tomato",
             "Tomato",
-            "Tomato",
-            "Tomato",
-            "Tomato",
             "Tomato"
         )
 
@@ -309,43 +304,57 @@ class CameraFragment : Fragment() {
             "healthy",
             "Cercospora_leaf_spot Gray_leaf_spot",
             "Common_rust",
-            "healthy",
             "Northern_Leaf_Blight",
+            "healthy",
             "Black_rot",
             "Esca_(Black_Measles)",
-            "healthy",
             "Leaf_blight_(Isariopsis_Leaf_Spot)",
+            "healthy",
+            "Invalid",
             "Haunglongbing_(Citrus_greening)",
             "Bacterial_spot",
             "healthy",
             "Bacterial_spot",
             "healthy",
             "Early_blight",
-            "healthy",
             "Late_blight",
             "healthy",
             "Leaf_scorch",
-            "Bacterial_spot",
-            "Early_blight",
             "healthy",
+            "Early_blight",
             "Late_blight",
             "Leaf_Mold",
             "Septoria_leaf_spot",
-            "Spider_mites Two-spotted_spider_mite",
-            "Target_Spot",
+            "Tomato_Yellow_Leaf_Curl_Virus",
             "Tomato_mosaic_virus",
-            "Tomato_Yellow_Leaf_Curl_Virus"
-        )
+            "healthy"
+
+            )
 
         max = outputFeature0!!.floatArray[0]
         var i: Int = 0
         var index: Int = 0
-        for (i in 1..31) {
+        for (i in 1..29) {
             if (outputFeature0.floatArray[i] > max) {
                 max = outputFeature0.floatArray[i]
                 index = i
             }
         }
+        array = outputFeature0.floatArray[0].toString() + "  "+outputFeature0.floatArray[1].toString() +"  "+
+                outputFeature0.floatArray[2].toString() + "\n"+outputFeature0.floatArray[3].toString() +"  "+
+                outputFeature0.floatArray[4].toString() + "  "+outputFeature0.floatArray[5].toString() +"  "+
+                outputFeature0.floatArray[6].toString() + "\n"+outputFeature0.floatArray[7].toString() +"  "+
+                outputFeature0.floatArray[8].toString() + "  "+outputFeature0.floatArray[9].toString() +"  "+
+                outputFeature0.floatArray[10].toString() + "\n"+outputFeature0.floatArray[11].toString() +"  "+
+                outputFeature0.floatArray[12].toString() + "  "+outputFeature0.floatArray[13].toString() +"  "+
+                outputFeature0.floatArray[14].toString() + "\n"+outputFeature0.floatArray[15].toString() +"  "+
+                outputFeature0.floatArray[16].toString() + "  "+outputFeature0.floatArray[17].toString() +"  "+
+                outputFeature0.floatArray[18].toString() + "\n"+outputFeature0.floatArray[19].toString() +"  "+
+                outputFeature0.floatArray[20].toString() + "  "+outputFeature0.floatArray[21].toString() +"  "+
+                outputFeature0.floatArray[22].toString() + "\n"+outputFeature0.floatArray[23].toString() +"  "+
+                outputFeature0.floatArray[24].toString() + "  "+outputFeature0.floatArray[25].toString() +"  "+
+                outputFeature0.floatArray[26].toString() + "\n"+outputFeature0.floatArray[27].toString() +"  "+
+                outputFeature0.floatArray[28].toString() + "  "+outputFeature0.floatArray[29].toString() +"  "
         result = name[index]
         disease = disease_array[index]
         max = max * 100
@@ -458,6 +467,7 @@ class CameraFragment : Fragment() {
 //                intent.putExtra("image", byteArray)
 //            }
 
+            intent.putExtra("array",array)
             intent.putExtra("result", result)
             intent.putExtra("disease", disease)
             intent.putExtra("max", max)

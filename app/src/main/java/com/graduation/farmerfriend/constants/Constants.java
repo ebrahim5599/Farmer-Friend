@@ -30,7 +30,7 @@ public class Constants {
     public static final String FROM_TOOLS_FRAGMENT = "TOOLS";
     public static final String FROM_BEST_SELLER_FRAGMENT = "BEST_SELLER";
     public static final String FROM_HOT_DEALS_COMMERCE_FRAGMENT = "HOT_DEALS";
-    
+
     // Registration constants.
     public static final String LOGGED_IN = "login status";
     public static final String FIRST_AND_LAST_NAME = "first and last name";
@@ -44,5 +44,13 @@ public class Constants {
     public static String DISTRICT = "district";
     public static String SPECIAL_MARQUE = "special marque";
     public static String PROPERTY_NUMBER = "property number";
+
+    //wheather
+    public static String current_temp_c = "50";
+    public static String current_condition = "cold";
+    public static String current_humidity = "30";
+    public static String current_wind = "40";
+
+
 
 }

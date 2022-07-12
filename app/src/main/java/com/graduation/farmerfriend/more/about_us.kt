@@ -1,66 +1,48 @@
-package com.graduation.farmerfriend.more;
+package com.graduation.farmerfriend.more
 
-import android.os.Bundle;
+import androidx.navigation.Navigation.findNavController
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.content.SharedPreferences
+import androidx.lifecycle.MutableLiveData
+import com.graduation.farmerfriend.R
+import android.content.DialogInterface
+import android.content.pm.PackageManager
+import android.content.Intent
+import android.view.View
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.graduation.farmerfriend.databinding.FragmentAboutUsBinding
 
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.graduation.farmerfriend.R;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link about_us#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class about_us extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public about_us() {
-        // Required empty public constructor
+class about_us : Fragment() {
+    var viewBinding: FragmentAboutUsBinding? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment about_us.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static about_us newInstance(String param1, String param2) {
-        about_us fragment = new about_us();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_us, container, false);
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        viewBinding = FragmentAboutUsBinding.inflate(inflater, container, false)
+        val view: View = viewBinding!!.root
+        viewBinding!!.fragmentAboutUsTextviewcontent.text =
+            """
+            Our project is smart agriclture system where we take care of agriculture where we solve the water problem and reduce labor, follow up plants, market crops and agricultural products and communicate with experts. 
+            
+            Our app is the Farm Friend app used to help the farmer. Our app is connected to our IoT system to help the farmer who applied our IoT system to control his farm remotely. in our app, we also have e-commerce to help the farmer to buy his needs from tools, fertilizers, and seeds from the same app. It also provides the farmer with an AI feature to detect any disease in the plant by taking a photo of the plant's leaf.
+            
+            Mobile Team :
+            Eng / Ebrahim Abd-Elaziz
+            Eng / Ahmed Gamal Ward
+            Eng / Fatma Hassan 
+            
+            Web Team :
+            Eng / Hanaa Taha
+            Eng / Manar Abdallah
+            
+            """.trimIndent()
+        return view
     }
 }
