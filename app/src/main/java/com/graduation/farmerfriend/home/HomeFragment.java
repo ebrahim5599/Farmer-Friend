@@ -100,14 +100,15 @@ public class HomeFragment extends Fragment {
     }
 
     private void putIOT(Control control) {
-        Log.d("TAG", "putIOT: " + control.waterSwitch);
-
+        Log.d("TAG", "control.isAuto "+control.isAuto);
         if (control.isAuto) {
             binding.fregmentIotControlLambManual.setCardBackgroundColor(Color.WHITE);
             binding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.RED);
+            Log.d("TAG", "isAuto");
         } else {
             binding.fregmentIotControlLambManual.setCardBackgroundColor(Color.RED);
             binding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.WHITE);
+            Log.d("TAG", "isManual");
         }
 
         if (control.fertSwitch) {
@@ -223,6 +224,33 @@ public class HomeFragment extends Fragment {
                     putIOT(control);
                 }
             });
+//            mViewModel.getIOTControlLiveData().observe(getViewLifecycleOwner(), control ->  {
+//                Log.d("TAG", "control.isAuto "+control.isAuto);
+//                if (control.isAuto) {
+//                    binding.fregmentIotControlLambManual.setCardBackgroundColor(Color.WHITE);
+//                    binding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.RED);
+//                    Log.d("TAG", "isAuto");
+//                } else {
+//                    binding.fregmentIotControlLambManual.setCardBackgroundColor(Color.RED);
+//                    binding.fregmentIotControlLambAutomatic.setCardBackgroundColor(Color.WHITE);
+//                    Log.d("TAG", "isManual");
+//                }
+//
+//                if (control.fertSwitch) {
+//                    isFertilizerPumpON = true;
+//                    binding.fregmentIotControlLambFertilizerpump.setCardBackgroundColor(Color.RED);
+//                } else {
+//                    binding.fregmentIotControlLambFertilizerpump.setCardBackgroundColor(Color.WHITE);
+//                }
+//
+//                if (control.waterSwitch) {
+//                    isWaterPumpON = true;
+//                    binding.fregmentIotControlLambWaterpump.setCardBackgroundColor(Color.RED);
+//
+//                } else {
+//                    binding.fregmentIotControlLambWaterpump.setCardBackgroundColor(Color.WHITE);
+//                }
+//            });
         } else {
             Log.d("TAG", "onChanged: GONE");
             binding.homeIOTTextView.setVisibility(View.GONE);

@@ -120,7 +120,6 @@ class CameraFragment : Fragment() {
 
         viewBinding.imageGallryButton.setOnClickListener {
             viewBinding.previewImageNow.visibility = View.VISIBLE
-
             viewBinding.previewCameraNow.visibility = View.GONE
             image = true
             camera = false

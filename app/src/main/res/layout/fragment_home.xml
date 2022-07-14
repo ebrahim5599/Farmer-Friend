@@ -850,7 +850,6 @@
                                                 android:id="@+id/fregment_iot_control_lamb_automatic"
                                                 android:layout_width="25dp"
                                                 android:layout_height="25dp"
-                                                android:backgroundTint="@color/mainBackground"
                                                 android:layout_marginBottom="8dp"
                                                 app:cardCornerRadius="50dp" />
 
@@ -858,7 +857,6 @@
                                                 android:id="@+id/fregment_iot_control_lamb_manual"
                                                 android:layout_width="25dp"
                                                 android:layout_height="25dp"
-                                                android:backgroundTint="@color/mainBackground"
                                                 android:layout_marginBottom="8dp"
                                                 app:cardCornerRadius="50dp" />
 
@@ -866,7 +864,6 @@
                                                 android:id="@+id/fregment_iot_control_lamb_waterpump"
                                                 android:layout_width="25dp"
                                                 android:layout_height="25dp"
-                                                android:backgroundTint="@color/mainBackground"
                                                 android:layout_marginBottom="8dp"
                                                 app:cardCornerRadius="50dp" />
 
@@ -874,7 +871,6 @@
                                                 android:id="@+id/fregment_iot_control_lamb_fertilizerpump"
                                                 android:layout_width="25dp"
                                                 android:layout_height="25dp"
-                                                android:backgroundTint="@color/mainBackground"
                                                 app:cardCornerRadius="50dp" />
                                         </LinearLayout>
                                     </LinearLayout>
