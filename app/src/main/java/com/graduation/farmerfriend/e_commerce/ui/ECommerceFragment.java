@@ -21,13 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.caching_room.Fert.Fert;
-import com.graduation.farmerfriend.caching_room.Fert.ViewRecycleFertsAdapter;
-import com.graduation.farmerfriend.caching_room.Product.ProductDatabase;
-import com.graduation.farmerfriend.caching_room.Seed.Seed;
-import com.graduation.farmerfriend.caching_room.Seed.ViewRecycleSeedsAdapter;
-import com.graduation.farmerfriend.caching_room.Tool.Tool;
-import com.graduation.farmerfriend.caching_room.Tool.ViewRecycleToolsAdapter;
 import com.graduation.farmerfriend.databinding.FragmentECommerceBinding;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
 import com.graduation.farmerfriend.ecommerce_models.Product;
@@ -130,36 +123,36 @@ public class ECommerceFragment extends Fragment {
                     }
         });
 
-        viewModel.getSeedProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Seed>>() {
+        viewModel.getSeedProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
             @Override
-            public void onChanged(ArrayList<Seed> productArrayList) {
+            public void onChanged(ArrayList<Product> productArrayList) {
 
                     binding.fragmentECommerceRecycleviewSeeds.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                    ViewRecycleSeedsAdapter recycleViewAdapters = new ViewRecycleSeedsAdapter(getContext(), productArrayList, "Ecommerce");
+                    ViewRecycleProductsAdapter recycleViewAdapters = new  ViewRecycleProductsAdapter(getContext(), productArrayList, "Ecommerce");
                     binding.fragmentECommerceRecycleviewSeeds.setAdapter(recycleViewAdapters);
 
 
             }
         });
 
-        viewModel.getFerProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Fert>>() {
+        viewModel.getFerProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
             @Override
-            public void onChanged(ArrayList<Fert> productArrayList) {
+            public void onChanged(ArrayList<Product> productArrayList) {
 
                     binding.fragmentECommerceRecycleviewFertilizers.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                    ViewRecycleFertsAdapter recycleViewAdapterFer = new ViewRecycleFertsAdapter(getContext(), productArrayList, "Ecommerce");
+                    ViewRecycleProductsAdapter recycleViewAdapterFer = new ViewRecycleProductsAdapter(getContext(), productArrayList, "Ecommerce");
                     binding.fragmentECommerceRecycleviewFertilizers.setAdapter(recycleViewAdapterFer);
 
 
             }
         });
 
-        viewModel.getToolProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Tool>>() {
+        viewModel.getToolProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
             @Override
-            public void onChanged(ArrayList<Tool> productArrayList) {
+            public void onChanged(ArrayList<Product> productArrayList) {
 
                     binding.fragmentECommerceRecycleviewTools.setLayoutManager((new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)));
-                    ViewRecycleToolsAdapter recycleViewAdaptert = new ViewRecycleToolsAdapter(getContext(), productArrayList, "Ecommerce");
+                    ViewRecycleProductsAdapter recycleViewAdaptert = new ViewRecycleProductsAdapter(getContext(), productArrayList, "Ecommerce");
                     binding.fragmentECommerceRecycleviewTools.setAdapter(recycleViewAdaptert);
 
 

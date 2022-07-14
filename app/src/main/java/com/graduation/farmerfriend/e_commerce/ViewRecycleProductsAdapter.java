@@ -2,9 +2,6 @@ package com.graduation.farmerfriend.e_commerce;
 
 import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.caching_room.Fert.Fert;
-import com.graduation.farmerfriend.caching_room.Seed.Seed;
-import com.graduation.farmerfriend.caching_room.Tool.Tool;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.e_commerce.ui.ECommerceFragmentDirections;
 import com.graduation.farmerfriend.ecommerce_models.PostCart;

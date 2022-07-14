@@ -107,6 +107,11 @@
     <string name="m">m</string>
     <string name="c" translatable="false">°C</string>
 
+    <string-array name="load_photo">
+        <item>Upload Photo</item>
+        <item>Delete Photo</item>
+    </string-array>
+
 
     <string name="view_all">view all</string>
     <string name="total">Total</string>

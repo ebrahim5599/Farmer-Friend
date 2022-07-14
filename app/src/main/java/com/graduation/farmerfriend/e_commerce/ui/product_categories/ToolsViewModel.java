@@ -3,7 +3,6 @@ package com.graduation.farmerfriend.e_commerce.ui.product_categories;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.graduation.farmerfriend.caching_room.Tool.Tool;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 import com.graduation.farmerfriend.repos.EcommerceRepo;
 
@@ -16,7 +15,7 @@ public class ToolsViewModel extends ViewModel {
         ecommerceRepo = EcommerceRepo.getInstance();
     }
 
-    public LiveData<ArrayList<Tool>> getToolProductsLiveData() {
+    public LiveData<ArrayList<Product>> getToolProductsLiveData() {
         return ecommerceRepo.getToolLiveDataProducts();
     }
 
