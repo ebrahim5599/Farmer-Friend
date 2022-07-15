@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,12 +33,12 @@ import com.graduation.farmerfriend.IOTModels.Control;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.Tips;
 import com.graduation.farmerfriend.constants.Constants;
+
 import com.graduation.farmerfriend.databinding.FragmentHomeBinding;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
 import com.graduation.farmerfriend.ecommerce_models.IOTStatus;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 import com.graduation.farmerfriend.forecast_models.RootForeCast;
-import com.graduation.farmerfriend.repos.TipsRepo;
 import com.graduation.farmerfriend.ui.MainActivity;
 
 import java.util.ArrayList;
@@ -58,6 +60,7 @@ public class HomeFragment extends Fragment {
     ArrayList<Product> productArrayList;
     ArrayList<Tips> tipsArrayList;
     TipsAdapter tipsAdapter;
+    Boolean internet;
 
 
     @Override
@@ -83,6 +86,16 @@ public class HomeFragment extends Fragment {
 //                binding.homeRecyclerViewTips.setAdapter(tipsAdapter);
             }
         });
+        if(getConnectivityStatus(getContext())== false){
+            binding.textViewDegree.setText(sharedPreferences.getString(Constants.current_temp_c,""));
+            binding.textViewLocation.setText(sharedPreferences.getString(Constants.LOCATION_ADDRESS, "Cairo, Egypt"));
+            binding.textViewConditionText.setText(sharedPreferences.getString(Constants.current_condition,""));
+            binding.textViewHumidity.setText(sharedPreferences.getString(Constants.current_humidity,""));
+            binding.textViewWind.setText(sharedPreferences.getString(Constants.current_wind,""));
+            binding.textViewCurrentTime.setText(sharedPreferences.getString(Constants.last_time,""));
+        }
+
+
         viewModel.getIOTStatusLiveData().observe(getViewLifecycleOwner(), new Observer<IOTStatus>() {
             @Override
             public void onChanged(IOTStatus iotStatus) {
@@ -292,6 +305,24 @@ public class HomeFragment extends Fragment {
             binding.homeIOTTextView.setVisibility(View.GONE);
             binding.IOTDisplay.setVisibility(View.GONE);
         }
+    }
+
+    public Boolean getConnectivityStatus(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null) {
+            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                internet = true ;
+                return internet;
+            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                internet = true ;
+                return internet;
+            }
+        } else {
+            internet = false ;
+            return internet;
+        }
+        return internet;
     }
 
 

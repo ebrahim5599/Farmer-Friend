@@ -8,7 +8,6 @@
     android:layoutDirection="ltr"
     tools:context=".IOT.ui.main.IOTSoilFragment">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -136,8 +135,10 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginVertical="16dp"
                     android:layout_marginBottom="8dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/altitude"
                     android:background="@drawable/iot_image_weather"
-                    android:src="@drawable/moisture" />
+                     />
 
                 <TextView
                     android:id="@+id/fragment_IOTSoil_textView_altitude"
