@@ -27,6 +27,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.TransformationUtils.rotateImage
 import com.graduation.farmerfriend.databinding.FragmentCameraBinding
 import com.graduation.farmerfriend.ml.Tflite1Model
 import com.graduation.farmerfriend.permissions.FragmentPermissionHelper
@@ -378,7 +379,14 @@ class CameraFragment : Fragment() {
                 viewBinding.previewImageNow.visibility = View.VISIBLE
                 viewBinding.previewCameraNow.visibility = View.GONE
 
-                finalBitmap = image.image?.toBitmap()?.let { rotateBitmap(it, 90f) }
+                finalBitmap = image.image?.toBitmap()?.let {
+                    when (image.imageInfo.rotationDegrees) {
+                        90 -> rotateImage(it, 90)
+                        180 -> rotateImage(it, 180)
+                        270 -> rotateImage(it, 270)
+                        else -> it
+                    }
+                }
 //                Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show()
 //                viewBinding.showImageHere.setImageBitmap(finalBitmap)
                 Glide.with(this@CameraFragment).load(finalBitmap).into(viewBinding.showImageHere)

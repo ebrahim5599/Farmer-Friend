@@ -50,7 +50,7 @@ class MoreFragment : Fragment() {
         editor = sharedPreferences.edit()
 
         image = sharedPreferences.getString(Constants.photo,"")?.toUri()
-       // Toast.makeText(context,image.toString(),Toast.LENGTH_SHORT).show()
+        Toast.makeText(context,image.toString(),Toast.LENGTH_SHORT).show()
 
         if (sharedPreferences.getString(Constants.photo,"") != "") {
             context?.let {

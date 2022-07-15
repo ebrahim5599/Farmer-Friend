@@ -8,26 +8,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.google.firebase.database.*
 import com.graduation.farmerfriend.R
 import com.graduation.farmerfriend.constants.Constants
 import com.graduation.farmerfriend.control.iot_fragments.hasIoTSystem.Data_HasIoT
-import com.graduation.farmerfriend.control.iot_fragments.hasIoTSystem.HasIoTSystem
 import com.graduation.farmerfriend.databinding.FragmentIotWaitingCodeBinding
 import com.graduation.farmerfriend.repos.EcommerceRepo
 import com.graduation.farmerfriend.sharedPreferences.SharedPref
-import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
-import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleObserver
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.schedulers.Schedulers
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 import kotlin.collections.ArrayList
 
 class IotWaitingCodeFragment : Fragment() {

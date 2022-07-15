@@ -159,7 +159,7 @@ class IotMoreInfoFragment : Fragment() {
 
                 Log.d("Mail", "done")
                 var retrofit = Retrofit.Builder()
-                    .baseUrl("http://teamweb992022-001-site1.htempurl.com/")
+                    .baseUrl("http://newweb19992022-001-site1.ftempurl.com")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
 
