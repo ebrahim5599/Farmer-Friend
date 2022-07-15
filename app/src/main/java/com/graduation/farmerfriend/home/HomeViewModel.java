@@ -20,12 +20,14 @@ public class HomeViewModel extends ViewModel {
     private final ForecastRepo forecastRepo;
     private final EcommerceRepo ecommerceRepo;
     private TipsRepo tipsRepo;
+    Context context;
     public HomeViewModel() {
         super();
         ecommerceRepo = EcommerceRepo.getInstance();
         forecastRepo = ForecastRepo.getInstance();
 
     }
+
 
     public void init(Context context){
         tipsRepo = new TipsRepo(context);

@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +22,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
@@ -39,17 +36,14 @@ import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
 import com.graduation.farmerfriend.ecommerce_models.IOTStatus;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 import com.graduation.farmerfriend.forecast_models.RootForeCast;
+import com.graduation.farmerfriend.repos.TipsRepo;
 import com.graduation.farmerfriend.ui.MainActivity;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
+
+import java.text.MessageFormat;
 import java.util.Collections;
 import java.util.Locale;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.CompletableObserver;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class HomeFragment extends Fragment {
 
@@ -59,41 +53,25 @@ public class HomeFragment extends Fragment {
     private boolean logged_in;
     FragmentHomeBinding binding;
     HomeViewModel viewModel;
-    TipsDatabase tipsDatabase;
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     ArrayList<Product> productArrayList;
-    Boolean internet ;
     ArrayList<Tips> tipsArrayList;
     TipsAdapter tipsAdapter;
+    TipsDatabase tipsDatabase;
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
-        View view = fragmentHomeBinding.getRoot();
-        sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-
-        tipsDatabase = TipsDatabase.getInstance(getContext());
-
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
         setHasOptionsMenu(true);
         productArrayList = new ArrayList<>();
+        sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         viewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         viewModel.init(requireContext());
-
-        if (sharedPreferences.getBoolean(Constants.HAS_IOT_SYSTEM, false)) {
-            mViewModel = new ViewModelProvider(requireActivity()).get(IOTViewModel.class);
-            mViewModel.init(requireContext());
-            mViewModel.getIOTSensorsLiveData().observe(getViewLifecycleOwner(), sensors -> {
-                Log.d("TAG", "onChanged: " + sensors.soilTemp);
-                fragmentHomeBinding.fragmentIOTSoilTextViewTemp.setText(MessageFormat.format("{0} C", sensors.soilTemp));
-                fragmentHomeBinding.fragmentIOTSoilTextViewHumidity.setText(MessageFormat.format("{0} %", sensors.humidity));
-                fragmentHomeBinding.fragmentIOTSoilTextViewAltitude.setText(MessageFormat.format("{0} M", sensors.altitude));
-        sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
-        viewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
 
         binding.homePullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -163,49 +141,53 @@ public class HomeFragment extends Fragment {
             navController.navigate(R.id.action_homeFragment_to_welcomeScreenFragment);
 
 
-
-//        if (getConnectivityStatus(getContext())== false){
-//            fragmentHomeBinding.textViewDegree.setText(sharedPreferences.getString(Constants.current_temp_c,""));
-//            fragmentHomeBinding.textViewLocation.setText(sharedPreferences.getString(Constants.LOCATION_ADDRESS, "Cairo, Egypt"));
-//            fragmentHomeBinding.textViewConditionText.setText(sharedPreferences.getString(Constants.current_condition,""));
-//            fragmentHomeBinding.textViewHumidity.setText(sharedPreferences.getString(Constants.current_humidity,""));
-//            fragmentHomeBinding.textViewWind.setText(sharedPreferences.getString(Constants.current_wind,""));
-//        }
-
+//        viewModel.getForecastModelLiveData().observe(getViewLifecycleOwner(), new Observer<RootForeCast>() {
+//            @Override
+//            public void onChanged(RootForeCast forecastModel) {
+//                binding.textViewDegree.setText(String.format(Locale.US, "%d°", Math.round(forecastModel.current.temp_c)));
+//                String imageUrl = "https://" + forecastModel.current.condition.icon;
+//                Log.i("Glide error", forecastModel.forecast.forecastday.toString());
+//                Glide.with(requireContext()).load(imageUrl).into(binding.imageView);
+//                binding.textViewLocation.setText(sharedPreferences.getString(Constants.LOCATION_ADDRESS, "Cairo, Egypt"));
+//                binding.textViewConditionText.setText(forecastModel.current.condition.text);
+//                binding.textViewHumidity.setText(String.format(Locale.US, "%d %%", forecastModel.current.humidity));
+//                binding.textViewWind.setText(String.format(Locale.US, "%d "+getString(R.string.km), Math.round(forecastModel.current.wind_kph)));
+//                binding.textViewCurrentTime.setText(forecastModel.location.localtime);
+//
+//                editor.putString(Constants.current_temp_c, String.format(Locale.US, "%d°", Math.round(forecastModel.current.temp_c)));
+//                editor.putString(Constants.current_condition,forecastModel.current.condition.text);
+//                editor.putString(Constants.current_humidity, String.format(Locale.US, "%d %%", forecastModel.current.humidity));
+//                editor.putString(Constants.current_wind, String.format(Locale.US, "%d km/h", Math.round(forecastModel.current.wind_kph)));
+//                editor.apply();
+//                binding.homePullToRefresh.setRefreshing(false);
+//            }
+//        });
         viewModel.getForecastModelLiveData().observe(getViewLifecycleOwner(), new Observer<RootForeCast>() {
             @Override
             public void onChanged(RootForeCast forecastModel) {
+
                 binding.textViewDegree.setText(String.format(Locale.US, "%d°", Math.round(forecastModel.current.temp_c)));
+
                 String imageUrl = "https://" + forecastModel.current.condition.icon;
                 Log.i("Glide error", forecastModel.forecast.forecastday.toString());
                 Glide.with(requireContext()).load(imageUrl).into(binding.imageView);
                 binding.textViewLocation.setText(sharedPreferences.getString(Constants.LOCATION_ADDRESS, "Cairo, Egypt"));
                 binding.textViewConditionText.setText(forecastModel.current.condition.text);
                 binding.textViewHumidity.setText(String.format(Locale.US, "%d %%", forecastModel.current.humidity));
-                binding.textViewWind.setText(String.format(Locale.US, "%d "+getString(R.string.km), Math.round(forecastModel.current.wind_kph)));
+                binding.textViewWind.setText(String.format(Locale.US, "%d km/h", Math.round(forecastModel.current.wind_kph)));
                 binding.textViewCurrentTime.setText(forecastModel.location.localtime);
 
+                editor.putString(Constants.current_temp_c, String.format(Locale.US, "%d°", Math.round(forecastModel.current.temp_c)));
+                editor.putString(Constants.current_condition,forecastModel.current.condition.text);
+                editor.putString(Constants.current_humidity, String.format(Locale.US, "%d %%", forecastModel.current.humidity));
+                editor.putString(Constants.current_wind, String.format(Locale.US, "%d km/h", Math.round(forecastModel.current.wind_kph)));
+                editor.putString(Constants.last_time,forecastModel.location.localtime);
+                editor.apply();
                 binding.homePullToRefresh.setRefreshing(false);
             }
 
-                    fragmentHomeBinding.textViewDegree.setText(String.format(Locale.US, "%d°", Math.round(forecastModel.current.temp_c)));
-
-                    String imageUrl = "https://" + forecastModel.current.condition.icon;
-                    Log.i("Glide error", forecastModel.forecast.forecastday.toString());
-                    Glide.with(requireContext()).load(imageUrl).into(fragmentHomeBinding.imageView);
-                    fragmentHomeBinding.textViewLocation.setText(sharedPreferences.getString(Constants.LOCATION_ADDRESS, "Cairo, Egypt"));
-                    fragmentHomeBinding.textViewConditionText.setText(forecastModel.current.condition.text);
-                    fragmentHomeBinding.textViewHumidity.setText(String.format(Locale.US, "%d %%", forecastModel.current.humidity));
-                    fragmentHomeBinding.textViewWind.setText(String.format(Locale.US, "%d km/h", Math.round(forecastModel.current.wind_kph)));
-
-                    editor.putString(Constants.current_temp_c, String.format(Locale.US, "%d°", Math.round(forecastModel.current.temp_c)));
-                    editor.putString(Constants.current_condition,forecastModel.current.condition.text);
-                    editor.putString(Constants.current_humidity, String.format(Locale.US, "%d %%", forecastModel.current.humidity));
-                    editor.putString(Constants.current_wind, String.format(Locale.US, "%d km/h", Math.round(forecastModel.current.wind_kph)));
-                    editor.apply();
-                }
-
         });
+
         viewModel.getAllProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
             @Override
             public void onChanged(ArrayList<Product> productArrayList) {
@@ -215,19 +197,11 @@ public class HomeFragment extends Fragment {
         });
 
 
+
         NewsAdapter newsAdapter = new NewsAdapter();
         binding.homeRecyclerViewNews.setAdapter(newsAdapter);
 
 
-        if (getConnectivityStatus(getContext())==false){
-            tipsDatabase.tipsDao().getTips()
-                    .subscribeOn(Schedulers.computation())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(tips -> {
-                        TipsAdapter tipsAdapter = new TipsAdapter((ArrayList<Tips>)tips);
-                        fragmentHomeBinding.homeRecyclerViewTips.setAdapter(tipsAdapter);} , throwable -> {});
-
-        }
         viewModel.getTipsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Tips>>() {
             @Override
             public void onChanged(ArrayList<Tips> tips) {
@@ -258,24 +232,6 @@ public class HomeFragment extends Fragment {
             }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public Boolean getConnectivityStatus(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (activeNetwork != null) {
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                internet = true ;
-                return internet;
-            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                internet = true ;
-                return internet;
-            }
-        } else {
-            internet = false ;
-            return internet;
-        }
-        return internet;
     }
 
     void controlIotINHomeFragment(boolean hasIotStatus) {
