@@ -18,7 +18,7 @@ public class CameraResultActivity extends AppCompatActivity {
     private String result;
     private String disease;
     private Float max;
-    private String array;
+
 
 
     @Override
@@ -36,14 +36,12 @@ public class CameraResultActivity extends AppCompatActivity {
         });
 
         Intent n = getIntent();
-        array = n.getStringExtra("array");
         path = n.getStringExtra("PATH");
         result = n.getStringExtra("result");
         disease = n.getStringExtra("disease");
 //        bitmabByteArray = n.getByteArrayExtra("image");
         max = n.getFloatExtra("max", 0f);
 
-        binding.textView6.setText(array);
         binding.ActivityCameraResultPlantNameResult.setText(result);
         binding.ActivityCameraResultTheDiseaseResult.setText(disease);
         binding.ActivityCameraResultTheRatioResult.setText(max+" %");
