@@ -29,6 +29,7 @@ import com.graduation.farmerfriend.IOT.ui.main.IOTViewModel;
 import com.graduation.farmerfriend.IOTModels.Control;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.Tips;
+import com.graduation.farmerfriend.caching_room.Tips.TipsDatabase;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentHomeBinding;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
@@ -53,9 +54,11 @@ public class HomeFragment extends Fragment {
     FragmentHomeBinding binding;
     HomeViewModel viewModel;
     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     ArrayList<Product> productArrayList;
     ArrayList<Tips> tipsArrayList;
     TipsAdapter tipsAdapter;
+    TipsDatabase tipsDatabase;
 
 
     @Override
@@ -66,7 +69,9 @@ public class HomeFragment extends Fragment {
         setHasOptionsMenu(true);
         productArrayList = new ArrayList<>();
         sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         viewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        viewModel.init(requireContext());
 
         binding.homePullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -136,22 +141,53 @@ public class HomeFragment extends Fragment {
             navController.navigate(R.id.action_homeFragment_to_welcomeScreenFragment);
 
 
+//        viewModel.getForecastModelLiveData().observe(getViewLifecycleOwner(), new Observer<RootForeCast>() {
+//            @Override
+//            public void onChanged(RootForeCast forecastModel) {
+//                binding.textViewDegree.setText(String.format(Locale.US, "%d°", Math.round(forecastModel.current.temp_c)));
+//                String imageUrl = "https://" + forecastModel.current.condition.icon;
+//                Log.i("Glide error", forecastModel.forecast.forecastday.toString());
+//                Glide.with(requireContext()).load(imageUrl).into(binding.imageView);
+//                binding.textViewLocation.setText(sharedPreferences.getString(Constants.LOCATION_ADDRESS, "Cairo, Egypt"));
+//                binding.textViewConditionText.setText(forecastModel.current.condition.text);
+//                binding.textViewHumidity.setText(String.format(Locale.US, "%d %%", forecastModel.current.humidity));
+//                binding.textViewWind.setText(String.format(Locale.US, "%d "+getString(R.string.km), Math.round(forecastModel.current.wind_kph)));
+//                binding.textViewCurrentTime.setText(forecastModel.location.localtime);
+//
+//                editor.putString(Constants.current_temp_c, String.format(Locale.US, "%d°", Math.round(forecastModel.current.temp_c)));
+//                editor.putString(Constants.current_condition,forecastModel.current.condition.text);
+//                editor.putString(Constants.current_humidity, String.format(Locale.US, "%d %%", forecastModel.current.humidity));
+//                editor.putString(Constants.current_wind, String.format(Locale.US, "%d km/h", Math.round(forecastModel.current.wind_kph)));
+//                editor.apply();
+//                binding.homePullToRefresh.setRefreshing(false);
+//            }
+//        });
         viewModel.getForecastModelLiveData().observe(getViewLifecycleOwner(), new Observer<RootForeCast>() {
             @Override
             public void onChanged(RootForeCast forecastModel) {
+
                 binding.textViewDegree.setText(String.format(Locale.US, "%d°", Math.round(forecastModel.current.temp_c)));
+
                 String imageUrl = "https://" + forecastModel.current.condition.icon;
                 Log.i("Glide error", forecastModel.forecast.forecastday.toString());
                 Glide.with(requireContext()).load(imageUrl).into(binding.imageView);
                 binding.textViewLocation.setText(sharedPreferences.getString(Constants.LOCATION_ADDRESS, "Cairo, Egypt"));
                 binding.textViewConditionText.setText(forecastModel.current.condition.text);
                 binding.textViewHumidity.setText(String.format(Locale.US, "%d %%", forecastModel.current.humidity));
-                binding.textViewWind.setText(String.format(Locale.US, "%d "+getString(R.string.km), Math.round(forecastModel.current.wind_kph)));
+                binding.textViewWind.setText(String.format(Locale.US, "%d km/h", Math.round(forecastModel.current.wind_kph)));
                 binding.textViewCurrentTime.setText(forecastModel.location.localtime);
 
+                editor.putString(Constants.current_temp_c, String.format(Locale.US, "%d°", Math.round(forecastModel.current.temp_c)));
+                editor.putString(Constants.current_condition,forecastModel.current.condition.text);
+                editor.putString(Constants.current_humidity, String.format(Locale.US, "%d %%", forecastModel.current.humidity));
+                editor.putString(Constants.current_wind, String.format(Locale.US, "%d km/h", Math.round(forecastModel.current.wind_kph)));
+                editor.putString(Constants.last_time,forecastModel.location.localtime);
+                editor.apply();
                 binding.homePullToRefresh.setRefreshing(false);
             }
+
         });
+
         viewModel.getAllProductsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
             @Override
             public void onChanged(ArrayList<Product> productArrayList) {
@@ -159,6 +195,7 @@ public class HomeFragment extends Fragment {
                 binding.homeRecyclerViewEcommerce.setAdapter(ecommerceAdapter);
             }
         });
+
 
 
         NewsAdapter newsAdapter = new NewsAdapter();

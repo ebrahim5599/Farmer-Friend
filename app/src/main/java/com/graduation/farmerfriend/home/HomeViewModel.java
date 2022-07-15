@@ -1,5 +1,7 @@
 package com.graduation.farmerfriend.home;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -14,18 +16,22 @@ import com.graduation.farmerfriend.repos.TipsRepo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 public class HomeViewModel extends ViewModel {
     private final ForecastRepo forecastRepo;
     private final EcommerceRepo ecommerceRepo;
-    private final TipsRepo tipsRepo;
+    private TipsRepo tipsRepo;
+    Context context;
     public HomeViewModel() {
         super();
         ecommerceRepo = EcommerceRepo.getInstance();
         forecastRepo = ForecastRepo.getInstance();
-        tipsRepo = new TipsRepo();
+
     }
 
+
+    public void init(Context context){
+        tipsRepo = new TipsRepo(context);
+    }
 
     public void setForecastData(String location) {
         forecastRepo.setForecastData(location);

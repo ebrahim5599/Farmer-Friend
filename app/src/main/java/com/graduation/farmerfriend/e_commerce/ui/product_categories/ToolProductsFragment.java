@@ -21,22 +21,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 
 import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.caching_room.Tool.ProductItemTAdapter;
-import com.graduation.farmerfriend.caching_room.Tool.Tool;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentToolProductsBinding;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
 import java.util.ArrayList;
 
+
 public class ToolProductsFragment extends Fragment {
 
     FragmentToolProductsBinding binding;
     ToolsViewModel toolsViewModel;
-    private ArrayList<Tool> toolArrayList;
+    private ArrayList<Product> toolArrayList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,11 +51,11 @@ public class ToolProductsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         toolsViewModel.init();
         toolsViewModel.getToolProductsLiveData()
-                .observe(getViewLifecycleOwner(), new Observer<ArrayList<Tool>>() {
+                .observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
                     @Override
-                    public void onChanged(ArrayList<Tool> productArrayList) {
+                    public void onChanged(ArrayList<Product> productArrayList) {
                         toolArrayList = productArrayList;
-                        ProductItemTAdapter adapter = new ProductItemTAdapter(toolArrayList, requireContext(), "tool");
+                        ProductItemAdapter adapter = new ProductItemAdapter(toolArrayList, requireContext(), "tool");
                         binding.fragmentToolProductsRecyclerView.setAdapter(adapter);
                         binding.fragmentToolProductsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
                         binding.toolPullToRefresh.setRefreshing(false);

@@ -13,12 +13,12 @@ public class RootForeCast {
     }
 
     public Location getLocation() {
-         return location;
+        return location;
     }
 
-     public void setLocation(Location location) {
-      this.location = location;
-      }
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     public Current getCurrent() {
         return current;
