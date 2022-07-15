@@ -58,4 +58,7 @@ public interface ECommerceInterface {
     // get IOT Status
     @GET("/api/Auth/GetHasIotVal/{username}")
     Single<IOTStatus>getIotStatus(@Path("username") @NonNull String userName);
+
+    @PATCH("/api/Auth/{username}")
+    Single<Object>changeIotStatus(@Path("username") String userName, @Body ArrayList<Data_HasIoT> data_hasIoT);
 }

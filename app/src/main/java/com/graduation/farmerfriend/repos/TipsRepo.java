@@ -17,7 +17,6 @@ import com.graduation.farmerfriend.Tips;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 
 public class TipsRepo {
 
@@ -25,10 +24,18 @@ public class TipsRepo {
     private final MutableLiveData<ArrayList<Tips>> tipsLiveData;
     private static final String TAG = "TipsRepo";
     Context context ;
+    private static TipsRepo instance ;
 
-    public TipsRepo(Context context) {
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+    public static TipsRepo getInstance(Context context) {
+        if (instance == null) {
+            instance = new TipsRepo(context);
+        }
+        return instance;
+    }
+
+    private TipsRepo(Context context) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database.setPersistenceEnabled(true);
         referenceTips = database.getReference().child("tips");
         tipsLiveData = new MutableLiveData<>();
         getData();
@@ -36,10 +43,8 @@ public class TipsRepo {
 
     }
 
-
     private void getData() {
         referenceTips.addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                     Log.d(TAG, "onDataChanged: " + snapshot.getKey());

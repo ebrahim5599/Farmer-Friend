@@ -57,7 +57,6 @@ public class EcommerceRepo {
     ArrayList<Product> productsarray,seedsarray,fertsarray,toolsarray;
     int i,j;
 
-
     public static EcommerceRepo getInstance() {
         if (Instance == null) {
             Instance = new EcommerceRepo();
@@ -65,16 +64,14 @@ public class EcommerceRepo {
         return Instance;
     }
 
-
     public void init(Context context){
         this.context = context ;
         productDatabase = ProductDatabase.getInstance(context) ;
 
-         productsarray = new ArrayList<>();
-         seedsarray = new ArrayList<>();
-         fertsarray = new ArrayList<>();
-         toolsarray = new ArrayList<>();
-
+        productsarray = new ArrayList<>();
+        seedsarray = new ArrayList<>();
+        fertsarray = new ArrayList<>();
+        toolsarray = new ArrayList<>();
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
