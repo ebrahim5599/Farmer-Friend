@@ -14,40 +14,26 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.graduation.farmerfriend.Tips;
-import com.graduation.farmerfriend.caching_room.Tips.TipsDatabase;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.CompletableObserver;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class TipsRepo {
 
     private final DatabaseReference referenceTips;
     private final MutableLiveData<ArrayList<Tips>> tipsLiveData;
     private static final String TAG = "TipsRepo";
-    TipsDatabase tipsDatabase;
-    Boolean internet ;
     Context context ;
 
     public TipsRepo(Context context) {
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         referenceTips = database.getReference().child("tips");
         tipsLiveData = new MutableLiveData<>();
         getData();
         this.context = context ;
-        tipsDatabase = TipsDatabase.getInstance(context);
-        if(getConnectivityStatus(context)){
-            tipsDatabase.tipsDao().getTips()
-                    .subscribeOn(Schedulers.computation())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(tips -> { tipsLiveData.postValue((ArrayList<Tips>)tips);} , throwable -> {});
 
-        }
     }
 
 
@@ -70,23 +56,6 @@ public class TipsRepo {
                 tipsLiveData.postValue(tips);
                     tipsLiveData.postValue(tips);
 
-                    tipsDatabase.tipsDao().insertTips(tips)
-                            .subscribeOn(Schedulers.io())
-                            .subscribe(new CompletableObserver() {
-                                @Override
-                                public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
-                                }
-
-                                @Override
-                                public void onComplete() {
-                                    Log.d(TAG, "yes");
-                                }
-
-                                @Override
-                                public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
-
-                                }
-                            });
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -99,22 +68,4 @@ public class TipsRepo {
         return tipsLiveData;
     }
 
-    public Boolean getConnectivityStatus(Context context) {
-
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (activeNetwork != null) {
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                internet = true ;
-                return internet;
-            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                internet = true ;
-                return internet;
-            }
-        } else {
-            internet = false ;
-            return internet;
-        }
-        return internet;
-    }
 }

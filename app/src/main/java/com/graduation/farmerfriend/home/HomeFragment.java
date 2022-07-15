@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +30,6 @@ import com.graduation.farmerfriend.IOT.ui.main.IOTViewModel;
 import com.graduation.farmerfriend.IOTModels.Control;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.Tips;
-import com.graduation.farmerfriend.caching_room.Tips.TipsDatabase;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentHomeBinding;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
@@ -53,12 +53,11 @@ public class HomeFragment extends Fragment {
     private boolean logged_in;
     FragmentHomeBinding binding;
     HomeViewModel viewModel;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
     ArrayList<Product> productArrayList;
     ArrayList<Tips> tipsArrayList;
     TipsAdapter tipsAdapter;
-    TipsDatabase tipsDatabase;
 
 
     @Override
