@@ -8,22 +8,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.google.firebase.database.*
 import com.graduation.farmerfriend.R
 import com.graduation.farmerfriend.constants.Constants
 import com.graduation.farmerfriend.control.iot_fragments.hasIoTSystem.Data_HasIoT
-import com.graduation.farmerfriend.control.iot_fragments.hasIoTSystem.HasIoTSystem
 import com.graduation.farmerfriend.databinding.FragmentIotWaitingCodeBinding
 import com.graduation.farmerfriend.repos.EcommerceRepo
 import com.graduation.farmerfriend.sharedPreferences.SharedPref
-import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
-import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleObserver
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.schedulers.Schedulers
-import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -84,11 +78,11 @@ class IotWaitingCodeFragment : Fragment() {
             when {
 
                 viewBinding.iotWaitingCodeText.text.toString() == sharedPref.getStringPref(
-                    Constants.USER_ID, ""
+                    Constants.USER_ID
                 ) -> {
                     val rootRef = FirebaseDatabase.getInstance().reference
 
-                    rootRef.child(sharedPref.getStringPref(Constants.USER_ID, ""))
+                    rootRef.child(sharedPref.getStringPref(Constants.USER_ID))
                         .addListenerForSingleValueEvent(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 if (snapshot.value == null) {
@@ -124,7 +118,7 @@ class IotWaitingCodeFragment : Fragment() {
 
     fun Check(data: ArrayList<Data_HasIoT>) {
         var ecommerceRepo = EcommerceRepo.getInstance()
-        var objectSingle = ecommerceRepo.editIotStatus(sharedPref.getStringPref(Constants.USER_NAME, ""),data)
+        var objectSingle = ecommerceRepo.editIotStatus(sharedPref.getStringPref(Constants.USER_NAME),data)
 
 
         var observer: SingleObserver<Any> = object : SingleObserver<Any> {

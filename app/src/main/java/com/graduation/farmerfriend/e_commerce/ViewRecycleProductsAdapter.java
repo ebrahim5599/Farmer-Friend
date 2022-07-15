@@ -2,9 +2,6 @@ package com.graduation.farmerfriend.e_commerce;
 
 import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.caching_room.Fert.Fert;
-import com.graduation.farmerfriend.caching_room.Seed.Seed;
-import com.graduation.farmerfriend.caching_room.Tool.Tool;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.e_commerce.ui.ECommerceFragmentDirections;
 import com.graduation.farmerfriend.ecommerce_models.PostCart;
@@ -88,8 +85,8 @@ public class ViewRecycleProductsAdapter extends RecyclerView.Adapter<ViewRecycle
         });
         holder.addToCart.setOnClickListener(view -> {
             if (getConnectivityStatus(context)) {
-                if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
-                    PostCart postCart = new PostCart(data.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""), 1);
+                if (!sharedPref.getStringPref(Constants.USER_ID).isEmpty() && sharedPref.getStringPref(Constants.USER_ID) != null) {
+                    PostCart postCart = new PostCart(data.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID), 1);
                     ecommerceRepo.addToCart(postCart);
                     Toast.makeText(context, "تمت اضافة " + data.get(holder.getAbsoluteAdapterPosition()).productName + " لشنطة التسوق", Toast.LENGTH_SHORT).show();
                 } else {

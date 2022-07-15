@@ -22,7 +22,6 @@ import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentCartBinding;
 import com.graduation.farmerfriend.ecommerce_models.CartRoot;
-import com.graduation.farmerfriend.home.HomeViewModel;
 import com.graduation.farmerfriend.sharedPreferences.SharedPref;
 
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class CartFragment extends Fragment {
         sharedPref = new SharedPref(requireContext(),Constants.MAIN_SHARED_PREFERENCES);
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
         cartViewModel.init();
-        cartViewModel.getCartData(sharedPref.getStringPref(Constants.USER_ID,null));
+        cartViewModel.getCartData(sharedPref.getStringPref(Constants.USER_ID));
 
 
 
@@ -73,7 +72,7 @@ public class CartFragment extends Fragment {
 
                     @Override
                     public void onChanged(ArrayList<CartRoot> carts) {
-                        CartItemsAdapter adapter = new CartItemsAdapter(CartFragment.this,requireContext(),carts,sharedPref.getStringPref(Constants.USER_ID,""));
+                        CartItemsAdapter adapter = new CartItemsAdapter(CartFragment.this,requireContext(),carts,sharedPref.getStringPref(Constants.USER_ID));
                         binding.cartRecyclerView.setAdapter(adapter);
                         binding.cartRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
                     }

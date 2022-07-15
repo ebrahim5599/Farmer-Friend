@@ -9,19 +9,22 @@ public class SharedPref {
     SharedPreferences.Editor editor;
     public SharedPref(Context context, String prefKey) {
         this.context = context;
-       sharedPreferences = context.getSharedPreferences(prefKey, Context.MODE_PRIVATE);
-       editor = sharedPreferences.edit();
+        sharedPreferences = context.getSharedPreferences(prefKey, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
     }
 
-    public String getStringPref(String key,String defaultValue) {
-       return sharedPreferences.getString(key,defaultValue);
+    public String getStringPref(String key) {
+        return sharedPreferences.getString(key,"defaultValue");
+    }
+    public String getStringPref(String key, String defaultValue) {
+        return sharedPreferences.getString(key,"defaultValue");
     }
     public void putStringPref(String key,String value){
         editor.putString(key,value).apply();
     }
 
     public boolean getBoolPref(String key) {
-       return sharedPreferences.getBoolean(key,false);
+        return sharedPreferences.getBoolean(key,false);
     }
     public void putBoolPref(String key,boolean value){
         editor.putBoolean(key,value).apply();

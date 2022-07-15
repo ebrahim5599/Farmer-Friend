@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.e_commerce.search.data.SearchClient;
 import com.graduation.farmerfriend.e_commerce.search.pojo.SearchResultPojo;
 
@@ -19,8 +20,7 @@ public class SearchViewModel extends ViewModel {
     private static final String TAG = "SearchViewModel";
     private Call<List<SearchResultPojo>> call;
     public MutableLiveData<String> errorMessage = new MutableLiveData<>();
-    public MutableLiveData<List<SearchResultPojo>> searchResultMutableLiveData =
-            new MutableLiveData<>();
+    public MutableLiveData<List<SearchResultPojo>> searchResultMutableLiveData = new MutableLiveData<>();
 
     public void getSearchResult(String name){
         call = SearchClient.getINSTANCE().getSearchResult(name);
@@ -39,7 +39,8 @@ public class SearchViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<List<SearchResultPojo>> call, Throwable t) {
-                errorMessage.setValue(t.getMessage());
+                errorMessage.setValue("Something went wrong, please make sure you are connected to the internet");
+//                errorMessage.setValue(t.getMessage());
                 Log.d(TAG, "onFailure: "+ t);
             }
         });

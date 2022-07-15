@@ -41,16 +41,16 @@ public class IOTRepo {
         this.context = context;
         SharedPref sharedPref = new SharedPref(context, Constants.MAIN_SHARED_PREFERENCES);
         database = FirebaseDatabase.getInstance();
-        Log.d("TAG", sharedPref.getStringPref(Constants.USER_ID, "userId0"));
-        Toast.makeText(context, sharedPref.getStringPref(Constants.USER_ID, "userId0"), Toast.LENGTH_LONG).show();
+        Log.d("TAG", sharedPref.getStringPref(Constants.USER_ID));
+        Toast.makeText(context, sharedPref.getStringPref(Constants.USER_ID), Toast.LENGTH_LONG).show();
 
 
 //        referenceControl = database.getReference().child("userId0").child("control");
 //        referenceSensors = database.getReference("userId0").child("sensors");
 //        referenceControl = database.getReference().child(sharedPref.getStringPref(Constants.USER_ID, "userId0")).child("control");
 
-        referenceControl = database.getReference(sharedPref.getStringPref(Constants.USER_ID, "userId0")).child("control");
-        referenceSensors = database.getReference(sharedPref.getStringPref(Constants.USER_ID, "userId0")).child("sensors");
+        referenceControl = database.getReference(sharedPref.getStringPref(Constants.USER_ID)).child("control");
+        referenceSensors = database.getReference(sharedPref.getStringPref(Constants.USER_ID)).child("sensors");
         iOTControlLiveData = new MutableLiveData<>();
         iOTSensorsLiveData = new MutableLiveData<>();
         ReadData();

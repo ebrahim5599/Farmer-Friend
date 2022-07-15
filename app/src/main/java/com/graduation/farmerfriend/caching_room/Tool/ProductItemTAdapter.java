@@ -17,8 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.caching_room.Fert.Fert;
-import com.graduation.farmerfriend.caching_room.Fert.ProductItemFAdapter;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.e_commerce.ui.product_categories.FertilizerProductsFragmentDirections;
 import com.graduation.farmerfriend.e_commerce.ui.product_categories.SeedProductsFragmentDirections;
@@ -100,8 +98,8 @@ public class ProductItemTAdapter extends RecyclerView.Adapter<ProductItemTAdapte
             public void onClick(View view) {
 
                 if (getConnectivityStatus(context)) {
-                    if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
-                        PostCart postCart = new PostCart(productArrayList.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""), 1);
+                    if (!sharedPref.getStringPref(Constants.USER_ID).isEmpty() && sharedPref.getStringPref(Constants.USER_ID) != null) {
+                        PostCart postCart = new PostCart(productArrayList.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID), 1);
                         ecommerceRepo.addToCart(postCart);
                         Toast.makeText(context, "تمت اضافة " + productArrayList.get(holder.getAbsoluteAdapterPosition()).productName + " لشنطة التسوق", Toast.LENGTH_SHORT).show();
                     } else {

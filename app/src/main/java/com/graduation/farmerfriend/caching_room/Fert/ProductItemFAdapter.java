@@ -19,11 +19,9 @@ import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.e_commerce.ui.product_categories.FertilizerProductsFragmentDirections;
-import com.graduation.farmerfriend.e_commerce.ui.product_categories.ProductItemAdapter;
 import com.graduation.farmerfriend.e_commerce.ui.product_categories.SeedProductsFragmentDirections;
 import com.graduation.farmerfriend.e_commerce.ui.product_categories.ToolProductsFragmentDirections;
 import com.graduation.farmerfriend.ecommerce_models.PostCart;
-import com.graduation.farmerfriend.ecommerce_models.Product;
 import com.graduation.farmerfriend.repos.EcommerceRepo;
 import com.graduation.farmerfriend.sharedPreferences.SharedPref;
 
@@ -99,8 +97,8 @@ public class ProductItemFAdapter extends RecyclerView.Adapter<ProductItemFAdapte
             @Override
             public void onClick(View view) {
                 if (getConnectivityStatus(context)) {
-                    if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
-                        PostCart postCart = new PostCart(productArrayList.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""), 1);
+                    if (!sharedPref.getStringPref(Constants.USER_ID).isEmpty() && sharedPref.getStringPref(Constants.USER_ID) != null) {
+                        PostCart postCart = new PostCart(productArrayList.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID), 1);
                         ecommerceRepo.addToCart(postCart);
                         Toast.makeText(context, "تمت اضافة " + productArrayList.get(holder.getAbsoluteAdapterPosition()).productName + " لشنطة التسوق", Toast.LENGTH_SHORT).show();
                     } else {

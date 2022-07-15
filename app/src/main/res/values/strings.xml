@@ -58,7 +58,7 @@
     <string name="apply_now">Apply now</string>
     <string name="iot_intro_message">Control your farm remotely, subscribe now to our system to follow your farm through the farmer\'s friend application</string>
     <string name="additional_data_required">Additional Data</string>
-    <string name="sent_request">Send request</string>
+    <string name="sent_request">send request</string>
     <string name="email">Email</string>
     <string name="what_is_the_approximate_area_of_the_farm">What is the approximate area of the farm?</string>
     <string name="farm_location">Farm location</string>
@@ -126,5 +126,7 @@
     <string name="last_name">Last Name</string>
     <string name="username">Username</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="already_have_an_account">Already have an account?</string>\
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="no_internet_message">Something went wrong, please make sure you are connected to the internet</string>
+
 </resources>

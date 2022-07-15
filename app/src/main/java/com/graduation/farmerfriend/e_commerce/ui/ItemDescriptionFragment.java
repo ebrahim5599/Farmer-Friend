@@ -115,8 +115,8 @@ public class ItemDescriptionFragment extends Fragment {
         binding.itemDescriptionButtonAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
-                    PostCart postCart = new PostCart(product.productId,sharedPref.getStringPref(Constants.USER_ID,""),1);
+                if (!sharedPref.getStringPref(Constants.USER_ID).isEmpty() && sharedPref.getStringPref(Constants.USER_ID) != null) {
+                    PostCart postCart = new PostCart(product.productId,sharedPref.getStringPref(Constants.USER_ID),1);
                     viewModel.addToCart(postCart);
                     Toast.makeText(requireContext(),"تمت اضافة "+ product.productName +" لشنطة التسوق",Toast.LENGTH_SHORT).show();
                 } else {
