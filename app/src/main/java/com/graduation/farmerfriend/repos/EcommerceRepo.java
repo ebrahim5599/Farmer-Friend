@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.graduation.farmerfriend.apis.ECommerceInterface;
 import com.graduation.farmerfriend.caching_room.Product.ProductDatabase;
+import com.graduation.farmerfriend.control.iot_fragments.hasIoTSystem.Data_HasIoT;
 import com.graduation.farmerfriend.ecommerce_models.CartRoot;
 import com.graduation.farmerfriend.ecommerce_models.IOTStatus;
 import com.graduation.farmerfriend.ecommerce_models.PatchCart;
@@ -395,8 +396,9 @@ public class EcommerceRepo {
         cartSingle.subscribe(cartSingleObserver);
     }
 
-    public void checkIotStatus(String userName){
-        Single<IOTStatus> iotStatusSingle = eCommerceInterface.getIotStatus(userName);
+    @NonNull
+    public Single<IOTStatus> checkIotStatus(String userName) {
+        Single<IOTStatus> iotStatusSingle = eCommerceInterface.getIotStatus(userName).subscribeOn(Schedulers.io());
         SingleObserver<IOTStatus> iotStatusSingleObserver = new SingleObserver<IOTStatus>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
@@ -405,15 +407,24 @@ public class EcommerceRepo {
 
             @Override
             public void onSuccess(@NonNull IOTStatus iotStatus) {
-                    iotStatusMutableLiveData.postValue(iotStatus);
+                iotStatusMutableLiveData.postValue(iotStatus);
+                Log.d(TAG, "onSuccess: iotstatus "+iotStatus.hasIotSystem);
             }
 
             @Override
             public void onError(@NonNull Throwable e) {
-
+                iotStatusMutableLiveData.postValue(null);
+                Log.d(TAG,"Iot"+e.toString());
             }
         };
+        iotStatusSingle.subscribe(iotStatusSingleObserver);
+        return iotStatusSingle;
     }
+
+//    public Single<Object> editIotStatus(String userName, ArrayList<Data_HasIoT> data_hasIoT) {
+//        Single<Object> objectSingle = eCommerceInterface.changeIotStatus(userName, data_hasIoT).subscribeOn(Schedulers.io());
+//        return objectSingle;
+//    }
 
     public LiveData<ArrayList<Product>> getAllLiveDataProducts() {
         return allProductsLiveData;
@@ -456,6 +467,8 @@ public class EcommerceRepo {
         }
         return internet;
     }
-
+    public LiveData<IOTStatus> getIotStatusLiveData() {
+        return iotStatusMutableLiveData;
+    }
 
 }

@@ -5,8 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,7 +29,6 @@ import com.graduation.farmerfriend.IOT.ui.main.IOTViewModel;
 import com.graduation.farmerfriend.IOTModels.Control;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.Tips;
-import com.graduation.farmerfriend.caching_room.Tips.TipsDatabase;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentHomeBinding;
 import com.graduation.farmerfriend.e_commerce.ViewRecycleProductsAdapter;
@@ -54,7 +52,6 @@ public class HomeFragment extends Fragment {
     private IOTViewModel mViewModel;
     FragmentHomeBinding fragmentHomeBinding;
     HomeViewModel viewModel;
-    TipsDatabase tipsDatabase;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     ArrayList<Product> productArrayList;
@@ -67,8 +64,6 @@ public class HomeFragment extends Fragment {
         View view = fragmentHomeBinding.getRoot();
         sharedPreferences = requireActivity().getSharedPreferences(Constants.MAIN_SHARED_PREFERENCES, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-
-        tipsDatabase = TipsDatabase.getInstance(getContext());
 
         setHasOptionsMenu(true);
         productArrayList = new ArrayList<>();
@@ -187,15 +182,6 @@ public class HomeFragment extends Fragment {
         fragmentHomeBinding.homeRecyclerViewNews.setAdapter(newsAdapter);
 
 
-        if (getConnectivityStatus(getContext())==false){
-            tipsDatabase.tipsDao().getTips()
-                    .subscribeOn(Schedulers.computation())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(tips -> {
-                        TipsAdapter tipsAdapter = new TipsAdapter((ArrayList<Tips>)tips);
-                        fragmentHomeBinding.homeRecyclerViewTips.setAdapter(tipsAdapter);} , throwable -> {});
-
-        }
         viewModel.getTipsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Tips>>() {
             @Override
             public void onChanged(ArrayList<Tips> tips) {
@@ -227,23 +213,6 @@ public class HomeFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public Boolean getConnectivityStatus(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (activeNetwork != null) {
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                internet = true ;
-                return internet;
-            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                internet = true ;
-                return internet;
-            }
-        } else {
-            internet = false ;
-            return internet;
-        }
-        return internet;
-    }
 
 
 }

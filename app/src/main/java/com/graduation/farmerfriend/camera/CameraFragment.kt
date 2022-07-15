@@ -277,7 +277,6 @@ class CameraFragment : Fragment() {
             "Grape",
             "Grape",
             "Grape",
-            "Invalid",
             "Orange",
             "Peach",
             "Peach",
@@ -310,7 +309,6 @@ class CameraFragment : Fragment() {
             "Esca_(Black_Measles)",
             "Leaf_blight_(Isariopsis_Leaf_Spot)",
             "healthy",
-            "Invalid",
             "Haunglongbing_(Citrus_greening)",
             "Bacterial_spot",
             "healthy",
@@ -334,7 +332,7 @@ class CameraFragment : Fragment() {
         max = outputFeature0!!.floatArray[0]
         var i: Int = 0
         var index: Int = 0
-        for (i in 1..29) {
+        for (i in 1..28) {
             if (outputFeature0.floatArray[i] > max) {
                 max = outputFeature0.floatArray[i]
                 index = i
@@ -354,7 +352,7 @@ class CameraFragment : Fragment() {
                 outputFeature0.floatArray[22].toString() + "\n"+outputFeature0.floatArray[23].toString() +"  "+
                 outputFeature0.floatArray[24].toString() + "  "+outputFeature0.floatArray[25].toString() +"  "+
                 outputFeature0.floatArray[26].toString() + "\n"+outputFeature0.floatArray[27].toString() +"  "+
-                outputFeature0.floatArray[28].toString() + "  "+outputFeature0.floatArray[29].toString() +"  "
+                outputFeature0.floatArray[28].toString()
         result = name[index]
         disease = disease_array[index]
         max = max * 100

@@ -33,15 +33,36 @@ class about_us : Fragment() {
             
             Our app is the Farm Friend app used to help the farmer. Our app is connected to our IoT system to help the farmer who applied our IoT system to control his farm remotely. in our app, we also have e-commerce to help the farmer to buy his needs from tools, fertilizers, and seeds from the same app. It also provides the farmer with an AI feature to detect any disease in the plant by taking a photo of the plant's leaf.
             
-            Mobile Team :
-            Eng / Ebrahim Abd-Elaziz
-            Eng / Ahmed Gamal Ward
-            Eng / Fatma Hassan 
+            Team Member :
+            Eng / Ebrahim Abd-Elaziz (Android & IoT)  
+            https://www.linkedin.com/in/ebrahim-elzayat59 
             
-            Web Team :
-            Eng / Hanaa Taha
-            Eng / Manar Abdallah
+            Eng / Ahmed Gamal Ward (Android & AI) 
+            https://www.linkedin.com/in/ahmedward/ 
             
+            Eng / Fatma Hassan (Android & AI) 
+            https://www.linkedin.com/in/fatma-hassan-51482b1a6/ 
+            
+            Eng / Hanaa Taha (Full-stack) 
+            https://www.linkedin.com/in/hanaa-taha-027907218 
+            
+            Eng / Manar Abdallah (Back-end & AI) 
+            https://www.linkedin.com/in/manar-abdullah-278998197 
+            
+            Eng / Ibrahem Saad (Flutter & IoT) 
+            https://www.linkedin.com/in/ibrahem-saad 
+            
+            Eng / Mohammed Saad (IoT & Embedded) 
+            https://www.linkedin.com/in/eng-mohamed-saad/ 
+            
+            Eng / Alaa Ashraf (Embedded & AI) 
+            https://www.linkedin.com/in/alaa-ashraf-fawzy-elsayed-043997228 
+            
+            Eng / wafaa Samir (Front-end & AI) 
+            https://www.linkedin.com/in/wafaa-samir-6a2420183 
+            
+            Eng / Hend Said (Front-end)
+            https://www.linkedin.com/in/hend-el-ghandour-b526ab190/ 
             """.trimIndent()
         return view
     }
