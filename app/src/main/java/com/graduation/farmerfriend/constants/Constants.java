@@ -7,15 +7,16 @@ public class Constants {
     public static String LOCATION = "LOCATION";
     public static String USER_ID = "USER_ID";
 
-    public static String PHONE = " ";
-    public static String EMAIL = " ";
-    public static String AREA = " ";
-    public static String LOCATION_USER = " ";
-
+    //Mail
+    public static String PHONE = "phone";
+    public static String EMAIL = "email";
+    public static String AREA = "area";
+    public static String LOCATION_USER = "location_user";
     public static String ENABLE = "true";
     public static String COUNTER = "2";
     public static String NAME_BUTTON_MAIL = "SEND";
     public static String USER_NAME = "USER_NAME";
+
     public static String HAS_IOT_SYSTEM ="HAS_IOT_SYSTEM";
     public static String LOCATION_ADDRESS = "LOCATION_ADDRESS";
     public static String NAVIGATION_FRAGMENT = "FRAGMENT NAME";

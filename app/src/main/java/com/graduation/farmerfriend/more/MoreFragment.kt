@@ -50,7 +50,7 @@ class MoreFragment : Fragment() {
         editor = sharedPreferences.edit()
 
         image = sharedPreferences.getString(Constants.photo,"")?.toUri()
-        Toast.makeText(context,image.toString(),Toast.LENGTH_SHORT).show()
+      //  Toast.makeText(context,image.toString(),Toast.LENGTH_SHORT).show()
 
         if (sharedPreferences.getString(Constants.photo,"") != "") {
             context?.let {
@@ -80,7 +80,6 @@ class MoreFragment : Fragment() {
                         startActivityForResult(intent, 100)
                     }
                     if (which == 1) {
-
 
                         editor.putString(Constants.photo,"")
                         editor.apply()
@@ -122,6 +121,8 @@ class MoreFragment : Fragment() {
         }
         binding!!.fragmentMoreTextviewLogout.setOnClickListener {
             Toast.makeText(context, "Logout", Toast.LENGTH_SHORT).show()
+            editor.putString(Constants.photo,"")
+            editor.apply()
             sharedPreferences.edit().putBoolean(Constants.LOGGED_IN, false).apply()
             sharedPreferences.edit().putString(Constants.FIRST_AND_LAST_NAME, "Anonymous User")
                 .apply()
