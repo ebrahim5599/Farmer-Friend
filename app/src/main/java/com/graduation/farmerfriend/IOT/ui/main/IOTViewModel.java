@@ -19,7 +19,7 @@ public class IOTViewModel extends ViewModel {
 
     public void init(Context context) {
         sharedPref = new SharedPref(context, Constants.MAIN_SHARED_PREFERENCES);
-        String IotRef = sharedPref.getStringPref(Constants.USER_ID,"");
+        String IotRef = sharedPref.getStringPref(Constants.USER_ID);
         if(!IotRef.isEmpty()){
         iotRepo = IOTRepo.getInstance(context);
         iotControlLiveData = iotRepo.getControlLiveData();

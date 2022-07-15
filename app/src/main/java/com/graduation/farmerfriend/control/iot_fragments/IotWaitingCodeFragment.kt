@@ -18,6 +18,10 @@ import com.graduation.farmerfriend.repos.EcommerceRepo
 import com.graduation.farmerfriend.sharedPreferences.SharedPref
 import io.reactivex.rxjava3.core.SingleObserver
 import io.reactivex.rxjava3.disposables.Disposable
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import kotlin.collections.ArrayList
 
 class IotWaitingCodeFragment : Fragment() {
@@ -74,11 +78,11 @@ class IotWaitingCodeFragment : Fragment() {
             when {
 
                 viewBinding.iotWaitingCodeText.text.toString() == sharedPref.getStringPref(
-                    Constants.USER_ID, ""
+                    Constants.USER_ID
                 ) -> {
                     val rootRef = FirebaseDatabase.getInstance().reference
 
-                    rootRef.child(sharedPref.getStringPref(Constants.USER_ID, ""))
+                    rootRef.child(sharedPref.getStringPref(Constants.USER_ID))
                         .addListenerForSingleValueEvent(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 if (snapshot.value == null) {
@@ -114,7 +118,7 @@ class IotWaitingCodeFragment : Fragment() {
 
     fun Check(data: ArrayList<Data_HasIoT>) {
         var ecommerceRepo = EcommerceRepo.getInstance()
-        var objectSingle = ecommerceRepo.editIotStatus(sharedPref.getStringPref(Constants.USER_NAME, ""),data)
+        var objectSingle = ecommerceRepo.editIotStatus(sharedPref.getStringPref(Constants.USER_NAME),data)
 
 
         var observer: SingleObserver<Any> = object : SingleObserver<Any> {

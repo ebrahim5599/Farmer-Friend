@@ -1,7 +1,6 @@
 package com.graduation.farmerfriend.e_commerce.search.ui;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,8 +16,6 @@ import com.bumptech.glide.Glide;
 import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.e_commerce.search.pojo.SearchResultPojo;
-import com.graduation.farmerfriend.e_commerce.ui.ECommerceFragmentDirections;
-import com.graduation.farmerfriend.e_commerce.ui.product_categories.FertilizerProductsFragmentDirections;
 import com.graduation.farmerfriend.ecommerce_models.PostCart;
 import com.graduation.farmerfriend.repos.EcommerceRepo;
 import com.graduation.farmerfriend.sharedPreferences.SharedPref;
@@ -75,8 +71,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             @Override
             public void onClick(View view) {
 
-                if (!sharedPref.getStringPref(Constants.USER_ID, "").isEmpty() && sharedPref.getStringPref(Constants.USER_ID, "") != null) {
-                    PostCart postCart = new PostCart(list.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID, ""), 1);
+                if (!sharedPref.getStringPref(Constants.USER_ID).isEmpty() && sharedPref.getStringPref(Constants.USER_ID) != null) {
+                    PostCart postCart = new PostCart(list.get(holder.getAbsoluteAdapterPosition()).productId, sharedPref.getStringPref(Constants.USER_ID), 1);
                     ecommerceRepo.addToCart(postCart);
                     Toast.makeText(context, "تمت اضافة " + list.get(holder.getAbsoluteAdapterPosition()).productName + " لشنطة التسوق", Toast.LENGTH_SHORT).show();
                 } else {

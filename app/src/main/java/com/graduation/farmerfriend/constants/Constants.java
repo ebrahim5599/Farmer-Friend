@@ -7,11 +7,12 @@ public class Constants {
     public static String LOCATION = "LOCATION";
     public static String USER_ID = "USER_ID";
 
-    //Mail
-    public static String PHONE = "phone";
-    public static String EMAIL = "email";
-    public static String AREA = "area";
-    public static String LOCATION_USER = "location_user";
+    public static String PHONE = "PHONE";
+    public static String EMAIL = "EMAIL";
+    public static String AREA = "AREA";
+    public static String LOCATION_USER = "LOCATION_USER";
+    public static String REQUEST_SENT = "REQUEST_SENT";
+
     public static String ENABLE = "true";
     public static String COUNTER = "2";
     public static String NAME_BUTTON_MAIL = "SEND";

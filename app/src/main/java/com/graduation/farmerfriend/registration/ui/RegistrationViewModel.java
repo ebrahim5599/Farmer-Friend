@@ -45,7 +45,8 @@ public class RegistrationViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<ForgotPassword> call, Throwable t) {
-                codeMessageString.setValue(t.getMessage());
+//                codeMessageString.setValue(t.getMessage());
+                codeMessageString.setValue("Something went wrong, please make sure you are connected to the internet");
             }
         });
     }
@@ -71,7 +72,8 @@ public class RegistrationViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<ForgotPassword> call, Throwable t) {
-                codeMessageString.setValue(t.getMessage());
+//                codeMessageString.setValue(t.getMessage());
+                codeMessageString.setValue("Something went wrong, please make sure you are connected to the internet");
 
             }
         });
@@ -100,8 +102,9 @@ public class RegistrationViewModel extends ViewModel {
 
             @Override
             public void onFailure(Call<UserData> call, Throwable t) {
-                errorMessage.setValue(t.toString());
-                Log.i("login", t.toString());
+//                errorMessage.setValue(t.toString());
+                errorMessage.setValue("Something went wrong, please make sure you are connected to the internet");
+
             }
         });
     }
@@ -130,8 +133,9 @@ public class RegistrationViewModel extends ViewModel {
 
                     @Override
                     public void onFailure(Call<UserData> call, Throwable t) {
-                        errorMessage.setValue(t.toString());
-                        Log.i("login", t.toString());
+//                        errorMessage.setValue(t.toString());
+                        errorMessage.setValue("Something went wrong, please make sure you are connected to the internet");
+
                     }
                 });
     }

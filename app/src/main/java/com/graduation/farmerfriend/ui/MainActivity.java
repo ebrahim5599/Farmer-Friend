@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements AddressCallBack {
     private static final String DEBUG_TAG = "NetworkStatusExample";
     private NavController navCo;
     public static boolean skipped = false;
+    public static boolean requestSentVariable = false;
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
