@@ -29,7 +29,7 @@ import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils.rotateImage
 import com.graduation.farmerfriend.databinding.FragmentCameraBinding
-import com.graduation.farmerfriend.ml.Tflite1Model
+import com.graduation.farmerfriend.ml.Finalmodel
 import com.graduation.farmerfriend.permissions.FragmentPermissionHelper
 import com.graduation.farmerfriend.permissions.FragmentPermissionInterface
 import org.tensorflow.lite.DataType
@@ -37,6 +37,7 @@ import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.*
 import java.nio.ByteBuffer
+import java.nio.ByteOrder
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -57,7 +58,6 @@ class CameraFragment : Fragment() {
     private var image: Boolean = false
     private var max: Float = 0.0f
     private var disease: String? = null
-    private var array: String? = null
 
     private var MY_CAMERA_PERMISSION_CODE = 100
 
@@ -252,16 +252,17 @@ class CameraFragment : Fragment() {
 
         val bitmap = bitmap.let { it1 -> Bitmap.createScaledBitmap(it1, 224, 224, true) }
 
-        val model = context?.let { it1 -> Tflite1Model.newInstance(it1) }
+        val model = context?.let { it1 -> Finalmodel.newInstance(it1) }
 
         val inputFeature0 =
             TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
 
-        val tensorImage = TensorImage(DataType.FLOAT32)
-        tensorImage.load(bitmap)
-        val byteBuffer: ByteBuffer = tensorImage.buffer
+//        val tensorImage = TensorImage(DataType.FLOAT32)
+//        tensorImage.load(bitmap)
+//        val byteBuffer: ByteBuffer = tensorImage.buffer
 
-        inputFeature0.loadBuffer(byteBuffer)
+        inputFeature0.loadBuffer(Convert.bitmapToByteBuffer(bitmap,224,224))
+
 
         val outputs = model?.process(inputFeature0)
         val outputFeature0 = outputs?.outputFeature0AsTensorBuffer
@@ -279,6 +280,7 @@ class CameraFragment : Fragment() {
             "Grape",
             "Grape",
             "Grape",
+            "Invalid",
             "Orange",
             "Peach",
             "Peach",
@@ -311,6 +313,7 @@ class CameraFragment : Fragment() {
             "Esca_(Black_Measles)",
             "Leaf_blight_(Isariopsis_Leaf_Spot)",
             "healthy",
+            "Invalid",
             "Haunglongbing_(Citrus_greening)",
             "Bacterial_spot",
             "healthy",
@@ -334,27 +337,12 @@ class CameraFragment : Fragment() {
         max = outputFeature0!!.floatArray[0]
         var i: Int = 0
         var index: Int = 0
-        for (i in 1..28) {
+        for (i in 1..29) {
             if (outputFeature0.floatArray[i] > max) {
                 max = outputFeature0.floatArray[i]
                 index = i
             }
         }
-        array = outputFeature0.floatArray[0].toString() + "  "+outputFeature0.floatArray[1].toString() +"  "+
-                outputFeature0.floatArray[2].toString() + "\n"+outputFeature0.floatArray[3].toString() +"  "+
-                outputFeature0.floatArray[4].toString() + "  "+outputFeature0.floatArray[5].toString() +"  "+
-                outputFeature0.floatArray[6].toString() + "\n"+outputFeature0.floatArray[7].toString() +"  "+
-                outputFeature0.floatArray[8].toString() + "  "+outputFeature0.floatArray[9].toString() +"  "+
-                outputFeature0.floatArray[10].toString() + "\n"+outputFeature0.floatArray[11].toString() +"  "+
-                outputFeature0.floatArray[12].toString() + "  "+outputFeature0.floatArray[13].toString() +"  "+
-                outputFeature0.floatArray[14].toString() + "\n"+outputFeature0.floatArray[15].toString() +"  "+
-                outputFeature0.floatArray[16].toString() + "  "+outputFeature0.floatArray[17].toString() +"  "+
-                outputFeature0.floatArray[18].toString() + "\n"+outputFeature0.floatArray[19].toString() +"  "+
-                outputFeature0.floatArray[20].toString() + "  "+outputFeature0.floatArray[21].toString() +"  "+
-                outputFeature0.floatArray[22].toString() + "\n"+outputFeature0.floatArray[23].toString() +"  "+
-                outputFeature0.floatArray[24].toString() + "  "+outputFeature0.floatArray[25].toString() +"  "+
-                outputFeature0.floatArray[26].toString() + "\n"+outputFeature0.floatArray[27].toString() +"  "+
-                outputFeature0.floatArray[28].toString()
         result = name[index]
         disease = disease_array[index]
         max = max * 100
@@ -474,7 +462,6 @@ class CameraFragment : Fragment() {
 //                intent.putExtra("image", byteArray)
 //            }
 
-            intent.putExtra("array",array)
             intent.putExtra("result", result)
             intent.putExtra("disease", disease)
             intent.putExtra("max", max)
@@ -547,4 +534,6 @@ class CameraFragment : Fragment() {
         }
 
     }
+
+
 }
