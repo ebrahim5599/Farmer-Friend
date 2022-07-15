@@ -39,7 +39,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class EcommerceRepo {
     private static EcommerceRepo Instance;
     private static final String ECOMMERCE_SERVICE_BASE_URL = "http://newweb19992022-001-site1.ftempurl.com/";
-    private  ECommerceInterface eCommerceInterface;
+    private ECommerceInterface eCommerceInterface;
     private CompositeDisposable compositeDisposable;
     private static final String TAG = "EcommerceRepo";
     private final MutableLiveData<ArrayList<Product>> allProductsLiveData;
@@ -74,6 +74,7 @@ public class EcommerceRepo {
          seedsarray = new ArrayList<>();
          fertsarray = new ArrayList<>();
          toolsarray = new ArrayList<>();
+
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
@@ -117,6 +118,7 @@ public class EcommerceRepo {
                 });
 
         }
+
 
     EcommerceRepo() {
 
@@ -390,7 +392,7 @@ public class EcommerceRepo {
 
             @Override
             public void onError(@NonNull Throwable e) {
-                Log.d(TAG, "onError: "+e);
+                Log.d(TAG, "onError: " + e);
             }
         };
         cartSingle.subscribe(cartSingleObserver);
@@ -421,10 +423,10 @@ public class EcommerceRepo {
         return iotStatusSingle;
     }
 
-//    public Single<Object> editIotStatus(String userName, ArrayList<Data_HasIoT> data_hasIoT) {
-//        Single<Object> objectSingle = eCommerceInterface.changeIotStatus(userName, data_hasIoT).subscribeOn(Schedulers.io());
-//        return objectSingle;
-//    }
+    public Single<Object> editIotStatus(String userName, ArrayList<Data_HasIoT> data_hasIoT) {
+        Single<Object> objectSingle = eCommerceInterface.changeIotStatus(userName, data_hasIoT).subscribeOn(Schedulers.io());
+        return objectSingle;
+    }
 
     public LiveData<ArrayList<Product>> getAllLiveDataProducts() {
         return allProductsLiveData;
@@ -467,8 +469,10 @@ public class EcommerceRepo {
         }
         return internet;
     }
+
     public LiveData<IOTStatus> getIotStatusLiveData() {
         return iotStatusMutableLiveData;
     }
+
 
 }

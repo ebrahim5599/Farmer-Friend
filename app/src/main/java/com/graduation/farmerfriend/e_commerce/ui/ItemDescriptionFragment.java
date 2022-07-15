@@ -19,6 +19,7 @@ import android.widget.Toast;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.graduation.farmerfriend.R;
 import com.graduation.farmerfriend.constants.Constants;
 import com.graduation.farmerfriend.databinding.FragmentItemDescriptionBinding;
 import com.graduation.farmerfriend.ecommerce_models.PostCart;
@@ -78,17 +79,21 @@ public class ItemDescriptionFragment extends Fragment {
                     Glide.with(ItemDescriptionFragment.this).load("http://teamweb992022-001-site1.htempurl.com/productImages/" + imageName[1]).into((ImageView) binding.itemDescriptionImageviewProduct);
                 }
 
+                if (product.description == null){
+                    binding.itemDescriptionTextviewDescription.setText(R.string.no_description_for_this_product);
+                }
+
                 onclick(product);
             }
         });
 
         if(getConnectivityStatus(getContext())){
 
-            binding.description.setVisibility(View.VISIBLE);
+//            binding.description.setVisibility(View.VISIBLE);
             binding.itemDescriptionButtonAddToCart.setVisibility(View.VISIBLE);
             binding.mainActivityNoInternetConnection.setVisibility(View.GONE);
         }else {
-            binding.description.setVisibility(View.GONE);
+//            binding.description.setVisibility(View.GONE);
             binding.itemDescriptionButtonAddToCart.setVisibility(View.GONE);
             binding.mainActivityNoInternetConnection.setVisibility(View.VISIBLE);
         }

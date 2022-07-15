@@ -1,23 +1,18 @@
 package com.graduation.farmerfriend.registration.ui;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.graduation.farmerfriend.registration.data.RegisterClient;
 import com.graduation.farmerfriend.registration.pojo.ForgotPassword;
-import com.graduation.farmerfriend.registration.pojo.NullClass;
 import com.graduation.farmerfriend.registration.pojo.UserData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 import retrofit2.Call;
 import retrofit2.Callback;

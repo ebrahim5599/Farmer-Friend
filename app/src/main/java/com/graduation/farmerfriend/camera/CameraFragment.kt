@@ -119,7 +119,6 @@ class CameraFragment : Fragment() {
 
         viewBinding.imageGallryButton.setOnClickListener {
             viewBinding.previewImageNow.visibility = View.VISIBLE
-
             viewBinding.previewCameraNow.visibility = View.GONE
             image = true
             camera = false
@@ -159,6 +158,7 @@ class CameraFragment : Fragment() {
                 img_gallery?.let { it1 -> imageProcessing(it1) }
             }
 
+
         }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -179,6 +179,7 @@ class CameraFragment : Fragment() {
                 }
             }.toTypedArray()
     }
+
 
 
     override fun onDestroyView() {

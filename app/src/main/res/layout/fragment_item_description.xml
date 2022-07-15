@@ -4,159 +4,155 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     tools:context=".e_commerce.ui.ItemDescriptionFragment">
 
-    <LinearLayout
-        android:id="@+id/description"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <ScrollView
+        android:layout_marginBottom="64dp">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="64dp">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="160dp"
+                android:background="@drawable/setting_background" />
 
-                <FrameLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/image_product_card_view"
+                android:layout_width="288dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="8dp">
+
+                <ImageView
+                    android:id="@+id/item_description_imageview_product"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:background="@drawable/setting_background" />
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/no_product" />
+            </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/image_product_card_view"
-                    android:layout_width="288dp"
-                    android:layout_height="200dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="8dp">
+            <TextView
+                android:id="@+id/item_description_textview_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_product_card_view"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:textColor="@color/mainText"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/item_description_imageview_product"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/no_product" />
-                </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:id="@+id/item_description_linearlayout_price"
+                android:layout_below="@id/item_description_textview_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_alignParentEnd="true"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/item_description_textview_name"
+                    android:id="@+id/item_description_Textview_Price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/image_product_card_view"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/item_name"
-                    android:textColor="#070707"
-                    android:textSize="24sp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="4dp"
+                    android:text="1000"
+                    android:textColor="@color/greenText"
+                    android:fontFamily="@font/maiandra_gd_regular"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-                <LinearLayout
-                    android:id="@+id/item_description_linearlayout_price"
-                    android:layout_below="@id/item_description_textview_name"
+                <TextView
+                    android:id="@+id/item_description_textView_price_currency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:orientation="horizontal">
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="2dp"
+                    android:text="EGP"
+                    android:textColor="@color/greenText"
+                    android:fontFamily="@font/maiandra_gd_regular"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/item_description_Textview_Price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="4dp"
-                        android:text="1000"
-                        android:textColor="@color/greenCartText"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/item_description_imageview_wishlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_product_card_view"
+                android:layout_gravity="end"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="20dp"
+                android:layout_toEndOf="@id/item_description_imageview_share"
+                android:background="@drawable/item_description_fragment_icons_background"
+                android:clickable="true"
+                android:elevation="1dp"
+                android:focusable="true"
+                android:stateListAnimator="@null"
+                app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24" />
 
-                    <TextView
-                        android:id="@+id/item_description_textView_price_currency"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginBottom="2dp"
-                        android:text="EGP"
-                        android:textColor="@color/greenCartText"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+            <TextView
+                android:id="@+id/item_description_imageview_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_product_card_view"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/item_description_fragment_icons_background"
+                android:clickable="true"
+                android:elevation="1dp"
+                android:focusable="true"
+                android:stateListAnimator="@null"
+                app:drawableStartCompat="@drawable/ic_baseline_share_24" />
 
-                <TextView
-                    android:id="@+id/item_description_imageview_wishlist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/image_product_card_view"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_toEndOf="@id/item_description_imageview_share"
-                    android:background="@drawable/button_delete_cart_shape"
-                    android:clickable="true"
-                    android:elevation="1dp"
-                    android:focusable="true"
-                    android:stateListAnimator="@null"
-                    android:textColor="@color/black"
-                    app:drawableStartCompat="@drawable/ic_baseline_favorite_border_24" />
+            <TextView
+                android:id="@+id/item_description_textview_title_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_description_linearlayout_price"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:text="@string/description"
+                android:textColor="@color/mainText"
+                android:textSize="24sp" />
 
-                <TextView
-                    android:id="@+id/item_description_imageview_share"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/image_product_card_view"
-                    android:layout_margin="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/button_delete_cart_shape"
-                    android:clickable="true"
-                    android:elevation="1dp"
-                    android:focusable="true"
-                    android:stateListAnimator="@null"
-                    app:drawableStartCompat="@drawable/ic_baseline_share_24" />
+            <TextView
+                android:id="@+id/item_description_textview_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_description_textview_title_description"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:textColor="@color/mainText" />
 
-                <TextView
-                    android:id="@+id/item_description_textview_title_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/item_description_linearlayout_price"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="@string/description"
-                    android:textColor="#090909"
-                    android:textSize="24sp" />
+        </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/item_description_textview_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/item_description_textview_title_description"
-                    android:layout_margin="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="#090909" />
-
-            </RelativeLayout>
-
-        </ScrollView>
-
-    </LinearLayout>
+    </ScrollView>
 
     <FrameLayout
         android:id="@+id/item_description_button_add_to_cart"
@@ -177,6 +173,7 @@
             android:paddingBottom="16dp"
             android:text="@string/add"
             android:textAllCaps="true"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:drawableLeftCompat="@drawable/ic_baseline_add_shopping_cart_24" />
@@ -205,7 +202,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/no_internet"
-            android:textColor="@color/black"
+            android:textColor="@color/mainText"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:textSize="24sp"
             android:layout_margin="8dp"
             android:textStyle="bold" />
@@ -217,7 +215,8 @@
             android:gravity="center"
             android:layout_marginHorizontal="8dp"
             android:text="@string/check_your_conn"
-            android:textColor="@color/black"
+            android:textColor="@color/mainText"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:textSize="16sp" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

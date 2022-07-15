@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:layoutDirection="ltr"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -17,7 +18,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/cardBackground">
 
             <ImageView
                 android:id="@+id/store_item_image"
@@ -37,9 +39,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_toStartOf="@id/store_item_amount"
                 android:layout_toEndOf="@id/store_item_image"
-                android:fontFamily="@font/hacen_saudi_arabia"
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:gravity="start"
                 android:text="Mint"
-                android:textColor="@color/grey_Cart_Item_Name"
+                android:textColor="@color/mainText"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -47,12 +50,12 @@
                 android:id="@+id/store_item_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/grey_round_shape"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:layout_alignParentEnd="true">
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/activity_store_imageButton_minus"
@@ -92,9 +95,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/activity_store_item_name"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_toEndOf="@id/store_item_image"
-                android:fontFamily="@font/hacen_saudi_arabia"
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:gravity="start"
                 android:text="mint is very useful to us, bla bla bla"
                 android:textSize="14sp" />
         </RelativeLayout>

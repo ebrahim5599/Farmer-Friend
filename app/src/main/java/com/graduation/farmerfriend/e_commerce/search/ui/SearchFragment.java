@@ -73,7 +73,7 @@ public class SearchFragment extends Fragment {
         inflater.inflate(R.menu.search_menu, menu);
 
         SearchView searchView = (SearchView) menu.findItem(R.id.search_view).getActionView();
-        searchView.setQueryHint("type here to search");
+        searchView.setQueryHint(getString(R.string.type_here_to_search));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {

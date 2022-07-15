@@ -50,6 +50,7 @@ public class Constants {
     public static String current_condition = "cold";
     public static String current_humidity = "30";
     public static String current_wind = "40";
+    public static String last_time = "LastTime";
 
     // Upload photo
     public static String photo = "uri" ;

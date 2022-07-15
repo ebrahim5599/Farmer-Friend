@@ -5,6 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="ltr"
     tools:context=".IOT.ui.main.IOTWeatherFragment">
 
     <LinearLayout
@@ -18,6 +19,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:text="@string/temperature"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:textSize="16sp"/>
 
         <RelativeLayout
@@ -46,9 +48,10 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:fontFamily="@font/maiandra_gd_regular"
                 android:gravity="center"
                 android:text="24°"
-                android:textColor="@color/black"
+                android:textColor="@color/mainText"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -58,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/pressure"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:textSize="16sp" />
 
 
@@ -65,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:backgroundTint="@color/grey_Iot_Soil_Cardview"
+            android:backgroundTint="@color/cardBackground"
             app:cardCornerRadius="16dp">
 
             <LinearLayout
@@ -91,7 +95,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="1000 P"
-                    android:textColor="@color/black"
+                    android:fontFamily="@font/maiandra_gd_regular"
+                    android:textColor="@color/mainText"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -103,13 +108,14 @@
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
             android:text="@string/luminous_intensity"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:textSize="16sp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:backgroundTint="@color/grey_Iot_Soil_Cardview"
+            android:backgroundTint="@color/cardBackground"
             app:cardCornerRadius="16dp">
 
             <LinearLayout
@@ -135,7 +141,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="33.2263 Lux"
-                    android:textColor="@color/black"
+                    android:fontFamily="@font/maiandra_gd_regular"
+                    android:textColor="@color/mainText"
                     android:textSize="16sp" />
             </LinearLayout>
 

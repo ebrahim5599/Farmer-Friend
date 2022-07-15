@@ -5,11 +5,13 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="ltr"
     tools:context=".IOT.ui.main.IOTWeatherFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -25,6 +27,17 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/temperature"
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/pressure"
+                android:fontFamily="@font/maiandra_gd_regular"
                 android:textSize="16sp" />
 
             <TextView
@@ -34,6 +47,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/luminous_intensity"
+                android:fontFamily="@font/maiandra_gd_regular"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -48,6 +62,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp">
@@ -74,120 +90,11 @@
                     android:layout_centerVertical="true"
                     android:gravity="center"
                     android:text="24°"
-                    android:textColor="@color/black"
+                    android:fontFamily="@font/maiandra_gd_regular"
+                    android:textColor="@color/mainText"
                     android:textSize="24sp"
                     android:textStyle="bold" />
             </RelativeLayout>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView3"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:backgroundTint="#F0F0F0"
-                app:cardCornerRadius="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginVertical="16dp"
-                        android:layout_marginBottom="8dp"
-                        android:background="@drawable/iot_image_weather"
-                        android:src="@drawable/high" />
-
-                    <TextView
-                        android:id="@+id/fragment_iot_weather_textView_luminous_intensity"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="16dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="33.2263 lx"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/humidity"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/pressure"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:orientation="horizontal">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="#F0F0F0"
-                app:cardCornerRadius="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="128dp"
-                        android:layout_height="128dp"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="24dp"
-                        android:background="@drawable/iot_image_weather"
-                        android:src="@drawable/humidity_iot"
-                        tools:ignore="ImageContrastCheck" />
-
-                    <TextView
-                        android:id="@+id/fragment_iot_weather_textView_humidity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:text="65%"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"
@@ -195,9 +102,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="#F0F0F0"
+                android:backgroundTint="@color/cardBackground"
                 app:cardCornerRadius="24dp">
 
                 <LinearLayout
@@ -221,15 +128,50 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:text="1000 mb"
-                        android:textColor="@color/black"
+                        android:fontFamily="@font/maiandra_gd_regular"
+                        android:textColor="@color/mainText"
                         android:textSize="16sp" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/cardBackground"
+                app:cardCornerRadius="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/iot_image_weather"
+                        android:src="@drawable/high" />
+                    <TextView
+                        android:id="@+id/fragment_iot_weather_textView_luminous_intensity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="33.2263 lx"
+                        android:fontFamily="@font/maiandra_gd_regular"
+                        android:textColor="@color/mainText"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
-
-
-
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

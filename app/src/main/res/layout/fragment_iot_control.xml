@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
+    android:layoutDirection="ltr"
     tools:context=".IOT.ui.main.IOTControlFragment">
 
     <LinearLayout
@@ -18,9 +20,10 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
-            android:backgroundTint="@color/grey_Iot_Control_cardview"
+            android:backgroundTint="@color/cardBackground"
             app:cardCornerRadius="20dp"
-            app:cardElevation="15dp">
+            app:cardElevation="15dp"
+            android:layoutDirection="locale">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,7 +45,9 @@
                         android:layout_marginBottom="16dp"
                         android:gravity="center"
                         android:text="@string/automatic_or_manual"
-                        android:textColor="@color/black_Iot_Control_Text"
+                        android:textColor="@color/mainText"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/maiandra_gd_regular"
                         android:textSize="14sp" />
 
                     <Button
@@ -51,7 +56,10 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/green_Iot_Control_Button"
                         android:padding="24dp"
+                        android:fontFamily="@font/maiandra_gd_regular"
+                        android:textColor="@color/white"
                         android:text="@string/manual"
+                        android:textStyle="bold"
                         app:cornerRadius="20dp" />
 
                 </LinearLayout>
@@ -69,6 +77,7 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginEnd="15dp"
                         android:layout_marginBottom="15dp"
+                        android:backgroundTint="@color/iotControlCardBackground"
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
@@ -93,7 +102,8 @@
                                     android:layout_weight="1"
                                     android:gravity="center_vertical"
                                     android:text="@string/automatic"
-                                    android:textColor="@color/black_Iot_control_text2"
+                                    android:textColor="@color/mainText"
+                                    android:fontFamily="@font/maiandra_gd_regular"
                                     android:textSize="12sp" />
 
                                 <TextView
@@ -103,7 +113,8 @@
                                     android:layout_weight="1"
                                     android:gravity="center_vertical"
                                     android:text="@string/manual"
-                                    android:textColor="@color/black_Iot_control_text2"
+                                    android:textColor="@color/mainText"
+                                    android:fontFamily="@font/maiandra_gd_regular"
                                     android:textSize="12sp" />
 
                                 <TextView
@@ -113,7 +124,8 @@
                                     android:layout_weight="1"
                                     android:gravity="center_vertical"
                                     android:text="@string/water_pump"
-                                    android:textColor="@color/black_Iot_control_text2"
+                                    android:textColor="@color/mainText"
+                                    android:fontFamily="@font/maiandra_gd_regular"
                                     android:textSize="12sp" />
 
                                 <TextView
@@ -124,9 +136,9 @@
                                     android:gravity="center_vertical"
                                     android:singleLine="false"
                                     android:text="@string/fertilizer_pump"
-                                    android:textColor="@color/black_Iot_control_text2"
+                                    android:textColor="@color/mainText"
+                                    android:fontFamily="@font/maiandra_gd_regular"
                                     android:textSize="11sp" />
-
                             </LinearLayout>
 
                             <LinearLayout
@@ -177,6 +189,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:text="@string/water_pump"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:textSize="18sp" />
 
         <androidx.cardview.widget.CardView
@@ -186,7 +199,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            android:backgroundTint="@color/grey_Iot_Control_cardview"
+            android:backgroundTint="@color/cardBackground"
             app:cardCornerRadius="20dp"
             app:cardElevation="15dp">
 
@@ -264,6 +277,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:text="@string/fertilizer_pump"
+            android:fontFamily="@font/maiandra_gd_regular"
             android:textSize="18sp" />
 
         <androidx.cardview.widget.CardView
@@ -274,7 +288,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="30dp"
-            android:backgroundTint="@color/grey_Iot_Control_cardview"
+            android:backgroundTint="@color/cardBackground"
             app:cardCornerRadius="20dp"
             app:cardElevation="15dp">
 

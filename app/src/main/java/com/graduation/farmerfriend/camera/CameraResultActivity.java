@@ -28,12 +28,12 @@ public class CameraResultActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-//        binding.cameraFab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                finish();
-//            }
-//        });
+        binding.cameraFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         Intent n = getIntent();
         array = n.getStringExtra("array");

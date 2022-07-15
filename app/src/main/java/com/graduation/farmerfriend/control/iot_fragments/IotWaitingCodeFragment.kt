@@ -16,8 +16,10 @@ import com.graduation.farmerfriend.constants.Constants
 import com.graduation.farmerfriend.control.iot_fragments.hasIoTSystem.Data_HasIoT
 import com.graduation.farmerfriend.control.iot_fragments.hasIoTSystem.HasIoTSystem
 import com.graduation.farmerfriend.databinding.FragmentIotWaitingCodeBinding
+import com.graduation.farmerfriend.repos.EcommerceRepo
 import com.graduation.farmerfriend.sharedPreferences.SharedPref
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleObserver
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -121,32 +123,19 @@ class IotWaitingCodeFragment : Fragment() {
     }
 
     fun Check(data: ArrayList<Data_HasIoT>) {
+        var ecommerceRepo = EcommerceRepo.getInstance()
+        var objectSingle = ecommerceRepo.editIotStatus(sharedPref.getStringPref(Constants.USER_NAME, ""),data)
 
-        var interceptor =  HttpLoggingInterceptor()
-        interceptor.level
-        var client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-
-        var retrofit = Retrofit.Builder()
-            .baseUrl("http://teamweb992022-001-site1.htempurl.com/")
-            .client(client)
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-
-        var IoT = retrofit.create(HasIoTSystem::class.java)
-
-        var username =  sharedPref.getStringPref(Constants.USER_NAME, "")
-        var objectSingle = IoT.Has_IoT(username, data).subscribeOn(Schedulers.io())
 
         var observer: SingleObserver<Any> = object : SingleObserver<Any> {
             override fun onSubscribe(d: Disposable) {}
             override fun onSuccess(o: Any) {
+                sharedPref.putBoolPref(Constants.HAS_IOT_SYSTEM,true)
                 Log.d(TAG, "onSuccess: patching")
             }
 
             override fun onError(e: Throwable) {
-                Log.d(TAG, "onError: $e")
+                Log.d(TAG, "onError: $e ")
             }
         }
 

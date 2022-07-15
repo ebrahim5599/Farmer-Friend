@@ -32,10 +32,6 @@
             android:exported="false"
             android:theme="@style/Theme.FarmerFriend"/>
         <activity
-            android:name=".IOT.IOT_Activity"
-            android:exported="true"
-            android:label="@string/title_activity_iot" />
-        <activity
             android:name=".ui.MainActivity"
             android:exported="true">
             <meta-data

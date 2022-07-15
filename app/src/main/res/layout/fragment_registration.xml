@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
+    android:layoutDirection="ltr"
     tools:context=".registration.ui.RegistrationFragment">
 
     <ScrollView
@@ -16,6 +18,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:layoutDirection="locale"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -30,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:layout_weight="1"
-                    android:hint="First Name"
+                    android:hint="@string/first_name"
                     android:inputType="text"
                     android:padding="16dp" />
 
@@ -40,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_weight="1"
-                    android:hint="Last Name"
+                    android:hint="@string/last_name"
                     android:inputType="text"
                     android:padding="16dp" />
             </LinearLayout>
@@ -52,9 +55,10 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
-                android:drawableStart="@drawable/ic_baseline_account_circle_24"
+                android:drawableStart="@drawable/ic_round_account_circle_24"
                 android:drawablePadding="10dp"
-                android:hint="Username"
+                android:hint="@string/username"
+                android:textDirection="ltr"
                 android:inputType="text"
                 android:padding="16dp" />
 
@@ -67,7 +71,8 @@
                 android:layout_marginBottom="24dp"
                 android:drawableStart="@drawable/ic_round_email_24"
                 android:drawablePadding="10dp"
-                android:hint="Email"
+                android:hint="@string/email"
+                android:textDirection="ltr"
                 android:inputType="textEmailAddress"
                 android:padding="16dp" />
 
@@ -80,9 +85,9 @@
                 android:layout_marginBottom="24dp"
                 android:drawableStart="@drawable/ic_round_lock_24"
                 android:drawablePadding="10dp"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
-                android:padding="16dp" />
+                android:padding="16dp"/>
 
             <EditText
                 android:id="@+id/register_confirm_password_edit_text"
@@ -93,7 +98,7 @@
                 android:layout_marginBottom="24dp"
                 android:drawableStart="@drawable/ic_round_verified_user_24"
                 android:drawablePadding="10dp"
-                android:hint="Confirm Password"
+                android:hint="@string/confirm_password"
                 android:inputType="textPassword"
                 android:padding="16dp" />
 
@@ -113,7 +118,7 @@
                     android:gravity="center"
                     android:paddingTop="16dp"
                     android:paddingBottom="16dp"
-                    android:text="Sign Up"
+                    android:text="@string/sign_up"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
@@ -123,20 +128,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layoutDirection="locale"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Already have an account?" />
+                    android:text="@string/already_have_an_account" />
 
                 <Button
                     android:id="@+id/back_to_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:text="Log in"
-                    android:textColor="@color/black" />
+                    android:text="@string/log_in"
+                    android:textColor="@color/mainText" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

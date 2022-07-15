@@ -1,19 +1,12 @@
 package com.graduation.farmerfriend.registration.data;
 
-import androidx.annotation.NonNull;
-
 import com.graduation.farmerfriend.registration.pojo.ForgotPassword;
-import com.graduation.farmerfriend.registration.pojo.NullClass;
 import com.graduation.farmerfriend.registration.pojo.UserData;
 
 import java.util.HashMap;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;

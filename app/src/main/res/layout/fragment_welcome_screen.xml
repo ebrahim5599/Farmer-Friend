@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-tools:context=".ui.WelcomeScreenFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainBackground"
+    android:orientation="vertical"
+    tools:context=".ui.WelcomeScreenFragment">
 
     <Button
         android:id="@+id/skip_now_button"
@@ -15,7 +16,7 @@ tools:context=".ui.WelcomeScreenFragment">
         android:layout_gravity="end"
         android:background="@android:color/transparent"
         android:text="@string/skip_now"
-        android:textColor="#757575"
+        android:textColor="@color/normalText"
         android:textSize="12sp" />
 
     <ScrollView
@@ -37,8 +38,8 @@ tools:context=".ui.WelcomeScreenFragment">
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/maiandra_gd_regular"
                 android:gravity="center"
-                android:text="Welcome to"
-                android:textColor="@color/black"
+                android:text="@string/welcome_to"
+                android:textColor="@color/mainText"
                 android:textSize="24sp" />
 
             <TextView
@@ -50,7 +51,7 @@ tools:context=".ui.WelcomeScreenFragment">
                 android:fontFamily="@font/maiandra_gd_regular"
                 android:gravity="center"
                 android:text="Farmer Friend"
-                android:textColor="@color/black"
+                android:textColor="@color/mainText"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -59,7 +60,7 @@ tools:context=".ui.WelcomeScreenFragment">
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_welcome_screen" />
+                android:src="@drawable/ic_character_welcome_screen" />
 
             <FrameLayout
                 android:id="@+id/welcome_login"
@@ -99,7 +100,7 @@ tools:context=".ui.WelcomeScreenFragment">
                     android:paddingBottom="16dp"
                     android:text="@string/sign_up"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
+                    android:textColor="@color/mainText"
                     android:textStyle="bold" />
             </FrameLayout>
         </LinearLayout>

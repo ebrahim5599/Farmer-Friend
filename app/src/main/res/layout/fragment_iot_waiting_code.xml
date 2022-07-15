@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainBackground"
     tools:context=".control.iot_fragments.IotWaitingCodeFragment">
 
     <LinearLayout
@@ -24,8 +25,10 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="32dp"
             android:textSize="16sp"
-            android:textColor="#424242"
-            android:text="Our team will contact with you soon."/>
+            android:textColor="@color/mainText"
+            android:fontFamily="@font/maiandra_gd_regular"
+            android:textStyle="bold"
+            android:text="@string/our_team_will_contact_with_you_soon"/>
 
         <EditText
             android:id="@+id/iot_waiting_code_text"
@@ -35,7 +38,6 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:textSize="16sp"
-            android:textColor="#424242"
             android:background="@drawable/user_data_shape"
             android:hint="@string/enter_the_farm_code_you_received"/>
 
@@ -51,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/enter"
                 android:textColor="@color/white"
+                android:fontFamily="@font/maiandra_gd_regular"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:paddingStart="24dp"

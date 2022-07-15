@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="#F3F2F2">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="200dp"
         android:layout_height="248dp"
         android:layout_margin="4dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/cardBackground3"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp">
 
@@ -20,7 +20,7 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/product_image"
                 android:layout_width="0dp"
-                android:layout_height="140sp"
+                android:layout_height="140dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
                 android:scaleType="fitXY"
@@ -30,15 +30,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/roundedImage" />
 
-
             <TextView
                 android:id="@+id/product_name"
                 android:layout_width="0dp"
-                android:layout_height="28sp"
+                android:layout_height="28dp"
                 android:layout_below="@id/product_image"
                 android:layout_marginHorizontal="10sp"
-                android:layout_marginTop="12sp"
-                android:fontFamily="@font/hacen_saudi_arabia"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/mainText"
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:textStyle="bold"
                 android:text="Thyme"
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -47,20 +48,24 @@
 
             <TextView
                 android:id="@+id/product_price"
-                android:layout_width="120sp"
-                android:layout_height="28sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/product_name"
-                android:fontFamily="@font/hacen_saudi_arabia"
-                android:text="10 EGP"
                 android:layout_marginVertical="8sp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/maiandra_gd_regular"
+                android:text="10 EGP"
+                android:textColor="@color/greenText"
                 android:textSize="15sp"
-                app:layout_constraintLeft_toLeftOf="@id/product_name"
-                app:layout_constraintTop_toBottomOf="@+id/product_name" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/product_image"
+                app:layout_constraintTop_toBottomOf="@+id/product_name"
+                app:layout_constraintVertical_bias="0.454" />
 
             <TextView
                 android:id="@+id/btnAddToCart"
-                android:layout_width="24sp"
-                android:layout_height="24sp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_below="@id/product_name"
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/border_shape"
