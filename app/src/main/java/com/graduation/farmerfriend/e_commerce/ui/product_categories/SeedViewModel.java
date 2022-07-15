@@ -5,7 +5,7 @@ import android.view.animation.LinearInterpolator;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.graduation.farmerfriend.caching_room.Seed.Seed;
+
 import com.graduation.farmerfriend.ecommerce_models.Product;
 import com.graduation.farmerfriend.repos.EcommerceRepo;
 
@@ -18,7 +18,7 @@ public class SeedViewModel extends ViewModel {
     }
 
 
-    public LiveData<ArrayList<Seed>> getSeedProductsLiveData(){
+    public LiveData<ArrayList<Product>> getSeedProductsLiveData(){
         return ecommerceRepo.getSeedLiveDataProducts();
     }
 

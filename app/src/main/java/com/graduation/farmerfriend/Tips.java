@@ -1,6 +1,7 @@
 package com.graduation.farmerfriend;
 
 public class Tips {
+
     private String content;
     private String header;
 

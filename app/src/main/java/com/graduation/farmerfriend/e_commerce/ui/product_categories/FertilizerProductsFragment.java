@@ -25,8 +25,6 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.caching_room.Fert.Fert;
-import com.graduation.farmerfriend.caching_room.Fert.ProductItemFAdapter;
 import com.graduation.farmerfriend.databinding.FragmentFertilizerProductsBinding;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
@@ -36,7 +34,7 @@ public class FertilizerProductsFragment extends Fragment {
 
     FragmentFertilizerProductsBinding binding;
     FertilizersViewModel fertilizersViewModel;
-    ArrayList<Fert> fertilizersArrayList;
+    ArrayList<Product> fertilizersArrayList;
 
 
     @Override
@@ -55,11 +53,11 @@ public class FertilizerProductsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         fertilizersViewModel.init();
         fertilizersViewModel.getFerProductsLiveData()
-                .observe(getViewLifecycleOwner(), new Observer<ArrayList<Fert>>() {
+                .observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
                     @Override
-                    public void onChanged(ArrayList<Fert> productArrayList) {
+                    public void onChanged(ArrayList<Product> productArrayList) {
                         fertilizersArrayList = productArrayList;
-                        ProductItemFAdapter adapter = new ProductItemFAdapter(fertilizersArrayList,requireContext(),"fer");
+                        ProductItemAdapter adapter = new ProductItemAdapter(fertilizersArrayList,requireContext(),"fer");
                         binding.fragmentFertilizerProductsRecyclerView.setAdapter(adapter);
                         binding.fragmentFertilizerProductsRecyclerView.setLayoutManager(
                                 new GridLayoutManager(requireContext(), 3));

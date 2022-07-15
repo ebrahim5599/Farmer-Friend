@@ -22,11 +22,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 
 import com.graduation.farmerfriend.R;
-import com.graduation.farmerfriend.caching_room.Seed.ProductItemSAdapter;
-import com.graduation.farmerfriend.caching_room.Seed.Seed;
 import com.graduation.farmerfriend.databinding.FragmentSeedProductsBinding;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 
@@ -36,7 +33,7 @@ public class SeedProductsFragment extends Fragment {
 
     FragmentSeedProductsBinding binding;
     SeedViewModel seedViewModel;
-    private ArrayList<Seed> seedArrayList;
+    private ArrayList<Product> seedArrayList;
     private String TAG = "SeedProductsFragment";
 
 
@@ -54,12 +51,12 @@ public class SeedProductsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         seedViewModel.init();
         seedViewModel.getSeedProductsLiveData()
-                .observe(getViewLifecycleOwner(), new Observer<ArrayList<Seed>>() {
+                .observe(getViewLifecycleOwner(), new Observer<ArrayList<Product>>() {
                     @Override
-                    public void onChanged(ArrayList<Seed> productArrayList) {
+                    public void onChanged(ArrayList<Product> productArrayList) {
                         seedArrayList = productArrayList;
                         Log.d(TAG, "onChanged: " + productArrayList.get(0).productName);
-                        ProductItemSAdapter adapter = new ProductItemSAdapter(seedArrayList, requireContext(), "seed");
+                        ProductItemAdapter adapter = new ProductItemAdapter(seedArrayList, requireContext(), "seed");
                         binding.fragmentSeedsProductsRecyclerView.setAdapter(adapter);
                         binding.fragmentSeedsProductsRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
                         binding.seedsPullToRefresh.setRefreshing(false);

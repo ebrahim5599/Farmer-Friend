@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.graduation.farmerfriend.caching_room.Fert.Fert;
 import com.graduation.farmerfriend.ecommerce_models.Product;
 import com.graduation.farmerfriend.repos.EcommerceRepo;
 
@@ -17,7 +16,7 @@ public class FertilizersViewModel extends ViewModel {
         ecommerceRepo = EcommerceRepo.getInstance();
     }
 
-    public LiveData<ArrayList<Fert>> getFerProductsLiveData() {
+    public LiveData<ArrayList<Product>> getFerProductsLiveData() {
         return ecommerceRepo.getFerLiveDataProducts();
     }
 

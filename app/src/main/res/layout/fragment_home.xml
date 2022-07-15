@@ -718,7 +718,8 @@
                                                 android:layout_height="80dp"
                                                 android:layout_marginTop="8dp"
                                                 android:background="@drawable/iot_image_weather"
-                                                android:src="@drawable/moisture"
+                                                android:scaleType="centerCrop"
+                                                android:src="@drawable/altitude"
                                                 tools:ignore="ImageContrastCheck" />
 
                                             <TextView
